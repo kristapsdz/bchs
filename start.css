@@ -1,0 +1,60 @@
+html, body			{ margin: 0; 
+				  background-color: #333;
+				  height: 100%; }
+section				{ display: flex; 
+			 	  flex-direction: column;
+				  height: 100%; }
+header				{ width: 70%;	
+				  padding-top: 1em;
+				  padding-bottom: 1em;
+				  font-size: 18pt;
+				  color: #89a;
+				  text-shadow: 1px 0 #234;
+				  margin-left: auto;
+				  margin-right: auto;
+				  font-family: "Times New Roman", Garamond, serif; }
+article				{ flex: 1; 
+				  width: 70%;
+				  font-family: Georgia, serif;
+				  color: #cde;
+				  margin-left: auto;
+				  margin-right: auto; }
+article p			{ font-size: 16pt; 
+				  line-height: 140%;
+				  color: #9cc;}
+article a			{ color: #aaf; 
+				  text-shadow: 1px 0 #455; }
+article a:hover			{ color: #ccf; 
+				  text-shadow: 1px 0 #223; }
+article ol			{ padding: 0; }
+article section h2 + p		{ margin-top: 0.5em; }
+h1 a				{ color: #def; 
+				  text-shadow: 1px 0 #023; }
+h1 a:hover			{ color: #eff; 
+				  text-shadow: 1px 0 #456; }
+h1				{ font-size: 28pt;
+				  text-shadow: 1px 0 #023;
+				  font-weight: normal;
+				  margin: 0;  }
+h2				{ margin: 0;
+				  font-weight: normal;
+				  font-size: 18pt; }
+a				{ text-decoration: none; }
+nav				{ color: #abc; }
+footer				{ text-align: center;
+				  padding-top: 1em;
+				  padding-bottom: 1em;
+				  font-size: 11pt;
+				  color: #678; }
+footer a			{ color: #89a; }
+footer a:hover			{ color: #cdf; }
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+header				{ width: 90%; 
+				  padding-top: 1ex;
+				  padding-bottom: 0em;}
+article 			{ width: 90%; }
+article ol			{ padding: 1ex; }
+h1				{ font-size: 16pt; }
+h2				{ font-size: 18pt; }
+article p			{ font-size: 12pt; }
+}
