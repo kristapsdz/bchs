@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: BSD, C, httpd, SQLite</title>
+		<link rel="stylesheet" href="index.css" type="text/css" />
+	</head>
+	<body>
+		<section>
+			<header>
+				<h1>BCHS;</h1>
+				<nav>
+					<a href="start.html">Get Started</a>
+				</nav>
+			</header>
+			<article>
+				<div>
+					<h2>BSD, C, httpd, SQLite.</h2>
+					<p>
+						BCHS (pronounced by Germans as <q>baχs</q>, Anglophones as <q>bɪtʃs</q>) means real development.
+						It is a 99% hipster-free (no Python or systemd) and
+						bureaucrat-resistant (real <a href="http://www.openbsd.org/policy.html">open source</a>)
+						software stack.
+						To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
+						Then <a href="start.html">get started</a>.
+					</p>
+				</div>
+			</article>
+			<footer>
+				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>Built on <a href="http://www.openbsd.org">OpenBSD</a>: <q>all bass, no treble</q>.</div>
+			</footer>
+		</section>
+	</body>
+</html>
+

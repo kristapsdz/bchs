@@ -1,0 +1,61 @@
+html, body			{ margin: 0; 
+				  background-color: #333;
+				  height: 100%; }
+section				{ display: flex; 
+			 	  flex-direction: column;
+				  height: 100%; }
+header				{ display: flex;
+				  width: 70%;	
+				  padding-top: 1em;
+				  margin-left: auto;
+				  margin-right: auto;
+			  	  flex-direction: row;
+				  font-family: "Times New Roman", Garamond, serif; }
+header nav			{ flex: 1; 
+				  font-size: 14pt;
+				  align-self: flex-end;
+				  text-align: right; }
+header nav a			{ color: #aee; }
+header nav a:hover		{ color: #eff; }
+article				{ flex: 1; 
+				  font-family: Georgia, serif;
+				  color: #cde; }
+article div			{ width: 50%;
+				  padding-top: 15%;
+				  margin-left: auto;
+				  margin-right: auto; }
+article p			{ font-size: 16pt; 
+				  line-height: 140%;
+				  color: #9cc;}
+article p a			{ color: #aaf; 
+				  text-shadow: 1px 0 #455; }
+article p a:hover		{ color: #ccf; 
+				  text-shadow: 1px 0 #223; }
+h2				{ font-size: 28pt; 
+				  margin: 0;
+				  text-shadow: 1px 0 #023;
+			  	  font-weight: normal; }
+h1				{ color: #def; 
+				  font-size: 20pt;
+				  text-shadow: 1px 0 #023;
+				  font-weight: normal;
+				  margin: 0;  }
+h3				{ margin: 0;
+				  font-weight: normal;
+				  font-size: 18pt; }
+a				{ text-decoration: none; }
+nav				{ color: #abc; }
+footer				{ text-align: center;
+				  padding-bottom: 1em;
+				  font-size: 11pt;
+				  color: #678; }
+footer a			{ color: #89a; }
+footer a:hover			{ color: #cdf; }
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+header				{ width: 95%; }
+article div			{ width: 95%; }
+h1				{ font-size: 16pt; }
+h2				{ font-size: 18pt;
+			 	  text-align: center; }
+article p			{ font-size: 12pt; }
+}
