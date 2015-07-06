@@ -75,8 +75,8 @@
 				<p>
 					BCHS isn't just a software stack.
 					It's stable, developer-oriented tools for handling data in an incredibly scary environment.
-					Get used to minimalism: statically-compiled, privilege-separated C applications in file-system jails.
-					Use powerful system tools directly instead of depending on a PHP run-time to hold your hand.
+					Get used to minimalism: statically-compiled, privilege-separated binaries in file-system jails.
+					Use powerful system tools directly instead of depending on PHP to hold your hand.
 					And most of all, forget your LAMP instincts to desperately Google and StackExchange every parameter: man
 					pages are your new best friend.
 				</p>
@@ -84,7 +84,8 @@
 					Need help with CGI handling?
 					Like with any hipster languages, you've plenty of <a
 						href="http://www.openbsd.org/faq/faq15.html">package</a> options like <a
-						href="www.fastcgi.com">FastCGI</a> or <a href="http://kristaps.bsd.lv/kcgi">kcgi</a>.
+						href="http://www.fastcgi.com">FastCGI</a> or <a href="http://kristaps.bsd.lv/kcgi">kcgi</a>.
+					Most other libraries (PNG handling, etc.) can be found in the same place.
 				</p>
 			</article>
 			<footer>
