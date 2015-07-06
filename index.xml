@@ -19,7 +19,8 @@
 				<div>
 					<h2>BSD, C, httpd, SQLite.</h2>
 					<p>
-						BCHS (pronounced by Germans as <q>baχs</q>, Anglophones as <q>bɪtʃs</q>) means real development.
+						BCHS (pronounced by Germans as <q>baχs</q>, like Bach, and Anglophones as <q>bɪtʃs</q>,
+						like... beaches) means real development.
 						It is a 99% hipster-free (no Python or systemd) and
 						bureaucrat-resistant (real <a href="http://www.openbsd.org/policy.html">open source</a>)
 						software stack.

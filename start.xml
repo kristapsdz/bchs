@@ -14,13 +14,17 @@
 				<div>BSD, C, httpd, SQLite.</div>
 			</header>
 			<article>
+				<p>
+					Why BCHS?
+					Because the open Internet is the most hostile landscape around.
+				</p>
 				<div>
 					<ol>
 						<li>
 							<section>
 								<h2>BSD.</h2>
 								<p>
-									When we say BSD, we mean <a href="http:/www.openbsd.org">OpenBSD</a>.
+									When we say BSD, we mean <a href="http://www.openbsd.org">OpenBSD</a>.
 									Why?  
 									Documentation.
 									Security.
@@ -70,15 +74,17 @@
 				</div>
 				<p>
 					BCHS isn't just a software stack.
-					It's a stable, developer-oriented environment.
-					Get used to minimalism: statically-compiled C applications with carefully-chosen dependencies in secure,
-					privilege-separated file-system jails.
-					Don't want an XML parser?
-					Don't link to one.
-					Want to sandbox for extra security?
-					Do it.
-					And most importantly, forget your LAMP days of desperate Googling and StackExchanging: man pages are
-					your new best friend.
+					It's stable, developer-oriented tools for handling data in an incredibly scary environment.
+					Get used to minimalism: statically-compiled, privilege-separated C applications in file-system jails.
+					Use powerful system tools directly instead of depending on a PHP run-time to hold your hand.
+					And most of all, forget your LAMP instincts to desperately Google and StackExchange every parameter: man
+					pages are your new best friend.
+				</p>
+				<p>
+					Need help with CGI handling?
+					Like with any hipster languages, you've plenty of <a
+						href="http://www.openbsd.org/faq/faq15.html">package</a> options like <a
+						href="www.fastcgi.com">FastCGI</a> or <a href="http://kristaps.bsd.lv/kcgi">kcgi</a>.
 				</p>
 			</article>
 			<footer>
