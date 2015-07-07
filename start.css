@@ -62,6 +62,8 @@ footer				{ text-align: center;
 				  color: #678; }
 footer a			{ color: #89a; }
 footer a:hover			{ color: #cdf; }
+#logo				{ width: 60px; 
+				  padding-right: 10px; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 90%; 
 				  padding-top: 1ex;

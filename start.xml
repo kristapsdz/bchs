@@ -10,7 +10,7 @@
 	<body>
 		<section>
 			<header>
-				<h1><a href="index.html">BCHS</a>;</h1>
+				<h1><img src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html">BCHS</a>;</h1>
 				<div>BSD, C, httpd, SQLite.</div>
 			</header>
 			<article>

@@ -16,6 +16,7 @@
 				</nav>
 			</header>
 			<article id="main">
+				<img id="logo" src="logo-white.png" alt="BCHS Logo" />
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p>
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
@@ -24,11 +25,6 @@
 					software stack for web applications.
 					To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
 					Then <a href="start.html">get started</a>.
-				</p>
-			</article>
-			<article id="contact">
-				<p>
-					Do you use BCHS?  <a href="mailto:kristaps@bsd.lv">Let us know</a>!
 				</p>
 			</article>
 			<footer>
