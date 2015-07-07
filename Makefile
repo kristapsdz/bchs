@@ -10,7 +10,7 @@ start.html: start.xml $(BLOGS)
 
 installwww: www
 	mkdir -p $(PREFIX)
-	install -m 0444 index.html index.css start.html start.css $(PREFIX)
+	install -m 0444 logo-white.png index.html index.css start.html start.css $(PREFIX)
 
 clean:
 	rm -f index.html start.html 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="900"
+   height="600"
+   id="svg3421"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/Users/kristaps/checkedout/bchs/logo-blue.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata3434">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3432" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="852"
+     id="namedview3430"
+     showgrid="false"
+     inkscape:zoom="0.92"
+     inkscape:cx="448.91435"
+     inkscape:cy="300"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer 1"
+     style="opacity:0.98">
+    <path
+       style="stroke:none;stroke-opacity:1"
+       d="m194,473c0,0 48.090897,36 132.96875,36c130.022369,0 242.46875,-95.08493 242.46875,-211.8125c0,-105.12561 -93.954803,-198.25 -229.5,-198.25c-130.054794,0 -206.712891,86.956055 -225,135.0625c38,-51.5 112.902283,-113.4375 207.5,-113.4375c79.533447,0 141.53125,54.770004 141.53125,131.28125c0,112.5 -119.977783,225.15625 -241.59375,225.15625c-18.878723,0 -28.375,-4 -28.375,-4z"
+       id="path2392"
+       fill="#0173bc"
+       inkscape:export-filename="/Users/kristaps/checkedout/bchs/logo-white.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="stroke:none;stroke-opacity:1"
+       d="m451,509c172.041565,0 207,-80.493988 207,-125.65625c0,-72.672211 -73.515625,-127.859375 -73.515625,-127.859375c0,0 7.953125,20.949432 7.953125,54.953125c0,146.60321 -141.4375,198.5625 -141.4375,198.5625z"
+       id="path2388"
+       fill="#0173bc"
+       inkscape:export-filename="/Users/kristaps/checkedout/bchs/logo-white.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <circle
+       style="fill:none;fill-opacity:0.99115044;stroke:#0173bc;stroke-width:25;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+       id="path4241"
+       cx="385.10867"
+       cy="319.58698"
+       r="317.46454"
+       inkscape:export-filename="/Users/kristaps/checkedout/bchs/logo-white.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>

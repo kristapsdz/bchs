@@ -17,6 +17,8 @@ header nav			{ flex: 1;
 				  text-align: right; }
 header nav a			{ color: #aee; }
 header nav a:hover		{ color: #eff; }
+#logo				{ width: 90px; 
+			 	  opacity: 0.7; }
 #main				{ flex: 1; 
 				  padding-top: 30%;
 				  font-family: Georgia, serif;
