@@ -15,19 +15,21 @@
 					<a href="start.html">Get Started</a>
 				</nav>
 			</header>
-			<article>
-				<div>
-					<h2>BSD, C, httpd, SQLite.</h2>
-					<p>
-						BCHS (pronounced by Germans as <q>baχs</q>, like Bach, and Anglophones as <q>bɪtʃs</q>,
-						like... beaches) means real development.
-						It is a 99% hipster-free (no Python or systemd) and
-						bureaucrat-resistant (real <a href="http://www.openbsd.org/policy.html">open source</a>)
-						software stack.
-						To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
-						Then <a href="start.html">get started</a>.
-					</p>
-				</div>
+			<article id="main">
+				<h2>BSD, C, httpd, SQLite.</h2>
+				<p>
+					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
+					It's a hipster-free (no Python or systemd) and
+					bureaucrat-resistant (real <a href="http://www.openbsd.org/policy.html">open source</a>)
+					software stack for web applications.
+					To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
+					Then <a href="start.html">get started</a>.
+				</p>
+			</article>
+			<article id="contact">
+				<p>
+					Do you use BCHS?  <a href="mailto:kristaps@bsd.lv">Let us know</a>!
+				</p>
 			</article>
 			<footer>
 				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>

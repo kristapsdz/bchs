@@ -1,6 +1,6 @@
 BLOGS		 = blog0.xml
 
-www: index.html start.html
+www: index.html start.html 
 
 index.html: index.xml $(BLOGS)
 	sblg -o $@ -t index.xml $(BLOGS)
@@ -13,4 +13,4 @@ installwww: www
 	install -m 0444 index.html index.css start.html start.css $(PREFIX)
 
 clean:
-	rm -f index.html start.html
+	rm -f index.html start.html 

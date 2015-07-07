@@ -27,7 +27,19 @@ article a			{ color: #aaf;
 article a:hover			{ color: #ccf; 
 				  text-shadow: 1px 0 #223; }
 article ol			{ padding: 0; }
-article section h2 + p		{ margin-top: 0.5em; }
+aside				{ background-color: #2c2c2c; 
+				  box-shadow: 1px 1px 2px #011;
+				  padding: 1em;
+				  margin-left: -1ex;
+				  margin-bottom: 1em;
+				  margin-right: -1ex;
+				  font-size: 16pt;
+				  line-height: 140%;
+				  border-radius: 4pt;
+			 	  color: #ccc; }
+article li			{ margin-bottom: 2em; }
+article section p		{ margin-top: 0.25em; 
+				  margin-bottom: 0.25em; }
 h1 a				{ color: #def; 
 				  text-shadow: 1px 0 #023; }
 h1 a:hover			{ color: #eff; 
@@ -37,6 +49,7 @@ h1				{ font-size: 28pt;
 				  font-weight: normal;
 				  margin: 0;  }
 h2				{ margin: 0;
+				  margin-bottom: 0.25em;
 				  font-weight: normal;
 				  font-size: 18pt; }
 a				{ text-decoration: none; }
@@ -45,6 +58,7 @@ footer				{ text-align: center;
 				  padding-top: 1em;
 				  padding-bottom: 1em;
 				  font-size: 11pt;
+				  line-height: 130%;
 				  color: #678; }
 footer a			{ color: #89a; }
 footer a:hover			{ color: #cdf; }

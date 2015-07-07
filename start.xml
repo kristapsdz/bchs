@@ -10,83 +10,82 @@
 	<body>
 		<section>
 			<header>
-				<h1><a href="index.html">BCHS</a></h1>
+				<h1><a href="index.html">BCHS</a>;</h1>
 				<div>BSD, C, httpd, SQLite.</div>
 			</header>
 			<article>
 				<p>
 					Why BCHS?
-					Because the open Internet is the most hostile landscape around.
+					Because the open Internet is damn inhospitable.
 				</p>
-				<div>
-					<ol>
-						<li>
-							<section>
-								<h2>BSD.</h2>
-								<p>
-									When we say BSD, we mean <a href="http://www.openbsd.org">OpenBSD</a>.
-									Why?  
-									Documentation.
-									Security.
-									Reliable six-month releases.
-									Take the guess-work out of your environment.
-									Did we mention <a href="http://www.openbsd.org/cgi-bin/man.cgi">documentation</a>?
-								</p>
-							</section>
-						</li>
-						<li>
-							<section>
-								<h2>C.</h2>
-								<p>
-									Learn C like the proper way: by reading <a
-										href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The
-										C Programming Language</a>.
-									It's a straightforward, non-mustachioed language.
-								</p>
-							</section>
-						</li>
-						<li>
-							<section>
-								<h2>httpd.</h2>
-								<p>
-									OpenBSD features the simple, home-grown <a
-										href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8">httpd(8)</a>
-									right out of the box.
-									It also includes <a
-										href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
-									for non-FastCGI applications.
-									If you need more features for your web application, start rethinking.
-								</p>
-							</section>
-						</li>
-						<li>
-							<section>
-								<h2>SQLite.</h2>
-								<p>
-									Ok, if <a href="https://www.sqlite.org">SQLite</a> is a too light-weight
-									for you, use <a href="http://www.postgresql.org">PostgreSQL</a>.  
-									But for any normal web application, SQLite is the way.  
-									It's also installed in the base system&#8212;simple.
-								</p>
-							</section>
-						</li>
-					</ol>
-				</div>
-				<p>
+				<ol>
+					<li>
+						<section>
+							<h2>BSD.</h2>
+							<p>
+								<a href="http://www.openbsd.org">OpenBSD</a>.
+								Why?  
+								Documentation.
+								Security.
+								Reliable six-month releases.
+								It takes the guess-work out of your environment.
+							</p>
+							<p>
+								Resources:
+								<a href="http://www.openbsd.org/cgi-bin/man.cgi">man pages</a>,
+								<a href="http://www.openbsd.org/faq/">FAQ</a>,
+								<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition">Absolute OpenBSD</a>.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h2>C.</h2>
+							<p>
+								C is a straightforward, non-mustachioed language.
+								And it's portable to every system with a C compiler, which is pretty much every system.
+							</p>
+							<p>
+								Resources:
+								<a href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h2>httpd.</h2>
+							<p>
+								OpenBSD's own simple, home-grown web server.
+								If you need more features for your web application, start rethinking.
+							</p>
+							<p>
+								Resources:
+								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
+								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h2>SQLite.</h2>
+							<p>
+								<a href="https://www.sqlite.org">SQLite</a> is light-weight, file-based database.
+								And it's bundled with OpenBSD.
+							</p>
+							<p>
+								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>.
+							</p>
+						</section>
+					</li>
+				</ol>
+				<aside>
 					BCHS isn't just a software stack.
-					It's stable, developer-oriented tools for handling data in an incredibly scary environment.
+					It's stable, developer-oriented tools for handling data in a hostile environment.
 					Get used to minimalism: statically-compiled, privilege-separated binaries in file-system jails.
 					Use powerful system tools directly instead of depending on PHP to hold your hand.
 					And most of all, forget your LAMP instincts to desperately Google and StackExchange every parameter: man
 					pages are your new best friend.
-				</p>
-				<p>
-					Need help with CGI handling?
-					Like with any hipster languages, you've plenty of <a
-						href="http://www.openbsd.org/faq/faq15.html">package</a> options like <a
-						href="http://www.fastcgi.com">FastCGI</a> or <a href="http://kristaps.bsd.lv/kcgi">kcgi</a>.
-					Most other libraries (PNG handling, etc.) can be found in the same place.
-				</p>
+				</aside>
 			</article>
 			<footer>
 				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
