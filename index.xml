@@ -16,7 +16,9 @@
 				</nav>
 			</header>
 			<article id="main">
-				<img id="logo" src="logo-white.png" alt="BCHS Logo" />
+				<div id="logo">
+					<img src="logo-white.png" alt="BCHS Logo" />
+				</div>
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p>
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
