@@ -45,7 +45,8 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>.
+								<a href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>,
+								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>.
 							</p>
 						</section>
 					</li>
