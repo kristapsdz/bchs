@@ -5,8 +5,8 @@ section				{ display: flex;
 			 	  flex-direction: column;
 				  height: 100%; }
 header				{ display: flex;
-				  width: 55%;	
-				  padding-top: 1em;
+				  width: 50%;	
+				  padding-top: 2%;
 				  margin-left: auto;
 				  margin-right: auto;
 			  	  flex-direction: row;
@@ -16,6 +16,9 @@ header nav			{ flex: 1;
 				  align-self: flex-end;
 				  text-align: right; }
 header nav a			{ color: #aee; }
+header nav a + a		{ border-left: thin solid #89a; 
+				  margin-left: 0.5ex;
+				  padding-left: 1ex; }
 header nav a:hover		{ color: #eff; }
 #logo img			{ width: 90px; 
 			 	  opacity: 0.7; }
@@ -29,9 +32,9 @@ header nav a:hover		{ color: #eff; }
 #contact			{ flex: 1;
 				  width: 50%;
 				  margin-left: auto;
-				  font-size: 14pt;
+				  font-size: 16pt;
 				  margin-right: auto;
-				  color: #abc; }
+				  color: #89a; }
 #contact a			{ color: #5cc; }
 #contact a:hover		{ color: #3dd; }
 #main p				{ font-size: 16pt; 

@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
 		<link rel="stylesheet" href="index.css" type="text/css" />
@@ -10,9 +9,10 @@
 	<body>
 		<section>
 			<header>
-				<h1>BCHS;</h1>
+				<h1>BCHS Stack</h1>
 				<nav>
 					<a href="start.html">Get Started</a>
+					<a href="tools.html">Tools</a>
 				</nav>
 			</header>
 			<article id="main">
@@ -22,16 +22,20 @@
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p>
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
-					It's a hipster-free (no Python or systemd) and
-					bureaucrat-resistant (real <a href="http://www.openbsd.org/policy.html">open source</a>)
-					software stack for web applications.
+					It's a hipster-free, <a href="http://www.openbsd.org/policy.html">open source</a> software stack for web
+					applications.
 					To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
 					Then <a href="start.html">get started</a>.
 				</p>
 			</article>
+			<article id="contact">
+				<p>
+					Does your web application use BCHS?
+					<a href="mailto:kristaps@bsd.lv">Let us know</a>.
+				</p>
+			</article>
 			<footer>
 				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
-				<div>Built on <a href="http://www.openbsd.org">OpenBSD</a>: <q>all bass, no treble</q>.</div>
 			</footer>
 		</section>
 	</body>

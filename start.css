@@ -64,6 +64,10 @@ footer a			{ color: #89a; }
 footer a:hover			{ color: #cdf; }
 #logo				{ width: 60px; 
 				  padding-right: 10px; }
+.alt				{ color: #678;
+				  font-style: italic; }
+.explain p			{ font-size: 13pt; 
+				  color: #89a; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 90%; 
 				  padding-top: 1ex;
@@ -73,4 +77,5 @@ article ol			{ padding: 1ex; }
 h1				{ font-size: 16pt; }
 h2				{ font-size: 18pt; }
 article p			{ font-size: 12pt; }
+aside				{ font-size: 12pt; }
 }

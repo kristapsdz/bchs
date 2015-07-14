@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
 		<link rel="stylesheet" href="start.css" type="text/css" />
@@ -10,8 +9,8 @@
 	<body>
 		<section>
 			<header>
-				<h1><img src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html">BCHS</a>;</h1>
-				<div>BSD, C, httpd, SQLite.</div>
+				<h1><img src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html">BCHS</a></h1>
+				<div>BSD, C, httpd, SQLite</div>
 			</header>
 			<article>
 				<p>
@@ -24,7 +23,6 @@
 							<h2>BSD.</h2>
 							<p>
 								<a href="http://www.openbsd.org">OpenBSD</a>.
-								Why?  
 								Documentation.
 								Security.
 								Reliable six-month releases.
@@ -43,7 +41,7 @@
 							<h2>C.</h2>
 							<p>
 								C is a straightforward, non-mustachioed language.
-								And it's portable to every system with a C compiler, which is pretty much every system.
+								It has full access to the kernel's system calls and a massive set of development tools.
 							</p>
 							<p>
 								Resources:
@@ -55,12 +53,13 @@
 						<section>
 							<h2>httpd.</h2>
 							<p>
-								OpenBSD's own simple, home-grown web server.
+								OpenBSD's home-grown web server.
 								If you need more features for your web application, start rethinking.
 							</p>
 							<p>
 								Resources:
 								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
+								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
 								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>.
 							</p>
 						</section>
@@ -69,8 +68,8 @@
 						<section>
 							<h2>SQLite.</h2>
 							<p>
-								<a href="https://www.sqlite.org">SQLite</a> is light-weight, file-based database.
-								And it's bundled with OpenBSD.
+								<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable, zero-configuration</q> database.
+								And it's bundled with stock OpenBSD.
 							</p>
 							<p>
 								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>.
@@ -78,18 +77,22 @@
 						</section>
 					</li>
 				</ol>
+				<p>
+					Install, fire up the web server, and get to work.
+					What next?
+					Consider your <a href="tools.html">tools</a>.
+				</p>
 				<aside>
-					BCHS isn't just a software stack.
-					It's stable, developer-oriented tools for handling data in a hostile environment.
-					Get used to minimalism: statically-compiled, privilege-separated binaries in file-system jails.
+					BCHS is a stable, developer-oriented set of tools for handling data in a hostile environment.
+					Get used to minimalism and security: statically-compiled, privilege-separated binaries in file-system
+					jails.
 					Use powerful system tools directly instead of depending on PHP to hold your hand.
-					And most of all, forget your LAMP instincts to desperately Google and StackExchange every parameter: man
+					And most of all, forget your LAMP instincts to desperately search Google and StackExchange for every parameter: man
 					pages are your new best friend.
 				</aside>
 			</article>
 			<footer>
 				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
-				<div>Built on <a href="http://www.openbsd.org">OpenBSD</a>: <q>greasy fingers, greasy spine</q>.</div>
 			</footer>
 		</section>
 	</body>
