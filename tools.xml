@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: BSD, C, httpd, SQLite</title>
+		<link rel="stylesheet" href="start.css" type="text/css" />
+	</head>
+	<body>
+		<section>
+			<header>
+				<h1><img src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html">BCHS</a></h1>
+				<div>BSD, C, httpd, SQLite</div>
+			</header>
+			<article>
+				<p>
+					You've <a href="start.html">deployed</a> BCHS.
+					Your editor is open.
+					Where do you begin?
+				</p>
+				<ol>
+					<li>
+						<section>
+							<p>
+								Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
+									href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
+							</p>
+							<p class="alt">
+								...or...
+							</p>
+							<p>
+								Install and use <a href="http://kristaps.bsd.lv/kcgi">kcgi</a> or <a
+									href="http://www.fastcgi.com/">fcgi</a> from <a
+									href="http://www.openbsd.org/faq/faq15.html">packages</a>.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								If you don't want to parse content by hand&#8212;and you really, really don't&#8212;let a
+								library do it for you.
+								(Want FastCGI?  Think twice.
+								CGI scripts run by <a
+									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
+								already have their privileges dropped and file-system constrained.  With
+								FastCGI, you'll need to do it yourself.)
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<p>
+								Get to know your security tools.
+								OpenBSD has <a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man4/systrace.4">systrace(4)</a>.
+								FreeBSD has <a href="http://www.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a>.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								Your application will be under assault every moment it's running.
+								And it will have bugs: limit the damage caused by inevitable mistakes by
+								constraining (sandboxing) the environment available to your application.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<p>
+								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
+									href="http://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
+								your <a
+									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
+								flags are unforgiving.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								Memory errors are often the subtlest.
+								Use these tools as much as possible to catch any unnoticed allocation issues.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<p>
+								Parsing data?
+								Push your parsers into libraries and use <a
+									href="http://lcamtuf.coredump.cx/afl/">AFL</a> (from <a
+									href="http://www.openbsd.org/faq/faq15.html">packages</a>) to put them
+								through inputs you haven't tested.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								The thought that <q>this input could never happen</q> is your adversary's favourite.
+								It <i>will</i> happen.
+								Make sure any parsing sequences are being run through as many code-paths as
+								possible with this tool.
+							</p>
+						</section>
+					</li>
+				</ol>
+				<p>
+					Don't forget: BSD is a community of professionals.
+					Go to conferences (<a href="http://www.eurobsdcon.org">EuroBSDCon</a>, <a
+						href="http://www.asiasbsdcon.org">AsiaBSDCon</a>, <a href="http://www.bsdcan.org">BSDCan</a>,
+					etc.).
+					Subscribe to the <a href="http://www.openbsd.org/mail.html">mailing lists</a>.
+					<a href="http://www.openbsd.org/donations.html">Donate</a>.
+					And lastly but most important of all: use the <a href="http://www.openbsd.org/cgi-bin/man.cgi">man pages</a>!
+				</p>
+			</article>
+			<footer>
+				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+			</footer>
+		</section>
+	</body>
+</html>
+

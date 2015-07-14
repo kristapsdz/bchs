@@ -1,16 +1,16 @@
-BLOGS		 = blog0.xml
+.SUFFIXES: .xml .html
 
-www: index.html start.html 
+PAGES		 = index.html start.html tools.html
+CSSS		 = index.css start.css
 
-index.html: index.xml $(BLOGS)
-	sblg -o $@ -t index.xml $(BLOGS)
+www: $(PAGES)
 
-start.html: start.xml $(BLOGS)
-	sblg -o $@ -t start.xml $(BLOGS)
+.xml.html:
+	cp -f $< $@
 
 installwww: www
 	mkdir -p $(PREFIX)
-	install -m 0444 logo-white.png index.html index.css start.html start.css $(PREFIX)
+	install -m 0444 logo-white.png $(CSSS) $(PAGES) $(PREFIX)
 
 clean:
-	rm -f index.html start.html 
+	rm -f $(PAGES)
