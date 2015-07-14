@@ -65,6 +65,22 @@
 					<li>
 						<section>
 							<p>
+								Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
+								(from <a href="http://www.openbsd.org/faq/faq15.html">packages</a>).
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								This static analysis tool can help catch source-level bugs.
+								An alternative compiler can also prevent you from relying too much on <a
+									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
+								extensions, which reduces portability.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<p>
 								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
 									href="http://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
 								your <a
