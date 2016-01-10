@@ -4,23 +4,23 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="index.css" type="text/css" />
+		<link rel="stylesheet" href="index.css" />
 	</head>
 	<body>
-		<section>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1>BCHS Stack</h1>
-				<nav>
+				<h1 itemtype="name">BCHS Stack</h1>
+				<nav itemprop="breadcrumb">
 					<a href="start.html">Get Started</a>
 					<a href="tools.html">Tools</a>
 				</nav>
 			</header>
 			<article id="main">
 				<div id="logo">
-					<img src="logo-white.png" alt="BCHS Logo" />
+					<img property="image" src="logo-white.png" alt="BCHS Logo" />
 				</div>
 				<h2>BSD, C, httpd, SQLite.</h2>
-				<p>
+				<p itemtype="description">
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
 					It's a hipster-free, <a href="http://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
@@ -35,7 +35,7 @@
 				</p>
 			</article>
 			<footer>
-				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>&#169; 2015, 2016 <a rel="author" href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
 		</section>
 	</body>
