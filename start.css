@@ -68,6 +68,7 @@ footer a:hover			{ color: #cdf; }
 				  font-style: italic; }
 .explain p			{ font-size: 13pt; 
 				  color: #89a; }
+.footnote			{ font-size: smaller; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 90%; 
 				  padding-top: 1ex;

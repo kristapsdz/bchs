@@ -4,16 +4,16 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="start.css" type="text/css" />
+		<link rel="stylesheet" href="start.css" />
 	</head>
 	<body>
-		<section>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1><img src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html">BCHS</a></h1>
+				<h1><img property="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemtype="name">BCHS Stack</a></h1>
 				<div>BSD, C, httpd, SQLite</div>
 			</header>
 			<article>
-				<p>
+				<p itemtype="description">
 					Why BCHS?
 					Because the open Internet is damn inhospitable.
 				</p>
