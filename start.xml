@@ -9,11 +9,11 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1><img property="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemtype="name">BCHS Stack</a></h1>
+				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS Stack</a></h1>
 				<div>BSD, C, httpd, SQLite</div>
 			</header>
 			<article>
-				<p itemtype="description">
+				<p itemprop="description">
 					Why BCHS?
 					Because the open Internet is damn inhospitable.
 				</p>

@@ -9,7 +9,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1 itemtype="name">BCHS Stack</h1>
+				<h1 itemprop="name">BCHS Stack</h1>
 				<nav itemprop="breadcrumb">
 					<a href="start.html">Get Started</a>
 					<a href="tools.html">Tools</a>
@@ -17,10 +17,10 @@
 			</header>
 			<article id="main">
 				<div id="logo">
-					<img property="image" src="logo-white.png" alt="BCHS Logo" />
+					<img itemprop="image" src="logo-white.png" alt="BCHS Logo" />
 				</div>
 				<h2>BSD, C, httpd, SQLite.</h2>
-				<p itemtype="description">
+				<p itemprop="description">
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
 					It's a hipster-free, <a href="http://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
