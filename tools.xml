@@ -40,7 +40,7 @@
 								library do it for you.
 								(Want FastCGI?  Be careful!
 								CGI scripts run by <a
-									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
+									href="http://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
 								already have their privileges dropped and file-system constrained.  
 								With FastCGI, you'll need to use a framework that does so for you!)
 							</p>
@@ -50,8 +50,8 @@
 						<section>
 							<p>
 								Get to know your security tools.
-								OpenBSD has <a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man4/systrace.4">systrace(4)</a> and
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
+								OpenBSD has <a href="http://man.openbsd.org/OpenBSD-current/man4/systrace.4">systrace(4)</a> and
+								<a href="http://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
 								FreeBSD has <a href="http://www.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a>.
 							</p>
 						</section>
@@ -74,7 +74,7 @@
 							<p>
 								This static analysis tool can help catch source-level bugs.
 								An alternative compiler can also prevent you from relying too much on <a
-									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
+									href="http://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
 								extensions, which reduces portability.
 							</p>
 						</section>
@@ -85,7 +85,7 @@
 								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
 									href="http://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
 								your <a
-									href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
+									href="http://man.openbsd.org/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
 								flags are unforgiving.
 							</p>
 						</section>
@@ -123,7 +123,7 @@
 					etc.).
 					Subscribe to the <a href="http://www.openbsd.org/mail.html">mailing lists</a>.
 					<a href="http://www.openbsd.org/donations.html">Donate</a>.
-					And lastly but most important of all: use the <a href="http://www.openbsd.org/cgi-bin/man.cgi">man pages</a>!
+					And lastly but most important of all: use the <a href="http://man.openbsd.org">man pages</a>!
 				</p>
 				<p class="footnote" id="footnote1">
 					Disclaimer: I (<a href="http://kristaps.bsd.lv">Kristaps</a>) wrote this.

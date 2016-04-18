@@ -30,7 +30,7 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi">man pages</a>,
+								<a href="http://man.openbsd.org">man pages</a>,
 								<a href="http://www.openbsd.org/faq/">FAQ</a>,
 								<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition">Absolute OpenBSD</a>.
 							</p>
@@ -46,7 +46,7 @@
 							<p>
 								Resources:
 								<a href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>,
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>.
+								<a href="http://man.openbsd.org/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>.
 							</p>
 						</section>
 					</li>
@@ -59,9 +59,9 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
-								<a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>.
+								<a href="http://man.openbsd.org/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
+								<a href="http://man.openbsd.org/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
+								<a href="http://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>.
 							</p>
 						</section>
 					</li>
