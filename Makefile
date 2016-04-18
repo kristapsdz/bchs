@@ -1,7 +1,8 @@
 .SUFFIXES: .xml .html
 
-PAGES		 = index.html start.html tools.html
-CSSS		 = index.css start.css
+PREFIX		= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
+PAGES		= index.html start.html tools.html
+CSSS		= index.css start.css
 
 www: $(PAGES)
 
