@@ -1,16 +1,18 @@
 html, body			{ margin: 0; 
 				  background-color: #333;
 				  height: 100%; }
+body				{ font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+				  font-size: 11pt; }
 section				{ display: flex; 
 			 	  flex-direction: column;
 				  height: 100%; }
 header				{ display: flex;
-				  width: 50%;	
+				  width: 60%;	
 				  padding-top: 2%;
 				  margin-left: auto;
 				  margin-right: auto;
 			  	  flex-direction: row;
-				  font-family: "Times New Roman", Garamond, serif; }
+				  font-family: Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
 header nav			{ flex: 1; 
 				  font-size: 14pt;
 				  align-self: flex-end;
@@ -24,20 +26,11 @@ header nav a:hover		{ color: #eff; }
 			 	  opacity: 0.7; }
 #main				{ flex: 1; 
 				  padding-top: 30%;
-				  font-family: Georgia, serif;
 				  width: 50%;
 				  color: #cde; 
 				  margin-left: auto;
 				  margin-right: auto; }
-#contact			{ flex: 1;
-				  width: 50%;
-				  margin-left: auto;
-				  font-size: 16pt;
-				  margin-right: auto;
-				  color: #89a; }
-#contact a			{ color: #5cc; }
-#contact a:hover		{ color: #3dd; }
-#main p				{ font-size: 16pt; 
+#main p				{ font-size: 15pt; 
 				  line-height: 140%;
 				  color: #9cc;}
 #main p a			{ color: #aaf; 
@@ -58,7 +51,9 @@ h3				{ margin: 0;
 				  font-size: 18pt; }
 a				{ text-decoration: none; }
 nav				{ color: #abc; }
-footer				{ text-align: center;
+footer				{ width: 60%;
+				  margin-left: auto;
+				  margin-right: auto;
 				  padding-bottom: 1em;
 				  font-size: 11pt;
 				  line-height: 130%;

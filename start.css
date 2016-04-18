@@ -1,6 +1,8 @@
 html, body			{ margin: 0; 
 				  background-color: #333;
 				  height: 100%; }
+body				{ font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+				  font-size: 12pt; }
 section				{ display: flex; 
 			 	  flex-direction: column;
 				  height: 100%; }
@@ -12,14 +14,13 @@ header				{ width: 70%;
 				  text-shadow: 1px 0 #234;
 				  margin-left: auto;
 				  margin-right: auto;
-				  font-family: "Times New Roman", Garamond, serif; }
+				  font-family: Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
 article				{ flex: 1; 
 				  width: 70%;
-				  font-family: Georgia, serif;
 				  color: #cde;
 				  margin-left: auto;
 				  margin-right: auto; }
-article p			{ font-size: 16pt; 
+article p			{ font-size: 15pt; 
 				  line-height: 140%;
 				  color: #9cc;}
 article a			{ color: #aaf; 
