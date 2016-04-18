@@ -22,6 +22,24 @@
 					<li>
 						<section>
 							<p>
+								Don't just write C.
+								Write portable and secure C.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								Anybody can write crappy, bug-ridden and insecure code in any language.
+								But with C, it's even easier!
+								So familiarise yourself with common (and common-sense) pitfalls noted in the 
+								<a href="https://www.securecoding.cert.org/confluence/display/c/SEI+CERT+C+Coding+Standard">SEI CERT C coding standard</a>
+								and
+								<a href="http://www.c-faq.com/">comp.lang.c FAQ</a>.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<p>
 								Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
 									href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
 							</p>
@@ -68,12 +86,15 @@
 							<p>
 								Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
 								(from <a href="http://www.openbsd.org/faq/faq15.html">packages</a>).
+								There's also <a href="http://www.frama-c.com/">frama-c</a> 
+								and <a href="http://www.splint.org/">splint</a>, 
+								both also in packages.
 							</p>
 						</section>
 						<section class="explain">
 							<p>
-								This static analysis tool can help catch source-level bugs.
-								An alternative compiler can also prevent you from relying too much on <a
+								These static analysis tools can help catch source-level bugs.
+								An alternative compiler (LLVM) can also prevent you from relying too much on <a
 									href="http://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
 								extensions, which reduces portability.
 							</p>
