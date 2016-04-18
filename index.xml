@@ -28,12 +28,12 @@
 					Then <a href="start.html">get started</a>.
 				</p>
 			</article>
-			<article id="contact">
+			<!-- article id="contact">
 				<p>
 					Does your web application use BCHS?
 					<a href="mailto:kristaps@bsd.lv">Let us know</a>.
 				</p>
-			</article>
+			</article -->
 			<footer>
 				<div>&#169; 2015, 2016 <a rel="author" href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
