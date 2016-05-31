@@ -1,8 +1,8 @@
 html, body			{ margin: 0; 
 				  background-color: #333;
 				  height: 100%; }
-body				{ font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
-				  font-size: 11pt; }
+body				{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
+				  font-size: 12pt; }
 section				{ display: flex; 
 			 	  flex-direction: column;
 				  height: 100%; }
@@ -12,9 +12,9 @@ header				{ display: flex;
 				  margin-left: auto;
 				  margin-right: auto;
 			  	  flex-direction: row;
-				  font-family: Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
+				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
 header nav			{ flex: 1; 
-				  font-size: 14pt;
+				  font-size: 13pt;
 				  align-self: flex-end;
 				  text-align: right; }
 header nav a			{ color: #aee; }
@@ -69,4 +69,5 @@ h1				{ font-size: 16pt; }
 h2				{ font-size: 18pt;
 			 	  text-align: center; }
 article p			{ font-size: 12pt; }
+header nav			{ font-size: 10pt; }
 }

@@ -4,13 +4,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="start.css" />
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="start.css" rel="stylesheet" />
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
 				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS Stack</a></h1>
-				<div>BSD, C, httpd, SQLite</div>
+				<div>BSD, C, httpd, SQLite: beginning.</div>
 			</header>
 			<article>
 				<p itemprop="description">
@@ -73,7 +75,8 @@
 								And it's bundled with stock OpenBSD.
 							</p>
 							<p>
-								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>.
+								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>
+								(or convert to <a href="https://github.com/kristapsdz/sqlite2mdoc">manpages</a>).
 							</p>
 						</section>
 					</li>
@@ -93,7 +96,7 @@
 				</aside>
 			</article>
 			<footer>
-				<div>&#169; 2015 <a href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
 		</section>
 	</body>
