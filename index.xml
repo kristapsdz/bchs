@@ -4,7 +4,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="index.css" />
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="index.css" rel="stylesheet" />
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -13,6 +15,7 @@
 				<nav itemprop="breadcrumb">
 					<a href="start.html">Get Started</a>
 					<a href="tools.html">Tools</a>
+					<a href="easy.html">Example</a>
 				</nav>
 			</header>
 			<article id="main">
@@ -27,6 +30,10 @@
 					To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
 					Then <a href="start.html">get started</a>.
 				</p>
+				<p>
+					Don't care for talk?
+					<a href="easy.html">See an easy example</a>.
+				</p>
 			</article>
 			<!-- article id="contact">
 				<p>
@@ -35,7 +42,7 @@
 				</p>
 			</article -->
 			<footer>
-				<div>&#169; 2015, 2016 <a rel="author" href="http://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>&#169; 2015&#8211;2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
 		</section>
 	</body>

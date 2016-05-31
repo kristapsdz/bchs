@@ -1,7 +1,7 @@
 html, body			{ margin: 0; 
 				  background-color: #333;
 				  height: 100%; }
-body				{ font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+body				{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
 				  font-size: 12pt; }
 section				{ display: flex; 
 			 	  flex-direction: column;
@@ -14,7 +14,7 @@ header				{ width: 70%;
 				  text-shadow: 1px 0 #234;
 				  margin-left: auto;
 				  margin-right: auto;
-				  font-family: Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
+				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
 article				{ flex: 1; 
 				  width: 70%;
 				  color: #cde;
@@ -71,10 +71,11 @@ footer a:hover			{ color: #cdf; }
 				  color: #89a; }
 .footnote			{ font-size: smaller; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-header				{ width: 90%; 
+header				{ width: 95%; 
 				  padding-top: 1ex;
+				  font-size: 14pt;
 				  padding-bottom: 0em;}
-article 			{ width: 90%; }
+article 			{ width: 95%; }
 article ol			{ padding: 1ex; }
 h1				{ font-size: 16pt; }
 h2				{ font-size: 18pt; }
