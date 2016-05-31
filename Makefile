@@ -5,6 +5,10 @@ PAGES		 = index.html start.html tools.html easy.html
 CSSS		 = index.css start.css highlight.css easy.css
 GENS		 = easy.c.xml highlight.css easy.conf.xml easy.sh.xml
 THEMEDIR	 = /usr/local/share/highlight/themes
+IMAGES		 = arrow-left.png \
+		   arrow-right-long.png \
+		   arrow-right.png \
+		   logo-white.png
 HIGHLIGHT_FLAGS	 = -l --config-file=$(THEMEDIR)/biogoo.theme
 
 www: $(PAGES) $(CSSS)
@@ -29,7 +33,7 @@ easy.c.xml easy.sh.xml easy.conf.xml:
 
 installwww: www
 	mkdir -p $(PREFIX)
-	install -m 0444 logo-white.png $(CSSS) $(PAGES) $(PREFIX)
+	install -m 0444 $(IMAGES) $(CSSS) $(PAGES) $(PREFIX)
 
 clean:
 	rm -f $(PAGES) $(GENS)
