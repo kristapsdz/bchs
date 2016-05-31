@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: BSD, C, httpd, SQLite</title>
+		<link rel="stylesheet" href="code.css" />
+		<link rel="stylesheet" href="highlight.css" />
+	</head>
+	<body>
+		<input type="radio" name="steps" id="slider1" value="step1" checked="checked" />
+		<input type="radio" name="steps" id="slider2" value="step2" />
+		<input type="radio" name="steps" id="slider3" value="step3" />
+		<nav>
+			<label for="slider1">cgi.c</label>
+			<label for="slider2">httpd.conf</label>
+			<label for="slider3">setup</label>
+		</nav>
+		<div class="slides">
+			<div class="overflow">
+				<div class="slidesinner">
+					<section>
+						<figure>
+							<article data-sblg-permlink="0" data-sblg-article="1"></article>
+						</figure>
+					</section>
+					<section>
+						<figure>
+							<article data-sblg-permlink="0" data-sblg-article="1"></article>
+						</figure>
+					</section>
+					<section>
+						<figure>
+							<article data-sblg-permlink="0" data-sblg-article="1"></article>
+						</figure>
+					</section>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

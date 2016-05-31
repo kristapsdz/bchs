@@ -1,0 +1,24 @@
+.slides .slidesinner				{ transition: margin-left 0.5s ease-in-out; }
+#slider1:checked ~ .slides .slidesinner		{ margin-left: 0; }
+#slider2:checked ~ .slides .slidesinner		{ margin-left: -100%; }
+#slider3:checked ~ .slides .slidesinner		{ margin-left: -200%; }
+#slider1:checked ~ nav label[for=slider1],
+#slider2:checked ~ nav label[for=slider2],
+#slider3:checked ~ nav label[for=slider3]	{ color: blue; }
+.overflow					{ width: 100%;
+						  box-sizing: border-box;
+						  overflow: hidden; }
+.slides .slidesinner				{ width: 300%;
+						  line-height: 0; }
+.slides section					{ width: 33.33333%;
+						  line-height: 14pt;
+						  position: relative;
+						  margin: 0;
+						  float: left; }
+input						{ display: none; }
+nav						{ display: table; 
+						  width: 100%; }
+nav > *						{ display: table-cell;
+						  width: 33%; 
+						  text-align: center;
+						  vertical-align: middle; }
