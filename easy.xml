@@ -94,6 +94,10 @@
 									href="http://man.openbsd.org/httpd.8">httpd(8)</a> are running.
 								Done.
 							</p>
+							<p>
+								Ready for more examples?
+								See <a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>.
+							</p>
 							<footer>
 								<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 							</footer>
