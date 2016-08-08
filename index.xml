@@ -33,14 +33,14 @@
 				<p>
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
+					For more, see
+					<a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>.
+				</p>
+				<p>
+					Is BCHS a joke?
+					<a href="http://www.w3schools.com/php/">Consider</a>.
 				</p>
 			</article>
-			<!-- article id="contact">
-				<p>
-					Does your web application use BCHS?
-					<a href="mailto:kristaps@bsd.lv">Let us know</a>.
-				</p>
-			</article -->
 			<footer>
 				<div>&#169; 2015&#8211;2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
