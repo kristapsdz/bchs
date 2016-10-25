@@ -102,6 +102,10 @@
 									href="http://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
 								extensions, which reduces portability.
 							</p>
+							<p>
+								If your project is open source, you can register it with <a
+									href="https://www.coverity.com">Coverity</a>, too.
+							</p>
 						</section>
 					</li>
 					<li>
@@ -149,13 +153,15 @@
 					Subscribe to the <a href="http://www.openbsd.org/mail.html">mailing lists</a>.
 					<a href="http://www.openbsd.org/donations.html">Donate</a>.
 					And lastly but most important of all: use the <a href="http://man.openbsd.org">man pages</a>!
+					(<a href="https://www.sqlite.org/">SQLite</a> doesn't have its own bundled manpages: you'll need to use
+					<a href="https://github.com/kristapsdz/sqlite2mdoc">sqlite2mdoc</a><sup><a href="#footnote1">*</a></sup>.)
 				</p>
 				<p>
 					Convinced?
 					See it <a href="easy.html">in action</a>.
 				</p>
 				<p class="footnote" id="footnote1">
-					Disclaimer: I (<a href="https://kristaps.bsd.lv">Kristaps</a>) wrote this.
+					<sup>*</sup>Disclaimer: I (<a href="https://kristaps.bsd.lv">Kristaps</a>) wrote this.
 				</p>
 			</article>
 			<footer>
