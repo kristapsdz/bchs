@@ -6,6 +6,7 @@
 		<title>BCHS: BSD, C, httpd, SQLite</title>
 		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="highlight.css" rel="stylesheet" />
 		<link href="json.css" rel="stylesheet" />
 	</head>
 	<body>
@@ -22,6 +23,9 @@
 				</nav>
 			</header>
 			<article>
+				<input type="radio" name="steps" id="slider1" value="step1" checked="checked" />
+				<input type="radio" name="steps" id="slider2" value="step2" />
+				<input type="radio" name="steps" id="slider3" value="step3" />
 				<header>
 					<h2>JSON</h2>
 					<div>
@@ -31,21 +35,68 @@
 					<h3>BSD, C, httpd, SQLite</h3>
 				</header>
 				<p>
-					BCHS works especially well for JSON web applications, which are the <i>de jure</i> method for building
+					BCHS works especially well for JSON web applications, which is the <i>de jure</i> method for building
 					dynamic web sites.
 					These applications have a well-defined split between back-end (BCHS web application, database), transport
 					protocol (JSON), and front-end (JavaScript and HTML5).
 					And there are plenty of tools available to build, document, and deploy your work.
 					In this short document, I'll sketch out how to augment your BCHS environment for JSON applications.
 				</p>
-				<p>
-					The back-end uses the usual BSD, C, SQLite, and httpd.
-					(I usually use <a href="https://kristaps.bsd.lv/ksql">ksql</a> to insure the database.)
-					If you're using <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, it can also use
-					<a href="https://kristaps.bsd.lv/kcgi/kcgijson.3.html">kcgijson(3)</a> for proper JSON output.
-					The front-end ideally uses <a href="http://vanilla-js.com/">vanilla JavaScript</a>.
-					(Do you really need frameworks?)
-				</p>
+				<nav>
+					<label for="slider1">
+						puts( <span>C</span> );
+					</label>
+					<label for="slider2">
+						{ <span>JSON</span> }
+					</label>
+					<label for="slider3">
+						&lt; <span>HTML</span> &gt;
+					</label>
+				</nav>
+				<div class="slides">
+					<div class="overflow">
+						<div class="slidesinner">
+							<section>
+								<p>
+									Begin with the actual web application source.
+									I use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and use <a
+										href="http://man.openbsd.org/pledge.2">pledge(2)</a> to
+									safeguard our operating system.
+									In this example, I just emit a simple greeting in a JSON container.
+								</p>
+								<figure>
+									<article data-sblg-permlink="0" data-sblg-article="1"></article>
+								</figure>
+							</section>
+							<section>
+								<p>
+									In most large systems, seperate people work the front-end (HTML5, CSS,
+									JS, etc.) and the back-end (BCHS).
+									We can document the interface between this by using <a
+										href="http://swagger.io/">Swagger</a>, which hooks into <a
+										href="http://json-schema.org/">JSON Schema</a> to document the
+									input and output of each resource.
+								</p>
+								<figure>
+									<article data-sblg-permlink="0" data-sblg-article="1"></article>
+								</figure>
+							</section>
+							<section>
+								<p>
+									Front-end work!  In this incredibly simple example, we use AJAX to
+									asynchronously invoke our web application and put the result into an
+									identified element.
+									We use <a href="http://vanilla-js.com/">vanilla JS</a> and pay deference
+									to CSP policies by processing fully in the script.
+									You'll obviously need to put your own application URL in the loader.
+								</p>
+								<figure>
+									<article data-sblg-permlink="0" data-sblg-article="1"></article>
+								</figure>
+							</section>
+						</div>
+					</div>
+				</div>
 			</article>
 			<footer>
 				<div>&#169; 2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
