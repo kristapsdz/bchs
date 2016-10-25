@@ -1,8 +1,8 @@
 .SUFFIXES: .xml .html
 
 PREFIX		?= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
-PAGES		 = index.html start.html tools.html easy.html
-CSSS		 = index.css start.css highlight.css easy.css
+PAGES		 = index.html start.html tools.html easy.html json.html
+CSSS		 = index.css start.css highlight.css easy.css json.html
 GENS		 = easy.c.xml highlight.css easy.conf.xml easy.sh.xml
 THEMEDIR	 = /usr/local/share/highlight/themes
 IMAGES		 = arrow-left.png \

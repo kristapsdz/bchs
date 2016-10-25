@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: BSD, C, httpd, SQLite</title>
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="json.css" rel="stylesheet" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header>
+				<img itemprop="image" src="logo-white.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="start.html"><span>start</span></a>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+				</nav>
+			</header>
+			<article>
+				<header>
+					<h2>JSON</h2>
+					<div>
+						<img src="arrow-up.png" />
+						<img src="arrow-down.png" />
+					</div>
+					<h3>BSD, C, httpd, SQLite</h3>
+				</header>
+				<p>
+					BCHS works especially well for JSON web applications, which are the <i>de jure</i> method for building
+					dynamic web sites.
+					These applications have a well-defined split between back-end (BCHS web application, database), transport
+					protocol (JSON), and front-end (JavaScript and HTML5).
+					And there are plenty of tools available to build, document, and deploy your work.
+					In this short document, I'll sketch out how to augment your BCHS environment for JSON applications.
+				</p>
+				<p>
+					The back-end uses the usual BSD, C, SQLite, and httpd.
+					(I usually use <a href="https://kristaps.bsd.lv/ksql">ksql</a> to insure the database.)
+					If you're using <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, it can also use
+					<a href="https://kristaps.bsd.lv/kcgi/kcgijson.3.html">kcgijson(3)</a> for proper JSON output.
+					The front-end ideally uses <a href="http://vanilla-js.com/">vanilla JavaScript</a>.
+					(Do you really need frameworks?)
+				</p>
+			</article>
+			<footer>
+				<div>&#169; 2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+			</footer>
+		</section>
+	</body>
+</html>
+
