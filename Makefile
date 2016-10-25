@@ -22,6 +22,8 @@ THEMEDIR	 = /usr/local/share/highlight/themes
 IMAGES		 = arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
+		   arrow-up.png \
+		   arrow-down.png \
 		   logo-white.png
 HIGHLIGHT_FLAGS	 = -l --config-file=$(THEMEDIR)/biogoo.theme
 
