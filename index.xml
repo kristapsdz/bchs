@@ -11,11 +11,11 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1 itemprop="name">BCHS Stack</h1>
+				<h1 itemprop="name">BCHS stack</h1>
 				<nav itemprop="breadcrumb">
-					<a href="start.html">Get Started</a>
-					<a href="tools.html">Tools</a>
-					<a href="easy.html">Example</a>
+					<a href="start.html">start</a>
+					<a href="tools.html">tools</a>
+					<a href="easy.html">example</a>
 				</nav>
 			</header>
 			<article id="main">
@@ -36,7 +36,7 @@
 					For more, see
 					<a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>.
 					If you're starting an application from scratch, consider using
-					<a href="json.html">JSON</a>-BCHS.
+					<a href="json.html">JSON</a>//BCHS.
 				</p>
 				<p>
 					Is BCHS a joke?

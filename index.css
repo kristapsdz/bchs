@@ -2,64 +2,71 @@ html, body			{ margin: 0;
 				  background-color: #333;
 				  height: 100%; }
 body				{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
-				  font-size: 12pt; }
+				  font-size: 12pt; 
+			  	  font-weight: 300; }
 section				{ display: flex; 
+				  display: -webkit-flex;
 			 	  flex-direction: column;
+			 	  -webkit-flex-direction: column;
 				  height: 100%; }
 header				{ display: flex;
+				  display: -webkit-flex;
 				  width: 60%;	
 				  padding-top: 2%;
 				  margin-left: auto;
 				  margin-right: auto;
 			  	  flex-direction: row;
+			  	  -webkit-flex-direction: row;
 				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
 header nav			{ flex: 1; 
+				  -webkit-flex: 1;
 				  font-size: 13pt;
+				  font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
 				  align-self: flex-end;
 				  text-align: right; }
-header nav a			{ color: #aee; }
-header nav a + a		{ border-left: thin solid #89a; 
+header nav a			{ color: #ccc; }
+header nav a + a		{ border-left: thin solid #666; 
 				  margin-left: 0.5ex;
 				  padding-left: 1ex; }
-header nav a:hover		{ color: #eff; }
+header nav a:hover		{ color: #fff; }
 #logo img			{ width: 90px; 
 			 	  opacity: 0.7; }
 #main				{ flex: 1; 
+			 	  -webkit-flex: 1;
 				  padding-top: 30%;
 				  width: 50%;
-				  color: #cde; 
+				  color: #fff; 
 				  margin-left: auto;
 				  margin-right: auto; }
 #main p				{ font-size: 15pt; 
 				  line-height: 140%;
-				  color: #9cc;}
-#main p a			{ color: #aaf; 
-				  text-shadow: 1px 0 #455; }
-#main p a:hover			{ color: #ccf; 
-				  text-shadow: 1px 0 #223; }
+				  color: #bbb;}
+#main p a			{ color: #ff0; 
+				  border-bottom: thin solid transparent;
+				  text-shadow: 1px 1px 0 #444; }
+#main p a:hover			{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
 h2				{ font-size: 28pt; 
 				  margin: 0;
-				  text-shadow: 1px 0 #023;
+				  text-shadow: 1px 1px 0 #000;
 			  	  font-weight: normal; }
-h1				{ color: #def; 
+h1				{ color: #ddd; 
 				  font-size: 20pt;
-				  text-shadow: 1px 0 #023;
+				  text-shadow: 1px 1px 0 #000;
 				  font-weight: normal;
 				  margin: 0;  }
 h3				{ margin: 0;
 				  font-weight: normal;
 				  font-size: 18pt; }
 a				{ text-decoration: none; }
-nav				{ color: #abc; }
 footer				{ width: 60%;
 				  margin-left: auto;
 				  margin-right: auto;
 				  padding-bottom: 1em;
 				  font-size: 11pt;
 				  line-height: 130%;
-				  color: #678; }
-footer a			{ color: #89a; }
-footer a:hover			{ color: #cdf; }
+				  color: #666; }
+footer a			{ color: #888; }
+footer a:hover			{ color: #aaa; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 95%; }
 #main				{ padding-top: 5%; }
