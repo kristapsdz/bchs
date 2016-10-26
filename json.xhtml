@@ -4,25 +4,25 @@
     <meta charset="utf-8" /> 
     <title>sample</title>
     <script>
-      function success(resp) {
-        var res;
-        try {
-          res = JSON.parse(resp);
-        } catch (error) {
-          return;
-        }
-        document.getElementById('greeting').appendChild
-          (document.createTextNode(res.greeting));
+    function success(resp) {
+      var res;
+      try {
+        res = JSON.parse(resp);
+      } catch (error) {
+        return;
       }
-      document.addEventListener('DOMContentLoaded', function() {
-        var xmh = new XMLHttpRequest();
-        xmh.onreadystatechange = function() {
-          if (xmh.readyState === 4 && xmh.status === 200)
-            success(xmh.responseText);
-        };
-        xmh.open('GET', '/cgi-bin/app/index.json', true);
-        xmh.send(null);
-      });
+      document.getElementById('greeting').appendChild
+        (document.createTextNode(res.greeting));
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var xmh = new XMLHttpRequest();
+      xmh.onreadystatechange = function() {
+        if (xmh.readyState === 4 && xmh.status === 200)
+          success(xmh.responseText);
+      };
+      xmh.open('GET', '/cgi-bin/app/index.json', true);
+      xmh.send(null);
+    });
     </script>
   </head>
   <body>

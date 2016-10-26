@@ -35,6 +35,8 @@
 					<a href="easy.html">See an easy example</a>.
 					For more, see
 					<a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>.
+					If you're starting an application from scratch, consider using
+					<a href="json.html">JSON</a>-BCHS.
 				</p>
 				<p>
 					Is BCHS a joke?
