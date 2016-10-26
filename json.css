@@ -68,6 +68,7 @@ article nav					{ width: 70%;
 						  margin-left: auto;
 						  margin-right: auto;
 						  margin-top: 36pt;
+						  margin-bottom: 18pt;
 						  font-size: 24pt;
 						  display: flex;
 						  display: -webkit-flex; }
@@ -109,8 +110,17 @@ article > p					{ font-size: 15pt;
 						  width: 70%; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-section > header		{ width: 95%; 
-				  padding-top: 1ex;
-				  font-size: 14pt;
-				  padding-bottom: 0em;}
+section > header				{ width: 95%; 
+						  padding-top: 1ex;
+						  font-size: 14pt;
+						  padding-bottom: 0em;}
+h1						{ font-size: 14pt; }
+h2						{ font-size: 100pt; }
+h3						{ font-size: 24pt; }
+.slides figure					{ width: 94%; }
+article nav					{ width: 94%; }
+.slides section > p,
+article > p					{ padding: 0 2%; }
+article nav					{ font-size: 18pt; }
+article nav label				{ white-space: nowrap; }
 }

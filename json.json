@@ -1,35 +1,35 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "test",
-    "description": "this is sample documentation",
-    "contact": {
-      "name": "Kristaps Dzonsons",
-      "email": "kristaps@bsd.lv"
-    },
-    "version": "0.0.1"
+ "swagger": "2.0",
+ "info": {
+  "title": "test",
+  "description": "this is sample documentation",
+  "contact": {
+   "name": "Kristaps Dzonsons",
+   "email": "kristaps@bsd.lv"
   },
-  "paths": {
-    "/index.json" : {
-      "get": {
-        "description": "nice greeting",
-        "produces": [ "application/json" ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "schema": { 
-              "type": "object",
-              "properties": {
-                "greeting": {
-                  "description": "a greeting",
-                  "type": "string"
-                }
-              },
-              "required": [ "greeting" ]
-            }
-          }
-        }
-      }
+  "version": "0.0.1"
+ },
+ "paths": {
+  "/index.json" : {
+   "get": {
+    "description": "nice greeting",
+    "produces": [ "application/json" ],
+    "responses": {
+     "200": {
+       "description": "success",
+       "schema": { 
+        "type": "object",
+        "properties": {
+         "greeting": {
+          "description": "a greeting",
+          "type": "string"
+         }
+        },
+        "required": [ "greeting" ]
+       }
+     }
     }
+   }
   }
+ }
 }
