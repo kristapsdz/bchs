@@ -11,10 +11,10 @@ header, nav, .slides				{ width: 70%;
 header						{ padding-top: 1em;
 						  padding-bottom: 1em;
 						  font-size: 18pt;
-						  color: #89a;
-						  text-shadow: 1px 0 #234;
-						  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
-.slides						{ color: #9cc; }
+						  color: #888;
+						  text-shadow: 1px 0 #234; }
+header div span					{ color: #fff; }
+.slides						{ color: #ccc; }
 .slides .slidesinner				{ transition: margin-left 0.5s ease-in-out; }
 #slider1:checked ~ .slides .slidesinner		{ margin-left: 0; }
 #slider2:checked ~ .slides .slidesinner		{ margin-left: -100%; }
@@ -58,18 +58,18 @@ nav img						{ width: 50px;
 						  margin-bottom: -25px; }
 nav img.long					{ width: 90px; 
 						  margin-bottom: -30px; }
-h1 a						{ color: #def; 
-						  text-shadow: 1px 0 #023; }
-h1 a:hover					{ color: #eff; 
-						  text-shadow: 1px 0 #456; }
+h1 a						{ color: #eee; 
+						  text-shadow: 1px 0 #000; }
+h1 a:hover					{ color: #fff; 
+						  text-shadow: 1px 0 #444; }
 h1						{ font-size: 28pt;
-						  text-shadow: 1px 0 #023;
+						  text-shadow: 1px 0 #000;
+						  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; 
 						  font-weight: normal;
 						  margin: 0;  }
 label						{ cursor: pointer; }
 a						{ text-decoration: none; }
-a						{ color: #aaf; }
-a:hover						{ color: #ccf; }
+a						{ color: yellow; }
 figure						{ margin: 0; }
 footer						{ text-align: center;
 						  padding-top: 1em;
@@ -80,6 +80,7 @@ footer						{ text-align: center;
 footer a					{ color: #89a; }
 footer a:hover					{ color: #cdf; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+body						{ font-size: 12pt; }
 header, nav, .slides				{ width: 95%; }
 header						{ padding-top: 1ex;
 				  	 	  font-size: 14pt;
@@ -88,4 +89,5 @@ h1						{ font-size: 16pt; }
 h2						{ font-size: 18pt; }
 nav img						{ display: none; }
 .slides pre					{ font-size: 9pt; }
+.slides section					{ line-height: 18pt; }
 }
