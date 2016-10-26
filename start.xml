@@ -11,8 +11,8 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS Stack</a></h1>
-				<div>BSD, C, httpd, SQLite: beginning.</div>
+				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS stack</a></h1>
+				<div>BSD, C, httpd, SQLite: <span>beginning</span>.</div>
 			</header>
 			<article>
 				<p itemprop="description">
@@ -72,7 +72,7 @@
 							<h2>SQLite.</h2>
 							<p>
 								<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable, zero-configuration</q> database.
-								And it's bundled with stock OpenBSD.
+								And it's bundled (for now&hellip;) with stock OpenBSD.
 							</p>
 							<p>
 								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>

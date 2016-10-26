@@ -16,8 +16,7 @@ section > header				{ width: 70%;
 						  display: flex;
 						  display: -webkit-flex;
 						  align-items: center;
-						  -webkit-align-items: center;
-						  font-family: "Playfair Display", serif; }
+						  -webkit-align-items: center; }
 section > header nav a				{ color: #ddd; 
 						  font-size: 14pt; }
 section > header nav a span			{ border-bottom: thin transparent; }
@@ -43,6 +42,7 @@ h1						{ font-size: 24pt;
 						  text-shadow: 0px 0px 1px #023;
 						  font-weight: 300;
 						  flex: 1;
+						  font-family: "Playfair Display", serif; 
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
 h2						{ margin: 0;
@@ -77,7 +77,8 @@ article nav > *					{ flex: 1;
 						  -webkit-flex: 1; }
 article nav label				{ opacity: 0.5;
 						  color: #fff; }
-article nav label span				{ color: yellow; }
+article nav label span				{ color: yellow; 
+						  padding: 0 2pt; }
 #slider1:checked ~ nav label[for=slider1],
 #slider2:checked ~ nav label[for=slider2],
 #slider3:checked ~ nav label[for=slider3]	{ opacity: 1.0; }
@@ -87,8 +88,12 @@ article nav label img				{ opacity: 0.0;
 #slider2:checked ~ nav label[for=slider2] img,
 #slider3:checked ~ nav label[for=slider3] img	{ opacity: 1.0; }
 .slides section > p,
+article > ul,
 article > p					{ padding: 0 15%; 
 						  line-height: 18pt; }
+article > ul					{ margin-left: 48pt;
+					 	  margin-right: 48pt; }
+article > ul,
 article > p					{ font-size: 15pt; 
 						  line-height: 20pt; }
 .overflow					{ width: 100%;
@@ -120,7 +125,12 @@ h3						{ font-size: 24pt; }
 .slides figure					{ width: 94%; }
 article nav					{ width: 94%; }
 .slides section > p,
-article > p					{ padding: 0 2%; }
+article > ul,
+article > p					{ padding: 0 2%; 
+						  font-size: 12pt; }
 article nav					{ font-size: 18pt; }
 article nav label				{ white-space: nowrap; }
+article > ul					{ margin-left: 12pt;
+					 	  margin-right: 12pt; }
+section > header nav a				{ font-size: 12pt; }
 }

@@ -10,23 +10,23 @@ header				{ width: 70%;
 				  padding-top: 1em;
 				  padding-bottom: 1em;
 				  font-size: 18pt;
-				  color: #89a;
+				  color: #888;
 				  text-shadow: 1px 0 #234;
 				  margin-left: auto;
-				  margin-right: auto;
-				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
+				  margin-right: auto; }
+header div span			{ color: #fff; }
 article				{ flex: 1; 
 				  width: 70%;
-				  color: #cde;
+				  color: #ccc;
 				  margin-left: auto;
 				  margin-right: auto; }
 article p			{ font-size: 15pt; 
 				  line-height: 140%;
-				  color: #9cc;}
-article a			{ color: #aaf; 
-				  text-shadow: 1px 0 #455; }
-article a:hover			{ color: #ccf; 
-				  text-shadow: 1px 0 #223; }
+				  color: #ccc;}
+article a			{ color: yellow; 
+				  text-shadow: 1px 0 #222; }
+/*article a:hover			{ color: #ccf; 
+				  text-shadow: 1px 0 #223; }*/
 article ol			{ padding: 0; }
 aside				{ background-color: #2c2c2c; 
 				  box-shadow: 1px 1px 2px #011;
@@ -41,34 +41,36 @@ aside				{ background-color: #2c2c2c;
 article li			{ margin-bottom: 2em; }
 article section p		{ margin-top: 0.25em; 
 				  margin-bottom: 0.25em; }
-h1 a				{ color: #def; 
-				  text-shadow: 1px 0 #023; }
-h1 a:hover			{ color: #eff; 
-				  text-shadow: 1px 0 #456; }
+h1 a				{ color: #eee; 
+				  text-shadow: 1px 0 #000; }
+h1 a:hover			{ color: #fff; 
+				  text-shadow: 1px 0 #444; }
 h1				{ font-size: 28pt;
-				  text-shadow: 1px 0 #023;
+				  text-shadow: 1px 0 #000;
+				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; 
 				  font-weight: normal;
 				  margin: 0;  }
 h2				{ margin: 0;
 				  margin-bottom: 0.25em;
+				  color: #fff;
 				  font-weight: normal;
 				  font-size: 18pt; }
 a				{ text-decoration: none; }
-nav				{ color: #abc; }
+nav				{ color: #aaa; }
 footer				{ text-align: center;
 				  padding-top: 1em;
 				  padding-bottom: 1em;
 				  font-size: 11pt;
 				  line-height: 130%;
-				  color: #678; }
+				  color: #666; }
 footer a			{ color: #89a; }
 footer a:hover			{ color: #cdf; }
 #logo				{ width: 60px; 
 				  padding-right: 10px; }
-.alt				{ color: #678;
+.alt				{ color: #888;
 				  font-style: italic; }
 .explain p			{ font-size: 13pt; 
-				  color: #89a; }
+				  color: #aaa; }
 .footnote			{ font-size: smaller; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 95%; 

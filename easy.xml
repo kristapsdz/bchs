@@ -12,7 +12,7 @@
 	<body>
 		<header>
 			<h1><img src="logo-white.png" alt="BCHS Logo" /><a href="index.html" itemprop="name">BCHS Stack</a></h1>
-			<div>BSD, C, httpd, SQLite: example.</div>
+			<div>BSD, C, httpd, SQLite: <span>example</span>.</div>
 		</header>
 		<input type="radio" name="steps" id="slider1" value="step1" checked="checked" />
 		<input type="radio" name="steps" id="slider2" value="step2" />

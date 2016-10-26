@@ -37,23 +37,49 @@
 				<p>
 					BCHS works especially well for JSON web applications, which is the <i>de jure</i> method for building
 					dynamic web sites.
-					These applications have a well-defined split between back-end (BCHS web application, database), transport
-					protocol (JSON), and front-end (JavaScript and HTML5).
+					These applications have a well-defined split between back-end (BCHS), transport protocol (<a
+						href="http://www.json.org/">JSON</a>), and front-end (<a
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>, <a
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>, and <a
+						href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">HTML5</a>).
 					And there are plenty of tools available to build, document, and deploy your work.
-					In this short document, I'll sketch out how to augment your BCHS environment for JSON applications.
+					Why is this an improvement over simply emitting HTML?
 				</p>
+				<ul>
+					<li>
+						server load: your user's browser is handling one request at a time&#8212;you're handling many,
+						and the extra processing adds up
+					</li>
+					<li>
+						updates to site design don't require redeploying your application
+					</li>
+					<li>
+						reduced code-bloat from hard-coding complicated HTML trees
+					</li>
+					<li>
+						less work-flow dependency between back-end developer and front-end developer/designer
+					</li>
+					<li>
+						JSON is natively understood by JavaScript, which itself is a standard component of the web
+						browser
+					</li>
+				</ul>
 				<p>
+					Most (all?) complaints of JSON web applications fall to poor front-end decisions: using enormous
+					<q>frameworks</q>, <a href="https://developer.mozilla.org/en-US/docs/Web/Security/CSP">CSP</a>
+					violations, and really just plain shitty code.
+					In this short document, I'll sketch out how to set up your BCHS environment for JSON applications.
 					For a full working system using this method, see <a href="https://github.com/kristapsdz/dblg">dblg</a>.
 				</p>
 				<nav>
 					<label for="slider1">
-						puts( <span>C</span> );
+						puts(<span>C</span>);
 					</label>
 					<label for="slider2">
-						{ <span>JSON</span> }
+						{<span>JSON</span>}
 					</label>
 					<label for="slider3">
-						&lt; <span>HTML</span> &gt;
+						&lt;<span>HTML</span>&gt;
 					</label>
 				</nav>
 				<div class="slides">
@@ -63,8 +89,8 @@
 								<p>
 									Begin with the actual web application source.
 									I use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and use <a
-										href="http://man.openbsd.org/pledge.2">pledge(2)</a> to
-									safeguard our operating system.
+										href="http://man.openbsd.org/pledge.2">pledge(2)</a> (so it
+									requires OpenBSD, of course) to safeguard our operating system.
 									In this example, I just emit a simple greeting in a JSON container.
 								</p>
 								<figure>
@@ -86,11 +112,14 @@
 							</section>
 							<section>
 								<p>
-									Front-end work!  In this incredibly simple example, we use AJAX to
+									Front-end work!  In this incredibly simple example, we use <a
+										href="https://developer.mozilla.org/en-US/docs/AJAX">AJAX</a> to
 									asynchronously invoke our web application and put the result into an
 									identified element.
 									We use <a href="http://vanilla-js.com/">vanilla JS</a> and pay deference
-									to CSP policies by processing fully in the script.
+									to <a
+										href="https://developer.mozilla.org/en-US/docs/Web/Security/CSP">CSP</a>
+									by processing fully in the script.
 									You'll obviously need to put your own application URL in the loader.
 								</p>
 								<figure>
