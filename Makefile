@@ -10,7 +10,7 @@ CSSS		 = index.css \
 		   start.css \
 		   highlight.css \
 		   easy.css \
-		   json.html
+		   json.css
 GENS		 = easy.c.xml \
 		   highlight.css \
 		   easy.conf.xml \
