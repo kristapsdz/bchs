@@ -15,6 +15,9 @@ header				{ width: 70%;
 				  margin-left: auto;
 				  margin-right: auto; }
 header div span			{ color: #fff; }
+header div a			{ color: #bb6; 
+				  border-bottom: thin transparent; }
+header div a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
 article				{ flex: 1; 
 				  width: 70%;
 				  color: #ccc;

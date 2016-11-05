@@ -14,6 +14,9 @@ header						{ padding-top: 1em;
 						  color: #888;
 						  text-shadow: 1px 0 #234; }
 header div span					{ color: #fff; }
+header div a					{ color: #bb6; 
+						  border-bottom: thin transparent; }
+header div a:hover				{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
 .slides						{ color: #ccc; }
 .slides .slidesinner				{ transition: margin-left 0.5s ease-in-out; }
 #slider1:checked ~ .slides .slidesinner		{ margin-left: 0; }

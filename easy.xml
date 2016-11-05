@@ -11,8 +11,8 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="logo-white.png" alt="BCHS Logo" /><a href="index.html" itemprop="name">BCHS Stack</a></h1>
-			<div>BSD, C, httpd, SQLite: <span>example</span>.</div>
+			<h1><img src="logo-white.png" alt="BCHS Logo" /><a href="index.html" itemprop="name">BCHS stack</a></h1>
+			<div>BSD, C, httpd, SQLite: <a href="start.html">start</a>, <a href="tools.html">tools</a>, <span>example</span>.</div>
 		</header>
 		<input type="radio" name="steps" id="slider1" value="step1" checked="checked" />
 		<input type="radio" name="steps" id="slider2" value="step2" />
@@ -41,15 +41,15 @@
 							</figure>
 							<p>
 								This is your code.
-								Read it: it's exactly what's going to happen.
+								Read it: it&#x2019;s exactly what&#x2019;s going to happen.
 								No mysticism.
 							</p>
 							<p>
-								What's going on?
-								<a href="http://man.openbsd.org/pledge.2">pledge(2)</a> makes sure you're only doing
+								What&#x2019;s going on?
+								<a href="http://man.openbsd.org/pledge.2">pledge(2)</a> makes sure you&#x2019;re only doing
 								what you want to do: work with existing descriptors.
 								The rest is just HTTP.
-								Don't want to work with HTTP?
+								Don&#x2019;t want to work with HTTP?
 								Use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> or equivalent.
 							</p>
 							<footer>
@@ -63,19 +63,21 @@
 								<article data-sblg-permlink="0" data-sblg-article="1"></article>
 							</figure>
 							<p>
-								So... <i>simple</i> is <a href="http://man.openbsd.org/httpd.conf.5">httpd.conf(5)</a>.
+								<a href="http://man.openbsd.org/httpd.conf.5">httpd.conf(5)</a>
+								is so&#8230; <i>simple</i>.
 								Server tells us the name.
 								Listen tells us to listen.
 								Location tells us a location.
-								Where we have... FastCGI.  Relative to the root.
+								Where we have FastCGI.  
+								Relative to the root.
 							</p>
 							<p>
-								Don't like FastCGI?
+								Don&#x2019;t like FastCGI?
 								Neither do we.
-								But were not using it for this example: in the next snippet, we'll use <a
+								But we&#x2019;re not using it for this example: in the next snippet, we&#x2019;ll use <a
 									href="http://man.openbsd.org/slowcgi.8">slowcgi(8)</a> to invoke our
 								CGI.
-								Relax.
+								So relax.
 							</p>
 							<footer>
 								<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
