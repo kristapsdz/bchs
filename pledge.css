@@ -85,4 +85,20 @@ body > section > header				{ width: 95%;
 						  font-size: 14pt;
 						  padding-bottom: 0em;}
 h1						{ font-size: 14pt; }
+article > header				{ padding: 0 5%; }
+h2 span:first-child				{ font-size: 28pt; 
+						  margin-bottom: -30pt; }
+h2 span:last-child				{ font-size: 90pt; }
+article img					{ width: 100%; }
+article > section				{ padding: 0 5%; }
+}
+
+@media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
+h2 span:first-child				{ font-size: 20pt; 
+						  margin-bottom: -10pt; }
+h2 span:last-child				{ font-size: 50pt; }
+article > header				{ padding: 0 2%; }
+article > section .intro			{ font-size: 13pt; 
+						  line-height: inherit; }
+article > section .emph				{ font-size: 13pt; }
 }
