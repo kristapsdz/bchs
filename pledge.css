@@ -59,6 +59,7 @@ h3						{ font-weight: 300;
 						  font-size: 16pt; }
 a						{ text-decoration: none; }
 nav						{ color: #abc; }
+.disclaimer					{ font-size: 11pt; }
 footer						{ text-align: center;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
