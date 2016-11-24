@@ -28,7 +28,7 @@
 						<span>why</span> <span>pledge(2)</span>
 					</h2>
 					<div>
-						&hellip; or, how I learned to love web application security
+						&hellip; or, how I learned to love web application sandboxing
 					</div>
 				</header>
 				<section>
@@ -70,7 +70,7 @@
 							justifies the use of <a href="index.html">BCHS</a>.
 							If you know about sandboxing, you can skip the first part and jump to <a href="#sobad"><i>Why is
 									it so bad?</i></a>
-							Or just <a href="#tldr">tldr;</a>.
+							Or just <a href="#tldr">tl;dr</a>.
 						</p>
 					</div>
 					<h3>
@@ -106,7 +106,7 @@
 							href="https://www.youtube.com/watch?v=lqIXr_Or2s4">Bugs <i>ex ante</i></a> talk at <a
 							href="https://2014.eurobsdcon.org/">EuroBSDCon 2014</a> may interest you.
 						I won't talk about them much more.
-						Obviously, they're a good thing: it allows an application developer to know exactly what the
+						Obviously, they're a good thing: they allow an application developer to know exactly what the
 						application should have access to.
 					</p>
 					<p>
@@ -135,7 +135,7 @@
 					</div>
 					<p>
 						For <a href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a>, the
-						challenge is no less complicated.
+						challenge is no less difficult.
 						To see these in action, navigate no further than <a href="https://www.openssh.com/">OpenSSH</a>,
 						which interfaces with these sandboxes:
 						<a
@@ -145,7 +145,7 @@
 							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-capsicum.c">sandbox-capsicum.c</a>.
 						(For a history lesson, you can even see <a
 							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-systrace.c">sandbox-systrace.c</a>.)
-						Keep in mind that these do little more than restricted resources to open descriptors and the
+						Keep in mind that these do little more than restrict resources to open descriptors and the
 						usual necessities of memory, signals, timing, etc.
 						Keep that in mind and be horrified.
 					</p>
@@ -155,9 +155,9 @@
 						only the most basic coverage.
 					</p>
 					<blockquote>
-						<q>Complexity is the worst enemy of security. Complex systems are hard to secure for an hours’
+						<q>Complexity is the worst enemy of security. Complex systems are hard to secure for an hours'
 						worth of reasons, and this is especially true for computers and the internet. The internet is
-						the most complex machine man has ever built by a lot, and it’s hard to secure. Attackers have
+						the most complex machine man has ever built by a lot, and it's hard to secure. Attackers have
 						the advantage.</q>
 					</blockquote>
 					<div class="citation">
@@ -191,9 +191,8 @@
 						And if complexity is tied to thoroughness, then the trade-off is one of usability and rigour.
 						It boils down to a classic problem: if your library is too complicated to use, people won't use it.
 						And since security is often seen as an additional feature to any <q>here today deprecated
-							tomorrow</q> web application.  
-						If your security interface is complicated and the benefits marginal relative to time of
-						development, it will be left behind.
+							tomorrow</q> web application, if your security interface is complicated and the benefits
+						marginal relative to time of development, it will be left behind.
 					</p>
 					<p>
 						A further issue with Linux sandboxes in particular (<a
@@ -218,11 +217,17 @@
 					<p>
 						In the argument of complexity and thoroughness, <a
 							href="http://man.openbsd.org/pledge">pledge(2)</a> is a compromise.
-						It acts like a series of profiles for an underlying capabilities system (it's not).
+						It acts like a series of usage profiles instead of focussing on the physical motions themselves.
+						Much like one could simply say <q>eating</q> instead of raising food to mouth, masticating,
+						swallowing, etc.
 						If your utility needs to read a file (as in the above example), you don't need to white-list
 						each system call involved in the reading of files: you enable a profile for reading files that
 						includes <a href="http://man.openbsd.org/fstat.2">fstat(2)</a>, <a
 							href="http://man.openbsd.org/fchown.2">fchown(2)</a>, etc.
+						You can read more about it in Theo's <q><a
+								href="http://www.openbsd.org/papers/hackfest2015-pledge/mgp00001.html">a new
+								mitigation mechanism</a></q> (<a
+							href="https://www.youtube.com/watch?v=F_7S1eqKsFk">video</a>).
 					</p>
 					<figure>
 						<img src="pledge-fig3.png" alt="" />
@@ -270,14 +275,14 @@
 						Any why even that complexity?
 						The <a href="https://sqlite.org">SQLite</a> database in <a
 							href="https://www.sqlite.org/wal.html">WAL</a> mode, which requires the ability to
-						create files.
+						create, read, write, and manipulate files.
 						Without that, it could be whittled down even more.
 						At a tutorial at <a href="https://2016.asiabsdcon.org/">AsiaBSDCon 2016</a>, <q><a
 								href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on
 								BSD</a></q>, I gave even more examples.
 					</p>
 					<h3 id="tldr">
-						tldr;
+						tl;dr
 					</h3>
 					<p>
 						For practical web applications, <a href="http://man.openbsd.org/pledge">pledge(2)</a> presents
@@ -296,6 +301,14 @@
 						forking a process, like <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> does, that handles
 						the database I/O and communicates with the master over pipes.
 					</p>
+					<div class="disclaimer">
+						<p>
+							<i>Disclaimer</i>: I wrote <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
+								href="https://kristaps.bsd.lv/ksql">ksql(3)</a>, both of which are mentioned
+							several times.
+							I'd love to mention other tools that do the same thing, but they're not there.
+						</p>
+					</div>
 				</section>
 			</article>
 			<footer>
