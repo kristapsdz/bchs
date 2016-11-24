@@ -1,0 +1,13 @@
+digraph {
+	graph [rankdir="LR"];
+	bgcolor="transparent";
+
+	app [label="application"];
+	subgraph cluster_0 {
+		label="kernel";
+		sandbox [label="sandbox"];
+		res [label="file"];
+		sandbox -> res [label="approved"]; 
+	};
+	app -> sandbox [label="read(2)"; color="green"];
+}
