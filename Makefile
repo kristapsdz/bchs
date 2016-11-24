@@ -1,11 +1,12 @@
-.SUFFIXES: .xml .html
+.SUFFIXES: .xml .html .dot .svg .gnuplot .png
 
 PREFIX		?= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
 PAGES		 = index.html \
 		   start.html \
 		   tools.html \
 		   easy.html \
-		   json.html
+		   json.html \
+		   pledge.html
 CSSS		 = index.css \
 		   start.css \
 		   highlight.css \
@@ -17,7 +18,10 @@ GENS		 = easy.c.xml \
 		   easy.sh.xml \
 		   json.c.xml \
 		   json.json.xml \
-		   json.xhtml.xml
+		   json.xhtml.xml \
+		   pledge-fig1.svg \
+		   pledge-fig2.svg \
+		   pledge-fig3.png
 THEMEDIR	 = /usr/local/share/highlight/themes
 IMAGES		 = arrow-left.png \
 		   arrow-right-long.png \
@@ -31,6 +35,14 @@ www: $(PAGES) $(CSSS)
 
 .xml.html:
 	cp -f $< $@
+
+.dot.svg:
+	dot -Tsvg -o$@ $< #| xsltproc notugly.xsl - >$@
+
+.gnuplot.png:
+	gnuplot $<
+
+pledge-fig3.png: pledge-fig3.dat
 
 highlight.css:
 	highlight $(HIGHLIGHT_FLAGS) --print-style -c $@
@@ -56,6 +68,8 @@ easy.c.xml easy.sh.xml easy.conf.xml json.c.xml json.json.xml json.xhtml.xml:
 installwww: www
 	mkdir -p $(PREFIX)
 	install -m 0444 $(IMAGES) $(CSSS) $(PAGES) $(PREFIX)
+
+pledge.html: pledge-fig1.svg pledge-fig2.svg pledge-fig3.png
 
 clean:
 	rm -f $(PAGES) $(GENS)

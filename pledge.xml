@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>pledge//BCHS</title>
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,100italic,300italic" rel="stylesheet" />
+		<link href="highlight.css" rel="stylesheet" />
+		<link href="pledge.css" rel="stylesheet" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header>
+				<img itemprop="image" src="logo-white.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="start.html"><span>start</span></a>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+				</nav>
+			</header>
+			<article>
+				<header>
+					<h2>
+						<span>why</span> <span>pledge(2)</span>
+					</h2>
+					<div>
+						&hellip; or, how I learned to love security and BCHS
+					</div>
+				</header>
+				<section>
+					<div class="intro">
+						<p>
+							I use application-level sandboxing a lot because I make mistakes a lot;
+							and when writing web applications, the price of making mistakes is very dear.
+							In the early 2000s, that meant using <a
+								href="http://www.citi.umich.edu/u/provos/systrace/">systrace(4)</a> on OpenBSD
+							and NetBSD.
+							Then it was <a href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a>
+							(followed by <a
+								href="http://man7.org/linux/man-pages/man3/seccomp_init.3.html">libseccomp(3)</a>)
+							on Linux.
+							Then there was <a
+								href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a>
+							on FreeBSD and <a
+								href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/sandbox_init.3.html">sandbox_init(3)</a>
+							on Mac OS X.
+						</p>
+						<p>
+							All of these systems are invoked differently; and for the most part, whenever it came
+							time to interface with one of them, I longed for sweet release from the nightmare.
+							Please, try reading <a
+								href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a>.
+							To the end.
+							Aligning web application logic and security policy would require an arduous (and usually
+							trial-and-error or worse, copy-and-paste) process.
+							If there was any process at all &#8212; if the burden of writing a policy didn't cause me
+							to abandon sandboxing at the start.
+						</p>
+						<p>
+							And then there was <a href="http://man.openbsd.org/pledge">pledge(2)</a>.
+						</p>
+						<p>
+							This document is about <a href="http://man.openbsd.org/pledge">pledge(2)</a> and why you
+							should use it and love it.
+							And why, in some respects, <a href="http://man.openbsd.org/pledge">pledge(2)</a> <i>alone</i>
+							justifies the use of <a href="index.html">BCHS</a>.
+							If you know about sandboxing, you can skip the first part and jump to <a href="#sobad"><i>Why is
+									it so bad?</i></a>
+							Or just <a href="#tldr">tldr;</a>.
+						</p>
+					</div>
+					<h3>
+						Introduction
+					</h3>
+					<p>
+						A <i>sandbox</i> is a little bureaucrat sitting between your application and its system
+						resources (files, network, etc.) that allows resource requests or denies them and (hopefully)
+						kills the application.
+						The rules the sandbox uses for this decision are called the <i>policy</i>.
+						Sandboxes are incredibly useful: when initialised at the start of the application's lifetime,
+						they define the resources required later in operation.
+						So if an attacker has commandeered your application and is trying to acquire resources beyond
+						the scope of your application's narrow specification &#8212; boom.
+						(Or more commonly, if your policy lags behind your logic &#8212; boom.)
+					</p>
+					<figure>
+						<img src="pledge-fig1.svg" alt="" />
+						<figcaption>
+							Sandbox logic in the kernl granting <span class="syscall">read(2)</span> access to a
+							file.
+						</figcaption>
+					</figure>
+					<figure>
+						<img src="pledge-fig2.svg" alt="" />
+						<figcaption>
+							Sandbox disallowing <span class="syscall">read(2)</span> access to a file, [hopefully]
+							killing the requesting process.
+						</figcaption>
+					</figure>
+					<p>
+						To learn more in general about operating system sandboxes, my <a
+							href="https://www.youtube.com/watch?v=lqIXr_Or2s4">Bugs <i>ex ante</i></a> talk at <a
+							href="https://2014.eurobsdcon.org/">EuroBSDCon 2014</a> may interest you.
+						I won't talk about them much more.
+						Obviously, they're a good thing: it allows an application developer to know exactly what the
+						application should have access to.
+					</p>
+					<p>
+						The problem with sandboxing isn't the theory: it's the interface.
+					</p>
+					<h3>
+						Sandbox Interfaces
+					</h3>
+					<p>
+						Let's play a drinking game.
+						The challenge is to stay out of the hospital.
+					</p>
+					<div class="emph">
+						<ol>
+							<li>
+								Navigate to <a
+									href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a>.
+							</li>
+							<li>
+								Read it to the end.
+							</li>
+							<li>
+								Drink every time you don't understand.
+							</li>
+						</ol>
+					</div>
+					<p>
+						For <a href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a>, the
+						challenge is no less complicated.
+						To see these in action, navigate no further than <a href="https://www.openssh.com/">OpenSSH</a>,
+						which interfaces with these sandboxes:
+						<a
+							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-seccomp-filter.c">sandbox-seccomp-filter.c</a> 
+						or
+						<a
+							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-capsicum.c">sandbox-capsicum.c</a>.
+						(For a history lesson, you can even see <a
+							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-systrace.c">sandbox-systrace.c</a>.)
+						Keep in mind that these do little more than restricted resources to open descriptors and the
+						usual necessities of memory, signals, timing, etc.
+						Keep that in mind and be horrified.
+					</p>
+					<p>
+						Fact is, writing sandbox policies is hard enough that (1) you're going to spend all of your time
+						doing it, (2) you won't do it at all, or (3) you'll do it then scale it back to the point of
+						only the most basic coverage.
+					</p>
+					<blockquote>
+						<q>Complexity is the worst enemy of security. Complex systems are hard to secure for an hours’
+						worth of reasons, and this is especially true for computers and the internet. The internet is
+						the most complex machine man has ever built by a lot, and it’s hard to secure. Attackers have
+						the advantage.</q>
+					</blockquote>
+					<div class="citation">
+						<a href="http://www.dailydot.com/layer8/bruce-schneier-internet-of-things/">Bruce Schneier</a>
+					</div>
+					<p>
+						On web applications in particular &#8212; on any Internet-facing application &#8212; you <i>need</i>
+						a sandbox.
+						It's not just a local operator who can circumvent your protections.
+						It's anybody on the other end of the pipe.
+						So the question remains:
+					</p>
+					<h3 id="sobad">
+						<i>Why is it so bad?</i>
+					</h3>
+					<p>
+						<del>The NSA's deliberate work to keep systems insecure.</del>
+						Capabilities systems like <a
+							href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a> and <a
+							href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a> need
+						to be as flexible as possible to allow your application to sandbox any of the things it might
+						[not] need to do.
+						So every system call needs to be covered, and every argument to those system calls needs to be
+						audited.
+						Makes sense &#8212; in theory.
+						But is this applicable in practise?
+					</p>
+					<p>
+						It's easy to forget that developers need to <i>use</i> sandboxes; and that, in fact, any sandbox
+						interface will need to trade off complexity for usability.
+						And if complexity is tied to thoroughness, then the trade-off is one of usability and rigour.
+						It boils down to a classic problem: if your library is too complicated to use, people won't use it.
+						And since security is often seen as an additional feature to any <q>here today deprecated
+							tomorrow</q> web application.  
+						If your security interface is complicated and the benefits marginal relative to time of
+						development, it will be left behind.
+					</p>
+					<p>
+						A further issue with Linux sandboxes in particular (<a
+							href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a> and friends)
+						is due to the instability of the Linux ecosystem itself.
+						Generic libc functions are implemented differently depending on whether you're using <a
+							href="https://alpinelinux.org/">Alpine</a>
+						(<a href="https://www.musl-libc.org/">musl</a>) or <a href="https://www.debian.org/">Debian</a>
+						(<a href="https://www.gnu.org/s/libc">glibc</a>).
+						This means that the same libc function may require different system calls.
+						Moreover, the system calls available may differ &#8212; see the preprocessor checks in <a
+							href="https://github.com/openssh/openssh-portable/blob/master/sandbox-seccomp-filter.c">sandbox-seccomp-filter.c</a> 
+						for different hardware architectures.
+						What a nightmare!
+					</p>
+					<p>
+						And so: <a href="index.html">BCHS</a> and <a href="http://man.openbsd.org/pledge">pledge(2)</a>.
+					</p>
+					<h3>
+						Why you should love security
+					</h3>
+					<p>
+						In the argument of complexity and thoroughness, <a
+							href="http://man.openbsd.org/pledge">pledge(2)</a> is a compromise.
+						It acts like a series of profiles for an underlying capabilities system (it's not).
+						If your utility needs to read a file (as in the above example), you don't need to white-list
+						each system call involved in the reading of files: you enable a profile for reading files that
+						includes <a href="http://man.openbsd.org/fstat.2">fstat(2)</a>, <a
+							href="http://man.openbsd.org/fchown.2">fchown(2)</a>, etc.
+					</p>
+					<figure>
+						<img src="pledge-fig3.png" alt="" />
+						<figcaption>
+							Illustrating interface complexity with interface rigour.
+							This is subjective, obviously.
+						</figcaption>
+					</figure>
+					<p>
+						For sake of argument, consider <a href="https://kristaps.bsd.lv/kcgi.3.html">kcgi(3)</a>, which
+						interfaces with all of these sandboxes.
+						(Note: this was inspired by <a href="https://www.openssh.com/">OpenSSH</a>, but expanded for
+						requiring more than just already-open pipes.)
+						To begin, examine
+						<a
+							href="https://github.com/kristapsdz/kcgi/blob/master/sandbox-seccomp-filter.c">sandbox-seccom-filter.c</a>
+						and
+						<a
+							href="https://github.com/kristapsdz/kcgi/blob/master/sandbox-capsicum.c">sandbox-capsicum.c</a>.
+						For sake of contrary argument, look also at the overly-coarse
+						<a href="https://github.com/kristapsdz/kcgi/blob/master/sandbox-darwin.c">sandbox-darwin.c</a>.
+						And finally,
+						<a href="https://github.com/kristapsdz/kcgi/blob/master/sandbox-pledge.c">sandbox-pledge.c</a>.
+					</p>
+					<p>
+						Did you notice <a
+							href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/sandbox_init.3.html">sandbox_init(3)</a>
+						in the lower-left corner?
+						This is Mac OS X's simplistic interface to its own sandbox mechanism.
+						Sadly, it barely warrants inclusion &#8212; not only is the implementation a mystery, it's also
+						deprecated.
+					</p>
+					<p>
+						Does <a href="http://man.openbsd.org/pledge">pledge(2)</a> provide complete security coverage?
+						No.
+						And while the other, more extensive interfaces may do so, the argument isn't whether it
+						<i>theoretically</i> may provide, but whether applications can <i>use</i> those capabilities.
+						In other words, security must be <i>practical</i>.
+					</p>
+					<p>
+						To see a quick example of <a href="http://man.openbsd.org/pledge">pledge(2)</a> in a 
+						<a href="index.html">BCHS</a> application, check out <a
+							href="https://github.com/kristapsdz/dblg/blob/master/dblg.c">dblg.c</a>.
+						The pledge line is tiny: <code>pledge("stdio rpath cpath wpath flock fattr", NULL)</code>.
+						Any why even that complexity?
+						The <a href="https://sqlite.org">SQLite</a> database in <a
+							href="https://www.sqlite.org/wal.html">WAL</a> mode, which requires the ability to
+						create files.
+						Without that, it could be whittled down even more.
+						At a tutorial at <a href="https://2016.asiabsdcon.org/">AsiaBSDCon 2016</a>, <q><a
+								href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on
+								BSD</a></q>, I gave even more examples.
+					</p>
+					<h3 id="tldr">
+						tldr;
+					</h3>
+					<p>
+						For practical web applications, <a href="http://man.openbsd.org/pledge">pledge(2)</a> presents
+						the best compromise of development simplicity and security coverage.
+						This alone gives <a href="index.html">BCHS</a> applications even more of a boost beyond the many
+						other advantages of programming on OpenBSD.
+						(E.g., and <q>sufficient</q> if not just <q>necessary</q>, <a
+							href="http://man.openbsd.org">manpages</a>.)
+					</p>
+					<p>
+						Downsides?
+						<a href="https://sqlite.org">SQLite</a> might require more file-system pledges than you're
+						comfortable giving &#8212; especially in <a href="https://www.sqlite.org/wal.html">WAL</a> mode.
+						However, this is definitely something in the crosshairs of <a
+							href="https://kristaps.bsd.lv/ksql">ksql(3)</a>:
+						forking a process, like <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> does, that handles
+						the database I/O and communicates with the master over pipes.
+					</p>
+				</section>
+			</article>
+			<footer>
+				<div>&#169; 2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+			</footer>
+		</section>
+	</body>
+</html>
+
