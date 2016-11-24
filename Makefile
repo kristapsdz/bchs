@@ -11,7 +11,8 @@ CSSS		 = index.css \
 		   start.css \
 		   highlight.css \
 		   easy.css \
-		   json.css
+		   json.css \
+		   pledge.css
 GENS		 = easy.c.xml \
 		   highlight.css \
 		   easy.conf.xml \
@@ -22,8 +23,11 @@ GENS		 = easy.c.xml \
 		   pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png
+IMAGES		 = pledge-fig1.svg \
+		   pledge-fig2.svg \
+		   pledge-fig3.png
 THEMEDIR	 = /usr/local/share/highlight/themes
-IMAGES		 = arrow-left.png \
+BUILT		 = arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
 		   arrow-up.png \
@@ -37,7 +41,7 @@ www: $(PAGES) $(CSSS)
 	cp -f $< $@
 
 .dot.svg:
-	dot -Tsvg -o$@ $< #| xsltproc notugly.xsl - >$@
+	dot -Tsvg $< | xsltproc notugly.xsl - >$@
 
 .gnuplot.png:
 	gnuplot $<
@@ -67,7 +71,7 @@ easy.c.xml easy.sh.xml easy.conf.xml json.c.xml json.json.xml json.xhtml.xml:
 
 installwww: www
 	mkdir -p $(PREFIX)
-	install -m 0444 $(IMAGES) $(CSSS) $(PAGES) $(PREFIX)
+	install -m 0444 $(IMAGES) $(BUILT) $(CSSS) $(PAGES) $(PREFIX)
 
 pledge.html: pledge-fig1.svg pledge-fig2.svg pledge-fig3.png
 

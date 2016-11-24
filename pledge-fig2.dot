@@ -9,5 +9,5 @@ digraph {
 		res [label="file"];
 		sandbox -> res [style="dashed"; label="denied"]; 
 	};
-	app -> sandbox [label="read(2)"; color="red"];
+	app -> sandbox [label="read(2)"; color="red"; fontcolor="white"];
 }
