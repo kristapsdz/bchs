@@ -90,7 +90,7 @@
 					<figure>
 						<img src="pledge-fig1.svg" alt="" />
 						<figcaption>
-							Sandbox logic in the kernl granting <span class="syscall">read(2)</span> access to a
+							Sandbox logic in the kernel granting <span class="syscall">read(2)</span> access to a
 							file.
 						</figcaption>
 					</figure>
