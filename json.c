@@ -25,7 +25,7 @@ main(void)
   khttp_head(&r, kresps[KRESP_CONTENT_TYPE], 
     "%s", kmimetypes[r.mime]);
   khttp_body(&r);
-  kjson_open(&req, r);
+  kjson_open(&req, &r);
   kjson_obj_open(&req);
   kjson_putstringp(&req, "greeting", "hello, world");
   kjson_obj_close(&req);
