@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>kwebapp//BCHS</title>
+		<title>kwebapp//BCHS: rapid web application development</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:200,300,200italic,300italic,500" rel="stylesheet" />
 		<link href="highlight.css" rel="stylesheet" />
 		<link href="kwebapp.css" rel="stylesheet" />
@@ -27,12 +27,12 @@
 						One of the most rewarding parts of back-end web application development is re-writing the same
 						database routines and same JSON export routines over and over.
 						Then changing the requirements and starting over.
-						It's what makes web application developers such well-balanced, accomodating folks.
+						It's what makes web application developers such well-balanced folks, amiright?
 					</p>
 					<p>
-						Unfortunately, in the endless flux of user requirements&#8212;the addition a table column
-						changing select routines, insertions, validation, exporting, regression tests, and even
-						(especially?) front-end JavaScript&#8212;we make mistakes.
+						Unfortunately, in the unending flux of user requirements&#8212;each addition or modification of
+						a table column changing select routines, insertions, validation, exporting, regression tests,
+						and even (especially?) front-end JavaScript&#8212;we make mistakes.
 						What <a href="index.html">BCHS</a> tools beyond the <a href="tools.html">usual</a> can help in
 						this perennial test of our calm, patient demeanors?
 					</p>
@@ -159,7 +159,7 @@
 						</figure>
 					</figure>
 					<p>
-						The SQL is managed by <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> not just
+						The SQL is managed by <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>&#8212;not just
 						generatively, but within the update cycle.
 						It's able to generate the <a href="kwebapp.db.sqldiff.html">difference</a> between
 						configurations (in this example, one without the foreign key on the session)&#8212;allowing you
