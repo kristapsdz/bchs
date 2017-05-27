@@ -4,7 +4,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
 		<link href="index.css" rel="stylesheet" />
 	</head>
@@ -34,21 +33,21 @@
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
 					For more, see
-					<a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a> or an article on
-					<a href="pledge.html">web application sandboxing</a>.
-					If you're starting an application from scratch, consider using
-					<a href="json.html">JSON</a>//BCHS.
+					<a href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a> 
+					(or its <a href="https://kristaps.bsd.lv//absdcon2017">follow-up</a>);
+					<a href="pledge.html">BCHS sandboxing</a>;
+					using <a href="json.html">JSON</a> with BCHS; or for something completely new,
+					<a href="kwebapp.html">kwebapp</a>.
 				</p>
 				<p>
 					Is BCHS a joke?
-					No.  <a href="http://www.w3schools.com/php/">PHP</a> is a joke.
-					<a href="https://nodejs.org/">node.js</a> is a joke.
+					No.  
 					Software development is full of jokes.
 					This is not one of them.
 				</p>
 			</article>
 			<footer>
-				<div>&#169; 2015&#8211;2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>&#169; 2015&#8211;2017 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
 		</section>
 	</body>

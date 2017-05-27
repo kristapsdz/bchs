@@ -18,8 +18,7 @@ header				{ display: flex;
 			  	  flex-direction: row;
 				  align-items: center;
 				  -webkit-align-items: center;
-			  	  -webkit-flex-direction: row;
-				  font-family: "Playfair Display", Garamond, Baskerville, Baskerville Old Face, Hoefler Text, Times New Roman, serif; }
+			  	  -webkit-flex-direction: row; }
 header nav			{ flex: 1; 
 				  -webkit-flex: 1;
 				  font-size: 13pt;
@@ -68,6 +67,9 @@ footer				{ width: 60%;
 				  color: #666; }
 footer a			{ color: #888; }
 footer a:hover			{ color: #aaa; }
+code				{ font-family: monospace;
+				  font-size: smaller; }
+
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 95%; }
 #main				{ padding-top: 5%; }
