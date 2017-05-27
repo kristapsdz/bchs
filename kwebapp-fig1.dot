@@ -1,0 +1,24 @@
+digraph {
+	bgcolor="transparent";
+	layout="circo";
+
+	requirements [label="Specifications"];
+	data [label="Data Layout"];
+	sql [label="SQL"];
+	csource [label="C API"];
+	logic [label="Application Logic"];
+	export [label="REST API"];
+	flogic [label="Front-end Logic"];
+	frontend [label="JavaScript"];
+	review [label="Review"];
+
+	requirements -> data;
+	data -> sql;
+	sql -> csource;
+	csource -> logic;
+	logic -> export;
+	export -> flogic;
+	flogic -> frontend;
+	frontend -> review;
+	review -> requirements;
+}

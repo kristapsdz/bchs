@@ -1,0 +1,20 @@
+digraph {
+	bgcolor="transparent";
+	layout="circo";
+
+	requirements [label="Specifications"];
+	data [label="Data Layout"];
+	kweb [label="kwebapp(5)"];
+	logic [label="Application Logic"];
+	flogic [label="Front-end Logic"];
+	review [label="Review"];
+
+	requirements -> data;
+	data -> kweb;
+	kweb -> logic;
+	logic -> kweb;
+	kweb -> flogic;
+	flogic -> kweb;
+	kweb -> review;
+	review -> requirements;
+}

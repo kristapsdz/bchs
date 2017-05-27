@@ -1,0 +1,15 @@
+struct user {
+  field email text limit gt 3 limit le 128 unique comment
+    "E-mail address.";
+  field hash password limit gt 6 limit le 128 comment
+    "Hashed password.";
+  field id int rowid;
+  comment "A user within our system.";
+};
+
+struct sess {
+  field token int comment 
+    "Random token for authentication.";
+  field id int rowid;
+  comment "A logged-in user.";
+};
