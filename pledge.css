@@ -2,7 +2,7 @@ html, body					{ margin: 0;
 						  background-color: #222;
 						  height: 100%; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
-						  font-weight: 100;
+						  font-weight: 200;
 						  font-style: normal;
 						  font-size: 14pt; }
 a						{ text-decoration: none; }
@@ -42,7 +42,6 @@ h1						{ font-size: 24pt;
 						  text-shadow: 0px 0px 1px #023;
 						  font-weight: 400;
 						  flex: 1;
-						  font-family: "Playfair Display", serif; 
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
 h2						{ margin: 0;
