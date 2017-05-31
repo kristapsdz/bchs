@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>kwebapp//BCHS: rapid web application development</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:200,300,200italic,300italic,500" rel="stylesheet" />
-		<link href="highlight.css" rel="stylesheet" />
+		<link href="highlight.light.css" rel="stylesheet" />
 		<link href="kwebapp.css" rel="stylesheet" />
 	</head>
 	<body>
@@ -27,14 +27,14 @@
 						One of the most rewarding parts of back-end web application development is re-writing the same
 						database routines and same JSON export routines over and over.
 						Then changing the requirements and starting over.
-						It's what makes web application developers such well-balanced folks, amiright?
+						It's what makes web application developers such well-balanced folks, right?
 					</p>
 					<p>
-						Unfortunately, in the unending flux of user requirements&#8212;each addition or modification of
+						Unfortunately, in the flux of user requirements&#8212;each addition or modification of
 						a table column changing select routines, insertions, validation, exporting, regression tests,
 						and even (especially?) front-end JavaScript&#8212;we make mistakes.
 						What <a href="index.html">BCHS</a> tools beyond the <a href="tools.html">usual</a> can help in
-						this perennial test of our calm, patient demeanors?
+						this perennial test of our patience?
 					</p>
 					<h2>
 						<span>kwebapp(1)</span>
@@ -42,8 +42,8 @@
 				</header>
 				<section>
 					<p>
-						I wrote <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> after the hundredth time I started
-						a new web application with the same sequence:
+						I wrote <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> after the <del>tenth</del>
+						hundredth time I started a new <a href="index.html">BCHS</a> web application roughly as follows:
 					</p>
 					<ol>
 						<li>
@@ -54,32 +54,33 @@
 							starting point;
 						</li>
 						<li>
-							create a set of C structures mirroring the data layout (e.g., <a
+							create a set of C structures mirroring the data layout (e.g., kcgi-framework's <a
 								href="https://github.com/kristapsdz/kcgi-framework/blob/master/extern.h">extern.h</a>);
 						</li>
 						<li>
-							grind on <code>INSERT</code>, <code>UPDATE</code>, and <code>SELECT</code> routines
-							using the same tired way of chaining together column schemas with <q>fill</q> and
-							<q>unfill</q> routines (e.g., <a
+							grind on <code>INSERT</code>, <code>UPDATE</code>, <code>SELECT</code> and
+							<code>DELETE</code> routines using the same tired way of chaining together column
+							schemas with <q>fill</q> and <q>unfill</q> routines (e.g., <a
 								href="https://github.com/kristapsdz/kcgi-framework/blob/master/db.c">db.c</a>)
-							connected to the C API; and
+							connected to the C API; 
 						</li>
 						<li>
-							create the application logic (e.g., <a
+							construct the application logic (e.g., <a
 								href="https://github.com/kristapsdz/kcgi-framework/blob/master/main.c">main.c</a>
-							connecting these components;
+							connecting these components and driving my application; and finally
 						</li>
 						<li>
 							make typo mistakes in SQL, have inconsistent documentation between the SQL and C API,
 							forget parameters, incorrectly validate, and so on&#8212;problems that only arise in
 							actually testing the individual parts or having a colleague scratch her head over
-							documentation mismatches.
+							mismatches.
 						</li>
 					</ol>
 					<p>
-						All of this takes time, which is naturally something I lack.
-						And in case we forget where the <em>real</em> work's at, what happens after that when our specification
-						changes (naturally, at the last moment)?
+						All of this takes time, which is something in high demand; and my colleagues' patience, which is
+						even more scarce.
+						In case we forget where the <em>real</em> work's at, what happens in the commonplace event that
+						our specification changes during the review phase?
 					</p>
 					<figure>
 						<img src="kwebapp-fig1.svg" alt="" />
@@ -93,10 +94,12 @@
 						</li>
 						<li>
 							create an additional SQL <q>upgrade</q> script between the last version and the current
-							version;
+							version (of course, you're using <a href="http://man.openbsd.org/cvs">cvs(1)</a>'s
+							tagging facility or other VCS to track your production and development releases);
 						</li>
 						<li>
-							update the C structures, column definitions, fill and unfill routines;
+							update the C structures, column definitions, fill and unfill routines (naturally,
+							forgetting to update the documentation);
 						</li>
 						<li>
 							change the <q>business logic</q> accepting the new field, validating it, and passing it
@@ -109,6 +112,7 @@
 					<p>
 						Folks programming in Java or Python have all sorts of fancy tools and frameworks to help them
 						suck data out and send it to the client.
+						(I guess.)
 						When I'm writing in C, I don't.
 						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> was a way to automate a lot of the steps
 						above into a single one when using my tools: <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, <a
@@ -121,10 +125,13 @@
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
 					<p>
-						Probably does.  We have two objects: a user and a session.
-						Sessions are for logged-in users.
-						This file snippet defines not only the relationship between two objects as might envision in an
-						SQL database, but also limitations on input data (the <code>limit</code> clause) and
+						Hopefully it does.
+						We have two objects: a <code>user</code> and a user's <code>session</code>.
+						As C programmers, you're interpreting them as <code>struct</code>s;
+						or if you're more SQL-minded, as tables.
+						Both are correct.
+						Moreover, the snippet defines not only the relationship between two objects as might envision in
+						an SQL database, but also limitations on input data (the <code>limit</code> clause) and
 						documentation (the <code>comment</code> clause).
 						It also specifies some terms to search on, e.g., <code>email</code> and <code>hash</code> for
 						users&#8212;passwords are automatically hashed using the 
@@ -155,7 +162,7 @@
 					<figure>
 						<img src="kwebapp-fig2.svg" alt="" />
 						<figure>
-							The circle of <del>life</del> work.
+							The simplified process.
 						</figure>
 					</figure>
 					<p>
@@ -172,6 +179,22 @@
 						And your application logic&#8212;obviously.
 						But the rest of the tedious cycle&#8212;C API, validators, JSON exporters, etc.&#8212;are all
 						handled by <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>.
+					</p>
+					<p>
+						For an example of how a backend might look, consider <a href="kwebapp.main.c.html">main.c</a>.
+						This handles logging in, logging out, and a simple homepage using the given example.
+						Take, for example, the component where it processes a request's cookies using the <span
+							class="nm">kwebapp</span> functions for reading from the database:
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						Upon login, it uses the <span class="nm">kwebapp</span>-generated output functions to emit JSON:
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						All of the <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> functions are fully documented,
+						and the generated functions are also documented in <a href="kwebapp.db.h.html">kwebapp.db.h</a>.
+						Much easier!
 					</p>
 					<h3>
 						Where is kwebapp going?
