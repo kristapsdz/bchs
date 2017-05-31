@@ -43,9 +43,7 @@ h1						{ font-size: 24pt;
 						  margin: 0;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
-h2						{ margin: 0.5em 0;
-						  font-weight: 300;
-						  display: inline-block;
+h2						{ font-weight: 300;
 						  text-align: left;
 						  width: auto;
 						  text-shadow: 1px 1px 1px #000; 
@@ -71,3 +69,11 @@ blockquote					{ margin-bottom: 0; }
 code						{ font-family: monospace;
 						  font-size: 11pt; }
 
+@media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
+body > section > header				{ width: 90%; }
+article > header				{ width: 90%; }
+article > section				{ padding: 0 5%; }
+figure img					{ width: 100%; }
+h2						{ font-size: 48pt; 
+					  	  text-align: center; }
+}

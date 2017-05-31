@@ -18,6 +18,8 @@ struct sess {
     "Random token for authentication.";
   field id int rowid;
   comment "A logged-in user.";
+  delete id: name id comment 
+    "Delete session.";
   search token, id: name creds comment
     "Search by token and identifier.";
 };
