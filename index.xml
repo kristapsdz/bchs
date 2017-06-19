@@ -24,9 +24,9 @@
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p itemprop="description">
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
-					It's a hipster-free, <a href="http://www.openbsd.org/policy.html">open source</a> software stack for web
+					It's a hipster-free, <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
-					To prepare a BCHS environment, install <a href="http://www.openbsd.org">OpenBSD</a>.
+					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a>.
 					Then <a href="start.html">get started</a>.
 				</p>
 				<p>
