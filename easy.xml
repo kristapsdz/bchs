@@ -51,8 +51,14 @@
 								Don&#x2019;t want to work with HTTP?
 								Use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> or equivalent.
 							</p>
+							<p>
+								Want more examples?
+								See <a href="https://kristaps.bsd.lv/absdcon2016">Secure CGI Applications in C
+									on BSD</a> and <a href="https://kristaps.bsd.lv/absdcon2017/">Secure
+									CGI</a>.
+							</p>
 							<footer>
-								<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+								<div>&#169; 2015&#8211;2017 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 							</footer>
 						</div>
 					</section>
@@ -78,8 +84,14 @@
 								CGI.
 								So relax.
 							</p>
+							<p>
+								Want more examples?
+								See <a href="https://kristaps.bsd.lv/absdcon2016">Secure CGI Applications in C
+									on BSD</a> and <a href="https://kristaps.bsd.lv/absdcon2017/">Secure
+									CGI</a>.
+							</p>
 							<footer>
-								<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+								<div>&#169; 2015&#8211;2017 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 							</footer>
 						</div>
 					</section>
@@ -96,11 +108,13 @@
 								Done.
 							</p>
 							<p>
-								Ready for more examples?
-								See <a href="http://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>.
+								Want more examples?
+								See <a href="https://kristaps.bsd.lv/absdcon2016">Secure CGI Applications in C
+									on BSD</a> and <a href="https://kristaps.bsd.lv/absdcon2017/">Secure
+									CGI</a>.
 							</p>
 							<footer>
-								<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+								<div>&#169; 2015&#8211;2017 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 							</footer>
 						</div>
 					</section>
