@@ -136,6 +136,7 @@ kwebapp.html: kwebapp.xml kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xm
 installwww: www
 	mkdir -p $(PREFIX)
 	install -m 0444 $(IMAGES) $(GENHTMLS) $(BUILT) $(CSSS) $(PAGES) $(PREFIX)
+	install -m 0444 icons/*.{png,ico,xml,json,svg} $(PREFIX)
 
 clean:
 	rm -f $(PAGES) $(GENS) kwebapp.db.c kwebapp.db.h
