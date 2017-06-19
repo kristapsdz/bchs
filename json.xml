@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>JSON//BCHS</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
 		<link href="json.css" rel="stylesheet" />
 	</head>
@@ -19,6 +20,7 @@
 					<a href="start.html"><span>start</span></a>
 					<a href="tools.html"><span>tools</span></a>
 					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
 				</nav>
 			</header>
 			<article>
@@ -130,7 +132,10 @@
 				</div>
 			</article>
 			<footer>
-				<div>&#169; 2016 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
 			</footer>
 		</section>
 	</body>

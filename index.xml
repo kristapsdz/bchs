@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="index.css" rel="stylesheet" />
 	</head>
 	<body>
@@ -15,6 +16,7 @@
 					<a href="start.html">start</a>
 					<a href="tools.html">tools</a>
 					<a href="easy.html">example</a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
 				</nav>
 			</header>
 			<article id="main">
@@ -47,7 +49,10 @@
 				</p>
 			</article>
 			<footer>
-				<div>&#169; 2015&#8211;2017 <a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
 			</footer>
 		</section>
 	</body>
