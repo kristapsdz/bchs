@@ -45,12 +45,13 @@
 									href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
 							</p>
 							<p class="alt">
-								...or...
+								&#8230;or&#8230;
 							</p>
 							<p>
-								Install and use <a href="http://kristaps.bsd.lv/kcgi">kcgi</a><sup><a href="#footnote1">*</a></sup> or <a
+								Install and use <a href="https://kristaps.bsd.lv/kcgi">kcgi</a><sup><a href="#footnote1">*</a></sup> or <a
 									href="http://www.fastcgi.com/">fcgi</a> from <a
-									href="http://www.openbsd.org/faq/faq15.html">packages</a>.
+									href="https://www.openbsd.org/faq/faq15.html">packages</a>.
+								(See also <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a><sup><a href="#footnote1">*</a></sup>.)
 							</p>
 						</section>
 						<section class="explain">
@@ -59,7 +60,7 @@
 								library do it for you.
 								(Want FastCGI?  Be careful!
 								CGI scripts run by <a
-									href="http://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
+									href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
 								already have their privileges dropped and file-system constrained.  
 								With FastCGI, you'll need to use a framework that does so for you!)
 							</p>
@@ -69,7 +70,7 @@
 						<section>
 							<p>
 								Get to know your security tools.
-								OpenBSD has <a href="http://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
+								OpenBSD has <a href="https://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
 								<q>Embrace the pledge.</q>
 							</p>
 						</section>
@@ -79,8 +80,12 @@
 								And it will have bugs: limit the damage caused by inevitable mistakes by
 								constraining (sandboxing) the environment available to your application.
 								Oh, right: there's also
-								<a href="http://man.openbsd.org/OpenBSD-current/man2/chroot.2">chroot(2)</a>,
-								dropping privileges, etc...
+								<a href="https://man.openbsd.org/OpenBSD-current/man2/chroot.2">chroot(2)</a>,
+								dropping privileges, etc&#8230;
+							</p>
+							<p>
+								For more on these security tools, see <a
+									href="https://kristaps.bsd.lv/absdcon2017/">Secure CGI</a>.
 							</p>
 						</section>
 					</li>
@@ -88,7 +93,7 @@
 						<section>
 							<p>
 								Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
-								(from <a href="http://www.openbsd.org/faq/faq15.html">packages</a>).
+								(from <a href="https://www.openbsd.org/faq/faq15.html">packages</a>).
 								There's also <a href="http://www.frama-c.com/">frama-c</a> 
 								and <a href="http://www.splint.org/">splint</a>, 
 								both also in packages.
@@ -98,7 +103,7 @@
 							<p>
 								These static analysis tools can help catch source-level bugs.
 								An alternative compiler (LLVM) can also prevent you from relying too much on <a
-									href="http://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
+									href="https://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
 								extensions, which reduces portability.
 							</p>
 							<p>
@@ -111,16 +116,17 @@
 						<section>
 							<p>
 								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
-									href="http://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
+									href="https://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
 								your <a
-									href="http://man.openbsd.org/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
+									href="https://man.openbsd.org/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
 								flags are unforgiving.
 							</p>
 						</section>
 						<section class="explain">
 							<p>
-								Memory errors are often the subtlest.
-								Use these tools as much as possible to catch any unnoticed allocation issues.
+								Memory errors are often the subtlest (next to race conditions, maybe).
+								Use these tools as much as possible to catch any run-time issues that can't be
+								ferreted with static analysis tools.
 							</p>
 						</section>
 					</li>
@@ -130,7 +136,7 @@
 								Parsing data?
 								Push your parsers into libraries and use <a
 									href="http://lcamtuf.coredump.cx/afl/">AFL</a> (from <a
-									href="http://www.openbsd.org/faq/faq15.html">packages</a>) to put them
+									href="https://www.openbsd.org/faq/faq15.html">packages</a>) to put them
 								through inputs you haven't tested.
 							</p>
 						</section>
@@ -149,9 +155,9 @@
 					Go to conferences (<a href="http://www.eurobsdcon.org">EuroBSDCon</a>, <a
 						href="http://www.asiasbsdcon.org">AsiaBSDCon</a>, <a href="http://www.bsdcan.org">BSDCan</a>,
 					etc.).
-					Subscribe to the <a href="http://www.openbsd.org/mail.html">mailing lists</a>.
-					<a href="http://www.openbsd.org/donations.html">Donate</a>.
-					And lastly but most important of all: use the <a href="http://man.openbsd.org">man pages</a>!
+					Subscribe to the <a href="https://www.openbsd.org/mail.html">mailing lists</a>.
+					<a href="https://www.openbsd.org/donations.html">Donate</a>.
+					And lastly but most important of all: use the <a href="https://man.openbsd.org">man pages</a>!
 					(<a href="https://www.sqlite.org/">SQLite</a> doesn't have its own bundled manpages: you'll need to use
 					<a href="https://github.com/kristapsdz/sqlite2mdoc">sqlite2mdoc</a><sup><a href="#footnote1">*</a></sup>.)
 				</p>
