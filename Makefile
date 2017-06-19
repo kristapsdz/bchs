@@ -46,7 +46,7 @@ BUILT		 = arrow-left.png \
 		   logo-blue.png \
 		   logo-white.png
 
-www: $(PAGES) $(CSSS)
+www: $(PAGES) 
 
 .xml.html:
 	cp -f $< $@
