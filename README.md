@@ -10,3 +10,6 @@ To build this site (why would you want to?), you'll need
 [highlight](http://www.andre-simon.de/doku/highlight/en/highlight.php),
 and
 [sblg](https://kristaps.bsd.lv/sblg).
+
+This repository is a read-only mirror of a private CVS repository.
+You can use it to report bugs in the documentation.
