@@ -23,7 +23,7 @@
 						<section>
 							<h2>BSD.</h2>
 							<p>
-								<a href="http://www.openbsd.org">OpenBSD</a>.
+								<a href="https://www.openbsd.org">OpenBSD</a>.
 								Documentation.
 								Security.
 								Reliable six-month releases.
@@ -31,8 +31,8 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://man.openbsd.org">man pages</a>,
-								<a href="http://www.openbsd.org/faq/">FAQ</a>,
+								<a href="https://man.openbsd.org">man pages</a>,
+								<a href="https://www.openbsd.org/faq/">FAQ</a>,
 								<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition">Absolute OpenBSD</a>.
 							</p>
 						</section>
@@ -46,8 +46,11 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>,
-								<a href="http://man.openbsd.org/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>.
+								<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>,
+								<a href="https://man.openbsd.org/OpenBSD-current/man1/gcc.1">gcc(1)</a> (with
+								<a href="https://man.openbsd.org/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>) and nwo
+								<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a> (with
+								<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>).
 							</p>
 						</section>
 					</li>
@@ -60,9 +63,10 @@
 							</p>
 							<p>
 								Resources:
-								<a href="http://man.openbsd.org/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
-								<a href="http://man.openbsd.org/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
-								<a href="http://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>.
+								<a href="https://man.openbsd.org/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
+								<a href="https://man.openbsd.org/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
+								<a href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>,
+								<a href="https://www.michaelwlucas.com/tools/relayd">Relayd and Httpd Mastery</a>.
 							</p>
 						</section>
 					</li>
@@ -71,11 +75,14 @@
 							<h2>SQLite.</h2>
 							<p>
 								<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable, zero-configuration</q> database.
-								And it's bundled (for now&hellip;) with stock OpenBSD.
+								It's available on pretty much any system.
+								On OpenBSD, it's a package.
 							</p>
 							<p>
 								Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>
-								(or convert to <a href="https://github.com/kristapsdz/sqlite2mdoc">manpages</a>).
+								(or convert to <a href="https://github.com/kristapsdz/sqlite2mdoc">manpages</a>) and
+								<a href="https://sqlite.org/lang.html">SQL reference</a>,
+								<a href="https://kristaps.bsd.lv/ksql">ksql(3)</a>.
 							</p>
 						</section>
 					</li>
@@ -95,7 +102,7 @@
 				</aside>
 			</article>
 			<footer>
-				<div>&#169; 2015&#8211;2016 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
+				<div>&#169; 2015&#8211;2017 <a href="https://kristaps.bsd.lv">Kristaps Dzonsons</a></div>
 			</footer>
 		</section>
 	</body>
