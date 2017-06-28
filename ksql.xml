@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>ksql//BCHS: process-separated SQLite</title>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:200,300,200italic,300italic,500" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="ksql.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="theme-color" content="#ffffff" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="start.html"><span>start</span></a>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<p>
+					I use <a href="https://sqlite.org">SQLite</a> a lot because setting up a <q>big</q> database is a pain
+					in the ass and my database needs are few.
+					Most of these uses are within small to medium-size web applications, where security is paramount.
+				</p>
+				<p>
+					One thing that bothered me about using SQLite is that it <a
+						href="https://sqlite.org/tempfiles.html">opens files</a> during run-time.
+					This prevents me from using <a href="pledge.html">pledge</a> intelligently within my applicationss.
+					<a href="https://github.com/bapt">bapt</a> has implemented a 
+					<a href="https://github.com/freebsd/pkg/blob/master/libpkg/pkgdb.c">clever solution</a> for keeping
+					files under the same root, but there's still no guarantee on <em>which</em> files will be opened.
+				</p>
+				<article data-sblg-article="1" data-sblg-permlink="0"></article>
+				<p>
+					In most web applications, <code>stdio</code> is the only promise that's required.
+					(CGI and FastCGI communicate over pre-opened descriptors.)
+					So at this point, I might as well install landing lights for script kiddies.
+					It's true the new process can't be launched, nor can sockets be open, but the database (and all other
+					databases in the web server's root) are open for perusal.
+				</p>
+				<p>
+					Some years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> to simplify the SQLite API
+					and mandate that database access errors should cause program termination, and program termination
+					should safely close the database.
+					It occurred to me that I could extend the system to use the same model as in <a
+						href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a>: constraining the vulnerable database access in
+					a child process.
+				</p>
+				<article data-sblg-article="1" data-sblg-permlink="0"></article>
+				<p>
+					Since ksql(3) wraps a small subset over the <a href="https://sqlite.org/capi3ref.html">SQLite C API</a>,
+					it's manageable to hook over each function.
+					Only about 30 functions need to be fitted with split-process bits.
+				</p>
+				<figure>
+					<img src="ksql-fig3.svg" alt="Interprocess communication" />
+					<figcaption>
+						The database is securely managed by a child process and communicates with the main web
+						application process over sockets.
+					</figcaption>
+				</figure>
+				<p>
+					For the time being, the protocol is an incredible simple one: open a non-blocking socket pair, fork,
+					pass the pair to the child and parent.
+					The child then opens and works with the database with a <a
+						href="https://man.openbsd.org/pledge.2">pledge(2)</a> set for file access.
+					The parent usually will pledge only for <code>stdio</code>.
+					All in all, this roughly doubled the code-base size, but there's a lot that can be cut down.
+					See it for yourself in <a href="https://github.com/kristapsdz/ksql/blob/VERSION_0_1_0/ksql.c">ksql.c</a>.
+					This code is available as of the <b>0.1.0</b> release.
+				</p>
+				<p>
+					For example, the following simple application opens the database, then sandboxes itself.
+				</p>
+				<article data-sblg-article="1" data-sblg-permlink="0"></article>
+				<p>
+					In a web application tha combines <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
+						href="https://kristaps.bsd.lv/ksql">ksql(3)</a>, both the parsing of validation of data
+					<i>and</i> database import and export are all performed separately from the main CGI script.
+				</p>
+				<p>
+					What can be improved?
+					For starters, the protocol can be really cleaned up.
+					Right now, it has a lot of reads and writes that can be consolidated into one: a header frame with most
+					data, followed by additional data in the event of strings.
+				</p>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+
