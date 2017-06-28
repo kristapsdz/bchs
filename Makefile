@@ -7,6 +7,7 @@ PAGES		 = index.html \
 		   easy.html \
 		   json.html \
 		   pledge.html \
+		   ksql.html \
 		   kwebapp.html
 CSSS		 = index.css \
 		   start.css \
@@ -25,6 +26,9 @@ GENS		 = easy.c.xml \
 		   kwebapp.txt.xml \
 		   kwebapp.main1.c.xml \
 		   kwebapp.main2.c.xml \
+		   ksql-fig1.c.xml \
+		   ksql-fig2.c.xml \
+		   ksql-fig4.c.xml \
 		   $(GENHTMLS) \
 		   $(IMAGES)
 GENHTMLS	 = kwebapp.db.c.html \
@@ -36,6 +40,7 @@ GENHTMLS	 = kwebapp.db.c.html \
 IMAGES		 = pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
+		   ksql-fig3.svg \
 		   kwebapp-fig1.svg \
 		   kwebapp-fig2.svg
 BUILT		 = arrow-left.png \
@@ -132,6 +137,24 @@ kwebapp.html: kwebapp-fig1.svg \
 
 kwebapp.html: kwebapp.xml kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
 	sblg -s cmdline -t kwebapp.xml -o $@ kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
+
+ksql-fig1.c.xml: ksql-fig1.c
+	echo '<article data-sblg-article="1">' >$@
+	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig1.c >>$@
+	echo '</article>' >>$@
+
+ksql-fig2.c.xml: ksql-fig2.c
+	echo '<article data-sblg-article="1">' >$@
+	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig2.c >>$@
+	echo '</article>' >>$@
+
+ksql-fig4.c.xml: ksql-fig4.c
+	echo '<article data-sblg-article="1">' >$@
+	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig4.c >>$@
+	echo '</article>' >>$@
+
+ksql.html: ksql.xml ksql-fig1.c.xml ksql-fig2.c.xml ksql-fig3.svg ksql-fig4.c.xml
+	sblg -s cmdline -t ksql.xml -o $@ ksql-fig1.c.xml ksql-fig2.c.xml ksql-fig4.c.xml
 
 installwww: www
 	mkdir -p $(PREFIX)
