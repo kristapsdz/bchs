@@ -30,39 +30,64 @@
 				</nav>
 			</header>
 			<article>
-				<p>
-					I use <a href="https://sqlite.org">SQLite</a> a lot because setting up a <q>big</q> database is a pain
-					in the ass and my database needs are few.
-					Most of these uses are within small to medium-size web applications, where security is paramount.
+				<p class="tldr">
+					<b>tl;dr</b>: the new split-process mode of <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> 
+					constrains SQLite database operations to a child process, allowing the caller to <a
+						href="https://man.openbsd.org/pledge.2">pledge(2)</a> better.
 				</p>
 				<p>
-					One thing that bothered me about using SQLite is that it <a
-						href="https://sqlite.org/tempfiles.html">opens files</a> during run-time.
-					This prevents me from using <a href="pledge.html">pledge</a> intelligently within my applicationss.
-					<a href="https://github.com/bapt">bapt</a> has implemented a 
+					I use <a href="https://sqlite.org">SQLite</a> a lot because managing a <q>big</q> database is a pain in
+					the ass and my database needs are few.  Most of these uses are within small to medium-size web
+					applications, so security (see <q>web</q>) is very important.
+				</p>
+				<p>
+					One thing that bothers me security-wise about using SQLite is that it opens files during run-time.
+					The main database might be opened immediately, but auxiliary files (<a
+						href="https://sqlite.org/tempfiles.html">WAL, journal, etc.</a>) might be opened at any time.
+					And according to the documentation, even the names and locations of these files aren't fixed
+					(although <a href="https://github.com/bapt">bapt</a> has implemented a 
 					<a href="https://github.com/freebsd/pkg/blob/master/libpkg/pkgdb.c">clever solution</a> for keeping
-					files under the same root, but there's still no guarantee on <em>which</em> files will be opened.
+					files under the same root).
+					Take a <a href="https://sqlite.org/wal.html">WAL mode</a> example&#8230;
+				</p>
+				<pre>% ls -l /var/www/data/
+total 604
+-rw-rw-rw-  1 root  daemon  220160 Dec 12  2016 cgi.db
+-rw-rw-rw-  1 www   daemon   32768 Dec 12  2016 cgi.db-shm
+-rw-rw-rw-  1 www   daemon   30424 May  3  2016 cgi.db-wal</pre>
+				<p>
+					So what's the problem?
+					The run-time files prevents me from using <a href="pledge.html">pledge</a> intelligently within my
+					applications, as I must accommodate for opening (and processing) new files.
+					In most web applications, <code>stdio</code> is the only promise that's required by the CGI bits.
+					(CGI and FastCGI communicate over pre-opened descriptors.)
+					But because of SQLite, I need to let in a whole lot more.
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
-					In most web applications, <code>stdio</code> is the only promise that's required.
-					(CGI and FastCGI communicate over pre-opened descriptors.)
-					So at this point, I might as well install landing lights for script kiddies.
+					Not good!
 					It's true the new process can't be launched, nor can sockets be open, but the database (and all other
-					databases in the web server's root) are open for perusal.
+					databases in the web server's root) are open for exploitation.
+					Surely we can do better?
 				</p>
 				<p>
-					Some years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> to simplify the SQLite API
-					and mandate that database access errors should cause program termination, and program termination
-					should safely close the database.
+					A few years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> to simplify the SQLite API
+					and mandate that database access errors should cause program termination, and program termination should
+					safely close the database.
 					It occurred to me that I could extend the system to use the same model as in <a
 						href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a>: constraining the vulnerable database access in
 					a child process.
+					Something like&#8230;
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
+					This way, a constrained child process would manage the database.
+					The master process, enacting my web application's <q>business logic</q>, would be completely sandboxed
+					and unable to access the database except over a communication socket.
+				</p>
+				<p>
 					Since ksql(3) wraps a small subset over the <a href="https://sqlite.org/capi3ref.html">SQLite C API</a>,
-					it's manageable to hook over each function.
+					it's manageable to enable each function individually.
 					Only about 30 functions need to be fitted with split-process bits.
 				</p>
 				<figure>
@@ -73,29 +98,52 @@
 					</figcaption>
 				</figure>
 				<p>
-					For the time being, the protocol is an incredible simple one: open a non-blocking socket pair, fork,
-					pass the pair to the child and parent.
+					For the time being, the protocol is an overly simple (read: slow and inefficient) one: open a
+					non-blocking socket pair, fork, pass the pair to the child and parent.
 					The child then opens and works with the database with a <a
 						href="https://man.openbsd.org/pledge.2">pledge(2)</a> set for file access.
-					The parent usually will pledge only for <code>stdio</code>.
+				</p>
+				<p>
+					Following invocation, the parent caller usually will pledge for <code>stdio</code> and whatever else is
+					required by the application.
+				</p>
+				<p>
 					All in all, this roughly doubled the code-base size, but there's a lot that can be cut down.
-					See it for yourself in <a href="https://github.com/kristapsdz/ksql/blob/VERSION_0_1_0/ksql.c">ksql.c</a>.
-					This code is available as of the <b>0.1.0</b> release.
+					See it for yourself in <a href="https://github.com/kristapsdz/ksql/blob/VERSION_0_1_0/ksql.c">ksql.c</a>
+					(available as of the <b>0.1.0</b> release).
+					The only bits needed to enable split-process mode are calling <a
+						href="https://kristaps.bsd.lv/ksql/ksql_alloc_child.3.html">ksql_alloc_child(3)</a> instead of
+					<a href="https://kristaps.bsd.lv/ksql/ksql_alloc.3.html">ksql_alloc(3)</a> on initialisation.
 				</p>
 				<p>
 					For example, the following simple application opens the database, then sandboxes itself.
+					Note that the ksql(3) functions aren't checked for errors since the default behaviour is to exit on
+					database errors.
+					(Technically the calls to <a href="https://kristaps.bsd.lv/ksql/ksql_close.3.html">ksql_close(3)</a> and
+					<a href="https://kristaps.bsd.lv/ksql/ksql_free.3.html">ksql_free(3)</a> are superfluous, but let's be
+					tidy.)
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
-					In a web application tha combines <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
+					In a web application that combines <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
 						href="https://kristaps.bsd.lv/ksql">ksql(3)</a>, both the parsing of validation of data
 					<i>and</i> database import and export are all performed separately from the main CGI script.
+					So all <q>vulnerable</q> operations (touching network, touching files) of such applications are now
+					accomplished in child processes.
+				</p>
+				<p>
+					I've already added the functionality to <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>
+					(discussed <a href="kwebapp.html">here</a>) as of 0.2.8 to make this even easier to use.
 				</p>
 				<p>
 					What can be improved?
-					For starters, the protocol can be really cleaned up.
+					A lot.
+					For starters, the protocol can be significantly (make that <q><i>significantly</i></q>) improved.
 					Right now, it has a lot of reads and writes that can be consolidated into one: a header frame with most
 					data, followed by additional data in the event of strings.
+					In fact, any request can be limited to two transmissions: a header frame and a data frame.
+					Most requests will only have the header.
+					(Those with string or blob values will need the extra frame.)
 				</p>
 			</article>
 			<footer>
