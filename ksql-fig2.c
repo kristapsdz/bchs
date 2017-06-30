@@ -6,11 +6,6 @@ if ((pid = fork()) == -1)
 
 if (pid == 0) {
 	close(fd[1]);
-	/*
-	 * Required to create database temporary files, read and write
-	 * from them, and perform file-system operations (flock and
-	 * fattr).
-	 */
 	if (pledge("stdio rpath cpath wpath flock fattr", NULL) == -1)
 		err(EXIT_FAILURE, "pledge");
 	/* Exchange data with master over fd[0]. */
