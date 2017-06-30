@@ -1,19 +1,19 @@
 html, body					{ margin: 0; 
 						  background-color: #fff;
-						  color: #444;
-						  height: 100%; }
+						  color: #444; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-weight: 200;
 						  font-style: normal;
 						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
+.tldr						{ color: #000; 
+						  font-size: 15pt; }
 body > section > header				{ width: 50%;	
 						  padding-top: 1em;
 						  padding-bottom: 1em;
 						  color: #222;
-						  margin-left: auto;
-						  margin-right: auto;
+						  margin: 0 auto;
 						  display: flex;
 						  display: -webkit-flex;
 						  align-items: center;
@@ -52,8 +52,8 @@ figure						{ margin: 1em 0;
 figure img					{ width: 100%; 
 						  max-width: 650px; }
 figcaption					{ font-size: 12pt; 
-						  color: #ccc; }
-code						{ font-family: monospace;
+						  color: #666; }
+pre, code					{ font-family: monospace;
 						  font-size: 11pt; }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
