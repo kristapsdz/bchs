@@ -1,4 +1,4 @@
-.SUFFIXES: .xml .html .dot .svg .gnuplot .png
+.SUFFIXES: .xml .html .dot .svg .gnuplot .png .c.xml
 
 PREFIX		?= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
 PAGES		 = index.html \
@@ -15,6 +15,7 @@ CSSS		 = index.css \
 		   easy.css \
 		   json.css \
 		   pledge.css \
+		   ksql.css \
 		   kwebapp.css
 GENS		 = easy.c.xml \
 		   style.css \
@@ -29,6 +30,7 @@ GENS		 = easy.c.xml \
 		   ksql-fig1.c.xml \
 		   ksql-fig2.c.xml \
 		   ksql-fig4.c.xml \
+		   ksql-fig5.c.xml \
 		   $(GENHTMLS) \
 		   $(IMAGES)
 GENHTMLS	 = kwebapp.db.c.html \
@@ -41,6 +43,7 @@ IMAGES		 = pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
 		   ksql-fig3.svg \
+		   ksql-fig6.svg \
 		   kwebapp-fig1.svg \
 		   kwebapp-fig2.svg
 BUILT		 = arrow-left.png \
@@ -72,13 +75,11 @@ json.html: json.xml json.c.xml json.json.xml json.xhtml.xml
 
 json.xhtml.xml: json.xhtml
 json.json.xml: json.json
-json.c.xml: json.c
-easy.c.xml: easy.c
 easy.sh.xml: easy.sh
 easy.conf.xml: easy.conf
 kwebapp.txt.xml: kwebapp.txt
 
-easy.c.xml easy.sh.xml easy.conf.xml json.c.xml json.json.xml json.xhtml.xml kwebapp.txt.xml:
+easy.sh.xml easy.conf.xml json.json.xml json.xhtml.xml kwebapp.txt.xml:
 	echo '<article data-sblg-article="1">' >$@
 	highlight -l -f --out-format=xhtml --enclose-pre `basename $@ .xml` >>$@
 	echo '</article>' >>$@
@@ -138,23 +139,20 @@ kwebapp.html: kwebapp-fig1.svg \
 kwebapp.html: kwebapp.xml kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
 	sblg -s cmdline -t kwebapp.xml -o $@ kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
 
-ksql-fig1.c.xml: ksql-fig1.c
+.c.c.xml:
 	echo '<article data-sblg-article="1">' >$@
-	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig1.c >>$@
+	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
 	echo '</article>' >>$@
 
-ksql-fig2.c.xml: ksql-fig2.c
-	echo '<article data-sblg-article="1">' >$@
-	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig2.c >>$@
-	echo '</article>' >>$@
+KSQL_MEDIA = ksql-fig3.svg \
+	     ksql-fig6.svg
+KSQL_DEPS = ksql-fig1.c.xml \
+	    ksql-fig2.c.xml \
+	    ksql-fig4.c.xml \
+	    ksql-fig5.c.xml
 
-ksql-fig4.c.xml: ksql-fig4.c
-	echo '<article data-sblg-article="1">' >$@
-	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ksql-fig4.c >>$@
-	echo '</article>' >>$@
-
-ksql.html: ksql.xml ksql-fig1.c.xml ksql-fig2.c.xml ksql-fig3.svg ksql-fig4.c.xml
-	sblg -s cmdline -t ksql.xml -o $@ ksql-fig1.c.xml ksql-fig2.c.xml ksql-fig4.c.xml
+ksql.html: ksql.xml $(KSQL_DEPS) $(KSQL_MEDIA)
+	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_DEPS)
 
 installwww: www
 	mkdir -p $(PREFIX)
