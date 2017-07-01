@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>ksql//BCHS: process-separated SQLite</title>
+		<title>ksql//BCHS: split-process SQLite</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:200,300,200italic,300italic,500" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
@@ -56,8 +56,11 @@ total 604
 -rw-rw-rw-  1 www   daemon   32768 Dec 12  2016 cgi.db-shm
 -rw-rw-rw-  1 www   daemon   30424 May  3  2016 cgi.db-wal</pre>
 				<p>
+					One database, one shared-memory file, one WAL file.
+					The database is created beforehand; the latter two are created on demand.
+					(<b>Note</b>: <code>/dev/null</code> may also be required&#8230;)
 					So what's the problem?
-					The run-time files prevents me from using <a href="pledge.html">pledge</a> intelligently within my
+					The run-time files prevent me from using <a href="pledge.html">pledge</a> intelligently within my
 					applications, as I must accommodate for opening (and processing) new files.
 					In most web applications, <code>stdio</code> is the only promise that's required by the CGI bits.
 					(CGI and FastCGI communicate over pre-opened descriptors.)
@@ -66,8 +69,8 @@ total 604
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
 					Not good!
-					It's true the new process can't be launched, nor can sockets be open, but the database (and all other
-					databases in the web server's root) are open for exploitation.
+					It's true that new processes can't be launched, nor can sockets be opened, but the database (and all
+					other databases in the web server's root) are open for exploitation.
 					Surely we can do better?
 				</p>
 				<p>
@@ -125,6 +128,9 @@ total 604
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
+					A much more reasonable sandbox.
+				</p>
+				<p>
 					In a web application that combines <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
 						href="https://kristaps.bsd.lv/ksql">ksql(3)</a>, both the parsing of validation of data
 					<i>and</i> database import and export are all performed separately from the main CGI script.
@@ -133,10 +139,12 @@ total 604
 				</p>
 				<p>
 					I've already added the functionality to <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>
-					(discussed <a href="kwebapp.html">here</a>) as of 0.2.8 to make this even easier to use.
+					(discussed <a href="kwebapp.html">here</a>) as of <b>0.2.8</b> to make this even easier to use.
+					Assuming we've generated a database API exporting the usual <code>db_open</code> function&#8320;
 				</p>
+				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
-					What can be improved?
+					What can be improved in ksql(3)'s split-process model?
 					A lot.
 					For starters, the protocol can be significantly (make that <q><i>significantly</i></q>) improved.
 					Right now, it has a lot of reads and writes that can be consolidated into one: a header frame with most
