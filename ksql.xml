@@ -167,6 +167,10 @@ total 604
 					Most requests will only have the header.
 					(Those with string or blob values will need the extra frame.)
 				</p>
+				<p>
+					It's also rather easy to add other sandboxes.
+					But since I generally only use <a href="https://www.openbsd.org">OpenBSD</a>, I'm not there yet!
+				</p>
 			</article>
 			<footer>
 				<div>
