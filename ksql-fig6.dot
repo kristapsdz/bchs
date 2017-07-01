@@ -1,0 +1,22 @@
+digraph {
+	graph [rankdir="LR"];
+	bgcolor="transparent";
+
+	subgraph cluster_0 {
+		label="sandboxed ksql(3)";
+		step2 [label="ksql_alloc_child(3);"];
+	};
+
+	subgraph cluster_1 {
+		label="sandboxed kcgi(3)";
+		step1 [label="khttp_parse(3)"];
+	};
+
+	base1 -> step2 [dir="both"];
+	base1 -> base2;
+
+	base2 -> step1 [dir="both"];
+	base2 -> base3;
+
+	base3 [label="pledge"];
+}
