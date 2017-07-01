@@ -40,13 +40,34 @@
 				<p>
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
-					For more, see
-					<a href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a> 
-					(or its <a href="https://kristaps.bsd.lv//absdcon2017">follow-up</a>);
-					<a href="pledge.html">BCHS sandboxing</a>;
-					using <a href="json.html">JSON</a> with BCHS; or for something completely new,
-					<a href="kwebapp.html">kwebapp</a>.
+					Or read articles&#8230;
 				</p>
+				<ul>
+					<li>
+						<a href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>
+						<span class="src">(AsiaBSDCon, 2016/03)</span>
+					</li>
+					<li>	
+						Using <a href="json.html">JSON</a> with BCHS 
+						<span class="src">(2016/10)</span>
+					</li>
+					<li>
+						BCHS sandboxing with <a href="pledge.html">pledge</a> 
+						<span class="src">(2016/11)</span>
+					</li>
+					<li>
+						<a href="https://kristaps.bsd.lv//absdcon2017">Secure CGI</a>
+						<span class="src">(AsiaBSDCon, 2017/03)</span>
+					</li>
+					<li>
+						Rapid web applications with <a href="kwebapp.html">kwebapp</a> 
+						<span class="src">(2017/05)</span>
+					</li>
+					<li>
+						Split-process <a href="ksql.html">ksql</a> 
+						<span class="src">(2017/07)</span>
+					</li>
+				</ul>
 				<p>
 					Is BCHS a joke?
 					No.  
