@@ -3,14 +3,16 @@ digraph {
 	bgcolor="transparent";
 
 	subgraph cluster_0 {
-		label="sandboxed child process";
-		step2 [label="ksql_stmt_step(3);"];
-		step3 [label="sqlite3_step(3);"];
+		label="sandboxed child";
+		style="dotted";
+		step2 [label="ksql_stmt_step(3)"];
+		step3 [label="sqlite3_step(3)"];
 		step2 -> step3 [dir="both"];
 	};
 
 	subgraph cluster_1 {
-		label="sandboxed parent process";
+		label="sandboxed parent";
+		style="dotted";
 		step1 [label="ksql_stmt_step(3)"];
 	};
 
