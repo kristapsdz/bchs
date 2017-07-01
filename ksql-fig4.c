@@ -22,6 +22,8 @@ main(void)
 		snprintf(buf, sizeof(buf), "%" PRIu32, val);
 		ksql_bind_int(stmt, 0, val);
 		ksql_bind_str(stmt, 1, buf);
+		ksql_stmt_step(stmt);
+		ksql_stmt_reset(stmt);
 	}
 	ksql_stmt_free(stmt);
 	ksql_close(sql);
