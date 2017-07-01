@@ -1,22 +1,50 @@
 digraph {
-	graph [rankdir="LR"];
+	graph [rankdir="TB"];
 	bgcolor="transparent";
 
-	subgraph cluster_0 {
-		label="sandboxed ksql(3)";
-		step2 [label="ksql_alloc_child(3);"];
+	rank="same";
+
+	subgraph cluster_0a {
+		rank="same";
+		style="invis";
+		subgraph cluster_0 {
+			style="dotted";
+			label="sandbox";
+			step2 [label="ksql_alloc_child(3)"; color="red"];
+			step2sub [label="output"; color="blue"];
+			step2 -> step2sub;
+			step2sub2 [label="input"; color="red"];
+			step2sub2 -> step2;
+		};
+		base1 -> step2 [dir="both"];
+		base1 [shape="point"; label=""];
 	};
 
-	subgraph cluster_1 {
-		label="sandboxed kcgi(3)";
-		step1 [label="khttp_parse(3)"];
+	subgraph cluster_1a {
+		rank="same";
+		style="invis";
+		subgraph cluster_1 {
+			style="dotted";
+			label="sandbox";
+			step1 [label="khttp_parse(3)"; color="red"];
+			step1sub [label="input"; color="red"];
+			step1sub -> step1;
+		};
+		base2 -> step1 [dir="both"];
+		base2 [shape="point"; label=""];
 	};
 
-	base1 -> step2 [dir="both"];
-	base1 -> base2;
+	subgraph cluster_2a {
+		label="sandbox";
+		style="dotted";
+		base3 [label="work"];
+		base4 [label="output"; color="blue"];
+		base3 -> base4;
+	};
 
-	base2 -> step1 [dir="both"];
-	base2 -> base3;
+	base0 [label="start"];
 
-	base3 [label="pledge"];
+	base0 -> base2;
+	base2 -> base1;
+	base1 -> base3;
 }

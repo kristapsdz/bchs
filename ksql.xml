@@ -31,7 +31,7 @@
 			</header>
 			<article>
 				<p class="tldr">
-					<b>tl;dr</b>: the new split-process mode of <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> 
+					<b>tl;dr</b>: the new split-process mode of <a href="https://kristaps.bsd.lv/ksql">ksql</a> 
 					constrains SQLite database operations to a child process, allowing the caller to <a
 						href="https://man.openbsd.org/pledge.2">pledge(2)</a> better.
 				</p>
@@ -74,11 +74,11 @@ total 604
 					Surely we can do better?
 				</p>
 				<p>
-					A few years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql(3)</a> to simplify the SQLite API
+					A few years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql</a> to simplify the SQLite API
 					and mandate that database access errors should cause program termination, and program termination should
 					safely close the database.
 					It occurred to me that I could extend the system to use the same model as in <a
-						href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a>: constraining the vulnerable database access in
+						href="https://kristaps.bsd.lv/kcgi">kcgi</a>: constraining the vulnerable database access in
 					a child process.
 					Something like&#8230;
 				</p>
@@ -89,7 +89,7 @@ total 604
 					and unable to access the database except over a communication socket.
 				</p>
 				<p>
-					Since ksql(3) wraps a small subset over the <a href="https://sqlite.org/capi3ref.html">SQLite C API</a>,
+					Since ksql wraps a small subset over the <a href="https://sqlite.org/capi3ref.html">SQLite C API</a>,
 					it's manageable to enable each function individually.
 					Only about 30 functions need to be fitted with split-process bits.
 				</p>
@@ -120,7 +120,7 @@ total 604
 				</p>
 				<p>
 					For example, the following simple application opens the database, then sandboxes itself.
-					Note that the ksql(3) functions aren't checked for errors since the default behaviour is to exit on
+					Note that the ksql functions aren't checked for errors since the default behaviour is to exit on
 					database errors.
 					(Technically the calls to <a href="https://kristaps.bsd.lv/ksql/ksql_close.3.html">ksql_close(3)</a> and
 					<a href="https://kristaps.bsd.lv/ksql/ksql_free.3.html">ksql_free(3)</a> are superfluous, but let's be
@@ -131,21 +131,33 @@ total 604
 					A much more reasonable sandbox.
 				</p>
 				<p>
-					In a web application that combines <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and <a
-						href="https://kristaps.bsd.lv/ksql">ksql(3)</a>, both the parsing of validation of data
+					In a web application that combines <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> and <a
+						href="https://kristaps.bsd.lv/ksql">ksql</a>, both the parsing of validation of data
 					<i>and</i> database import and export are all performed separately from the main CGI script.
-					So all <q>vulnerable</q> operations (touching network, touching files) of such applications are now
-					accomplished in child processes.
+					So all <q>vulnerable</q> operations (touching network, touching files&#8212;the attack surface being
+					coloured in red) of such applications are now limited to sandboxed child processes.
+				</p>
+				<figure>
+					<img src="ksql-fig6.svg" alt="Interprocess communication" />
+					<figcaption>
+						All parts being compartmentalised.
+					</figcaption>
+				</figure>
+				<p>
+					Not only does this protect your application from bad input, it also protects your database from you!
 				</p>
 				<p>
-					I've already added the functionality to <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>
-					(discussed <a href="kwebapp.html">here</a>) as of <b>0.2.8</b> to make this even easier to use.
-					Assuming we've generated a database API exporting the usual <code>db_open</code> function&#8320;
+					I've already added the functionality to <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+					(this system was discussed <a href="kwebapp.html">here</a>) as of <b>0.2.8</b> to make this even easier
+					to use.  Assuming we've generated a database API exporting the usual <code>db_open</code>
+					function via <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.1.html">kwebapp(1)</a>&#8230;
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>
-					What can be improved in ksql(3)'s split-process model?
+					What can be improved in ksql's split-process model?
 					A lot.
+				</p>
+				<p>
 					For starters, the protocol can be significantly (make that <q><i>significantly</i></q>) improved.
 					Right now, it has a lot of reads and writes that can be consolidated into one: a header frame with most
 					data, followed by additional data in the event of strings.

@@ -13,7 +13,7 @@ main(void)
 	if (-1 == pledge("stdio", NULL))
 		err(EXIT_FAILURE, "pledge");
 
-	/* Perform actions. */
+	/* Perform actions in a sandbox. */
 
 	db_close(r.arg);
 	khttp_free(&r);
