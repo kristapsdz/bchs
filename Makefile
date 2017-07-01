@@ -125,31 +125,32 @@ pledge.html: pledge-fig1.svg \
 	pledge-fig2.svg \
 	pledge-fig3.png
 
-kwebapp.html: kwebapp-fig1.svg \
-	kwebapp-fig2.svg \
-	kwebapp.db.c.html \
-	kwebapp.db.h.html \
-	kwebapp.db.sql.html \
-	kwebapp.db.sqldiff.html \
-	kwebapp.db.js.html \
-	kwebapp.main.c.html \
-	kwebapp.main1.c.xml \
-	kwebapp.main2.c.xml
+KWEB_MEDIA = kwebapp-fig1.svg \
+	     kwebapp-fig2.svg \
+	     kwebapp.db.c.html \
+	     kwebapp.db.h.html \
+	     kwebapp.db.sql.html \
+	     kwebapp.db.sqldiff.html \
+	     kwebapp.db.js.html \
+	     kwebapp.main.c.html
+KWEB_DEPS  = kwebapp.txt.xml \
+	     kwebapp.main1.c.xml \
+	     kwebapp.main2.c.xml
+KSQL_MEDIA = ksql-fig3.svg \
+	     ksql-fig6.svg
+KSQL_DEPS  = ksql-fig1.c.xml \
+	     ksql-fig2.c.xml \
+	     ksql-fig4.c.xml \
+	     ksql-fig5.c.xml
 
-kwebapp.html: kwebapp.xml kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
-	sblg -s cmdline -t kwebapp.xml -o $@ kwebapp.txt.xml kwebapp.main1.c.xml kwebapp.main2.c.xml
+
+kwebapp.html: kwebapp.xml $(KWEB_DEPS) $(KWEB_MEDIA)
+	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
 
 .c.c.xml:
 	echo '<article data-sblg-article="1">' >$@
 	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
 	echo '</article>' >>$@
-
-KSQL_MEDIA = ksql-fig3.svg \
-	     ksql-fig6.svg
-KSQL_DEPS = ksql-fig1.c.xml \
-	    ksql-fig2.c.xml \
-	    ksql-fig4.c.xml \
-	    ksql-fig5.c.xml
 
 ksql.html: ksql.xml $(KSQL_DEPS) $(KSQL_MEDIA)
 	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_DEPS)
