@@ -74,9 +74,10 @@ total 604
 					Surely we can do better?
 				</p>
 				<p>
-					A few years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql</a> to simplify the SQLite API
-					and mandate that database access errors should cause program termination, and program termination should
-					safely close the database.
+					A few years ago, I wrote <a href="https://kristaps.bsd.lv/ksql">ksql</a> to mandate that database access
+					errors should cause program termination, and program termination should safely close the database.
+					One too many times, a database error had been ignored from sloppy programming and had caused mysterious
+					failures&#8212;<q>fool me once</q>&#8230;
 					It occurred to me that I could extend the system to use the same model as in <a
 						href="https://kristaps.bsd.lv/kcgi">kcgi</a>: constraining the vulnerable database access in
 					a child process.
@@ -105,13 +106,14 @@ total 604
 					non-blocking socket pair, fork, pass the pair to the child and parent.
 					The child then opens and works with the database with a <a
 						href="https://man.openbsd.org/pledge.2">pledge(2)</a> set for file access.
+					(In the event that the original single-process model is used, none of this overhead is invoked.)
 				</p>
 				<p>
 					Following invocation, the parent caller usually will pledge for <code>stdio</code> and whatever else is
 					required by the application.
 				</p>
 				<p>
-					All in all, this roughly doubled the code-base size, but there's a lot that can be cut down.
+					All in all, this roughly doubled the code-base size.
 					See it for yourself in <a href="https://github.com/kristapsdz/ksql/blob/VERSION_0_1_0/ksql.c">ksql.c</a>
 					(available as of the <b>0.1.0</b> release).
 					The only bits needed to enable split-process mode are calling <a
@@ -135,7 +137,7 @@ total 604
 						href="https://kristaps.bsd.lv/ksql">ksql</a>, both the parsing of validation of data
 					<i>and</i> database import and export are all performed separately from the main CGI script.
 					So all <q>vulnerable</q> operations (touching network, touching files&#8212;the attack surface being
-					coloured in red) of such applications are now limited to sandboxed child processes.
+					<span style="color: red;">coloured in red</span>) of such applications are now limited to sandboxed child processes.
 				</p>
 				<figure>
 					<img src="ksql-fig6.svg" alt="Interprocess communication" />
