@@ -86,4 +86,5 @@ h2				{ font-size: 18pt;
 article p			{ font-size: 12pt; }
 header nav			{ font-size: 12pt; }
 section				{ display: block; }
+ul				{ padding-left: 1ex; }
 }
