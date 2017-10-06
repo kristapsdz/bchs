@@ -40,7 +40,7 @@
 				<p>
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
-					Or read articles&#8230;
+					Or read/watch articles&#8230;
 				</p>
 				<ul>
 					<li>
@@ -66,6 +66,10 @@
 					<li>
 						Split-process <a href="ksql.html">ksql</a> 
 						<span class="src">(2017/07)</span>
+					</li>
+					<li>
+						<q><a href="https://www.youtube.com/watch?v=KO1juo1KDFs">Should I use the BCHS web stack?</a></q>
+						<span class="src">(EuroBSDCon short answer, 2017/09)</span>
 					</li>
 				</ul>
 				<p>
