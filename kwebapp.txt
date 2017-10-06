@@ -10,9 +10,9 @@ struct user {
 };
 
 struct sess {
-  field user struct userid:user.id comment
+  field user struct userid comment
     "User attached to session.";
-  field userid int comment
+  field userid:user.id int comment
     "User identifier attached to session.";
   field token int comment 
     "Random token for authentication.";
