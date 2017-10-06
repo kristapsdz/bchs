@@ -11,6 +11,6 @@ main(void)
     puts("Status: 200 OK\r");
     puts("Content-Type: text/html\r");
     puts("\r");
-    puts("Hello, haters!");
+    puts("Hello, world!\n");
     return(EXIT_SUCCESS);
 }
