@@ -55,7 +55,7 @@
 								Resources:
 								<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">The C Programming Language</a>,
 								<a href="https://man.openbsd.org/OpenBSD-current/man1/gcc.1">gcc(1)</a> (with
-								<a href="https://man.openbsd.org/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>) and nwo
+								<a href="https://man.openbsd.org/OpenBSD-current/man1/gcc-local.1">gcc-local(1)</a>) and now
 								<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a> (with
 								<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>).
 							</p>
