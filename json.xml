@@ -96,7 +96,7 @@
 								<p>
 									Begin with the actual web application source.
 									I use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> and use <a
-										href="http://man.openbsd.org/pledge.2">pledge(2)</a> (so it
+										href="https://man.openbsd.org/pledge.2">pledge(2)</a> (so it
 									requires OpenBSD, of course) to safeguard our operating system.
 									In this example, I just emit a simple greeting in a JSON container.
 								</p>
