@@ -68,12 +68,12 @@
 							to abandon sandboxing at the start.
 						</p>
 						<p>
-							And then there was <a href="http://man.openbsd.org/pledge">pledge(2)</a>.
+							And then there was <a href="https://man.openbsd.org/pledge">pledge(2)</a>.
 						</p>
 						<p>
-							This document is about <a href="http://man.openbsd.org/pledge">pledge(2)</a> and why you
+							This document is about <a href="https://man.openbsd.org/pledge">pledge(2)</a> and why you
 							should use it and love it.
-							And why, in some respects, <a href="http://man.openbsd.org/pledge">pledge(2)</a> <i>alone</i>
+							And why, in some respects, <a href="https://man.openbsd.org/pledge">pledge(2)</a> <i>alone</i>
 							justifies the use of <a href="index.html">BCHS</a>.
 							If you know about sandboxing, you can skip the first part and jump to <a href="#sobad"><i>Why is
 									it so bad?</i></a>
@@ -216,23 +216,23 @@
 						What a nightmare!
 					</p>
 					<p>
-						And so: <a href="index.html">BCHS</a> and <a href="http://man.openbsd.org/pledge">pledge(2)</a>.
+						And so: <a href="index.html">BCHS</a> and <a href="https://man.openbsd.org/pledge">pledge(2)</a>.
 					</p>
 					<h3>
 						Why you should love security
 					</h3>
 					<p>
 						In the argument of complexity and thoroughness, <a
-							href="http://man.openbsd.org/pledge">pledge(2)</a> is a compromise.
+							href="https://man.openbsd.org/pledge">pledge(2)</a> is a compromise.
 						It acts like a series of usage profiles instead of focussing on the physical motions themselves.
 						Much like one could simply say <q>eating</q> instead of raising food to mouth, masticating,
 						swallowing, etc.
 						If your utility needs to read a file (as in the above example), you don't need to white-list
 						each system call involved in the reading of files: you enable a profile for reading files that
-						includes <a href="http://man.openbsd.org/fstat.2">fstat(2)</a>, <a
-							href="http://man.openbsd.org/fchown.2">fchown(2)</a>, etc.
+						includes <a href="https://man.openbsd.org/fstat.2">fstat(2)</a>, <a
+							href="https://man.openbsd.org/fchown.2">fchown(2)</a>, etc.
 						You can read more about it in Theo's <q><a
-								href="http://www.openbsd.org/papers/hackfest2015-pledge/mgp00001.html">a new
+								href="https://www.openbsd.org/papers/hackfest2015-pledge/mgp00001.html">a new
 								mitigation mechanism</a></q> (<a
 							href="https://www.youtube.com/watch?v=F_7S1eqKsFk">video</a>).
 					</p>
@@ -268,14 +268,14 @@
 						deprecated.
 					</p>
 					<p>
-						Does <a href="http://man.openbsd.org/pledge">pledge(2)</a> provide complete security coverage?
+						Does <a href="https://man.openbsd.org/pledge">pledge(2)</a> provide complete security coverage?
 						No.
 						And while the other, more extensive interfaces may do so, the argument isn't whether it
 						<i>theoretically</i> may provide, but whether applications can <i>use</i> those capabilities.
 						In other words, security must be <i>practical</i>.
 					</p>
 					<p>
-						To see a quick example of <a href="http://man.openbsd.org/pledge">pledge(2)</a> in a 
+						To see a quick example of <a href="https://man.openbsd.org/pledge">pledge(2)</a> in a 
 						<a href="index.html">BCHS</a> application, check out <a
 							href="https://github.com/kristapsdz/dblg/blob/master/dblg.c">dblg.c</a>.
 						The pledge line is tiny: <code>pledge("stdio rpath cpath wpath flock fattr", NULL)</code>.
@@ -292,12 +292,12 @@
 						tl;dr
 					</h3>
 					<p>
-						For practical web applications, <a href="http://man.openbsd.org/pledge">pledge(2)</a> presents
+						For practical web applications, <a href="https://man.openbsd.org/pledge">pledge(2)</a> presents
 						the best compromise of development simplicity and security coverage.
 						This alone gives <a href="index.html">BCHS</a> applications even more of a boost beyond the many
 						other advantages of programming on OpenBSD.
 						(E.g., and <q>sufficient</q> if not just <q>necessary</q>, <a
-							href="http://man.openbsd.org">manpages</a>.)
+							href="https://man.openbsd.org">manpages</a>.)
 					</p>
 					<p>
 						Downsides?

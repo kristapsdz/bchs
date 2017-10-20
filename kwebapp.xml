@@ -102,7 +102,7 @@
 						</li>
 						<li>
 							create an additional SQL <q>upgrade</q> script between the last version and the current
-							version (of course, you're using <a href="http://man.openbsd.org/cvs">cvs(1)</a>'s
+							version (of course, you're using <a href="https://man.openbsd.org/cvs">cvs(1)</a>'s
 							tagging facility or other VCS to track your production and development releases);
 						</li>
 						<li>
@@ -143,7 +143,7 @@
 						documentation (the <code>comment</code> clause).
 						It also specifies some terms to search on, e.g., <code>email</code> and <code>hash</code> for
 						users&#8212;passwords are automatically hashed using the 
-						<a href="http://man.openbsd.org/crypt_checkpass">crypt_checkpass(3)</a> family.
+						<a href="https://man.openbsd.org/crypt_checkpass">crypt_checkpass(3)</a> family.
 					</p>
 					<p>
 						When run through <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>, it automates the
@@ -218,7 +218,7 @@
 							href="https://www.postgresql.org/">PostgreSQL</a>&#8212;though that's really a job for
 						<a href="https://kristaps.bsd.lv/ksql">ksql</a>.
 						(I think <a href="https://kristaps.bsd.lv/ksql">ksql</a> is due for some care on having a
-						privilege-separated model of operation for easier <a href="http://man.openbsd.org/pledge.2">pledging</a>.)
+						privilege-separated model of operation for easier <a href="https://man.openbsd.org/pledge.2">pledging</a>.)
 						I'd also like it to document the JSON export, for example, with <a
 							href="http://json-schema.org/">JSON Schema</a>.
 					</p>

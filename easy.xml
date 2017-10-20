@@ -52,7 +52,7 @@
 							</p>
 							<p>
 								What&#x2019;s going on?
-								<a href="http://man.openbsd.org/pledge.2">pledge(2)</a> makes sure you&#x2019;re only doing
+								<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> makes sure you&#x2019;re only doing
 								what you want to do: work with existing descriptors.
 								The rest is just HTTP.
 								Don&#x2019;t want to work with HTTP?
@@ -78,7 +78,7 @@
 								<article data-sblg-permlink="0" data-sblg-article="1"></article>
 							</figure>
 							<p>
-								<a href="http://man.openbsd.org/httpd.conf.5">httpd.conf(5)</a>
+								<a href="https://man.openbsd.org/httpd.conf.5">httpd.conf(5)</a>
 								is so&#8230; <i>simple</i>.
 								Server tells us the name.
 								Listen tells us to listen.
@@ -90,7 +90,7 @@
 								Don&#x2019;t like FastCGI?
 								Neither do we.
 								But we&#x2019;re not using it for this example: in the next snippet, we&#x2019;ll use <a
-									href="http://man.openbsd.org/slowcgi.8">slowcgi(8)</a> to invoke our
+									href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> to invoke our
 								CGI.
 								So relax.
 							</p>
@@ -116,8 +116,8 @@
 							<p>
 								Wow.  Very configure.
 								Compiles the script.  Installs it.
-								Makes sure <a href="http://man.openbsd.org/slowcgi.8">slowcgi(8)</a> and of course <a
-									href="http://man.openbsd.org/httpd.8">httpd(8)</a> are running.
+								Makes sure <a href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> and of course <a
+									href="https://man.openbsd.org/httpd.8">httpd(8)</a> are running.
 								Done.
 							</p>
 							<p>
