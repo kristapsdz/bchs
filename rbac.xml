@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>kwebapp//BCHS: RBAC in kwebapp</title>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="rbac.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="theme-color" content="#ffffff" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="start.html"><span>start</span></a>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<header>
+					<p class="tldr">
+						<strong>tl;dr</strong> 
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> has gained <a
+							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
+							control</a> facilities allowing the generated API (<q>business logic</q>) to be
+						aware of user roles.
+					</p>
+					<h2>
+						<span><a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>/RBAC</span>: API provisioning
+					</h2>
+				</header>
+				<section class="intro">
+					<p>
+						When deploying web applications, we often need to evaluate the <strong>full stack</strong> for
+						its security.
+					</p>
+					<ul>
+						<li>
+							Is the physical location secure? (Attack dogs, guns, clowns.)
+						</li>
+						<li>
+							Are discs encrypted?  (<a
+								href="https://www.openbsd.org/faq/faq14.html#softraidFDE">Software FDE</a>.)
+						</li>
+						<li>
+							Are our file-systems well-partitioned with regards to users?  (<a
+								href="https://man.openbsd.org/hier">hier(7)</a>, etc.)
+						</li>
+						<li>
+							Are our ingress systems secure?  (<a href="https://man.openbsd.org/sshd">sshd(8)</a>, <a
+								href="https://man.openbsd.org/httpd">httpd(8)</a>, etc.)
+						</li>
+						<li>
+							Is our application properly privilege separated?  (<a
+								href="https://man.openbsd.org/pledge">pledge(2)</a>, <a
+								href="https://man.openbsd.org/chroot.2">chroot(2)</a>, etc.)
+						</li>
+					</ul>
+					<p>
+						All of these account for an application's environment.
+						What about the environment internal to the application's run-time&#8212;say, making sure that a
+						request servicing a user doesn't try to access administrative tables?
+						Enter <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>'s new API provisioning facility.
+					</p>
+					<h3>
+						What is kwebapp?
+					</h3>
+					<p>
+						Read <a href="https://learnbchs.org/kwebapp.html">this</a>.
+						It's a system that uses a configuration file to define the data model of your application: the
+						data itself (represented by an SQLite database), insertion routines, deletion, all sorts of
+						querying, etc.
+						Or as visualised front-and-centre on the webpage:
+					</p>
+					<figure>
+						<img src="https://kristaps.bsd.lv/kwebapp/index.svg" />
+					</figure>
+					<p>
+						It creates C files (source and header) with functions to do all of this.
+						It can also create export routines (into JSON), field validation for kcgi(3) integration, SQL
+						schemas, and even compute the difference in SQL shema between versions of your configuration
+						file.
+					</p>
+					<pre class="prettyprint">struct user {
+  field email email unique;
+  field hash password;
+  search email, hash: name creds comment 
+    "Lookup by credentials.";
+  field id int rowid;
+};
+
+struct session {
+  field user struct userid;
+  field userid:user.id int comment 
+    "User associated with session.";
+  field id int rowid;
+  insert;
+  search id: name id comment 
+    "Lookup by unique identifier.";
+  delete id;
+};</pre>
+					<p>
+						With this snippet, we've defined <code class="prettyprint">session</code> and <code class="prettyprint">user</code> structures.
+						These are implemented in SQL as tables, with each <code class="prettyprint">field</code> being a table.
+						In the C API, they're <code class="prettyprint">struct</code> entities.
+						Query and insertion functions are also generated&#8212;see the generated <a
+							href="rbac-ex1.c.html">source</a> and <a href="rbac-ex1.h.html">header</a> file for
+						yourself.
+					</p>
+					<h3>
+						What can go wrong?
+					</h3>
+					<p>
+						Mistakes happen.
+					</p>
+					<p>
+						The <code class="prettyprint">struct ksql</code> returned by these functions allows access to the full database by callers.
+						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> doesn't directly support
+						complex inter-tabular joins and other fun SQL stuff you might want to perform.
+						By exporting the database connection itself, callers can provide their own complex SQL operations directly to
+						<a href="https://kristaps.bsd.lv/ksql/ksql_stmt_alloc.3.html">ksql_stmt_alloc(3)</a>.
+					</p>
+					<p>
+						In a recent web application project, I made the mistake of inserting an administrator table row
+						instead of a user table row simply by typo-ing a conditional.
+						If left unchecked, it would have allowed users to create administrators&#8212;those with
+						significant control over other users and basically all parts of the system!
+						It would have been a disaster.
+					</p>
+					<p>
+						How could I have caught this sooner?
+					</p>
+					<h3>
+						Enter RBAC.
+					</h3>
+					<p>
+						With <a href="https://man.openbsd.org/pledge.2">pledge(2)</a>, I can stipulate which operations
+						of an application are allowed in which circumstances.
+						For example, if I provide the common <b>-o</b> flag to an application, I might want to provide
+						the <code class="prettyprint">wpath cpath</code> pledges.
+						This allows me to say, up-front, what I can do and what I can't.
+						If I can't do it&#8212;application crashes.  Game over.
+						I decided to employ a similar feature for <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>.
+					</p>
+					<p>
+						As it is, there are no restrictions on function invocation.
+						The landscape is <q>flat</q>.
+					</p>
+					<figure>
+						<img src="rbac-fig1.svg" />
+					</figure>
+					<p>
+						However, since the web application is invoked by an operator in a given role (e.g., a user from
+						his or her web browser, an administrator from a local application or also via the web), I can
+						identify the source and provision accordingly.
+					</p>
+					<p>
+						This way, I can identify which operations are permissable from which user roles.
+						In the above example, let's say that an administrator should be able to list and add new
+						administrators, but not touch users.
+						Users, on the other hand, can only add other users.
+					</p>
+					<figure>
+						<img src="rbac-fig2.svg" />
+					</figure>
+					<p>
+						The new <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> RBAC feature allows this by
+						identifying roles; and then for each role, establishing which operations are permitted by that role.
+					</p>
+					<p>
+						If a user role tries to perform a disallowed task&#8212;bam.
+						Application calls <a href="https://man.openbsd.org/abort.3">abort(3)</a>.
+						The syntax to accomodate for this is super easy.
+						Using our above example&#8230;
+					</p>
+					<pre class="prettyprint">roles {
+  role user;
+  role admin;
+};
+
+struct user {
+  field email email unique;
+  field hash password;
+  search email, hash: name creds comment 
+    "Lookup by credentials.";
+  field id int rowid;
+  role user { 
+    search creds;
+  };
+};
+
+struct session {
+  field user struct userid;
+  field userid:user.id int comment 
+    "User associated with session.";
+  field id int rowid;
+  insert;
+  search id: name id comment 
+    "Lookup by unique identifier.";
+  delete id;
+  role all {
+    all;
+  };
+  role default {
+    search name;
+  };
+};</pre>
+				<p>
+					First, note the <code class="prettyprint">roles { ... }</code> top-level block.
+					This defines the actual roles themselves.
+					Roles are nested: a role within a role has access to all of the parent's roles, but the parent does
+					not have access to the child's.
+					One common usage is to have administrative sub-roles, for example, <code class="prettyprint">role admin
+						{ role useradmin; role sessadmin; }</code> might have <code class="prettyprint">useradmin</code>
+					manage users, while other roles would be responsible for other tasks, and all <code
+						class="prettyprint">admin</code> sub-roles would have access to generic access on the admin
+					table.
+				</p>
+				<p>
+					There are three reserved roles: <code class="prettyprint">default</code>, <code
+						class="prettyprint">all</code>, and <code class="prettyprint">none</code>.
+					The first is the initial role before a role has been manually set; the second is the top-level for all
+					user-defined roles, and the third cannot do anything at all.
+				</p>
+				</section>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+

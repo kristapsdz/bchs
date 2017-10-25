@@ -1,0 +1,25 @@
+
+digraph {
+	bgcolor="transparent";
+
+	subgraph cluster0 {
+		label="roles";
+		users -> admin[style="dotted"];
+		users -> user[style="dotted"];
+	}
+
+	subgraph cluster1 {
+		label="operations";
+		labelloc="b";
+		createadmin[label="db_admin_insert", fontname="monospace"];
+		createuser[label="db_user_insert", fontname="monospace"];
+		listadmin[label="db_admin_list", fontname="monospace"];
+	}
+
+	admin -> createadmin[color="green"];
+	user -> createadmin[color="red"];
+	admin -> listadmin[color="green"];
+	user -> listadmin[color="red"];
+	admin -> createuser[color="red"];
+	user -> createuser[color="green"];
+}

@@ -1,0 +1,18 @@
+struct user {
+  field email email unique;
+  field hash password;
+  search email, hash: name creds comment 
+    "Lookup by credentials.";
+  field id int rowid;
+};
+
+struct session {
+  field user struct userid;
+  field userid:user.id int comment 
+    "User associated with session.";
+  field id int rowid;
+  insert;
+  search id: name id comment 
+    "Lookup by unique identifier.";
+  delete id;
+};
