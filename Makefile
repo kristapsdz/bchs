@@ -1,22 +1,24 @@
 .SUFFIXES: .xml .html .dot .svg .gnuplot .png .c.xml
 
 PREFIX		?= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
-PAGES		 = index.html \
-		   start.html \
-		   tools.html \
-		   easy.html \
+PAGES		 = easy.html \
+		   index.html \
 		   json.html \
-		   pledge.html \
 		   ksql.html \
-		   kwebapp.html
-CSSS		 = index.css \
-		   start.css \
-		   style.css \
-		   easy.css \
+		   kwebapp.html \
+		   pledge.html \
+		   rbac.html \
+		   start.html \
+		   tools.html
+CSSS		 = easy.css \
+		   index.css \
 		   json.css \
-		   pledge.css \
 		   ksql.css \
-		   kwebapp.css
+		   kwebapp.css \
+		   pledge.css \
+		   rbac.csss \
+		   start.css \
+		   style.css
 GENS		 = easy.c.xml \
 		   style.css \
 		   easy.conf.xml \
@@ -38,14 +40,18 @@ GENHTMLS	 = kwebapp.db.c.html \
 		   kwebapp.db.js.html \
 		   kwebapp.db.sql.html \
 		   kwebapp.db.sqldiff.html \
-		   kwebapp.main.c.html
+		   kwebapp.main.c.html \
+		   rbac-ex1.c.html \
+		   rbac-ex1.h.html
 IMAGES		 = pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
 		   ksql-fig3.svg \
 		   ksql-fig6.svg \
 		   kwebapp-fig1.svg \
-		   kwebapp-fig2.svg
+		   kwebapp-fig2.svg \
+		   rbac-fig1.svg \
+		   rbac-fig2.svg
 BUILT		 = arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
@@ -121,6 +127,14 @@ kwebapp.main2.c.xml: kwebapp.main.c
 	sed -n '124,140p' kwebapp.main.c |  highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c >>$@
 	echo '</article>' >>$@
 
+rbac-ex1.h.html: rbac-ex1.txt
+	kwebapp -Fvalids -Fjson -O cheader rbac-ex1.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac-ex1.c.html: rbac-ex1.txt
+	kwebapp -Fvalids -Fjson -O csource rbac-ex1.h rbac-ex1.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
 pledge.html: pledge-fig1.svg \
 	pledge-fig2.svg \
 	pledge-fig3.png
@@ -136,6 +150,10 @@ KWEB_MEDIA = kwebapp-fig1.svg \
 KWEB_DEPS  = kwebapp.txt.xml \
 	     kwebapp.main1.c.xml \
 	     kwebapp.main2.c.xml
+RBAC_MEDIA = rbac-ex1.h.html \
+	     rbac-ex1.c.html \
+	     rbac-fig1.svg \
+	     rbac-fig2.svg
 KSQL_MEDIA = ksql-fig3.svg \
 	     ksql-fig6.svg
 KSQL_DEPS  = ksql-fig1.c.xml \
@@ -143,9 +161,10 @@ KSQL_DEPS  = ksql-fig1.c.xml \
 	     ksql-fig4.c.xml \
 	     ksql-fig5.c.xml
 
-
 kwebapp.html: kwebapp.xml $(KWEB_DEPS) $(KWEB_MEDIA)
 	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
+
+rbac.html: $(RBAC_MEDIA)
 
 .c.c.xml:
 	echo '<article data-sblg-article="1">' >$@
