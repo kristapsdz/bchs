@@ -54,7 +54,8 @@ IMAGES		 = pledge-fig1.svg \
 		   kwebapp-fig2.svg \
 		   rbac-fig1.svg \
 		   rbac-fig2.svg \
-		   rbac-fig3.svg
+		   rbac-fig3.svg \
+		   rbac-fig4.svg
 BUILT		 = arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
@@ -167,7 +168,8 @@ RBAC_MEDIA = rbac-ex1.h.html \
 	     rbac-ex2.c.html \
 	     rbac-fig1.svg \
 	     rbac-fig2.svg \
-	     rbac-fig3.svg
+	     rbac-fig3.svg \
+	     rbac-fig4.svg
 KSQL_MEDIA = ksql-fig3.svg \
 	     ksql-fig6.svg
 KSQL_DEPS  = ksql-fig1.c.xml \

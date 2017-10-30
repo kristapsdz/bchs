@@ -7,16 +7,24 @@ body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
+body > section > nav a				{ color: rgba(5, 117, 189, 0.5); }
+body > section > nav a:hover			{ color: rgba(5, 117, 189, 0.9); }
+body > section > nav				{ width: 50%;
+						  font-size: 13pt;
+						  margin: 0 auto;
+						  padding-top: 1em; 
+						  color: rgba(0, 0, 0, 0.5);
+						  padding-bottom: 2em; }
 body > section > header				{ width: 50%;	
-						  padding-top: 1em;
-						  padding-bottom: 1em;
+						  padding-top: 1.5em;
+						  padding-bottom: 1.5em;
 						  color: #222;
 						  margin-left: auto;
 						  margin-right: auto;
 						  display: flex;
 						  display: -webkit-flex;
-						  align-items: center;
-						  -webkit-align-items: center; }
+						  align-items: flex-end;
+						  -webkit-align-items: flex-end; }
 body > section > header nav a			{ color: #000; 
 						  font-size: 14pt; }
 body > section > header nav a span		{ border-bottom: thin transparent; }
@@ -25,13 +33,15 @@ body > section > header nav a:hover span	{ border-bottom: thin solid #0575BD; }
 body > section > header nav a + a		{ border-left: thin solid #888; 
 						  padding-left: 4pt; 
 						  margin-left: 4pt; }
-body > section > header img			{ height: 24pt; }
+body > section > header img			{ height: 22pt; 
+						  margin-bottom: 1pt; }
 body > section > header h1 a			{ color: inherit; 
 						  text-shadow: 1px 1px 1px transparent; }
 body > section > header h1 a:hover		{ text-shadow: 0px 1px 1px #aaa; }
 body > section > header h1			{ font-size: 24pt;
 						  font-weight: 400;
 						  flex: 1;
+						  line-height: 22pt;
 						  margin: 0;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
@@ -64,10 +74,14 @@ figure 						{ text-align: center;
 figure img					{ max-width: 98%; }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
+body > section > nav				{ width: 90%; }
 body > section > header				{ width: 90%; }
 article > header				{ width: 90%; }
 article > section				{ padding: 0 5%; }
 h2						{ font-size: 175%; }
 h3						{ font-size: 140%; }
 pre						{ font-size: 11pt; }
+body > section > header h1			{ margin: 0 4pt; }
+body > section > nav				{ text-align: center; }
+.tldr						{ font-size: 16pt; }
 }
