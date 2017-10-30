@@ -16,7 +16,7 @@ CSSS		 = easy.css \
 		   ksql.css \
 		   kwebapp.css \
 		   pledge.css \
-		   rbac.csss \
+		   rbac.css \
 		   start.css \
 		   style.css
 GENS		 = easy.c.xml \
