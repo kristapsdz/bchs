@@ -260,6 +260,9 @@ struct session {
 						The first is the initial role before a role has been manually set; the second is the top-level for all
 						user-defined roles, and the third cannot do anything at all.
 					</p>
+					<p>
+						You can read all about the RBAC facilities in <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>.
+					</p>
 					<h3>
 						The API.
 					</h3>
