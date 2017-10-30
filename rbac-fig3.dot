@@ -1,0 +1,33 @@
+digraph {
+	bgcolor="transparent";
+	compound="true";
+
+	subgraph cluster0 {
+		{ rank=same; role0; }
+		{ rank=same; role1; role2; }
+		{ rank=same; role3; role4; }
+	}
+
+	default -> role0[lhead=cluster0; color="green"];
+	default -> none[color="green"];
+	role0 -> none[ltail=cluster0; color="green"];
+
+	none -> role0[lhead=cluster0; color="red"];
+	none -> default[color="red"];
+
+	{ rank=same; default; none; }
+
+	role0 -> role1[color="green"];
+	role0 -> role2[color="green"];
+	role1 -> role2[color="red"];
+
+	role1 -> role0[color="red"];
+	role2 -> role0[color="red"];
+
+	role1 -> role3[color="green"];
+	role1 -> role4[color="green"];
+
+	role3 -> role4[color="red"];
+	role3 -> role1[color="red"];
+	role4 -> role1[color="red"];
+}

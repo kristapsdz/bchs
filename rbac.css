@@ -4,7 +4,7 @@ html, body					{ margin: 0;
 						  height: 100%; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-weight: 400;
-						  font-size: 13pt; }
+						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
 body > section > header				{ width: 50%;	
@@ -56,7 +56,8 @@ footer a					{ color: #89a; }
 footer a:hover					{ color: #456; }
 .tldr						{ font-size: larger; }
 strong, b					{ font-weight: 700; }
-pre.prettyprint					{ border: none; }
+pre.prettyprint					{ border: none; 
+						  overflow: hidden; }
 pre, code					{ font-size: 12pt; }
 figure 						{ text-align: center; 
 					  	  margin: 0; }
@@ -68,4 +69,5 @@ article > header				{ width: 90%; }
 article > section				{ padding: 0 5%; }
 h2						{ font-size: 175%; }
 h3						{ font-size: 140%; }
+pre						{ font-size: 11pt; }
 }

@@ -1,11 +1,7 @@
 digraph {
 	bgcolor="transparent";
 
-	subgraph cluster0 {
-		label="roles";
-		users -> admin[style="dotted"];
-		users -> user[style="dotted"];
-	}
+	users;
 
 	subgraph cluster1 {
 		label="operations";
@@ -15,10 +11,7 @@ digraph {
 		listadmin[label="db_admin_list", fontname="monospace"];
 	}
 
-	admin -> createadmin;
-	user -> createadmin;
-	admin -> listadmin;
-	user -> listadmin;
-	admin -> createuser;
-	user -> createuser;
+	users -> createadmin;
+	users -> listadmin;
+	users -> createuser;
 }
