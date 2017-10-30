@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>kwebapp//BCHS: RBAC in kwebapp</title>
+		<title>BCHS: RBAC in kwebapp</title>
 		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=c&amp;lang=sql"></script>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -18,6 +18,11 @@
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav class="subnav">
+				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				<a href="kwebapp.html">introduction</a>, 
+				<a href="rbac.html">RBAC</a>
+			</nav>
 			<header>
 				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
 				<h1>
@@ -34,19 +39,19 @@
 				<header>
 					<p class="tldr">
 						<strong>tl;dr</strong> 
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> (as of version 0.3.0) has gained <a
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> (as of version 0.3.0) has gained <a
 							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
 							control</a> (RBAC) facilities allowing the generated <q>data layer</q> to be
 						aware of user roles.
 					</p>
 					<h2>
-						<span><a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>/RBAC</span>: API provisioning
+						<a href="index.html">BCHS</a>: API provisioning
 					</h2>
 				</header>
 				<section class="intro">
 					<p>
-						When deploying web applications, we often need to evaluate the <strong>full stack</strong> for
-						its security.
+						When deploying our <a href="index.html">BCHS</a> web applications, we need to evaluate the
+						<strong>full stack</strong> for its security.
 					</p>
 					<ul>
 						<li>
@@ -71,29 +76,32 @@
 						</li>
 					</ul>
 					<p>
-						All of these account for an application's environment.
-						What about the environment internal to the application's run-time&#8212;say, making sure that a
-						request servicing a user doesn't try to access administrative tables?
-						Enter <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>'s new API provisioning facility.
+						All of these account for an application's external environment.
+						But what about the environment internal to the application's run-time&#8212;say, making sure
+						that a request servicing a user doesn't try to modify administrative tables?
+					</p>
+					<p>
+						Enter <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>'s new API provisioning facility.
 					</p>
 					<h3>
 						What is kwebapp?
 					</h3>
 					<p>
-						Read <a href="https://learnbchs.org/kwebapp.html">this</a>.
-						It's a system that uses a configuration file to define the data model of your application: the
-						data itself (represented by an SQLite database), insertion routines, deletion, all sorts of
+						It's a system that uses a configuration file to define the data model of your <a
+							href="index.html">BCHS</a> application: the data itself (<a
+							href="https://sqlite.org">sqlite3</a>), insertion routines, deletion, all sorts of
 						querying, etc.
-						Or as visualised front-and-centre on the webpage:
+						It uses <a href="https://kristaps.bsd.lv/ksql">ksql</a> to manipulate the underlying database,
+						and can optionally pull in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> to validate HTTP
+						fields for safe entry into the database.
+						A <a href="https://learnbchs.org/kwebapp.html">previous article</a> covers the system in detail.
 					</p>
 					<figure>
-						<img src="https://kristaps.bsd.lv/kwebapp/index.svg" />
+						<img src="rbac-fig4.svg" alt="" />
 					</figure>
 					<p>
-						Within the generated C code, it can also create export routines (into JSON) and field validation
-						for <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> integration. 
-						To keep your database schema consistent across releases, it can compute the difference in SQL
-						schemas between versions of your configuration file.
+						Let's start with a simple example that defines part of a web application: a login session
+						(usually associated with a session cookie) and a user record.
 					</p>
 					<pre class="prettyprint">struct user {
   field email email unique;
@@ -116,7 +124,8 @@ struct session {
 					<p>
 						With this snippet, we've defined <code class="prettyprint">struct session</code> and <code class="prettyprint">struct user</code>.
 						These are implemented in SQL as tables, with each <code class="prettyprint">field</code> being a column.
-						For example, you can see how the <code class="prettyprint">session</code> object carries into generated SQL:
+						For example, you can see how the <code class="prettyprint">session</code> object (and its
+						documentation) carries into generated SQL:
 					</p>
 					<pre class="prettyprint lang-sql">CREATE TABLE session (
   -- User associated with session.
@@ -126,7 +135,8 @@ struct session {
 );</pre>
 					<p>
 						In the C API, the <code class="prettyprint">struct</code> objects are <code
-							class="prettyprint">struct</code> C entities, with fields being structure members.
+							class="prettyprint">struct</code> C entities, with each <code class="prettyprint">field</code> being a structure member.
+						All fields are documented, if provided.
 						Similar to the SQL code, the comments associated with fields and structures are carried into the output.
 					</p>
 					<pre class="prettyprint lang-c">struct  session {
@@ -136,9 +146,29 @@ struct session {
   int64_t  id;
 };</pre>
 					<p>
-						Query and insertion functions are also generated&#8212;see the generated C <a
-							href="rbac-ex1.c.html">source</a> and <a href="rbac-ex1.h.html">header</a> file for
-						yourself.
+						The query (<code class="prettyprint">search</code>), insertion (<code
+							class="prettyprint">insert</code>), and deletion (<code
+							class="prettyprint">delete</code>) functions are also generated along with their
+						documentation.
+						For example, the <code class="prettyprint">search email, hash: name creds</code> snippet generates the following:
+					</p>
+					<pre class="prettyprint lang-c">/*
+ * Lookup by credentials.
+ * Uses the given fields in struct user:
+ * 	v1: email
+ * 	v2: hash (pre-hashed password)
+ * Returns a pointer or NULL on fail.
+ * Free the pointer with db_user_free().
+ */
+struct user *db_user_get_creds
+  (struct ksql *db, const char *v1, const char *v2);</pre>
+					<p>
+						See the generated C <a href="rbac-ex1.c.html">source</a> and <a
+							href="rbac-ex1.h.html">header</a> file for yourself: it's all there.
+						One pending caveat is that the output of <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp.1.html">kwebapp(1)</a> is still <a
+							href="https://www.openbsd.org">OpenBSD</a>-specific, although this may have changed
+						since version 0.3.0.
 					</p>
 					<h3>
 						What can go wrong?
@@ -150,7 +180,7 @@ struct session {
 						The <code class="prettyprint">struct ksql</code> returned by the <a
 							href="rbac-ex1.h.html">generated functions</a> allows access to the full database by
 						callers.  
-						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> doesn't directly
+						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> doesn't directly
 						support the full breadth of SQL functions you might want to use.
 						By exporting the database connection itself, callers can provide their own complex SQL operations directly to
 						<a href="https://kristaps.bsd.lv/ksql/ksql_stmt_alloc.3.html">ksql_stmt_alloc(3)</a>.
@@ -172,28 +202,36 @@ struct session {
 						Enter RBAC.
 					</h3>
 					<p>
-						With <a href="https://man.openbsd.org/pledge.2">pledge(2)</a>, I can stipulate which operations
-						of an application are allowed in which circumstances.
+						With a sandbox like <a href="https://man.openbsd.org/pledge.2">pledge(2)</a>, I can stipulate
+						which operations of an application are allowed in which circumstances.
 						For example, if I provide the common <b>-o</b> flag to an application, I might want to provide
-						the <code class="prettyprint">wpath cpath</code> pledges.
+						the <code class="prettyprint">wpath cpath</code> pledges; otherwise, I don't allow any file system access.
 						This allows me to say, up-front, what I can do and what I can't.
-						If I can't do it&#8212;application crashes.  Game over.
-						I decided to employ a similar feature for <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a>.
 					</p>
 					<p>
-						As it is, there are no restrictions on function invocation.
-						The landscape is <q>flat</q>.
+						If I disallow an operation and subsequently try to use it&#8212;like running without <b>-o</b>
+						and accessing the file-system&#8212;the application crashes.  
+						Game over.
+					</p>
+					<p>
+						As it was previously in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>, there were no
+						restrictions on function invocation&#8212;no sandbox.
+						In other words, the landscape was <q>flat</q>.
+						Let's consider an example with a <code class="prettyprint">user</code> and <code
+							class="prettyprint">admin</code>, representing normal users and administrators, respectively.
+						If the former stipulates an <code class="prettyprint">insert</code> operation and the latter,
+						<code class="prettyprint">list</code> and <code class="prettyprint">insert</code>, we'll have:
 					</p>
 					<figure>
-						<img src="rbac-fig1.svg" />
+						<img src="rbac-fig1.svg" alt="" />
 					</figure>
 					<p>
-						However, since the web application is invoked by an operator in a given role (e.g., a user from
+						However, since the web application would be invoked by an operator in a given role (e.g., a user from
 						his or her web browser, an administrator from a local application or also via the web), I can
-						identify the source and provision accordingly.
+						in theory identify the source and provision accordingly.
+						This way, I can identify which operations were permissable from which user roles.
 					</p>
 					<p>
-						This way, I can identify which operations are permissable from which user roles.
 						In the above example, let's say that an administrator should be able to list and add new
 						administrators, but not touch users.
 						Users, on the other hand, can only add other users.
@@ -202,14 +240,14 @@ struct session {
 						<img src="rbac-fig2.svg" />
 					</figure>
 					<p>
-						The new <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> RBAC feature allows this by
+						The new <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> RBAC feature accomodates for this by
 						identifying roles; and then for each role, establishing which operations are permitted by that role.
 					</p>
 					<p>
 						If a user role tries to perform a disallowed task&#8212;bam.
 						Application calls <a href="https://man.openbsd.org/abort.3">abort(3)</a>.
 						The syntax to accomodate for this is super easy.
-						Using our above example&#8230;
+						Using our above example (abridged for brevity)&#8230;
 					</p>
 					<pre class="prettyprint">roles {
   role user;
@@ -300,7 +338,7 @@ struct session {
 						What's next?
 					</h3>
 					<p>
-						Not much&#8212;<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> is designed to be a
+						Not much&#8212;<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is designed to be a
 						small system, so there isn't much more necessary.
 						However&#8230;
 					</p>
@@ -347,6 +385,13 @@ struct user {
 					<p>
 						However, often I want to assign given <i>types</i> of operations to a given user&#8212;update, or delete, or searching.
 						It might be helpful to allow, for example, <code class="prettyprint">search all</code> to stipulate all search functions.
+					</p>
+					<h3>
+						Acknowledgements
+					</h3>
+					<p>
+						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
+						serves the community as open source.
 					</p>
 				</section>
 			</article>

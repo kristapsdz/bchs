@@ -1,0 +1,32 @@
+digraph {
+	edge [arrowsize="0.5";];
+	bgcolor="transparent";
+
+	cfg[label="kwebapp(5)"];
+	bin[label="kwebapp(1)"];
+
+	{ rank=same; cfg; }
+	{ rank=same; bin; }
+
+	subgraph cluster0 {
+		{ rank=same; src; js; sql; }
+		src[label="C"];
+		js[label="JavaScript"];
+		sql[label="SQL"];
+	}
+	cfg -> bin;
+	bin -> src;
+	bin -> js;
+	bin -> sql;
+
+	{ rank=same; ksql; kcgi; }
+	{ rank=same; sqlite; }
+
+	kcgi[label="kcgi(3)"];
+	ksql[label="ksql(3)"];
+	sqlite[label="sqlite3(3)"];
+
+	src -> ksql;
+	src -> kcgi;
+	ksql -> sqlite;
+}
