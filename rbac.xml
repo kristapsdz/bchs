@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>kwebapp//BCHS: RBAC in kwebapp</title>
-		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=c&amp;lang=sql"></script>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
@@ -34,9 +34,9 @@
 				<header>
 					<p class="tldr">
 						<strong>tl;dr</strong> 
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> has gained <a
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> (as of version 0.3.0) has gained <a
 							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
-							control</a> facilities allowing the generated API (<q>business logic</q>) to be
+							control</a> (RBAC) facilities allowing the generated <q>data layer</q> to be
 						aware of user roles.
 					</p>
 					<h2>
@@ -90,10 +90,10 @@
 						<img src="https://kristaps.bsd.lv/kwebapp/index.svg" />
 					</figure>
 					<p>
-						It creates C files (source and header) with functions to do all of this.
-						It can also create export routines (into JSON), field validation for kcgi(3) integration, SQL
-						schemas, and even compute the difference in SQL shema between versions of your configuration
-						file.
+						Within the generated C code, it can also create export routines (into JSON) and field validation
+						for <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> integration. 
+						To keep your database schema consistent across releases, it can compute the difference in SQL
+						schemas between versions of your configuration file.
 					</p>
 					<pre class="prettyprint">struct user {
   field email email unique;
@@ -114,10 +114,29 @@ struct session {
   delete id;
 };</pre>
 					<p>
-						With this snippet, we've defined <code class="prettyprint">session</code> and <code class="prettyprint">user</code> structures.
-						These are implemented in SQL as tables, with each <code class="prettyprint">field</code> being a table.
-						In the C API, they're <code class="prettyprint">struct</code> entities.
-						Query and insertion functions are also generated&#8212;see the generated <a
+						With this snippet, we've defined <code class="prettyprint">struct session</code> and <code class="prettyprint">struct user</code>.
+						These are implemented in SQL as tables, with each <code class="prettyprint">field</code> being a column.
+						For example, you can see how the <code class="prettyprint">session</code> object carries into generated SQL:
+					</p>
+					<pre class="prettyprint lang-sql">CREATE TABLE session (
+  -- User associated with session.
+  userid INTEGER NOT NULL,
+  id INTEGER PRIMARY KEY,
+  FOREIGN KEY(userid) REFERENCES user(id)
+);</pre>
+					<p>
+						In the C API, the <code class="prettyprint">struct</code> objects are <code
+							class="prettyprint">struct</code> C entities, with fields being structure members.
+						Similar to the SQL code, the comments associated with fields and structures are carried into the output.
+					</p>
+					<pre class="prettyprint lang-c">struct  session {
+  struct user user;
+  /* User associated with session. */
+  int64_t  userid;
+  int64_t  id;
+};</pre>
+					<p>
+						Query and insertion functions are also generated&#8212;see the generated C <a
 							href="rbac-ex1.c.html">source</a> and <a href="rbac-ex1.h.html">header</a> file for
 						yourself.
 					</p>
@@ -125,14 +144,19 @@ struct session {
 						What can go wrong?
 					</h3>
 					<p>
-						Mistakes happen.
+						First, exposure to data.
 					</p>
 					<p>
-						The <code class="prettyprint">struct ksql</code> returned by these functions allows access to the full database by callers.
-						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> doesn't directly support
-						complex inter-tabular joins and other fun SQL stuff you might want to perform.
+						The <code class="prettyprint">struct ksql</code> returned by the <a
+							href="rbac-ex1.h.html">generated functions</a> allows access to the full database by
+						callers.  
+						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> doesn't directly
+						support the full breadth of SQL functions you might want to use.
 						By exporting the database connection itself, callers can provide their own complex SQL operations directly to
 						<a href="https://kristaps.bsd.lv/ksql/ksql_stmt_alloc.3.html">ksql_stmt_alloc(3)</a>.
+					</p>
+					<p>
+						Mistakes happen.
 					</p>
 					<p>
 						In a recent web application project, I made the mistake of inserting an administrator table row
@@ -198,7 +222,7 @@ struct user {
   search email, hash: name creds comment 
     "Lookup by credentials.";
   field id int rowid;
-  role user { 
+  roles user { 
     search creds;
   };
 };
@@ -212,30 +236,115 @@ struct session {
   search id: name id comment 
     "Lookup by unique identifier.";
   delete id;
-  role all {
+  roles all {
     all;
   };
-  role default {
-    search name;
+  roles default {
+    search id;
   };
 };</pre>
-				<p>
-					First, note the <code class="prettyprint">roles { ... }</code> top-level block.
-					This defines the actual roles themselves.
-					Roles are nested: a role within a role has access to all of the parent's roles, but the parent does
-					not have access to the child's.
-					One common usage is to have administrative sub-roles, for example, <code class="prettyprint">role admin
-						{ role useradmin; role sessadmin; }</code> might have <code class="prettyprint">useradmin</code>
-					manage users, while other roles would be responsible for other tasks, and all <code
-						class="prettyprint">admin</code> sub-roles would have access to generic access on the admin
-					table.
-				</p>
-				<p>
-					There are three reserved roles: <code class="prettyprint">default</code>, <code
-						class="prettyprint">all</code>, and <code class="prettyprint">none</code>.
-					The first is the initial role before a role has been manually set; the second is the top-level for all
-					user-defined roles, and the third cannot do anything at all.
-				</p>
+					<p>
+						First, note the <code class="prettyprint">roles { ... }</code> top-level block.
+						This defines the actual roles themselves.
+						Roles are nested: a role within a role has access to all of the parent's roles, but the parent does
+						not have access to the child's.
+						One common usage is to have administrative sub-roles, for example, <code class="prettyprint">role admin
+							{ role useradmin; role sessadmin; }</code> might have <code class="prettyprint">useradmin</code>
+						manage users, while other roles would be responsible for other tasks, and all <code
+							class="prettyprint">admin</code> sub-roles would have access to generic access on the admin
+						table.
+					</p>
+					<p>
+						There are three reserved roles: <code class="prettyprint">default</code>, <code
+							class="prettyprint">all</code>, and <code class="prettyprint">none</code>.
+						The first is the initial role before a role has been manually set; the second is the top-level for all
+						user-defined roles, and the third cannot do anything at all.
+					</p>
+					<h3>
+						The API.
+					</h3>
+					<p>
+						Little needs to change in your system's API.
+						Foremost, however, stipulating a top-level <code class="prettyprint">roles { ... };</code> will
+						change the value returned by <code class="prettyprint lang-c">db_open(const char *file)</code> from <code
+							class="prettyprint lang-c">struct ksql</code> to <code class="prettyprint lang-c">struct
+							kwbp</code>, which is an opaque pointer.
+						This pointer contains the open database connection and our current role.
+					</p>
+					<p>
+						Next is <code class="prettyprint lang-c">db_role(struct kwbp *ctx, enum kwbp_role r)</code>.
+						This function allows us to change our roles.
+						We can transition from the <code class="prettyprint">ROLE_default</code> role into any role, or from any
+						role into a descendent role.
+						We can never change to an ancestor or traverse the role graph.
+						Changing into the same role is a no-op.
+					</p>
+					<p>
+						You can always drop into <code class="prettyprint">ROLE_none</code>, which is guaranteed to be a
+						leaf role.  This role can never have operations assigned to it: any database access will fail.
+					</p>
+					<figure>
+						<img src="rbac-fig3.svg" alt="" />
+					</figure>
+					<p>
+						That's it!
+						For most of my applications, the change in returned structure is the most significant part.
+						The rest is fairly mechanical.
+						For the above example, you can see the full <a href="rbac-ex2.c.html">C source code</a> and <a
+							href="rbac-ex2.h.html">C header file</a> for yourself.
+					</p>
+					<h3>
+						What's next?
+					</h3>
+					<p>
+						Not much&#8212;<a href="https://kristaps.bsd.lv/kwebapp">kwebapp(1)</a> is designed to be a
+						small system, so there isn't much more necessary.
+						However&#8230;
+					</p>
+					<p>
+						One likely candidate is to allow the <code class="prettyprint">field</code> statement for
+						structures be aware of roles.
+						This is handy when certain roles want to query only some data.
+						For example, consider the following:
+					</p>
+					<pre class="prettyprint">struct admin {
+  field email email unique;
+  field private int comment
+    "Some sort of private data.";
+  field id int rowid;
+  insert;
+};
+
+struct user {
+  field admin struct adminid;
+  field adminid:admin.id int comment 
+    "Administrator of this user.";
+  field id int rowid;
+  insert;
+  search id;
+};</pre>
+					<p>
+						If we have two roles, <code class="prettyprint">admin</code> and <code
+							class="prettyprint">user</code>, we can disallow the user from operating on the administrative table.
+						But they can still see the data if we query for the user, as it will be pulled into the exported data.
+						Some of those fields might not be appropriate for users to see.
+					</p>
+					<p>
+						The problem is usage: there are generally more fields than operations, so it might be a burden
+						to maintain role lists for fields.
+						One solution is to make default-allow, but it still needs consideration.
+					</p>
+					<p>
+						Another (easier) improvement is to add some syntactic sugar to the role assignments.
+						Right now one can specify <code class="prettyprint">all</code> to signify all operations:
+					</p>
+					<pre class="prettyprint">struct admin {
+  roles all { all; };
+};</pre>
+					<p>
+						However, often I want to assign given <i>types</i> of operations to a given user&#8212;update, or delete, or searching.
+						It might be helpful to allow, for example, <code class="prettyprint">search all</code> to stipulate all search functions.
+					</p>
 				</section>
 			</article>
 			<footer>

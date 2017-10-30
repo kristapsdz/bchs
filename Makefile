@@ -42,7 +42,9 @@ GENHTMLS	 = kwebapp.db.c.html \
 		   kwebapp.db.sqldiff.html \
 		   kwebapp.main.c.html \
 		   rbac-ex1.c.html \
-		   rbac-ex1.h.html
+		   rbac-ex1.h.html \
+		   rbac-ex2.c.html \
+		   rbac-ex2.h.html
 IMAGES		 = pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
@@ -51,7 +53,8 @@ IMAGES		 = pledge-fig1.svg \
 		   kwebapp-fig1.svg \
 		   kwebapp-fig2.svg \
 		   rbac-fig1.svg \
-		   rbac-fig2.svg
+		   rbac-fig2.svg \
+		   rbac-fig3.svg
 BUILT		 = arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
@@ -135,6 +138,14 @@ rbac-ex1.c.html: rbac-ex1.txt
 	kwebapp -Fvalids -Fjson -O csource rbac-ex1.h rbac-ex1.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
+rbac-ex2.h.html: rbac-ex2.txt
+	kwebapp -Fvalids -Fjson -O cheader rbac-ex2.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac-ex2.c.html: rbac-ex2.txt
+	kwebapp -Fvalids -Fjson -O csource rbac-ex2.h rbac-ex2.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
 pledge.html: pledge-fig1.svg \
 	pledge-fig2.svg \
 	pledge-fig3.png
@@ -152,8 +163,11 @@ KWEB_DEPS  = kwebapp.txt.xml \
 	     kwebapp.main2.c.xml
 RBAC_MEDIA = rbac-ex1.h.html \
 	     rbac-ex1.c.html \
+	     rbac-ex2.h.html \
+	     rbac-ex2.c.html \
 	     rbac-fig1.svg \
-	     rbac-fig2.svg
+	     rbac-fig2.svg \
+	     rbac-fig3.svg
 KSQL_MEDIA = ksql-fig3.svg \
 	     ksql-fig6.svg
 KSQL_DEPS  = ksql-fig1.c.xml \
