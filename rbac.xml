@@ -43,6 +43,7 @@
 							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
 							control</a> (RBAC) facilities allowing the generated <q>data layer</q> to be
 						aware of user roles.
+						This allows developers to sandbox database operations to a particular user role.
 					</p>
 					<h2>
 						<a href="index.html">BCHS</a>: API provisioning
@@ -87,14 +88,15 @@
 						What is kwebapp?
 					</h3>
 					<p>
-						It's a system that uses a configuration file to define the data model of your <a
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is a system that uses a configuration file
+						to define the data model of your <a
 							href="index.html">BCHS</a> application: the data itself (<a
 							href="https://sqlite.org">sqlite3</a>), insertion routines, deletion, all sorts of
 						querying, etc.
 						It uses <a href="https://kristaps.bsd.lv/ksql">ksql</a> to manipulate the underlying database,
 						and can optionally pull in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> to validate HTTP
 						fields for safe entry into the database.
-						A <a href="https://learnbchs.org/kwebapp.html">previous article</a> covers the system in detail.
+						A <a href="kwebapp.html">previous article</a> covers the system in detail.
 					</p>
 					<figure>
 						<img src="rbac-fig4.svg" alt="" />
@@ -338,8 +340,8 @@ struct session {
 						What's next?
 					</h3>
 					<p>
-						Not much&#8212;<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is designed to be a
-						small system, so there isn't much more necessary.
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is designed to be a small system, so there
+						isn't much more to add that wouldn't needlessly complicate things.
 						However&#8230;
 					</p>
 					<p>
@@ -392,6 +394,7 @@ struct user {
 					<p>
 						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
 						serves the community as open source.
+						Also, thanks to Michael Dexter for his copy-editing.
 					</p>
 				</section>
 			</article>
