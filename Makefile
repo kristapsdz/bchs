@@ -101,22 +101,22 @@ kwebapp.db.c.html: kwebapp.db.c
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.db.c > $@
 
 kwebapp.db.c: kwebapp.txt
-	kwebapp -Ocsource -Fjson -Fvalids kwebapp.db.h kwebapp.txt > $@
+	kwebapp-c-source -vj -h kwebapp.db.h kwebapp.txt > $@
 
 kwebapp.db.h.html: kwebapp.db.h
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.db.h > $@
 
 kwebapp.db.h: kwebapp.txt
-	kwebapp -Ocheader -Fjson -Fvalids kwebapp.txt > $@
+	kwebapp-c-header -vj kwebapp.txt > $@
 
 kwebapp.db.sql.html: kwebapp.txt
-	kwebapp -Osql kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
+	kwebapp-sql kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
 
 kwebapp.db.sqldiff.html: kwebapp.txt
-	kwebapp -Osqldiff kwebapp.old.txt kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
+	kwebapp-sqldiff kwebapp.old.txt kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
 
 kwebapp.db.js.html: kwebapp.txt
-	kwebapp -Ojavascript kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=js > $@
+	kwebapp-javascript kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=js > $@
 
 kwebapp.main.c.html: kwebapp.main.c
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.main.c > $@
@@ -132,19 +132,19 @@ kwebapp.main2.c.xml: kwebapp.main.c
 	echo '</article>' >>$@
 
 rbac-ex1.h.html: rbac-ex1.txt
-	kwebapp -Fvalids -Fjson -O cheader rbac-ex1.txt | \
+	kwebapp-c-header -vj rbac-ex1.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex1.c.html: rbac-ex1.txt
-	kwebapp -Fvalids -Fjson -O csource rbac-ex1.h rbac-ex1.txt | \
+	kwebapp-c-source -vj -h rbac-ex1.h rbac-ex1.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex2.h.html: rbac-ex2.txt
-	kwebapp -Fvalids -Fjson -O cheader rbac-ex2.txt | \
+	kwebapp-c-header -vj rbac-ex2.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex2.c.html: rbac-ex2.txt
-	kwebapp -Fvalids -Fjson -O csource rbac-ex2.h rbac-ex2.txt | \
+	kwebapp-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 pledge.html: pledge-fig1.svg \
@@ -179,6 +179,9 @@ KSQL_DEPS  = ksql-fig1.c.xml \
 
 kwebapp.html: kwebapp.xml $(KWEB_DEPS) $(KWEB_MEDIA)
 	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
+
+#auditing.html: auditing.xml auditing.svg
+#	cp -f auditing.xml $@
 
 rbac.html: $(RBAC_MEDIA)
 
