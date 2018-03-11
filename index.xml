@@ -44,6 +44,11 @@
 				</p>
 				<ul>
 					<li>
+						<a href="https://kristaps.bsd.lv/absdcon2018/">RBAC in BCHS</a>
+						(<a href="https://kristaps.bsd.lv/absdcon2018/paper.pdf">PDF</a>)
+						<span class="src">(AsiaBSDCon, 2018/03)</span>
+					</li>
+					<li>
 						<a href="rbac.html">API provisioning</a> with kwebapp
 						<span class="src">(2017/10)</span>
 					</li>
@@ -86,7 +91,7 @@
 			<footer>
 				<div>
 					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
-					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
 				</div>
 			</footer>
 		</section>
