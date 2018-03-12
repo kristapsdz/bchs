@@ -7,6 +7,7 @@ body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
+.literal					{ color: darkred; }					
 body > section > nav a				{ color: rgba(5, 117, 189, 0.5); }
 body > section > nav a:hover			{ color: rgba(5, 117, 189, 0.9); }
 body > section > nav				{ width: 50%;
@@ -46,9 +47,9 @@ body > section > header h1			{ font-size: 24pt;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
 
-article > header				{ width: 50%;
+body > section > article > header		{ width: 50%;
 						  margin: 0 auto; }
-article > section				{ padding: 0 25%; }
+body > section > article > section		{ padding: 0 25%; }
 h2						{ font-weight: 400;
 						  text-align: center;
 						  color: #888;
@@ -68,7 +69,7 @@ footer a:hover					{ color: #456; }
 strong, b					{ font-weight: 700; }
 pre.prettyprint					{ border: none; 
 						  overflow: hidden; }
-pre, code					{ font-size: 12pt; }
+pre, code					{ font-size: 11pt; }
 figure 						{ text-align: center; 
 					  	  margin: 0; }
 figure img					{ max-width: 98%; }
@@ -76,8 +77,8 @@ figure img					{ max-width: 98%; }
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
 body > section > nav				{ width: 90%; }
 body > section > header				{ width: 90%; }
-article > header				{ width: 90%; }
-article > section				{ padding: 0 5%; }
+body > section > article > header		{ width: 90%; }
+body > section > article > section		{ padding: 0 5%; }
 h2						{ font-size: 175%; }
 h3						{ font-size: 140%; }
 pre						{ font-size: 11pt; }

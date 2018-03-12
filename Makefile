@@ -1,7 +1,8 @@
 .SUFFIXES: .xml .html .dot .svg .gnuplot .png .c.xml
 
 PREFIX		?= /var/www/vhosts/kristaps.bsd.lv/htdocs/bchs
-PAGES		 = easy.html \
+PAGES		 = auditing.html \
+		   easy.html \
 		   index.html \
 		   json.html \
 		   ksql.html \
@@ -10,7 +11,8 @@ PAGES		 = easy.html \
 		   rbac.html \
 		   start.html \
 		   tools.html
-CSSS		 = easy.css \
+CSSS		 = audit.css \
+		   easy.css \
 		   index.css \
 		   json.css \
 		   ksql.css \
@@ -19,7 +21,11 @@ CSSS		 = easy.css \
 		   rbac.css \
 		   start.css \
 		   style.css
-GENS		 = easy.c.xml \
+GENS		 = audit-out.js \
+		   auditing-fig4.xml \
+		   auditing-fig5.xml \
+		   auditing-fig6.xml \
+		   easy.c.xml \
 		   style.css \
 		   easy.conf.xml \
 		   easy.sh.xml \
@@ -45,7 +51,10 @@ GENHTMLS	 = kwebapp.db.c.html \
 		   rbac-ex1.h.html \
 		   rbac-ex2.c.html \
 		   rbac-ex2.h.html
-IMAGES		 = pledge-fig1.svg \
+IMAGES		 = auditing-fig1.svg \
+		   auditing-fig2.svg \
+		   auditing-fig3.svg \
+		   pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
 		   ksql-fig3.svg \
@@ -56,7 +65,8 @@ IMAGES		 = pledge-fig1.svg \
 		   rbac-fig2.svg \
 		   rbac-fig3.svg \
 		   rbac-fig4.svg
-BUILT		 = arrow-left.png \
+BUILT		 = audit.js \
+		   arrow-left.png \
 		   arrow-right-long.png \
 		   arrow-right.png \
 		   arrow-up.png \
@@ -151,6 +161,37 @@ pledge.html: pledge-fig1.svg \
 	pledge-fig2.svg \
 	pledge-fig3.png
 
+auditing-fig4.xml auditing-fig5.xml: auditing-fig4.conf
+
+auditing-fig4.xml:
+	echo '<article data-sblg-article="1">' >$@
+	highlight -l -f --out-format=xhtml --enclose-pre auditing-fig4.conf >>$@
+	echo '</article>' >>$@
+
+auditing-fig5.xml:
+	echo '<article data-sblg-article="1">' >$@
+	kwebapp-c-header -s auditing-fig4.conf 2>/dev/null | \
+		sed '1,11d' | head -n30 | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S c >>$@
+	echo '</article>' >>$@
+
+auditing-fig6.xml:
+	echo '<article data-sblg-article="1">' >$@
+	diff -u auditing-fig4.conf auditing-fig6.conf | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S diff >>$@
+	echo '</article>' >>$@
+
+AUDIT_DEPS = auditing-fig4.xml \
+	     auditing-fig5.xml \
+	     auditing-fig6.xml \
+	     auditing-fig7.xml
+
+auditing.html: auditing.xml $(AUDIT_DEPS)
+	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_DEPS)
+
+audit-out.js: auditing-fig6.conf
+	kwebapp-audit -j user auditing-fig6.conf > $@
+
 KWEB_MEDIA = kwebapp-fig1.svg \
 	     kwebapp-fig2.svg \
 	     kwebapp.db.c.html \
@@ -179,9 +220,6 @@ KSQL_DEPS  = ksql-fig1.c.xml \
 
 kwebapp.html: kwebapp.xml $(KWEB_DEPS) $(KWEB_MEDIA)
 	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
-
-#auditing.html: auditing.xml auditing.svg
-#	cp -f auditing.xml $@
 
 rbac.html: $(RBAC_MEDIA)
 

@@ -1,0 +1,27 @@
+digraph {
+	rankdir="LR";
+	client -> kcgi;
+	subgraph cluster_0 {
+		label="httpd(8)";
+		subgraph cluster_1 {
+			label="cgi-script";
+			cgi -> kcgi[dir="both"];
+			bgcolor="white";
+			cgi[label="application"];
+			cgi -> ksql[dir="both"];
+			
+			subgraph cluster_2 {
+				label="kcgi(3)";
+				bgcolor="blue";
+				kcgi[label="HTTP parsing"];
+			};
+
+			subgraph cluster_3 {
+				label="ksql(3)";
+				bgcolor="blue";
+				ksql[label="database"];
+			};
+		};
+	};
+	cgi -> client;
+}
