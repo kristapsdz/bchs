@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: auditing RBAC in kwebapp</title>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=c&amp;lang=sql"></script>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="rbac.css" rel="stylesheet" />
+		<link href="audit.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="theme-color" content="#ffffff" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav class="subnav">
+				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				<a href="kwebapp.html">introduction</a>, 
+				<a href="rbac.html">RBAC</a>,
+				<a href="auditing.html">role audits</a>
+			</nav>
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="start.html"><span>start</span></a>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<header>
+					<p class="tldr">
+						<strong>tl;dr</strong> 
+						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> now features a tool for auditing
+						role-based access control enforced by <a href="https://man.openbsd.org">pledge(2)</a>.
+						This piece is an abridged version of my <a href="https://kristaps.bsd.lv/absdcon2018">AsiaBSDCon
+							2018</a> talk.
+					</p>
+					<h2>
+						<a href="index.html">BCHS</a>: role audits
+					</h2>
+				</header>
+				<section class="intro">
+					<p>
+						This article is about web application security.
+						It can be applied to any application, really, but fits most with those having the concept of a
+						single data source servicing multiple operating <em>roles</em>.
+						For example, most web applications have at least the concept of administrators, registered
+						users, and unregistered users&#8212;all of whom at some point act to invoke the application and
+						touch the database.
+						Regular applications usually don't have this ecosystem, hence the focus on web applications.
+					</p>
+					<p>
+						To date, I've used <a href="https://kristaps.bsd.lv/ksql">ksql</a>+<a
+							href="https://kristaps.bsd.lv/kcgi">kcgi</a> to protect my application from the network
+						(via <a href="https://man.openbsd.org/httpd.8">httpd(8)</a>), then my database from my
+						application.
+						I talk more about database protection my <a href="ksql.html">split-process SQLite</a>
+						article&#8212;the network protection has similar principles but no fancy blog posting.
+					</p>
+					<figure>
+						<img src="auditing-fig2.svg" />
+					</figure>
+					<p>
+						<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> enables this by constraining the
+						environment available to these processes:
+					</p>
+					<ol>
+						<li>
+							Limit the network parsing process so that it can only pass sanitise input over IPC to
+							the parent (<q class="literal">stdio</q> or <q class="literal">unix</q>&#8230;).
+						</li>
+						<li>
+							Limit the database process to only have access to the database (<q
+								class="literal">rpath</q>, <q class="literal">cpath</q>, &#8230;) and manage
+							requests for access over IPC.
+						</li>
+						<li>
+							Limit the application process to IPC (<q class="literal">stdio</q>) only, keeping its connection to the parse sequence
+							and database.
+						</li>
+					</ol>
+					<p>
+						This only goes so far as to protect me at the broadest application level: I know that I'm safe
+						from bad formats, and that my data is safe from, well, me.  What it doesn't provide is safety
+						within the <em>logical</em> environment of my application.  For example, it doesn't guarantee
+						that an unregistered user invoking the application can mess with administrator tables.
+					</p>
+					<p>
+						For this, I need more powerful semantics like those of <a
+							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
+							control</a> (RBAC).
+						I bring in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> for this facility, which,
+						beyond hugely simplifying my data layer, features role assignment and provisioning for the data
+						layer of an application.  
+						(I discuss this at length in my <a href="rbac.html">RBAC</a> article.)
+					</p>
+					<figure>
+						<img src="auditing-fig1.svg" />
+					</figure>
+					<p>
+						As of version <strong>0.4.6</strong>, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+						pushed its RBAC implementation directly into <a href="https://kristaps.bsd.lv/ksql">ksql</a>,
+						taking advantage of the split-process model to ensure that role assignment occured outside the
+						process space of our vulnerable application.
+						This gives our application a great boon: hard <strong>guarantees</strong> about roles.
+					</p>
+					<figure>
+						<img src="auditing-fig3.svg" />
+					</figure>
+					<p>
+						We might have the strongest protection, but an important question remains: in any sufficiently
+						large application, how can we know which roles can access which data?
+					</p>
+					<h3>
+						Introducing roles
+					</h3>
+					<p>
+						Enforcing role-based access control in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is
+						easy even for existing applications.
+						Starting with an existing <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>
+						configuration.
+						This configuration declares the <code>session</code> and <code>user</code> types: a log-in
+						session and a user entity (<q>principle</q>) who is logged in.
+					</p>
+					<p>
+						The session knows about its logged-in user, last modification time (for time-outs), a unique
+						token to prevent session guessing, and its identifier.
+						Sessions may be deleted, created, and queried.
+						The user has an e-mail address, name, hashed password, and identifier.
+						It may also be created and queried, but not deleted, and also modified.
+					</p>
+					<p>
+						Naturally, we document our objects, fields, and operations!
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						We needn't explore all of the generated API, but it suffices to see that this generates
+						structures for all of the types and functions for all operations.
+						All documentation is preserved.
+						See <a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-header.1.html">kwebapp-c-header(1)</a>
+						for the nitty-gritty details.
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						Let's augment our simple example with two user roles: users and administrators.
+						We'll let users&#8230; use the system.
+						Administrators will have the ability to add users and nothing more.
+						There's also the concept of the default role, which is in effect when the system starts, before
+						we've actually figured out the operator principle.
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						It's pretty easy to wrap our minds around this.
+						But what happens when our data model grows to dozens of interrelated tables?
+						It's awfully hard to see whether any given role might have indirect access to a table.
+					</p>
+					<p>
+						The canonical example is the controlling administrator.
+						Lets say we have an administrator type who's referenced by a company table as the creator of the
+						row.
+						Our users are attached to a company, so each time a user object is written, the company is
+						included in that object.
+						And thus&#8212;the administrator.
+						But we don't want users to know about administrators!
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a> has a
+						<code>noexport</code> keyword to prevent certain roles from seeing certain information, but what
+						if we forget?  How will we ever know?
+					</p>
+					<p>
+						Fortunately, there's a tool to make sure this doesn't happen.
+					</p>
+					<h3>
+						Auditing roles
+					</h3>
+					<p>
+						Audits are a way for developers, managers, and, well, auditors to trace who has access to what.
+						The <a href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit.1.html">kwebapp-audit(1)</a> tool
+						creates these audits, both on the terminal and JSON output.
+						Let's take a look at our user:
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<h3>
+						Acknowledgements
+					</h3>
+					<p>
+						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
+						serves the community as open source.
+					</p>
+				</section>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+

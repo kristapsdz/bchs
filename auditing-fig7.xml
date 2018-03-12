@@ -1,0 +1,461 @@
+<article data-sblg-article="1">
+	<section class="kwbp">
+		<section id="kwbp-parsing">
+			Parsing&#8230;
+		</section>
+		<section id="kwbp-parseerr" class="hide">
+			Parse error.
+		</section>
+		<section id="kwbp-parsed" class="hide">
+			<aside class="hide" id="kwbp-aside">
+				<div>
+					<span id="kwbp-aside-close"><i class="fa fa-fw fa-close"></i></span>
+					<section id="kwbp-aside-data-field-data" class="aside-types">
+						<header>
+							Field: <code class="audit-data-field-fullname"></code>
+							<span class="audit-data-field-export">
+								(exported)
+							</span>
+							<span class="audit-data-field-noexport">
+								(not exported)
+							</span>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-data-field-nodoc audit-noentry">
+							Field has no documentation.
+						</article>
+						<article class="audit-data-field-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-accessfrom" class="aside-types">
+						<header>
+							Access path: <code class="audit-accessfrom-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-accessfrom-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-accessfrom-doc"></article>
+						<h5>paths</h5>
+						<ul class="audit-accessfrom-paths"></ul>
+					</section>
+					<section id="kwbp-aside-function-delete" class="aside-types">
+						<header>
+							Delete: <code class="audit-delete-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-delete-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-delete-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-list" class="aside-types">
+						<header>
+							List: <code class="audit-list-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-list-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-list-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-iterate" class="aside-types">
+						<header>
+							Iterate: <code class="audit-iterate-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-iterate-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-iterate-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-update" class="aside-types">
+						<header>
+							Update: <code class="audit-update-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-update-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-update-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-search" class="aside-types">
+						<header>
+							Search: <code class="audit-search-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-search-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-search-doc"></article>
+					</section>
+					<section id="kwbp-aside-function-insert" class="aside-types">
+						<header>
+							Insert: <code class="audit-insert-function"></code>
+						</header>
+					</section>
+					<section id="kwbp-aside-function-update" class="aside-types">
+						<header>
+							Update: <code class="audit-update-function"></code>
+						</header>
+						<h5>documentation</h5>
+						<article class="audit-update-nodoc audit-noentry">
+							Function has no documentation.
+						</article>
+						<article class="audit-update-doc"></article>
+					</section>
+				</div>
+			</aside>
+			<header>
+				<h5>
+					role name
+				</h5>
+				<h1 id="kwbp-audit-role"></h1>
+				<h5>
+					role documentation
+				</h5>
+				<div id="kwbp-audit-role-nodoc" class="audit-noentry">
+					Role has no documentation.
+				</div>
+				<div id="kwbp-audit-role-doc"></div>
+			</header>
+			<h2>
+				by structure&#8230;
+			</h2>
+			<section>
+				<input type="radio" value="0" name="audit-data-select" id="kwbp-audit-data-none" class="audit-toplevel-view" checked="checked" />
+				<article id="kwbp-audit-access-list">
+					<section>
+						<input type="radio" name="audit-data-select" class="audit-view" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-data-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<code class="audit-name"></code>
+								</span>
+								<span>
+									<span title="Data export" class="audit-data-count"></span>
+									<span title="Updates" class="audit-updates-count"></span>
+									<span title="Deletes" class="audit-deletes-count"></span>
+									<span title="Queries" class="audit-queries-count"></span>
+									<span>
+										<span title="Inserts" class="audit-noinsert">0</span>
+										<span title="Inserts" class="audit-insert">1</span>
+									</span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown audit-label">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<code class="audit-name"></code>
+								</span>
+								<span>
+									<span title="Data export" class="audit-data-count"></span>
+									<span title="Updates" class="audit-updates-count"></span>
+									<span title="Deletes" class="audit-deletes-count"></span>
+									<span title="Queries" class="audit-queries-count"></span>
+									<span>
+										<span title="Inserts" class="audit-noinsert">0</span>
+										<span title="Inserts" class="audit-insert">1</span>
+									</span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<h4>Data fields</h4>
+							<section class="audit-data">
+								<article class="audit-data-list">
+									<div>
+										<span class="audit-data-field-noexport">
+											<code class="audit-data-field-name audit-data-field-more audit-link"></code>
+										</span>
+										<span class="audit-data-field-export">
+											<code class="audit-data-field-name audit-data-field-more audit-link"></code>
+										</span>
+									</div>
+								</article>
+							</section>
+							<section class="audit-accessfrom">
+								<h4>Data access</h4>
+								<article class="audit-accessfrom-list">
+									<div>
+										<code class="audit-data-accessfrom-function
+											audit-accessfrom-more audit-link"></code>:
+										<span class="audit-data-accessfrom-path"></span> paths
+										<span class="audit-data-accessfrom-exporting">
+											<span title="Has an exportable path">
+												<i class="fa fa-fw fa-mail-forward"></i>
+											</span>
+										</span>
+									</div>
+								</article>
+							</section>
+							<article class="audit-nodata audit-noentry">
+								No data fields accessible or exported.
+							</article>
+							<h4>Delete functions</h4>
+							<article class="audit-deletes-list">
+								<div>
+									<code class="audit-delete-function audit-link audit-delete-more"></code>
+								</div>
+							</article>
+							<article class="audit-nodeletes audit-noentry">
+								No delete functions exported.
+							</article>
+							<h4>Insert functions</h4>
+							<article class="audit-insert">
+								<code class="audit-insert-function audit-insert-more audit-link"></code>
+							</article>
+							<article class="audit-noinsert audit-noentry">
+								No insert function exported.
+							</article>
+							<h4>Iterate functions</h4>
+							<article class="audit-iterates-list">
+								<div>
+									<code class="audit-iterate-function audit-iterate-more audit-link"></code>
+								</div>
+							</article>
+							<article class="audit-noiterates audit-noentry">
+								No iterate functions exported.
+							</article>
+							<h4>List functions</h4>
+							<article class="audit-lists-list">
+								<div>
+									<code class="audit-list-function audit-list-more audit-link"></code>
+								</div>
+							</article>
+							<article class="audit-nolists audit-noentry">
+								No list functions exported.
+							</article>
+							<h4>Search functions</h4>
+							<article class="audit-searches-list">
+								<div>
+									<code class="audit-search-function audit-search-more audit-link"></code>
+								</div>
+							</article>
+							<article class="audit-nosearches audit-noentry">
+								No search functions exported.
+							</article>
+							<h4>Update functions</h4>
+							<article class="audit-updates-list">
+								<div>
+									<code class="audit-update-function audit-update-more audit-link"></code>
+								</div>
+							</article>
+							<article class="audit-noupdates audit-noentry">
+								No update functions exported.
+							</article>
+						</section>
+					</section>
+				</article>
+			</section>
+			<h2>
+				by operation&#8230;
+			</h2>
+			<section>
+				<input type="radio" value="0" name="audit-function-select" id="kwbp-audit-function-none" class="audit-toplevel-view" checked="checked" />
+				<article id="kwbp-audit-function-list">
+					<section id="kwbp-audit-byoperation-deletes">
+						<input type="radio" value="6" name="audit-function-select" id="kwbp-audit-function-deletes" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Deletes</span>
+								</span>
+								<span>
+									<span class="audit-function-deletes-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-deletes">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Deletes</span>
+								</span>
+								<span>
+									<span class="audit-function-deletes-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-deletes-list">
+								<div>
+									<code class="audit-delete-function audit-delete-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-nodeletes" class="audit-noentry">
+								No deletes.
+							</article>
+						</section>
+					</section>
+					<section id="kwbp-audit-byoperation-inserts">
+						<input type="radio" value="1" name="audit-function-select" id="kwbp-audit-function-inserts" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Inserts</span>
+								</span>
+								<span>
+									<span class="audit-function-inserts-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-inserts">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Inserts</span>
+								</span>
+								<span>
+									<span class="audit-function-inserts-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-inserts-list">
+								<div>
+									<code class="audit-insert-function audit-insert-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-noinserts" class="audit-noentry">
+								No insert.
+							</article>
+						</section>
+					</section>
+					<section id="kwbp-audit-byoperation-iterates">
+						<input type="radio" value="2" name="audit-function-select" id="kwbp-audit-function-iterates" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Iterates</span>
+								</span>
+								<span>
+									<span class="audit-function-iterates-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-iterates">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Iterates</span>
+								</span>
+								<span>
+									<span class="audit-function-iterates-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-iterates-list">
+								<div>
+									<code class="audit-iterate-function audit-iterate-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-noiterates" class="audit-noentry">
+								No iterates.
+							</article>
+						</section>
+					</section>
+					<section id="kwbp-audit-byoperation-lists">
+						<input type="radio" value="3" name="audit-function-select" id="kwbp-audit-function-lists" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Lists</span>
+								</span>
+								<span>
+									<span class="audit-function-lists-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-lists">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Lists</span>
+								</span>
+								<span>
+									<span class="audit-function-lists-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-lists-list">
+								<div>
+									<code class="audit-list-function audit-list-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-nolists" class="audit-noentry">
+								No lists.
+							</article>
+						</section>
+					</section>
+					<section id="kwbp-audit-byoperation-searches">
+						<input type="radio" value="4" name="audit-function-select" id="kwbp-audit-function-searches" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Searches</span>
+								</span>
+								<span>
+									<span class="audit-function-searches-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-searches">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Searches</span>
+								</span>
+								<span>
+									<span class="audit-function-searches-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-searches-list">
+								<div>
+									<code class="audit-search-function audit-search-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-nosearches" class="audit-noentry">
+								No searches.
+							</article>
+						</section>
+					</section>
+					<section id="kwbp-audit-byoperation-updates">
+						<input type="radio" value="5" name="audit-function-select" id="kwbp-audit-function-updates" />
+						<header>
+							<label class="audit-is-shown" for="kwbp-audit-function-none">
+								<span>
+									<span><i class="fa fa-fw fa-circle"></i></span>
+									<span>Updates</span>
+								</span>
+								<span>
+									<span class="audit-function-updates-count"></span>
+								</span>
+							</label>
+							<label class="audit-toplevel-shown" for="kwbp-audit-function-updates">
+								<span>
+									<span><i class="fa fa-fw fa-circle-o"></i></span>
+									<span>Updates</span>
+								</span>
+								<span>
+									<span class="audit-function-updates-count"></span>
+								</span>
+							</label>
+						</header>
+						<section>
+							<article id="kwbp-audit-updates-list">
+								<div>
+									<code class="audit-update-function audit-update-more audit-link"></code>
+								</div>
+							</article>
+							<article id="kwbp-audit-noupdates" class="audit-noentry">
+								No updates.
+							</article>
+						</section>
+					</section>
+				</article>
+			</section>
+		</section>
+	</section>
+	<script src="audit.js"></script>
+	<script src="audit-out.js"></script>
+</article>
