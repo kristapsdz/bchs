@@ -44,6 +44,10 @@
 				</p>
 				<ul>
 					<li>
+						<span><a href="auditing.html">Role audits</a> with kwebapp</span>
+						<span class="src">2018/03</span>
+					</li>
+					<li>
 						<span>
 							<a href="https://kristaps.bsd.lv/absdcon2018/">RBAC in BCHS</a>
 							(<a href="https://kristaps.bsd.lv/absdcon2018/paper.pdf">PDF</a>)
