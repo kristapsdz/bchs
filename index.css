@@ -1,8 +1,9 @@
 html, body			{ margin: 0; 
-				  background-color: #333;
 				  height: 100%; }
 body				{ font-family: "Alegreya Sans", sans-serif; 
-				  font-size: 13pt; }
+				  background-color: #333;
+				  font-weight: 400;
+				  font-size: 14pt; }
 section				{ display: flex; 
 				  display: -webkit-flex;
 			 	  flex-direction: column;

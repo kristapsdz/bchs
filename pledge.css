@@ -1,13 +1,14 @@
 html, body					{ margin: 0; 
-						  background-color: #222;
 						  height: 100%; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
-						  font-weight: 200;
+						  background-color: #222;
 						  font-style: normal;
+						  font-weight: 400;
 						  font-size: 14pt; }
 a						{ text-decoration: none; }
 input[type=radio]				{ display: none; }
-body > section > header				{ width: 70%;	
+body > section > header				{ width: 60%;	
+						  min-width: 600px;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
 						  color: #fff;
@@ -18,8 +19,7 @@ body > section > header				{ width: 70%;
 						  display: -webkit-flex;
 						  align-items: center;
 						  -webkit-align-items: center; }
-body > section > header nav a			{ color: #ddd; 
-						  font-size: 14pt; }
+body > section > header nav a			{ color: #ddd; }
 body > section > header nav a span		{ border-bottom: thin transparent; }
 body > section > header nav a:hover		{ color: #fff;  }
 body > section > header nav a:hover span	{ border-bottom: thin solid yellow; }
@@ -31,8 +31,10 @@ article						{ color: #fff; }
 article > header				{ text-align: center; 
 						  margin: 48pt 0; }
 article > header img				{ width: 60px; }
-article > section				{ padding: 0 15%; }
-article > section .intro			{ font-size: 16pt; 
+article > section				{ width: 60%;
+						  min-width: 600px;
+						  margin: 0 auto; }
+article > section .intro			{ font-size: 15pt; 
 						  line-height: 21pt; }
 article > section .emph				{ font-size: 17pt; }
 article a					{ color: yellow; }
@@ -40,12 +42,12 @@ h1 a						{ color: inherit; }
 h1 a:hover					{ text-shadow: 1px 1px 1px #15a; }
 h1						{ font-size: 24pt;
 						  text-shadow: 0px 0px 1px #023;
-						  font-weight: 400;
+						  font-weight: 500;
 						  flex: 1;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
 h2						{ margin: 0;
-						  font-weight: 300;
+						  font-weight: 400;
 						  display: inline-block;
 						  text-align: left;
 						  width: auto;
@@ -54,7 +56,7 @@ h2 span:first-child				{ font-size: 32pt;
 						  margin-bottom: -50pt; }
 h2 span:last-child				{ font-size: 128pt; }
 h2 span						{ display: block; }
-h3						{ font-weight: 300; 
+h3						{ font-weight: 400; 
 						  font-size: 16pt; }
 a						{ text-decoration: none; }
 nav						{ color: #abc; }
@@ -81,8 +83,8 @@ code						{ font-family: monospace;
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 body > section > header				{ width: 95%; 
+						  min-width: auto;
 						  padding-top: 1ex;
-						  font-size: 14pt;
 						  padding-bottom: 0em;}
 h1						{ font-size: 14pt; }
 article > header				{ padding: 0 5%; }
@@ -90,7 +92,8 @@ h2 span:first-child				{ font-size: 28pt;
 						  margin-bottom: -30pt; }
 h2 span:last-child				{ font-size: 90pt; }
 article img					{ width: 100%; }
-article > section				{ padding: 0 5%; }
+article > section				{ width: 95%;
+						  min-width: auto; }
 }
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
@@ -98,7 +101,6 @@ h2 span:first-child				{ font-size: 20pt;
 						  margin-bottom: -10pt; }
 h2 span:last-child				{ font-size: 50pt; }
 article > header				{ padding: 0 2%; }
-article > section .intro			{ font-size: 13pt; 
-						  line-height: inherit; }
+article > section .intro			{ line-height: inherit; }
 article > section .emph				{ font-size: 13pt; }
 }
