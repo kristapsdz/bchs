@@ -21,10 +21,10 @@ CSSS		 = audit.css \
 		   rbac.css \
 		   start.css \
 		   style.css
-GENS		 = audit-out.js \
-		   auditing-fig4.xml \
+GENS		 = auditing-fig4.xml \
 		   auditing-fig5.xml \
 		   auditing-fig6.xml \
+		   auditing-fig9.xml \
 		   easy.c.xml \
 		   style.css \
 		   easy.conf.xml \
@@ -41,7 +41,8 @@ GENS		 = audit-out.js \
 		   ksql-fig5.c.xml \
 		   $(GENHTMLS) \
 		   $(IMAGES)
-GENHTMLS	 = kwebapp.db.c.html \
+GENHTMLS	 = audit-out.js \
+		   kwebapp.db.c.html \
 		   kwebapp.db.h.html \
 		   kwebapp.db.js.html \
 		   kwebapp.db.sql.html \
@@ -54,6 +55,7 @@ GENHTMLS	 = kwebapp.db.c.html \
 IMAGES		 = auditing-fig1.svg \
 		   auditing-fig2.svg \
 		   auditing-fig3.svg \
+		   auditing-fig8.svg \
 		   pledge-fig1.svg \
 		   pledge-fig2.svg \
 		   pledge-fig3.png \
@@ -181,16 +183,32 @@ auditing-fig6.xml:
 		highlight -l -f --out-format=xhtml --enclose-pre -S diff >>$@
 	echo '</article>' >>$@
 
-AUDIT_DEPS = auditing-fig4.xml \
-	     auditing-fig5.xml \
-	     auditing-fig6.xml \
-	     auditing-fig7.xml
+auditing-fig9.xml:
+	echo '<article data-sblg-article="1">' >$@
+	diff -u auditing-fig6.conf auditing-fig8.conf | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S diff >>$@
+	echo '</article>' >>$@
 
-auditing.html: auditing.xml $(AUDIT_DEPS)
-	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_DEPS)
+AUDIT_DEPS  = auditing-fig4.xml \
+	      auditing-fig5.xml \
+	      auditing-fig6.xml \
+	      auditing-fig7.xml \
+	      auditing-fig9.xml
+
+AUDIT_MEDIA = audit-out.js \
+	      auditing-fig1.svg \
+	      auditing-fig2.svg \
+	      auditing-fig3.svg \
+	      auditing-fig8.svg 
 
 audit-out.js: auditing-fig6.conf
-	kwebapp-audit -j user auditing-fig6.conf > $@
+	kwebapp-audit-json user auditing-fig6.conf > $@
+
+auditing-fig8.svg: auditing-fig8.conf
+	kwebapp-audit-gv default auditing-fig8.conf | dot -Tsvg -o$@
+
+auditing.html: auditing.xml $(AUDIT_DEPS) $(AUDIT_MEDIA)
+	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_DEPS)
 
 KWEB_MEDIA = kwebapp-fig1.svg \
 	     kwebapp-fig2.svg \
