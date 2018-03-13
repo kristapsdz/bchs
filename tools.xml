@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="start.css" rel="stylesheet" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -28,7 +28,7 @@
 				</p>
 				<ol>
 					<li>
-						<section>
+						<section class="lead">
 							<p>
 								Don't just write C.
 								Write portable and secure C.
@@ -46,7 +46,7 @@
 						</section>
 					</li>
 					<li>
-						<section>
+						<section class="lead">
 							<p>
 								Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
 									href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
@@ -74,7 +74,7 @@
 						</section>
 					</li>
 					<li>
-						<section>
+						<section class="lead">
 							<p>
 								Get to know your security tools.
 								OpenBSD has <a href="https://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
@@ -97,7 +97,25 @@
 						</section>
 					</li>
 					<li>
-						<section>
+						<section class="lead">
+							<p>
+								Databases: simplicity rules.
+							</p>
+						</section>
+						<section class="explain">
+							<p>
+								Spend time carefully reading through the <a href="https://sqlite.org">SQLite</a> documentation.
+								For a simpler API (and some significant security features), consider using <a
+									href="https://kristaps.bsd.lv/ksql">ksql(3)</a>.
+								Most folks knee-jerk into needing the biggest Oracle or NoSQL database they can find.
+								But for most applications, it's perfectly alright to start with SQLite and
+								vanilla SQL, then slowly expand as necessary.
+								The usual path is from SQLite to <a href="https://www.postgresql.org/">PostgreSQL</a>.
+							</p>
+						</section>
+					</li>
+					<li>
+						<section class="lead">
 							<p>
 								Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
 								(from <a href="https://www.openbsd.org/faq/faq15.html">packages</a>).
@@ -120,7 +138,7 @@
 						</section>
 					</li>
 					<li>
-						<section>
+						<section class="lead">
 							<p>
 								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
 									href="https://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
@@ -138,7 +156,7 @@
 						</section>
 					</li>
 					<li>
-						<section>
+						<section class="lead">
 							<p>
 								Parsing data?
 								Push your parsers into libraries and use <a
