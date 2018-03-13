@@ -75,7 +75,7 @@
 						To date, I've used <a href="https://kristaps.bsd.lv/ksql">ksql</a>+<a
 							href="https://kristaps.bsd.lv/kcgi">kcgi</a> to protect my applications from the network,
 						then my database from my application.
-						I talk more about database protection my <a href="ksql.html">split-process SQLite</a>
+						I talk more about database protection in my <a href="ksql.html">split-process SQLite</a>
 						article&#8212;the network protection has similar principles but no fancy blog posting.
 					</p>
 					<figure>
@@ -155,7 +155,7 @@
 						token to prevent session guessing, and its identifier.
 						Sessions may be deleted, created, and queried.
 						The user has an e-mail address, name, hashed password, and identifier.
-						It may also be created and queried, but not deleted, and also modified.
+						It may also be created, modified, and queried&#8212;but not deleted.
 					</p>
 					<p>
 						Naturally, we document our objects, fields, and operations!
@@ -249,6 +249,8 @@
 						serves the community as open source.
 						I'd also like to thank <a href="https://asiabsdcon.org">AsiaBSDCon</a> for letting me
 						pontificate on these topics at <a href="https://2018.asiabsdcon.org">AsiaBSDCon 2018</a>.
+						Lastly, I'd like to thank <a href="https://github.com/vulcasian">vulcasian</a> for copy-editing
+						this article.
 					</p>
 				</section>
 			</article>
