@@ -3,7 +3,8 @@ html, body					{ margin: 0;
 						  color: #444;
 						  height: 100%; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
-						  font-size: 13pt; }
+						  font-weight: 400;
+						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
 .literal					{ color: darkred; }					

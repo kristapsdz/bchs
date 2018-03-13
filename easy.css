@@ -2,10 +2,12 @@ html, body					{ margin: 0;
 				  		  background-color: #333; }
 body						{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
 						  color: #eee;
-						  font-size: 13pt; }
+						  font-weight: 400;
+						  font-size: 14pt; }
 header img					{ width: 60px; 
 				  		  padding-right: 10px; }
-header, nav, .slides				{ width: 70%;
+header, nav, .slides				{ width: 60%;
+						  min-width: 600px;
 						  margin-left: auto;
 						  margin-right: auto; }
 header						{ padding-top: 1em;
@@ -82,7 +84,8 @@ footer						{ text-align: center;
 footer a					{ color: #89a; }
 footer a:hover					{ color: #cdf; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-header, nav, .slides				{ width: 95%; }
+header, nav, .slides				{ width: 95%; 
+						  min-width: auto; }
 header						{ padding-top: 1ex;
 				  	 	  font-size: 14pt;
 						  padding-bottom: 0em; }

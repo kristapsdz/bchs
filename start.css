@@ -1,8 +1,9 @@
 html, body			{ margin: 0; 
-				  background-color: #333;
 				  height: 100%; }
-body				{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
-				  font-size: 13pt; }
+body				{ font-family: "Alegreya Sans", sans-serif;
+				  font-weight: 400;
+				  background-color: #333;
+				  font-size: 14pt; }
 header				{ width: 60%;	
 				  min-width: 600px;
 				  padding-top: 1em;
@@ -18,11 +19,11 @@ header div a			{ color: #bb6;
 header div a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
 article				{ width: 60%;
 				  min-width: 600px;
-				  color: #ccc;
+				  color: #ddd;
 				  margin-left: auto;
 				  margin-right: auto; }
 article p			{ line-height: 140%;
-				  color: #ccc;}
+				  color: #ddd;}
 article a			{ color: yellow; 
 				  text-shadow: 1px 0 #222; }
 /*article a:hover			{ color: #ccf; 
@@ -46,12 +47,12 @@ h1 a:hover			{ color: #fff;
 				  text-shadow: 1px 0 #444; }
 h1				{ font-size: 28pt;
 				  text-shadow: 1px 0 #000;
-				  font-weight: normal;
+				  font-weight: inherit;
 				  margin: 0;  }
 h2				{ margin: 0;
 				  margin-bottom: 0.25em;
 				  color: #fff;
-				  font-weight: normal;
+				  font-weight: inherit;
 				  font-size: 18pt; }
 a				{ text-decoration: none; }
 nav				{ color: #aaa; }

@@ -1,9 +1,10 @@
 html, body					{ margin: 0; 
-						  background-color: #fff;
 						  color: #444;
 						  height: 100%; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
-						  font-size: 13pt; }
+						  background-color: #fff;
+						  font-weight: 400;
+						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
 body > section > nav a				{ color: rgba(5, 117, 189, 0.5); }
