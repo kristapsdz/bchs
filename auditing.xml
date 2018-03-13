@@ -233,6 +233,7 @@
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
 					<p>
+						We'll look at the <q>default</q> role, this time.
 						Links between objects (the chain of <q>foreign keys</q> from the original query) are noted with
 						arrows&#8212;the dotted lines are interior links in multi-step foreign key references.
 						I also show the query functions themselves.
@@ -241,6 +242,10 @@
 					<figure>
 						<img src="auditing-fig8.svg" />
 					</figure>
+					<p>
+						That's it!
+						We can clearly see the linkage between exported entries.
+					</p>
 					<h3>
 						Acknowledgements
 					</h3>
