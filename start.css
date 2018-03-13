@@ -3,9 +3,6 @@ html, body			{ margin: 0;
 				  height: 100%; }
 body				{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
 				  font-size: 13pt; }
-section				{ display: flex; 
-			 	  flex-direction: column;
-				  height: 100%; }
 header				{ width: 60%;	
 				  min-width: 600px;
 				  padding-top: 1em;
@@ -19,8 +16,7 @@ header div span			{ color: #fff; }
 header div a			{ color: #bb6; 
 				  border-bottom: thin transparent; }
 header div a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
-article				{ flex: 1; 
-				  width: 60%;
+article				{ width: 60%;
 				  min-width: 600px;
 				  color: #ccc;
 				  margin-left: auto;
@@ -78,10 +74,12 @@ footer a:hover			{ color: #cdf; }
 .footnote			{ font-size: smaller; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 header				{ width: 95%; 
+				  min-width: auto;
 				  padding-top: 1ex;
 				  font-size: 14pt;
 				  padding-bottom: 0em;}
-article 			{ width: 95%; }
+article 			{ width: 95%; 
+				  min-width: auto; }
 article ol			{ padding: 1ex; }
 h1				{ font-size: 16pt; }
 h2				{ font-size: 18pt; }

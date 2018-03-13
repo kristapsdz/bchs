@@ -2,9 +2,8 @@ html, body					{ margin: 0;
 						  background-color: #fff;
 						  color: #444; }
 body						{ font-family: 'Alegreya Sans', sans-serif;
-						  font-weight: 200;
 						  font-style: normal;
-						  font-size: 14pt; }
+						  font-size: 13pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
 .tldr						{ color: #000; 

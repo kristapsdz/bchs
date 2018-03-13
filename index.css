@@ -83,13 +83,17 @@ ul li + li			{ margin-top: 0.5em; }
 ul li .src			{ line-height: 100%;
 				  font-size: smaller; }
 
-header				{ width: 95%; }
+header				{ width: 95%; 
+				  min-width: auto; }
 #main				{ padding-top: 5%; }
-#main, #contact			{ width: 95%; }
+#main, #contact			{ width: 95%; 
+				  min-width: auto; }
 #logo				{ text-align: center; }
 h1				{ font-size: 16pt; }
 h2				{ font-size: 18pt;
 			 	  text-align: center; }
 header nav			{ font-size: 12pt; }
 section				{ display: block; }
+footer				{ width: 95%;
+				  min-width: auto; }
 }
