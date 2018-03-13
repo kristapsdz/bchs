@@ -129,6 +129,7 @@
 						pushed its RBAC implementation directly into <a href="https://kristaps.bsd.lv/ksql">ksql</a>,
 						taking advantage of the split-process model to ensure that role assignment occured outside the
 						process space of our vulnerable application.
+						<strong>Note: kwebapp uses the most current versions of ksql+kcgi: they are all developed in tandem.</strong>
 						This gives our application a great boon: <strong>guarantees</strong> about roles.
 					</p>
 					<figure>
