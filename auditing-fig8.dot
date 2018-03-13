@@ -1,0 +1,22 @@
+digraph default {
+	struct_user[shape=none, fillcolor="#ffffff", style="filled", label=<
+		<table>
+			<tr><td port="_top"><b>user</b></td></tr>
+			<tr><td bgcolor="#aaaaaa" port="hash">hash</td></tr>
+			<tr><td bgcolor="#ffffff" port="email">email</td></tr>
+			<tr><td bgcolor="#ffffff" port="name">name</td></tr>
+			<tr><td bgcolor="#ffffff" port="uid">uid</td></tr>
+			<tr><td>db_user_get_creds</td></tr>
+		</table>>];
+	struct_session:user -> struct_user:_top;
+	struct_session[shape=none, fillcolor="#ffffff", style="filled", label=<
+		<table>
+			<tr><td port="_top"><b>session</b></td></tr>
+			<tr><td bgcolor="#ffffff" port="user">user</td></tr>
+			<tr><td bgcolor="#ffffff" port="userid">userid</td></tr>
+			<tr><td bgcolor="#ffffff" port="token">token</td></tr>
+			<tr><td bgcolor="#ffffff" port="mtime">mtime</td></tr>
+			<tr><td bgcolor="#ffffff" port="id">id</td></tr>
+			<tr><td>db_session_get_creds</td></tr>
+		</table>>];
+}

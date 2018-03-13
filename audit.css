@@ -58,11 +58,13 @@
 .kwbp .audit-link		{ cursor: pointer; 
 				  border-bottom: 1px dotted rgba(0, 0, 255, 0.4); }
 .kwbp h1			{ font-weight: 500;
-				  margin-top: 0;
-				  margin-bottom: 1rem;
-				  font-size: 24pt; }
+				  margin: 0;
+				  font-size: larger; }
 .kwbp h2			{ font-weight: 400;
 				  font-variant: small-caps;
+				  text-align: left;
+				  color: #888;
+				  margin: 0;
 				  margin-top: 1rem;
 				  font-size: inherit; }
 .kwbp h3			{ font-weight: 400;
@@ -72,8 +74,9 @@
 				  font-size: inherit; }
 .kwbp .audit-access-list > section > section > h4:first-child
 				{ margin-top: 2pt; }
-.kwbp h5			{ font-size: smaller; 
+.kwbp h5			{ font-size: inherit; 
 				  font-variant: small-caps;
+				  color: #888;
 				  margin-bottom: 0;
 				  margin-top: 1em;
 				  font-weight: 400; }

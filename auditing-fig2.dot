@@ -12,13 +12,13 @@ digraph {
 			
 			subgraph cluster_2 {
 				label="kcgi(3)";
-				bgcolor="blue";
+				bgcolor="red";
 				kcgi[label="HTTP parsing"];
 			};
 
 			subgraph cluster_3 {
 				label="ksql(3)";
-				bgcolor="blue";
+				bgcolor="red";
 				ksql[label="database"];
 			};
 		};

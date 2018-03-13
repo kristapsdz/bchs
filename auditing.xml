@@ -53,6 +53,8 @@
 				<section class="intro">
 					<p>
 						This article is about web application security.
+					</p>
+					<p>
 						It can be applied to any application, really, but fits most with those having the concept of a
 						single data source servicing multiple operating <em>roles</em>.
 						For example, most web applications have at least the concept of administrators, registered
@@ -61,10 +63,18 @@
 						Regular applications usually don't have this ecosystem, hence the focus on web applications.
 					</p>
 					<p>
+						And of course, it relates to the C programming language, <a
+							href="https://www.openbsd.org">OpenBSD</a>, and <a href="https://sqlite.org">SQLite</a>
+						(collectively, <a href="index.html">BCHS</a>).
+						Conceptually, none of the tools I mention are limited to these systems, but they're the systems
+						I use.
+						Feel free to submit portability patches&#8212;and I'd love to have <a
+							href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> output into other languages.
+					</p>
+					<p>
 						To date, I've used <a href="https://kristaps.bsd.lv/ksql">ksql</a>+<a
-							href="https://kristaps.bsd.lv/kcgi">kcgi</a> to protect my application from the network
-						(via <a href="https://man.openbsd.org/httpd.8">httpd(8)</a>), then my database from my
-						application.
+							href="https://kristaps.bsd.lv/kcgi">kcgi</a> to protect my applications from the network,
+						then my database from my application.
 						I talk more about database protection my <a href="ksql.html">split-process SQLite</a>
 						article&#8212;the network protection has similar principles but no fancy blog posting.
 					</p>
@@ -72,8 +82,8 @@
 						<img src="auditing-fig2.svg" />
 					</figure>
 					<p>
-						<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> enables this by constraining the
-						environment available to these processes:
+						<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> enables these by constraining available
+						resources:
 					</p>
 					<ol>
 						<li>
@@ -86,15 +96,21 @@
 							requests for access over IPC.
 						</li>
 						<li>
-							Limit the application process to IPC (<q class="literal">stdio</q>) only, keeping its connection to the parse sequence
-							and database.
+							Lastly, limit the application process to IPC (<q class="literal">stdio</q>) only,
+							keeping its connection to the parse sequence and database.
 						</li>
 					</ol>
 					<p>
 						This only goes so far as to protect me at the broadest application level: I know that I'm safe
-						from bad formats, and that my data is safe from, well, me.  What it doesn't provide is safety
-						within the <em>logical</em> environment of my application.  For example, it doesn't guarantee
-						that an unregistered user invoking the application can mess with administrator tables.
+						from bad formats, and that my data is safe from, well, my programming errors.  What it doesn't
+						provide is safety within the <em>logical</em> environment of my application.  For example, it
+						doesn't guarantee that an unregistered user invoking the application can mess with administrator
+						tables.
+					</p>
+					<p>
+						Said another way, it doesn't protect the application from sloppy business logic&#8212;just
+						sloppy programming.
+						Unfortunately, I do both.
 					</p>
 					<p>
 						For this, I need more powerful semantics like those of <a
@@ -109,11 +125,11 @@
 						<img src="auditing-fig1.svg" />
 					</figure>
 					<p>
-						As of version <strong>0.4.6</strong>, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+						As of version 0.4.6, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
 						pushed its RBAC implementation directly into <a href="https://kristaps.bsd.lv/ksql">ksql</a>,
 						taking advantage of the split-process model to ensure that role assignment occured outside the
 						process space of our vulnerable application.
-						This gives our application a great boon: hard <strong>guarantees</strong> about roles.
+						This gives our application a great boon: <strong>guarantees</strong> about roles.
 					</p>
 					<figure>
 						<img src="auditing-fig3.svg" />
@@ -187,16 +203,52 @@
 					<p>
 						Audits are a way for developers, managers, and, well, auditors to trace who has access to what.
 						The <a href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit.1.html">kwebapp-audit(1)</a> tool
-						creates these audits, both on the terminal and JSON output.
-						Let's take a look at our user:
+						creates these audits on the terminal, as JSON output with <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit-json.1.html">kwebapp-audit-json(1)</a>,
+						and even GraphViz with <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit-gv.1.html">kwebapp-audit-gv(1)</a>.
+						Let's take a look at our user (and yes, this is from an actual audit run, and real output from
+						the mentioned utilities embedded in this page)&#8230;
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						The audit begins with the role name and its documentation.
+						It then looks at each object and how it can be accessed by principles of that role.
+						For example, the <code>uid</code> of the user isn't exported, and access of that field comes
+						through its search function.
+						If an object can be indirectly accessed&#8212;such as a foreign key reference&#8212;all paths
+						from the referencee to referenced are noted.
+					</p>
+					<p>
+						Clicking on any field or function produces its documentation.
+					</p>
+					<p>
+						Below the field layout, we list all operations by category.
+						This is useful for a quick check on the <em>actions</em> allowed by the role.
+					</p>
+					<p>
+						We can get a quick sense by using the <a href="https://graphviz.org">GraphViz</a> output mode,
+						which simply shows all accessable and exportable fields per role.
+						For this, I've slightly expanded the above example by adding another table.
+					</p>
+					<article data-sblg-article="1" data-sblg-permlink="0"></article>
+					<p>
+						Links between objects (the chain of <q>foreign keys</q> from the original query) are noted with
+						arrows&#8212;the dotted lines are interior links in multi-step foreign key references.
+						I also show the query functions themselves.
+						Non-exportable fields are greyed out, as are entirely non-exportable tables.
+					</p>
+					<figure>
+						<img src="auditing-fig8.svg" />
+					</figure>
 					<h3>
 						Acknowledgements
 					</h3>
 					<p>
 						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
 						serves the community as open source.
+						I'd also like to thank <a href="https://asiabsdcon.org">AsiaBSDCon</a> for letting me
+						pontificate on these topics at <a href="https://2018.asiabsdcon.org">AsiaBSDCon 2018</a>.
 					</p>
 				</section>
 			</article>

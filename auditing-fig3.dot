@@ -1,11 +1,11 @@
 digraph auditing {
 	graph [compound=true, rankdir=tb, rank="min", ranksep="0.8 equally"];
 	network[label="httpd(8)"];
-	app[label="cgi-script", fillcolor="blue", style="filled", fontcolor="white"];
+	app[label="cgi-script", fillcolor="red", style="filled", fontcolor="white"];
 	network -> app[dir="both"];
 	subgraph cluster_0 {
 		label="ksql(3)";
-		bgcolor="blue";
+		bgcolor="red";
 		database[label="database"];
 		role1;
 		role2;
