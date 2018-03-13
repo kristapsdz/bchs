@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="index.css" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -44,41 +44,43 @@
 				</p>
 				<ul>
 					<li>
-						<a href="https://kristaps.bsd.lv/absdcon2018/">RBAC in BCHS</a>
-						(<a href="https://kristaps.bsd.lv/absdcon2018/paper.pdf">PDF</a>)
-						<span class="src">(AsiaBSDCon, 2018/03)</span>
+						<span>
+							<a href="https://kristaps.bsd.lv/absdcon2018/">RBAC in BCHS</a>
+							(<a href="https://kristaps.bsd.lv/absdcon2018/paper.pdf">PDF</a>)
+						</span>
+						<span class="src">AsiaBSDCon, 2018/03</span>
 					</li>
 					<li>
-						<a href="rbac.html">API provisioning</a> with kwebapp
-						<span class="src">(2017/10)</span>
+						<span><a href="rbac.html">API provisioning</a> with kwebapp</span>
+						<span class="src">2017/10</span>
 					</li>
 					<li>
 						<q><a href="https://www.youtube.com/watch?v=KO1juo1KDFs">Should I use the BCHS web stack?</a></q>
-						<span class="src">(EuroBSDCon short answer, 2017/09)</span>
+						<span class="src">EuroBSDCon short answer, 2017/09</span>
 					</li>
 					<li>
-						Split-process <a href="ksql.html">ksql</a> 
-						<span class="src">(2017/07)</span>
+						<span>Split-process <a href="ksql.html">ksql</a></span>
+						<span class="src">2017/07</span>
 					</li>
 					<li>
-						Rapid web applications with <a href="kwebapp.html">kwebapp</a> 
-						<span class="src">(2017/05)</span>
+						<span>Rapid web applications with <a href="kwebapp.html">kwebapp</a></span>
+						<span class="src">2017/05</span>
 					</li>
 					<li>
-						<a href="https://kristaps.bsd.lv//absdcon2017">Secure CGI</a>
-						<span class="src">(AsiaBSDCon, 2017/03)</span>
+						<span><a href="https://kristaps.bsd.lv//absdcon2017">Secure CGI</a></span>
+						<span class="src">AsiaBSDCon, 2017/03</span>
 					</li>
 					<li>
-						BCHS sandboxing with <a href="pledge.html">pledge</a> 
-						<span class="src">(2016/11)</span>
+						<span>BCHS sandboxing with <a href="pledge.html">pledge</a></span>
+						<span class="src">2016/11</span>
 					</li>
 					<li>	
-						Using <a href="json.html">JSON</a> with BCHS 
-						<span class="src">(2016/10)</span>
+						<span>Using <a href="json.html">JSON</a> with BCHS</span>
+						<span class="src">2016/10</span>
 					</li>
 					<li>
-						<a href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a>
-						<span class="src">(AsiaBSDCon, 2016/03)</span>
+						<span><a href="https://kristaps.bsd.lv/absdcon2016/">Secure CGI Applications in C on BSD</a></span>
+						<span class="src">AsiaBSDCon, 2016/03</span>
 					</li>
 				</ul>
 				<p>

@@ -2,7 +2,7 @@ html, body					{ margin: 0;
 				  		  background-color: #333; }
 body						{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
 						  color: #eee;
-						  font-size: 15pt; }
+						  font-size: 13pt; }
 header img					{ width: 60px; 
 				  		  padding-right: 10px; }
 header, nav, .slides				{ width: 70%;
@@ -82,7 +82,6 @@ footer						{ text-align: center;
 footer a					{ color: #89a; }
 footer a:hover					{ color: #cdf; }
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-body						{ font-size: 12pt; }
 header, nav, .slides				{ width: 95%; }
 header						{ padding-top: 1ex;
 				  	 	  font-size: 14pt;
