@@ -90,7 +90,7 @@ Date: Wed, 28 Mar 2018 03:15:19 GMT
 Last-Modified: Sun, 25 Mar 2018 18:08:04 GMT
 Server: <span>OpenBSD httpd</span></pre>
 					<div>
-						<h4>httpd</h4>
+						<h4>httpd(8)</h4>
 						<p>
 							OpenBSD's home-grown web server.
 							If you need more features for your web application, submit a patch.
