@@ -9,7 +9,6 @@ PAGES		 = auditing.html \
 		   kwebapp.html \
 		   pledge.html \
 		   rbac.html \
-		   start.html \
 		   tools.html
 CSSS		 = audit.css \
 		   easy.css \
@@ -19,8 +18,8 @@ CSSS		 = audit.css \
 		   kwebapp.css \
 		   pledge.css \
 		   rbac.css \
-		   start.css \
-		   style.css
+		   style.css \
+		   tools.css
 GENS		 = auditing-fig4.xml \
 		   auditing-fig5.xml \
 		   auditing-fig6.xml \
