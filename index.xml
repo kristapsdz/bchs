@@ -17,7 +17,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header id="tophead">
-				<h1 itemprop="name">BCHS stack</h1>
+				<h1 itemprop="name">bchs stack</h1>
 				<nav itemprop="breadcrumb">
 					<span><a href="tools.html">tools</a></span>
 					<span><a href="easy.html">example</a></span>
@@ -129,13 +129,15 @@ Server: <span>OpenBSD httpd</span></pre>
 				<p>
 					Get used to minimalism and security: componentised, privilege-separated binaries in file-system jails.
 					Most of all, forget your LAMP instincts to desperately search Google and StackExchange for every
-					parameter and function call: man pages are your new best friend.
+					parameter and function call: man pages and <q><code>-Wall -Wextra</code></q> are your new best friends.
 				</p>
+				<pre>% apropos khttp_parse
+<a href="https://kristaps.bsd.lv/kcgi/khttp_parse.3.html">khttp_parse</a>, <a href="https://kristaps.bsd.lv/kcgi/khttp_parse.3.html">khttp_parsex</a>(3) - parse a CGI instance for kcgi</pre>
 			</article>
 			<article id="news">
 				<header>
-					<h3>BCHS articles, conference talks&#8230;</h3>
-					<p>have more links?  <a href="https://github.com/kristapsdz/bchs">let us know</a></p>
+					<h3>Articles, conference talks&#8230;</h3>
+					<p>have more links?  <a href="https://github.com/kristapsdz/bchs">let us know</a>.</p>
 				</header>
 				<ul>
 					<li>
@@ -200,7 +202,10 @@ Server: <span>OpenBSD httpd</span></pre>
 					<a href="https://www.openbsd.org/art3.html">Source</a>.
 				</p>
 				<p>
-					Content otherwise <a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					SQLite logo released by Dr Richard Hipp into the public domain.
+				</p>
+				<p>
+					Content otherwise <a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
 					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
 				</p>
 			</footer>
