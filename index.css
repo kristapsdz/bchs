@@ -29,7 +29,7 @@ a:hover					{ border-bottom: thin solid blue; }
 					  display: -webkit-flex;
 					  width: 50%;	
 					  padding-top: 4rem;
-					  padding-bottom: 0.8rem;
+					  padding-bottom: 0.2rem;
 					  color: #bbd;
 					  margin-left: auto;
 					  margin-right: auto;
@@ -47,6 +47,7 @@ a:hover					{ border-bottom: thin solid blue; }
 #tophead h1				{ color: #001; 
 					  font-size: 20pt;
 					  font-weight: normal;
+					  font-variant: small-caps;
 					  margin: 0;  }
 
 #top #logo img				{ width: 90px; }
@@ -96,9 +97,17 @@ a:hover					{ border-bottom: thin solid blue; }
 .interstice .main			{ font-size: 22pt; 
 					  color: #fff;
 					  line-height: 28pt; }
+.interstice code			{ font-size: 12pt; 
+					  font-weight: bold; }
+.interstice pre				{ font-size: 12pt; 
+					  color: black;
+					  text-shadow: none;
+					  margin-top: 2.5em; }
+.interstice pre a			{ color: yellow; 
+					  text-shadow: 0 0 1px #000; }
+.interstice pre a:hover			{ border-bottom: thin solid transparent; }
 
-.interstice2				{ padding-top: 1rem;
-					  padding-bottom: 0;
+.interstice2				{ padding-bottom: 0;
 					  border-top: thin solid #ccc;
 					  text-align: center; }
 .interstice2 .main			{ font-size: 22pt; 
@@ -121,7 +130,6 @@ footer					{ padding: 4rem 0 2rem 0;
 					  text-align: center;
 					  font-size: 11pt;
 					  color: #666; }
-footer a				{ color: #000; }
 footer p				{ margin: 0.1em 0; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {

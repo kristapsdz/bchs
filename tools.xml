@@ -18,11 +18,11 @@
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
 				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS stack</a></h1>
-				<div>BSD, C, httpd, SQLite: <a href="start.html">start</a>, <span>tools</span>, <a href="easy.html">example</a>.</div>
+				<div>BSD, C, httpd, SQLite: <span>tools</span>, <a href="easy.html">example</a>.</div>
 			</header>
 			<article>
 				<p itemprop="description">
-					You've <a href="start.html">deployed</a> BCHS.
+					You've deployed BCHS.
 					Your editor is open.
 					Where do you begin?
 				</p>
