@@ -73,8 +73,10 @@ BUILT		 = audit.js \
 		   arrow-right.png \
 		   arrow-up.png \
 		   arrow-down.png \
+		   puffy.png \
 		   logo-blue.png \
-		   logo-white.png
+		   logo-white.png \
+		   sqlite.png
 
 www: $(PAGES) 
 
