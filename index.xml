@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>BCHS: BSD, C, httpd, SQLite</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="index.css" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -16,16 +16,15 @@
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
-			<header>
+			<header id="tophead">
 				<h1 itemprop="name">BCHS stack</h1>
 				<nav itemprop="breadcrumb">
-					<a href="start.html">start</a>
-					<a href="tools.html">tools</a>
-					<a href="easy.html">example</a>
-					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+					<span><a href="tools.html">tools</a></span>
+					<span><a href="easy.html">example</a></span>
+					<span><a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a></span>
 				</nav>
 			</header>
-			<article id="main">
+			<article id="top">
 				<div id="logo">
 					<img itemprop="image" src="logo-white.png" alt="BCHS Logo" />
 				</div>
@@ -34,14 +33,110 @@
 					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
 					It's a hipster-free, <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
-					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a>.
-					Then <a href="start.html">get started</a>.
+					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a> and get to work.
 				</p>
 				<p>
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
-					Or read/watch articles&#8230;
 				</p>
+			</article>
+			<article id="start">
+				<header>
+					<h3>Stack components</h3>
+					<p>why bchs? because the open internet is damn inhospitable.</p>
+				</header>
+				<section class="paired">
+					<figure class="exemplar">
+						<img src="puffy.png" />
+					</figure>
+					<div>
+						<h4>BSD</h4>
+						<p>
+							<a href="https://www.openbsd.org">OpenBSD</a>.
+							World-renowned for its focus on security and documentation.
+							Reliable six-month releases.
+							Binary patching.
+							It takes the guess-work out of your environment.
+						</p>
+						<nav>
+							Resources:
+							<a href="https://man.openbsd.org">man pages</a>,
+							<a href="https://www.openbsd.org/faq/">FAQ</a>,
+							<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition"><i>Absolute OpenBSD</i></a>,
+							<a href="https://www.openbsd.org/mail.html">mailing lists</a>.
+						</nav>
+					</div>
+				</section>
+				<section>
+					<h4>the C Programming Language</h4>
+					<p>
+						C is a straightforward, non-mustachioed language.
+						It has full access to the kernel's system calls and a massive set of development tools and libraries.
+					</p>
+					<nav>
+						Resources:
+						<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628"><i>The C Programming Language</i></a>,
+						<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a>,
+						<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>.
+					</nav>
+				</section>
+				<section class="paired">
+					<pre class="exemplar">% curl -sD- -o/dev/null https://www.openbsd.org
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 5181
+Content-Type: text/html
+Date: Wed, 28 Mar 2018 03:15:19 GMT
+Last-Modified: Sun, 25 Mar 2018 18:08:04 GMT
+Server: <span>OpenBSD httpd</span></pre>
+					<div>
+						<h4>httpd</h4>
+						<p>
+							OpenBSD's home-grown web server.
+							If you need more features for your web application, submit a patch.
+						</p>
+						<nav>
+							Resources:
+							<a href="https://man.openbsd.org/OpenBSD-current/man8/httpd.8">httpd(8)</a>,
+							<a href="https://man.openbsd.org/OpenBSD-current/man5/httpd.conf.5">httpd.conf(5)</a>,
+							<a href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>,
+							<a href="https://www.michaelwlucas.com/tools/relayd"><i>Relayd and Httpd Mastery</i></a>.
+						</nav>
+					</div>
+				</section>
+				<section class="paired">
+					<div>
+						<h4>SQLite</h4>
+						<p>
+							<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable, zero-configuration</q> database.
+							It's a practical solution for the majority of database needs.
+						</p>
+						<nav>
+							Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>,
+							<a href="https://sqlite.org/lang.html">SQL reference</a>,
+							<a href="http://www.amazon.com/gp/product/1430232250"><i>The Definitive Guide to SQLite</i></a>.
+						</nav>
+					</div>
+					<figure class="exemplar">
+						<img src="sqlite.png" />
+					</figure>
+				</section>
+			</article>
+			<article class="interstice">
+				<p class="main">
+					BCHS is a stable, developer-oriented platform for operating in hostile environments.
+				</p>
+				<p>
+					Get used to minimalism and security: componentised, privilege-separated binaries in file-system jails.
+					Most of all, forget your LAMP instincts to desperately search Google and StackExchange for every
+					parameter and function call: man pages are your new best friend.
+				</p>
+			</article>
+			<article id="news">
+				<header>
+					<h3>BCHS articles, conference talks&#8230;</h3>
+					<p>have more links?  <a href="https://github.com/kristapsdz/bchs">let us know</a></p>
+				</header>
 				<ul>
 					<li>
 						<span><a href="auditing.html">Role audits</a> with kwebapp</span>
@@ -88,18 +183,26 @@
 						<span class="src">AsiaBSDCon, 2016/03</span>
 					</li>
 				</ul>
-				<p>
+			</article>
+			<article class="interstice2">
+				<p class="main">
 					Is BCHS a joke?
 					No.  
+				</p>
+				<p>
 					Software development is full of jokes.
 					This is not one of them.
 				</p>
 			</article>
 			<footer>
-				<div>
-					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+				<p>
+					OpenBSD <q>puffy</q> logo copyright Theo deRaadt.
+					<a href="https://www.openbsd.org/art3.html">Source</a>.
+				</p>
+				<p>
+					Content otherwise <a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
 					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
-				</div>
+				</p>
 			</footer>
 		</section>
 	</body>
