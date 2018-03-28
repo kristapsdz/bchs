@@ -73,6 +73,8 @@ BUILT		 = audit.js \
 		   arrow-right.png \
 		   arrow-up.png \
 		   arrow-down.png \
+		   background.jpg \
+		   background-white.jpg \
 		   puffy.png \
 		   logo-blue.png \
 		   logo-white.png \
