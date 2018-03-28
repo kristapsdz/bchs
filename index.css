@@ -12,7 +12,7 @@ article > header p			{ font-variant: small-caps;
 					  opacity: 0.7;
 					  text-align: center; }
 article > header h3			{ text-align: center; 
-				  	  font-size: 24pt;
+				  	  font-size: 150%;
 					  margin-bottom: 0;
 					  font-weight: 400; }
 .paired					{ display: flex; 
@@ -24,6 +24,7 @@ a					{ color: blue;
 					  text-decoration: none; 
 					  border-bottom: thin solid transparent; }
 a:hover					{ border-bottom: thin solid blue; }
+code, pre				{ font-size: 11pt; }
 
 #tophead				{ display: flex;
 					  display: -webkit-flex;
@@ -39,29 +40,30 @@ a:hover					{ border-bottom: thin solid blue; }
 					  -webkit-flex-direction: row; }
 #tophead nav				{ flex: 1; 
 					  -webkit-flex: 1;
-					  font-size: 13pt;
+					  font-size: 80%;
 					  text-align: right; }
 #tophead nav span + span		{ border-left: thin solid #666; 
 					  margin-left: 0.5ex;
 					  padding-left: 1ex; }
 #tophead h1				{ color: #001; 
-					  font-size: 20pt;
+					  font-size: 120%;
 					  font-weight: normal;
 					  font-variant: small-caps;
 					  margin: 0;  }
 
-#top #logo img				{ width: 90px; }
-#top					{ padding: 18rem 25% 6rem 25%;
+#top					{ padding-top: 18rem;
+					  padding-bottom: 6rem;
 					  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), 
 						      url(background.png);
 					  background-position: 50% 50%;
 					  background-repeat: no-repeat;
 					  background-color: #000;
 					  color: #fff; }
+#top #logo img				{ width: 90px; }
 #top a					{ color: #ff0; 
 					  text-shadow: 1px 1px 0 #444; }
 #top a:hover				{ border-bottom: thin solid rgba(255, 255, 0, 0.4); }
-#top h2					{ font-size: 28pt; 
+#top h2					{ font-size: 175%; 
 					  margin: 0;
 					  text-shadow: 1px 1px 0 #000;
 					  font-weight: normal; }
@@ -73,20 +75,18 @@ a:hover					{ border-bottom: thin solid blue; }
 #start .exemplar 			{ color: #888; }
 #start .exemplar span			{ color: #000; }
 #start nav				{ margin: 1.1em 0; 
-					  font-size: 14pt;
+					  font-size: 80%;
 					  opacity: 0.8; }
-#start pre				{ font-size: 11pt; }
 #start > section			{ padding: 4rem 0; }
 #start > section:first-child		{ padding-top: 6rem; }
 #start > section:last-child		{ padding-bottom: 6rem; }
 #start img				{ max-width: 100%; }
-#start p				{ line-height: 20pt; }
-#start section p			{ font-size: #000; }
+#start p				{ line-height: 140%; }
 #start figure				{ margin: 0;
 					  text-align: center; }
 #start h4				{ font-weight: 400;
 					  margin: 0;
-					  font-size: 22pt; }
+					  font-size: 130%; }
 
 .interstice				{ background-color: #88888f;
 					  text-shadow: 0 0 2px #000;
@@ -94,13 +94,11 @@ a:hover					{ border-bottom: thin solid blue; }
 					  padding-top: 3rem;
 					  padding-bottom: 3rem;
 					  color: #fff; }
-.interstice .main			{ font-size: 22pt; 
+.interstice .main			{ font-size: 150%; 
 					  color: #fff;
-					  line-height: 28pt; }
-.interstice code			{ font-size: 12pt; 
-					  font-weight: bold; }
-.interstice pre				{ font-size: 12pt; 
-					  color: black;
+					  line-height: 150%; }
+.interstice code			{ font-weight: bold; }
+.interstice pre				{ color: black;
 					  text-shadow: none;
 					  margin-top: 2.5em; }
 .interstice pre a			{ color: yellow; 
@@ -110,8 +108,8 @@ a:hover					{ border-bottom: thin solid blue; }
 .interstice2				{ padding-bottom: 0;
 					  border-top: thin solid #ccc;
 					  text-align: center; }
-.interstice2 .main			{ font-size: 22pt; 
-					  line-height: 28pt; }
+.interstice2 .main			{ font-size: 150%; 
+					  line-height: 150%; }
 
 
 #news					{ background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%), 
@@ -132,10 +130,34 @@ footer					{ padding: 4rem 0 2rem 0;
 					  color: #666; }
 footer p				{ margin: 0.1em 0; }
 
+@media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
+  article				{ padding-left: 10%; 
+	  				  padding-right: 10%; }
+  #tophead				{ width: 80%; }
+}
+
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+  body					{ font-size: 13pt; }
+  article				{ padding-left: 2%; 
+	  				  padding-right: 2%; }
+  code, pre				{ font-size: 10pt; }
+  pre					{ overflow: hidden; }
+  #tophead nav				{ font-size: 100%; }
+  #tophead h1				{ font-size: 140%; }
+  #tophead				{ width: 96%; 
+	  				  padding-top: 2rem; }
+  #top					{ padding-top: 6rem; }					   
+  #top #logo 				{ text-align: center; }
+  .paired				{ display: block; }
+  .paired > :first-child		{ padding-right: 0; }
+  .paired > :last-child			{ padding-left: 0; }
+  #start nav				{ font-size: 100%; }
+  #start img				{ display: none; }
+
   #news ul li 				{ display: block; }
   #news ul li > *			{ display: block; }
   #news ul li + li			{ margin-top: 0.5em; }
   #news ul li .src			{ line-height: 100%;
   				  	  font-size: smaller; }
 }
+
