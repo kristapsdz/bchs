@@ -17,8 +17,20 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="logo-white.png" alt="BCHS Logo" /><a href="index.html" itemprop="name">BCHS stack</a></h1>
-			<div>BSD, C, httpd, SQLite: <a href="tools.html">tools</a>, <span>example</span>.</div>
+			<a href="index.html">
+				<img src="logo-white.png" alt="BCHS Logo" />
+			</a>
+			<h1>
+				<a href="index.html" itemprop="name">BSD, C, httpd, SQLite</a>
+			</h1>
+			<nav>
+				<div>
+					Navigate: <a href="index.html">start</a>, <a href="tools.html">tools</a>, <span>example</span>.
+				</div>
+				<div>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-fw fa-github"></i></a>
+				</div>
+			</nav>
 		</header>
 		<input type="radio" name="steps" id="slider1" value="step1" checked="checked" />
 		<input type="radio" name="steps" id="slider2" value="step2" />
