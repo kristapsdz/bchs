@@ -7,6 +7,7 @@ body				{ font-family: "Alegreya Sans", sans-serif;
 
 #logo				{ width: 60px; }
 a				{ text-decoration: none; }
+code, pre			{ font-size: 13pt; }
 
 header				{ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), 
 					      url(background.jpg);
@@ -16,10 +17,12 @@ header				{ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(
 				  padding: 6em 25% 1em 25%; 
 				  color: #888;
 				  text-shadow: 1px 0 #234; }
+header nav			{ display: flex; }
+header nav > :first-child	{ flex: 1; }
+header nav > :last-child	{ font-size: 120%; }
 header nav span			{ color: #fff; }
-header nav a			{ color: #bb6; 
-				  border-bottom: thin transparent; }
-header nav a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
+header nav a			{ color: #bb6; }
+header nav a:hover		{ color: yellow; }
 header h1			{ font-size: 200%;
 				  color: #fff;
 				  font-weight: inherit;
@@ -42,13 +45,22 @@ footer				{ text-align: center;
 
 section + section		{ margin-top: 4rem; }
 
+#data				{ background: linear-gradient(to bottom, rgba(248, 248, 255, 0.92) 0%, rgba(248, 248, 255, 0.92) 100%), 
+					      url(background-white.jpg); 
+				  background-position: 50% 50%;
+				  padding-bottom: 6rem;
+				  background-repeat: repeat-y; }
+#data code			{ color: #001; }
+
 #intro				{ background-color: #fff; 
 				  padding-top: 3rem;
 				  padding-bottom: 3rem;
 				  color: #889;
 				  border-bottom: thin solid #eee; }
 #intro .main			{ font-size: 140%; 
+				  margin-top: 0.5rem;
 				  color: #334; }
+#intro pre			{ color: #000; }
 
 #trailer			{ background-color: #88888f;
 				  text-shadow: 0 0 2px #000;
@@ -56,6 +68,10 @@ section + section		{ margin-top: 4rem; }
 				  font-weight: 500;
 				  color: #fff; }
 #trailer a			{ color: yellow; }
+
+#last				{ font-size: 140%; 
+				  padding: 1rem 0;
+				  color: #001; }
 
 @media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
   article, header		{ padding-left: 10%;

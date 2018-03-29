@@ -24,10 +24,16 @@
 					<a href="index.html">BSD, C, httpd, SQLite</a>
 				</h1>
 				<nav>
-					Navigate: <a href="index.html">start</a>, <span>tools</span>, <a href="easy.html">example</a>.
+					<div>
+						Navigate: <a href="index.html">start</a>, <span>tools</span>, <a href="easy.html">example</a>.
+					</div>
+					<div>
+						<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-fw fa-github"></i></a>
+					</div>
 				</nav>
 			</header>
 			<article id="intro">
+				<pre>% <a href="https://man.openbsd.org/vi.1">vi</a> main.c</pre>
 				<div>
 					You've deployed BCHS.
 					Your editor is open.
@@ -36,7 +42,7 @@
 					Where do you begin?
 				</div>
 			</article>
-			<article>
+			<article id="data">
 				<section>
 					<h2>
 						Don't just write C.
@@ -53,7 +59,7 @@
 					<p>
 						To encourage sharing, consider <a href="https://man.openbsd.org/style.9">style(9)</a> as a guide
 						for the style of your C code.
-						It makes a significant difference when bringing on victims^Wfellow programmers!
+						It makes a significant difference when bringing on victims<code>^W</code>fellow programmers!
 					</p>
 				</section>
 				<section>
@@ -171,10 +177,12 @@
 						possible with this tool.
 					</p>
 				</section>
-				<p>
-					Convinced?
-					See it <a href="easy.html">in action</a>.
-				</p>
+				<section id="last">
+					<p>
+						Convinced?
+						See it <a href="easy.html">in action</a>.
+					</p>
+				</section>
 			</article>
 			<article id="trailer">
 				Don't forget: BSD is a community of professionals.
