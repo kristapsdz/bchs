@@ -1,87 +1,74 @@
-html, body			{ margin: 0; 
-				  height: 100%; }
+html, body			{ margin: 0; }
 body				{ font-family: "Alegreya Sans", sans-serif;
 				  font-weight: 400;
-				  background-color: #333;
+				  background-color: #f6f6ff;
+				  color: #334;
 				  font-size: 14pt; }
-header				{ width: 60%;	
-				  min-width: 600px;
-				  padding-top: 1em;
-				  padding-bottom: 1em;
-				  font-size: 18pt;
+
+#logo				{ width: 60px; }
+a				{ text-decoration: none; }
+
+header				{ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), 
+					      url(background.jpg);
+				  background-position: 50% 50%;
+				  background-repeat: no-repeat;
+				  background-color: #000;
+				  padding: 6em 25% 1em 25%; 
 				  color: #888;
-				  text-shadow: 1px 0 #234;
-				  margin-left: auto;
-				  margin-right: auto; }
-header div span			{ color: #fff; }
-header div a			{ color: #bb6; 
+				  text-shadow: 1px 0 #234; }
+header nav span			{ color: #fff; }
+header nav a			{ color: #bb6; 
 				  border-bottom: thin transparent; }
-header div a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
-article				{ width: 60%;
-				  min-width: 600px;
-				  color: #ddd;
-				  margin-left: auto;
-				  margin-right: auto; }
-article p			{ line-height: 140%;
-				  color: #ddd;}
-article a			{ color: yellow; 
-				  text-shadow: 1px 0 #222; }
-/*article a:hover			{ color: #ccf; 
-				  text-shadow: 1px 0 #223; }*/
-article ol			{ padding: 0; }
-aside				{ background-color: #2c2c2c; 
-				  box-shadow: 1px 1px 2px #011;
-				  padding: 1em;
-				  margin-left: -1ex;
-				  margin-bottom: 1em;
-				  margin-right: -1ex;
-				  line-height: 140%;
-				  border-radius: 4pt;
-			 	  color: #ccc; }
-article li			{ margin-bottom: 2em; }
-article section p		{ margin-top: 0.25em; 
-				  margin-bottom: 0.25em; }
-h1 a				{ color: #eee; 
-				  text-shadow: 1px 0 #000; }
-h1 a:hover			{ color: #fff; 
-				  text-shadow: 1px 0 #444; }
-h1				{ font-size: 28pt;
-				  text-shadow: 1px 0 #000;
-				  font-weight: inherit;
-				  margin: 0;  }
-h2				{ margin: 0;
-				  margin-bottom: 0.25em;
+header nav a:hover		{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
+header h1			{ font-size: 200%;
 				  color: #fff;
 				  font-weight: inherit;
-				  font-size: 18pt; }
-a				{ text-decoration: none; }
-nav				{ color: #aaa; }
+				  margin: 0;  }
+header h1 a			{ color: inherit; }
+
+article				{ padding: 4rem 25%; 
+				  color: #667; }
+article p			{ line-height: 130%; }
+article a			{ color: blue; }
+article h2			{ font-weight: inherit; 
+				  color: #334;
+				  font-size: 150%; }
+
 footer				{ text-align: center;
-				  padding-top: 1em;
-				  padding-bottom: 1em;
+				  padding-top: 3rem;
+				  padding-bottom: 1rem;
 				  font-size: smaller;
-				  line-height: 130%;
-				  color: #666; }
-footer a			{ color: #89a; }
-footer a:hover			{ color: #cdf; }
-#logo				{ width: 60px; 
-				  padding-right: 10px; }
-.alt				{ margin-top: -0.25em;
-				  margin-bottom: -0.25em;
-				  font-style: italic; }
-.explain p 			{ color: #aaa; }
-.lead p				{ color: #fff; }
-.lead p.alt			{ color: #aaa; }
-.footnote			{ font-size: smaller; }
-@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-header				{ width: 95%; 
-				  min-width: auto;
-				  padding-top: 1ex;
-				  font-size: 14pt;
-				  padding-bottom: 0em;}
-article 			{ width: 95%; 
-				  min-width: auto; }
-article ol			{ padding: 1ex; }
-h1				{ font-size: 16pt; }
-h2				{ font-size: 18pt; }
+				  line-height: 130%; }
+
+section + section		{ margin-top: 4rem; }
+
+#intro				{ background-color: #fff; 
+				  padding-top: 3rem;
+				  padding-bottom: 3rem;
+				  color: #889;
+				  border-bottom: thin solid #eee; }
+#intro .main			{ font-size: 140%; 
+				  color: #334; }
+
+#trailer			{ background-color: #88888f;
+				  text-shadow: 0 0 2px #000;
+				  font-size: 120%;
+				  font-weight: 500;
+				  color: #fff; }
+#trailer a			{ color: yellow; }
+
+@media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
+  article, header		{ padding-left: 10%;
+	  			  padding-right: 10%; }
 }
+
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+  body				{ font-size: 13pt; }
+  header			{ padding-left: 2%;
+	  			  padding-right: 2%; 
+				  padding-top: 4em; }
+  header h1			{ font-size: 180%; }
+  article			{ padding-left: 2%;
+	  			  padding-right: 2%; }
+}
+

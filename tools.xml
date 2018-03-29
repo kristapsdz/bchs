@@ -17,187 +17,178 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header>
-				<h1><img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" /><a href="index.html" itemprop="name">BCHS stack</a></h1>
-				<div>BSD, C, httpd, SQLite: <span>tools</span>, <a href="easy.html">example</a>.</div>
+				<a href="index.html">
+					<img itemprop="image" src="logo-white.png" alt="BCHS Logo" id="logo" />
+				</a>
+				<h1>
+					<a href="index.html">BSD, C, httpd, SQLite</a>
+				</h1>
+				<nav>
+					Navigate: <a href="index.html">start</a>, <span>tools</span>, <a href="easy.html">example</a>.
+				</nav>
 			</header>
-			<article>
-				<p itemprop="description">
+			<article id="intro">
+				<div>
 					You've deployed BCHS.
 					Your editor is open.
+				</div>
+				<div class="main">
 					Where do you begin?
-				</p>
-				<ol>
-					<li>
-						<section class="lead">
-							<p>
-								Don't just write C.
-								Write portable and secure C.
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								Anybody can write crappy, bug-ridden and insecure code. In any language.
-								Good news: with C, it's even easier!
-								So familiarise yourself with common (and common-sense) pitfalls noted in the 
-								<a href="https://www.securecoding.cert.org/confluence/display/c/SEI+CERT+C+Coding+Standard">SEI CERT C coding standard</a>
-								and
-								<a href="http://www.c-faq.com/">comp.lang.c FAQ</a>.
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
-									href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
-							</p>
-							<p class="alt">
-								&#8230;or&#8230;
-							</p>
-							<p>
-								Install and use <a href="https://kristaps.bsd.lv/kcgi">kcgi</a><sup><a href="#footnote1">*</a></sup> or <a
-									href="http://www.fastcgi.com/">fcgi</a> from <a
-									href="https://www.openbsd.org/faq/faq15.html">packages</a>.
-								(See also <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a><sup><a href="#footnote1">*</a></sup>.)
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								If you don't want to parse content by hand&#8212;and you really, really don't&#8212;let a
-								library do it for you.
-								(Want FastCGI?  Be careful!
-								CGI scripts run by <a
-									href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
-								already have their privileges dropped and file-system constrained.  
-								With FastCGI, you'll need to use a framework that does so for you!)
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Get to know your security tools.
-								OpenBSD has <a href="https://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
-								<q>Embrace the pledge.</q>
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								Your application will be under assault every moment it's running.
-								And it will have bugs: limit the damage caused by inevitable mistakes by
-								constraining (sandboxing) the environment available to your application.
-								Oh, right: there's also
-								<a href="https://man.openbsd.org/OpenBSD-current/man2/chroot.2">chroot(2)</a>,
-								dropping privileges, etc&#8230;
-							</p>
-							<p>
-								For more on these security tools, see <a
-									href="https://kristaps.bsd.lv/absdcon2017/">Secure CGI</a>.
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Databases: simplicity rules.
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								Spend time carefully reading through the <a href="https://sqlite.org">SQLite</a> documentation.
-								For a simpler API (and some significant security features), consider using <a
-									href="https://kristaps.bsd.lv/ksql">ksql(3)</a>.
-								Most folks knee-jerk into needing the biggest Oracle or NoSQL database they can find.
-								But for most applications, it's perfectly alright to start with SQLite and
-								vanilla SQL, then slowly expand as necessary.
-								The usual path is from SQLite to <a href="https://www.postgresql.org/">PostgreSQL</a>.
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
-								(from <a href="https://www.openbsd.org/faq/faq15.html">packages</a>).
-								There's also <a href="http://www.frama-c.com/">frama-c</a> 
-								and <a href="http://www.splint.org/">splint</a>, 
-								both also in packages.
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								These static analysis tools can help catch source-level bugs.
-								An alternative compiler (LLVM) can also prevent you from relying too much on <a
-									href="https://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
-								extensions, which reduces portability.
-							</p>
-							<p>
-								If your project is open source, you can register it with <a
-									href="https://www.coverity.com">Coverity</a>, too.
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
-									href="https://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
-								your <a
-									href="https://man.openbsd.org/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
-								flags are unforgiving.
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								Memory errors are often the subtlest (next to race conditions, maybe).
-								Use these tools as much as possible to catch any run-time issues that can't be
-								ferreted with static analysis tools.
-							</p>
-						</section>
-					</li>
-					<li>
-						<section class="lead">
-							<p>
-								Parsing data?
-								Push your parsers into libraries and use <a
-									href="http://lcamtuf.coredump.cx/afl/">AFL</a> (from <a
-									href="https://www.openbsd.org/faq/faq15.html">packages</a>) to put them
-								through inputs you haven't tested.
-							</p>
-						</section>
-						<section class="explain">
-							<p>
-								The thought that <q>this input could never happen</q> is your adversary's favourite.
-								It <i>will</i> happen.
-								Make sure any parsing sequences are being run through as many code-paths as
-								possible with this tool.
-							</p>
-						</section>
-					</li>
-				</ol>
-				<p>
-					Don't forget: BSD is a community of professionals.
-					Go to conferences (<a href="http://www.eurobsdcon.org">EuroBSDCon</a>, <a
-						href="http://www.asiasbsdcon.org">AsiaBSDCon</a>, <a href="http://www.bsdcan.org">BSDCan</a>,
-					etc.).
-					Subscribe to the <a href="https://www.openbsd.org/mail.html">mailing lists</a>.
-					<a href="https://www.openbsd.org/donations.html">Donate</a>.
-					And lastly but most important of all: use the <a href="https://man.openbsd.org">man pages</a>!
-					(<a href="https://www.sqlite.org/">SQLite</a> doesn't have its own bundled manpages: you'll need to use
-					<a href="https://github.com/kristapsdz/sqlite2mdoc">sqlite2mdoc</a><sup><a href="#footnote1">*</a></sup>.)
-				</p>
+				</div>
+			</article>
+			<article>
+				<section>
+					<h2>
+						Don't just write C.
+						Write portable and secure C.
+					</h2>
+					<p>
+						Anybody can write crappy, bug-ridden and insecure code. In any language.
+						Good news: with C, it's even easier!
+						So familiarise yourself with common (and common-sense) pitfalls noted in the 
+						<a href="https://www.securecoding.cert.org/confluence/display/c/SEI+CERT+C+Coding+Standard">SEI CERT C coding standard</a>
+						and
+						<a href="http://www.c-faq.com/">comp.lang.c FAQ</a>.
+					</p>
+					<p>
+						To encourage sharing, consider <a href="https://man.openbsd.org/style.9">style(9)</a> as a guide
+						for the style of your C code.
+						It makes a significant difference when bringing on victims^Wfellow programmers!
+					</p>
+				</section>
+				<section>
+					<h2>
+						Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
+							href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
+					</h2>
+					<p>
+						If you don't want to parse content by hand&#8212;and you really, really don't&#8212;let a
+						library do it for you.
+						Install and use <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> or <a
+							href="http://www.fastcgi.com/">fcgi</a> from <a
+							href="https://www.openbsd.org/faq/faq15.html">packages</a>.
+					</p>
+					<p>
+						<strong>Caveat emptor</strong> on FastCGI.
+						 Be careful!
+						CGI scripts run by <a
+							href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
+						already have their privileges dropped and file-system constrained.  
+						With FastCGI, you'll need to use a framework that does so for you!
+					</p>
+				</section>
+				<section>
+					<h2>
+						Get to know your security tools.
+					</h2>
+					<p>
+						OpenBSD has <a href="https://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
+						<q>Embrace the pledge.</q>
+					</p>
+					<p>
+						Your application will be under assault every moment it's running.
+						And it will have bugs: limit the damage caused by inevitable mistakes by
+						constraining (sandboxing) the environment available to your application.
+						Oh, right: there's also
+						<a href="https://man.openbsd.org/OpenBSD-current/man2/chroot.2">chroot(2)</a>,
+						dropping privileges, etc&#8230;
+					</p>
+					<p>
+						For more on these security tools, see <a
+							href="https://kristaps.bsd.lv/absdcon2017/">Secure CGI</a>.
+					</p>
+				</section>
+				<section>
+					<h2>
+						Databases: simplicity rules.
+					</h2>
+					<div class="explain">
+						<p>
+							Spend time carefully reading through the <a href="https://sqlite.org">SQLite</a> documentation.
+							For a simpler API (and some significant security features), consider using <a
+								href="https://kristaps.bsd.lv/ksql">ksql(3)</a>.
+							Most folks knee-jerk into needing the biggest Oracle or NoSQL database they can find.
+							But for most applications, it's perfectly alright to start with SQLite and
+							vanilla SQL, then slowly expand as necessary.
+							The usual path is from SQLite to <a href="https://www.postgresql.org/">PostgreSQL</a>.
+						</p>
+					</div>
+				</section>
+				<section>
+					<h2>
+						Static source testing.
+					</h2>
+					<p>
+						Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
+						(from <a href="https://www.openbsd.org/faq/faq15.html">packages</a>).
+						There's also <a href="http://www.frama-c.com/">frama-c</a> 
+						and <a href="http://www.splint.org/">splint</a>, 
+						both also in packages.
+					</p>
+					<p>
+						These static analysis tools can help catch source-level bugs.
+						An alternative compiler (LLVM) can also prevent you from relying too much on <a
+							href="https://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
+						extensions, which reduces portability.
+					</p>
+					<p>
+						If your project is open source, you can register it with <a
+							href="https://www.coverity.com">Coverity</a>, too.
+					</p>
+				</section>
+				<section>
+					<h2>
+						Dynamic source testing.
+					</h2>
+					<p>
+						Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
+							href="https://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
+						your <a
+							href="https://man.openbsd.org/OpenBSD-current/man5/malloc.conf.5">malloc.conf(5)</a>
+						flags are unforgiving.
+					</p>
+					<p>
+						Memory errors are often the subtlest (next to race conditions, maybe).
+						Use these tools as much as possible to catch any run-time issues that can't be
+						ferreted with static analysis tools.
+					</p>
+				</section>
+				<section>
+					<h2>
+						Fuzz testing.
+					</h2>
+					<p>
+						Parsing data?
+						Push your parsers into libraries and use <a
+							href="http://lcamtuf.coredump.cx/afl/">AFL</a> (from <a
+							href="https://www.openbsd.org/faq/faq15.html">packages</a>) to put them
+						through inputs you haven't tested.
+					</p>
+					<p>
+						The thought that <q>this input could never happen</q> is your adversary's favourite.
+						It <i>will</i> happen.
+						Make sure any parsing sequences are being run through as many code-paths as
+						possible with this tool.
+					</p>
+				</section>
 				<p>
 					Convinced?
 					See it <a href="easy.html">in action</a>.
 				</p>
-				<p class="footnote" id="footnote1">
-					<sup>*</sup>Disclaimer: I (<a href="https://kristaps.bsd.lv">Kristaps</a>) wrote this.
-				</p>
+			</article>
+			<article id="trailer">
+				Don't forget: BSD is a community of professionals.
+				Go to conferences (<a href="http://www.eurobsdcon.org">EuroBSDCon</a>, <a
+					href="http://www.asiasbsdcon.org">AsiaBSDCon</a>, <a href="http://www.bsdcan.org">BSDCan</a>,
+				etc.).
+				Subscribe to the <a href="https://www.openbsd.org/mail.html">mailing lists</a>.
+				<a href="https://www.openbsd.org/donations.html">Donate</a>.
+				And lastly but most important of all: use the <a href="https://man.openbsd.org">man pages</a>!
 			</article>
 			<footer>
 				<div>
-					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
-					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
+					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
 				</div>
 			</footer>
 		</section>
