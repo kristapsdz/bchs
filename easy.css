@@ -1,12 +1,17 @@
 html, body					{ margin: 0; 
 				  		  background-color: #333; }
-body						{ font-family: "Alegreya Sans", Gill Sans, Gill Sans MT, Calibri, sans-serif;
+body						{ font-family: "Alegreya Sans", sans-serif;
 						  color: #eee;
 						  font-weight: 400;
 						  font-size: 14pt; }
 header img					{ width: 60px; 
 				  		  padding-right: 10px; }
-header, nav, .slides				{ width: 60%;
+header > nav					{ display: flex; 
+						  text-align: left;
+						  font-size: 85%; }
+header > nav > :first-child			{ flex: 1; }
+header > nav > :last-child			{ font-size: 120%; }
+header, body > nav, .slides			{ width: 60%;
 						  min-width: 600px;
 						  margin-left: auto;
 						  margin-right: auto; }
@@ -16,9 +21,8 @@ header						{ padding-top: 1em;
 						  color: #888;
 						  text-shadow: 1px 0 #234; }
 header div span					{ color: #fff; }
-header div a					{ color: #bb6; 
-						  border-bottom: thin transparent; }
-header div a:hover				{ border-bottom: thin solid rgba(255, 255, 0, 0.2); }
+header div a					{ color: #bb6; }
+header div a:hover				{ color: yellow; }
 .slides						{ color: #ccc; }
 .slides .slidesinner				{ transition: margin-left 0.5s ease-in-out; }
 #slider1:checked ~ .slides .slidesinner		{ margin-left: 0; }
@@ -50,18 +54,18 @@ nav label img					{ opacity: 0.0;
 						  box-shadow: 1px 1px 4px #fff;
 						  font-family: monospace; }
 input						{ display: none; }
-nav						{ display: table; 
+body > nav					{ display: table; 
 						  margin-bottom: 10px;
 						  margin-top: 1em; }
-nav > *						{ display: table-cell;
+body > nav > *					{ display: table-cell;
 						  width: 33%; 
 						  text-align: center;
 						  vertical-align: middle; }
-nav > :first-child				{ text-align: left; }
-nav > :last-child				{ text-align: right; }
-nav img						{ width: 50px; 
+body > nav > :first-child			{ text-align: left; }
+body > nav > :last-child			{ text-align: right; }
+body > nav img					{ width: 50px; 
 						  margin-bottom: -25px; }
-nav img.long					{ width: 90px; 
+body > nav img.long				{ width: 90px; 
 						  margin-bottom: -30px; }
 h1 a						{ color: #eee; 
 						  text-shadow: 1px 0 #000; }
@@ -83,15 +87,16 @@ footer						{ text-align: center;
 						  color: #678; }
 footer a					{ color: #89a; }
 footer a:hover					{ color: #cdf; }
+
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-header, nav, .slides				{ width: 95%; 
-						  min-width: auto; }
-header						{ padding-top: 1ex;
-				  	 	  font-size: 14pt;
-						  padding-bottom: 0em; }
-h1						{ font-size: 16pt; }
-h2						{ font-size: 18pt; }
-nav img						{ display: none; }
-.slides pre					{ font-size: 9pt; }
-.slides section					{ line-height: 18pt; }
+  header, body > nav, .slides			{ width: 95%; 
+  						  min-width: auto; }
+  header					{ padding-top: 1ex;
+  				  	 	  font-size: 14pt;
+  						  padding-bottom: 0em; }
+  h1						{ font-size: 16pt; }
+  h2						{ font-size: 18pt; }
+  body > nav img				{ display: none; }
+  .slides pre					{ font-size: 9pt; }
+  .slides section				{ line-height: 18pt; }
 }
