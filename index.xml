@@ -21,7 +21,8 @@
 				<nav itemprop="breadcrumb">
 					<span><a href="tools.html">tools</a></span>
 					<span><a href="easy.html">example</a></span>
-					<span><a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a></span>
+					<span><a href="https://github.com/kristapsdz/bchs"><i class="fa fa-fw fa-github"></i></a></span>
+					<span><a href="report/index.html"><i class="fa fa-fw fa-server"></i></a></span>
 				</nav>
 			</header>
 			<article id="top">
