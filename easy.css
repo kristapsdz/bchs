@@ -10,7 +10,6 @@ header > nav					{ display: flex;
 						  text-align: left;
 						  font-size: 85%; }
 header > nav > :first-child			{ flex: 1; }
-header > nav > :last-child			{ font-size: 120%; }
 header, body > nav, .slides			{ width: 60%;
 						  min-width: 600px;
 						  margin-left: auto;
