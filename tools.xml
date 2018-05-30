@@ -25,7 +25,7 @@
 				</h1>
 				<nav>
 					<div>
-						Navigate: <a href="index.html">start</a>, <span>tools</span>, <a href="easy.html">example</a>.
+						Navigate: <a href="index.html">home</a>, <span>tools</span>, <a href="easy.html">example</a>.
 					</div>
 					<div>
 						<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-fw fa-github"></i></a>
