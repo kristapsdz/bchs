@@ -82,7 +82,7 @@
 					</nav>
 				</section>
 				<section class="paired">
-					<pre class="exemplar">% curl -sD- -o/dev/null https://www.openbsd.org
+					<pre class="exemplar">% curl -I https://www.openbsd.org
 HTTP/1.1 200 OK
 Connection: keep-alive
 Content-Length: 5181
