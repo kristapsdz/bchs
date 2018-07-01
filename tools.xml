@@ -13,6 +13,20 @@
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 		<meta name="theme-color" content="#ffffff" />
+		<script>
+			function changeEventHandler(event) {
+				if (null !== event.target.value)
+					location.href = '#sec-' + event.target.value;
+			}
+			document.addEventListener('DOMContentLoaded', function() {
+				'use strict';
+				var e;
+				e = document.getElementById('nav-select');
+				if (null !== e)
+					e.onchange = changeEventHandler;
+			}, false);
+
+		</script>
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -34,6 +48,30 @@
 				</nav>
 			</header>
 			<article id="intro">
+				<div class="desktop">
+					<div class="subnav">
+						<nav>
+							<span><a href="#sec-c">C</a></span>
+							<span><a href="#sec-cgi">Fast/CGI</a></span>
+							<span><a href="#sec-security">Security</a></span>
+							<span><a href="#sec-sqlite">SQLite</a></span>
+							<span><a href="#sec-testing">Testing</a></span>
+							<span><a href="#sec-docs">Docs</a></span>
+						</nav>
+					</div>
+				</div>
+				<div class="mobile">
+					<div class="subnav">
+						<select id="nav-select">
+							<option value="c">C</option>
+							<option value="cgi">Fast/CGI</option>
+							<option value="security">Security</option>
+							<option value="sqlite">SQLite</option>
+							<option value="testing">Testing</option>
+							<option value="docs">Docs</option>
+						</select>
+					</div>
+				</div>
 				<pre>% <a href="https://man.openbsd.org/vi.1">vi</a> main.c</pre>
 				<div>
 					You've deployed BCHS.
@@ -44,10 +82,9 @@
 				</div>
 			</article>
 			<article id="data">
-				<section>
+				<section id="sec-c">
 					<h2>
-						Don't just write C.
-						Write portable and secure C.
+						write portable and secure c
 					</h2>
 					<p>
 						Anybody can write crappy, bug-ridden and insecure code. In any language.
@@ -61,12 +98,15 @@
 						To encourage sharing, consider <a href="https://man.openbsd.org/style.9">style(9)</a> as a guide
 						for the style of your C code.
 						It makes a significant difference when bringing on victims<code>^W</code>fellow programmers!
+						Also consider portability: the more operating systems where your code works, the more folks you'll have using it.
+						Consider using <a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> or similar to
+						feature-test OpenBSD functions on other systems.
 					</p>
 				</section>
-				<section>
+				<section id="sec-cgi">
 					<h2>
-						Be familiar with <a href="https://tools.ietf.org/html/rfc3875">CGI</a> and <a
-							href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">FastCGI</a>.
+						be familiar with <a href="https://tools.ietf.org/html/rfc3875">cgi</a> and <a
+							href="http://www.fastcgi.com/devkit/doc/fcgi-spec.html">fastcgi</a>
 					</h2>
 					<p>
 						If you don't want to parse content by hand&#8212;and you really, really don't&#8212;let a
@@ -84,9 +124,9 @@
 						With FastCGI, you'll need to use a framework that does so for you!
 					</p>
 				</section>
-				<section>
+				<section id="sec-security">
 					<h2>
-						Get to know your security tools.
+						know your security tools
 					</h2>
 					<p>
 						OpenBSD has <a href="https://man.openbsd.org/OpenBSD-current/man2/pledge.2">pledge(2)</a>.
@@ -105,25 +145,28 @@
 							href="https://kristaps.bsd.lv/absdcon2017/">Secure CGI</a>.
 					</p>
 				</section>
-				<section>
+				<section id="sec-sqlite">
 					<h2>
-						Databases: simplicity rules.
+						databases: simplicity rules
 					</h2>
-					<div class="explain">
-						<p>
-							Spend time carefully reading through the <a href="https://sqlite.org">SQLite</a> documentation.
-							For a simpler API (and some significant security features), consider using <a
-								href="https://kristaps.bsd.lv/ksql">ksql(3)</a>.
-							Most folks knee-jerk into needing the biggest Oracle or NoSQL database they can find.
-							But for most applications, it's perfectly alright to start with SQLite and
-							vanilla SQL, then slowly expand as necessary.
-							The usual path is from SQLite to <a href="https://www.postgresql.org/">PostgreSQL</a>.
-						</p>
-					</div>
+					<p>
+						Spend time carefully reading through the <a href="https://sqlite.org">SQLite</a> documentation.
+						For a simpler API (and some significant security features), consider using <a
+							href="https://kristaps.bsd.lv/ksql">ksql</a>.
+						Most folks knee-jerk into needing the biggest Oracle or NoSQL database they can find.
+						But for most applications, it's perfectly alright to start with SQLite and
+						vanilla SQL, then slowly expand as necessary.
+						The usual path is from SQLite to <a href="https://www.postgresql.org/">PostgreSQL</a>.
+					</p>
+					<p>
+						If you don't fancy writing raw SQLite, there's always 
+						<a href="https://sqlitebrowser.org/">sqlitebrowser</a> and
+						<a href="http://sqliteman.yarpen.cz/">sqliteman</a>, both available as packages.
+					</p>
 				</section>
-				<section>
+				<section id="sec-testing">
 					<h2>
-						Static source testing.
+						testing: static source
 					</h2>
 					<p>
 						Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
@@ -134,9 +177,8 @@
 					</p>
 					<p>
 						These static analysis tools can help catch source-level bugs.
-						An alternative compiler (LLVM) can also prevent you from relying too much on <a
-							href="https://man.openbsd.org/OpenBSD-current/man1/c++.1">gcc(1)</a>'s
-						extensions, which reduces portability.
+						An alternative compiler (LLVM vs. gcc) can also prevent you from relying too much on 
+						compiler-specific extensions, which otherwise reduces portability.
 					</p>
 					<p>
 						If your project is open source, you can register it with <a
@@ -145,7 +187,7 @@
 				</section>
 				<section>
 					<h2>
-						Dynamic source testing.
+						testing: run-time
 					</h2>
 					<p>
 						Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
@@ -159,10 +201,17 @@
 						Use these tools as much as possible to catch any run-time issues that can't be
 						ferreted with static analysis tools.
 					</p>
+					<p>
+						For your database, there's always tools like <a href="http://sqlmap.org/">sqlmap</a> to check
+						your database connections.
+						Of course, since you're using
+						<a href="https://kristaps.bsd.lv/ksql">ksql</a> and/or raw SQL parameters, this shouldn't be an
+						issue.  Right?
+					</p>
 				</section>
 				<section>
 					<h2>
-						Fuzz testing.
+						testing: fuzziness
 					</h2>
 					<p>
 						Parsing data?
@@ -176,6 +225,31 @@
 						It <i>will</i> happen.
 						Make sure any parsing sequences are being run through as many code-paths as
 						possible with this tool.
+					</p>
+				</section>
+				<section id="sec-docs">
+					<h2>
+						documentation
+					</h2>
+					<p>
+						The strongest part of any BCHS toolchain is its documentation, particularly when using <a
+							href="https://man.openbsd.org">OpenBSD</a>.
+						In developing your application, be inspired to do the same: craft well-written manpages in <a
+							href="https://man.openbsd.org/mdoc">mdoc</a>.
+						There's even a book: <a href="https://manpages.bsd.lv/">Practical UNIX Manpages</a>.
+						Regardless, <a href="https://man.openbsd.org/mandoc">mandoc(1)</a> on your local BSD system will
+						give you plentiful feedback on your syntax.
+					</p>
+					<p>
+						Given that your application involves more than just C (such as, for example, an exported REST
+						API, you may also need to delve into the wild west of web development <q>tools</q>, such as <a
+							href="https://swagger.io/">Swagger</a> or <a href="http://json-schema.org/">JSON
+							Schema</a>.
+					</p>
+					<p>
+						For your SQLite schemas, however, there's always <a
+							href="https://kristaps.bsd.lv/sqliteconvert">sqliteconvert</a> to browse the comments of
+						your schema file.
 					</p>
 				</section>
 				<section id="last">
