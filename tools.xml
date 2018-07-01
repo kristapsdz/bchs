@@ -166,8 +166,11 @@
 				</section>
 				<section id="sec-testing">
 					<h2>
-						testing: static source
+						testing
 					</h2>
+					<h3>
+						static source
+					</h3>
 					<p>
 						Statically scan your binary with <a href="http://www.llvm.org/">LLVM</a>
 						(from <a href="https://www.openbsd.org/faq/faq15.html">packages</a>).
@@ -177,18 +180,16 @@
 					</p>
 					<p>
 						These static analysis tools can help catch source-level bugs.
-						An alternative compiler (LLVM vs. gcc) can also prevent you from relying too much on 
+						An alternative compiler (clang vs. gcc) can also prevent you from relying too much on 
 						compiler-specific extensions, which otherwise reduces portability.
 					</p>
 					<p>
 						If your project is open source, you can register it with <a
 							href="https://www.coverity.com">Coverity</a>, too.
 					</p>
-				</section>
-				<section>
-					<h2>
-						testing: run-time
-					</h2>
+					<h3>
+						run-time
+					</h3>
 					<p>
 						Run your application under <a href="http://valgrind.org/">valgrind</a> (from <a
 							href="https://www.openbsd.org/faq/faq15.html">packages</a>) and make sure
@@ -208,11 +209,9 @@
 						<a href="https://kristaps.bsd.lv/ksql">ksql</a> and/or raw SQL parameters, this shouldn't be an
 						issue.  Right?
 					</p>
-				</section>
-				<section>
-					<h2>
-						testing: fuzziness
-					</h2>
+					<h3>
+						fuzziness
+					</h3>
 					<p>
 						Parsing data?
 						Push your parsers into libraries and use <a
