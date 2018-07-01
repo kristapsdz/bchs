@@ -40,6 +40,10 @@
 					Don't care for talk?
 					<a href="easy.html">See an easy example</a>.
 				</p>
+				<p>
+					<strong>New</strong>: looking to hire BCHS developers?
+					Try <a href="https://bsdjobs.com">BSDjobs.com</a>.
+				</p>
 			</article>
 			<article id="start">
 				<header>
@@ -125,22 +129,24 @@ Server: <span>OpenBSD httpd</span></pre>
 			</article>
 			<article class="interstice">
 				<p class="main">
-					BCHS is a stable, developer-oriented platform for operating in hostile environments.
+					BCHS is a stable, developer-oriented platform.
 				</p>
 				<p>
 					Get used to minimalism and security: componentised, privilege-separated binaries in file-system jails.
-					Most of all, forget your LAMP instincts to desperately search Google and StackExchange for every
-					parameter and function call: man pages and <q><code>-Wall -Wextra</code></q> are your new best friends.
+					Most of all, forget your instincts to search Google and StackExchange for every parameter and function
+					call: man pages are your new best friend.
 				</p>
-				<pre>% apropos khttp_parse
-<a href="https://kristaps.bsd.lv/kcgi/khttp_parse.3.html">khttp_parse</a>, <a href="https://kristaps.bsd.lv/kcgi/khttp_parse.3.html">khttp_parsex</a>(3) - parse a CGI instance for kcgi</pre>
 			</article>
 			<article id="news">
 				<header>
-					<h3>Articles, conference talks&#8230;</h3>
+					<h3>Articles, events, conference talks&#8230;</h3>
 					<p>have more links?  <a href="https://github.com/kristapsdz/bchs">let us know</a>.</p>
 				</header>
 				<ul>
+					<li>
+						<span><a href="https://marc.info/?t=153019462600004&r=1&w=2">SQLite3 manpages</a> on OpenBSD</span>
+						<span class="src">2018/06</span>
+					</li>
 					<li>
 						<span><a href="auditing.html">Role audits</a> with kwebapp</span>
 						<span class="src">2018/03</span>
