@@ -111,13 +111,14 @@
 					<p>
 						If you don't want to parse content by hand&#8212;and you really, really don't&#8212;let a
 						library do it for you.
-						Install and use <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> or <a
+						Install and use <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, 
+						<a href="https://kore.io/">kore</a>, or basic <a
 							href="http://www.fastcgi.com/">fcgi</a> from <a
 							href="https://www.openbsd.org/faq/faq15.html">packages</a>.
 					</p>
 					<p>
 						<strong>Caveat emptor</strong> on FastCGI.
-						 Be careful!
+						Be careful!
 						CGI scripts run by <a
 							href="https://man.openbsd.org/OpenBSD-current/man8/slowcgi.8">slowcgi(8)</a>
 						already have their privileges dropped and file-system constrained.  
