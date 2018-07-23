@@ -31,8 +31,8 @@
 				</div>
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p itemprop="description">
-					BCHS (pronounced /biːtʃəz/, <i>beaches</i>) is for real development.
-					It's a hipster-free, <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
+					BCHS is for real development.
+					It's an <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
 					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a> and get to work.
 				</p>
@@ -48,7 +48,7 @@
 			<article id="start">
 				<header>
 					<h3>Stack components</h3>
-					<p>why bchs? because the open internet is damn inhospitable.</p>
+					<p>why bchs? because the open internet is inhospitable.</p>
 				</header>
 				<section class="paired">
 					<figure class="exemplar">
@@ -194,14 +194,31 @@ Server: <span>OpenBSD httpd</span></pre>
 				</ul>
 			</article>
 			<article class="interstice2">
-				<p class="main">
-					Is BCHS a joke?
-					No.  
-				</p>
-				<p>
-					Software development is full of jokes.
-					This is not one of them.
-				</p>
+				<header>
+					<h3>FAQ</h3>
+					<p>questions from the internet.</p>
+				</header>
+				<dl>
+					<dt>Is BCHS a joke?</dt>
+					<dd>
+						Software development is full of jokes. 
+						This is not one of them. 
+					</dd>
+					<dt>How do I pronounce <q>BCHS</q>?</dt>
+					<dd>
+						It's pronounced /biːtʃəz/, <i>beaches</i>.
+						Or just Bee See Aich Ess.
+					</dd>
+					<dt>How can I hire BCHS developers?</dt>
+					<dd>
+						Try <a href="https://bsdjobs.com">BSDjobs.com</a>.
+					</dd>
+					<dt>Wasn't this site once funnier?</dt>
+					<dd>
+						Yes.
+						But some folks confused humour with levity.
+					</dd>
+				</dl>
 			</article>
 			<footer>
 				<p>
