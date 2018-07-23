@@ -16,7 +16,8 @@
 		<script>
 			function changeEventHandler(event) {
 				if (null !== event.target.value)
-					location.href = '#sec-' + event.target.value;
+					if (event.target.value.length)
+						location.href = '#sec-' + event.target.value;
 			}
 			document.addEventListener('DOMContentLoaded', function() {
 				'use strict';
@@ -63,6 +64,7 @@
 				<div class="mobile">
 					<div class="subnav">
 						<select id="nav-select">
+							<option value="">Jump to&#8230;</option>
 							<option value="c">C</option>
 							<option value="cgi">Fast/CGI</option>
 							<option value="security">Security</option>

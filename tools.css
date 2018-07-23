@@ -96,7 +96,7 @@ section + section		{ margin-top: 8rem; }
 				  margin-top: 1rem; }
 
 @media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
-  article, header	{ padding-left: 10%;
+  article, header		{ padding-left: 10%;
 	  			  padding-right: 10%; }
 }
 
@@ -104,9 +104,10 @@ section + section		{ margin-top: 8rem; }
   body				{ font-size: 13pt; }
   header			{ padding-top: 4em; }
   header h1			{ font-size: 180%; }
-  article, header	{ padding-left: 2%;
+  article, header		{ padding-left: 2%;
 	  			  padding-right: 2%; }
   .mobile			{ display: block; }
   .desktop			{ display: none; }
+  #last				{ text-align: center; }
 }
 
