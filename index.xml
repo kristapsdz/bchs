@@ -31,14 +31,14 @@
 				</div>
 				<h2>BSD, C, httpd, SQLite.</h2>
 				<p itemprop="description">
-					BCHS is for real development.
-					It's an <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
+					BCHS is an <a href="https://www.openbsd.org/policy.html">open source</a> software stack for web
 					applications.
-					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a> and get to work.
+					To prepare a BCHS environment, install <a href="https://www.openbsd.org">OpenBSD</a>, start your editor
+					of choice, and get to work.
 				</p>
 				<p>
-					Don't care for talk?
-					<a href="easy.html">See an easy example</a>.
+					How does a BCHS system look?
+					<a href="easy.html">See a trivial example</a>.
 				</p>
 				<p>
 					<strong>New</strong>: looking to hire BCHS developers?
