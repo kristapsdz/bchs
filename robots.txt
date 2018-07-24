@@ -1,0 +1,3 @@
+Sitemap: https://learnbchs.org/sitemap.xml
+User-agent: *
+Disallow: /report/
