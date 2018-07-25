@@ -7,14 +7,12 @@ body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-size: 14pt; }
 a						{ text-decoration: none; 
 						  color: #0575BD; }
-.literal					{ color: darkred; }					
 body > section > nav a				{ color: rgba(5, 117, 189, 0.5); }
 body > section > nav a:hover			{ color: rgba(5, 117, 189, 0.9); }
 body > section > nav				{ width: 50%;
-						  font-size: 13pt;
 						  margin: 0 auto;
 						  padding-top: 1em; 
-						  color: rgba(0, 0, 0, 0.5);
+						  color: rgba(0, 0, 0, 0.7);
 						  padding-bottom: 2em; }
 body > section > header				{ width: 50%;	
 						  padding-top: 1.5em;
@@ -26,8 +24,7 @@ body > section > header				{ width: 50%;
 						  display: -webkit-flex;
 						  align-items: flex-end;
 						  -webkit-align-items: flex-end; }
-body > section > header nav a			{ color: #000; 
-						  font-size: 14pt; }
+body > section > header nav a			{ color: #000; }
 body > section > header nav a span		{ border-bottom: thin transparent; }
 body > section > header nav a:hover		{ color: #000;  }
 body > section > header nav a:hover span	{ border-bottom: thin solid #0575BD; }
@@ -40,13 +37,26 @@ body > section > header h1 a			{ color: inherit;
 						  text-shadow: 1px 1px 1px transparent; }
 body > section > header h1 a:hover		{ text-shadow: 0px 1px 1px #aaa; }
 body > section > header h1			{ font-size: 24pt;
-						  font-weight: 400;
+						  font-weight: 500;
 						  flex: 1;
 						  line-height: 22pt;
 						  margin: 0;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
+h3						{ font-weight: 500; 
+						  font-variant: small-caps;
+						  margin: 2em auto;
+						  text-align: center;
+						  font-size: 130%; }
+footer						{ text-align: center;
+						  padding-top: 1em;
+						  padding-bottom: 1em;
+						  font-size: smaller;
+						  color: #678; }
+footer a					{ color: #89a; }
+footer a:hover					{ color: #456; }
 
+.literal					{ color: darkred; }					
 body > section > article > header		{ width: 50%;
 						  margin: 0 auto; }
 body > section > article > section		{ padding: 0 25%; }
@@ -55,16 +65,6 @@ h2						{ font-weight: 400;
 						  color: #888;
 						  font-size: 250%; }
 h2 span						{ color: #333; }
-h3						{ font-weight: 500; 
-						  color: #666;
-					  	  font-size: 175%; }
-footer						{ text-align: center;
-						  padding-top: 1em;
-						  padding-bottom: 1em;
-						  font-size: smaller;
-						  color: #678; }
-footer a					{ color: #89a; }
-footer a:hover					{ color: #456; }
 .tldr						{ font-size: larger; }
 strong, b					{ font-weight: 700; }
 pre.prettyprint					{ border: none; 
@@ -80,7 +80,6 @@ body > section > header				{ width: 90%; }
 body > section > article > header		{ width: 90%; }
 body > section > article > section		{ padding: 0 5%; }
 h2						{ font-size: 175%; }
-h3						{ font-size: 140%; }
 pre						{ font-size: 11pt; }
 body > section > header h1			{ margin: 0 4pt; }
 body > section > nav				{ text-align: center; }

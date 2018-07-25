@@ -85,7 +85,7 @@
 						Enter <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>'s new API provisioning facility.
 					</p>
 					<h3>
-						What is kwebapp?
+						what is kwebapp
 					</h3>
 					<p>
 						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is a system that uses a configuration file
@@ -173,7 +173,7 @@ struct user *db_user_get_creds
 						since version 0.3.0.
 					</p>
 					<h3>
-						What can go wrong?
+						what can go wrong
 					</h3>
 					<p>
 						First, exposure to data.
@@ -201,7 +201,7 @@ struct user *db_user_get_creds
 						How could I have caught this sooner?
 					</p>
 					<h3>
-						Enter RBAC.
+						enter rbac
 					</h3>
 					<p>
 						With a sandbox like <a href="https://man.openbsd.org/pledge.2">pledge(2)</a>, I can stipulate
@@ -304,7 +304,7 @@ struct session {
 						You can read all about the RBAC facilities in <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>.
 					</p>
 					<h3>
-						The API.
+						the api
 					</h3>
 					<p>
 						Little needs to change in your system's API.
@@ -337,7 +337,7 @@ struct session {
 							href="rbac-ex2.h.html">C header file</a> for yourself.
 					</p>
 					<h3>
-						What's next?
+						what's next
 					</h3>
 					<p>
 						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is designed to be a small system, so there
@@ -389,7 +389,7 @@ struct user {
 						It might be helpful to allow, for example, <code class="prettyprint">search all</code> to stipulate all search functions.
 					</p>
 					<h3>
-						Acknowledgements
+						acknowledgements
 					</h3>
 					<p>
 						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests

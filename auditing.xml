@@ -139,7 +139,7 @@
 						large application, how can we know which roles can access which data?
 					</p>
 					<h3>
-						Introducing roles
+						introducing roles
 					</h3>
 					<p>
 						Enforcing role-based access control in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is
@@ -198,7 +198,7 @@
 						Fortunately, there's a tool to make sure this doesn't happen.
 					</p>
 					<h3>
-						Auditing roles
+						auditing roles
 					</h3>
 					<p>
 						Audits are a way for developers, managers, and, well, auditors to trace who has access to what.
@@ -247,7 +247,7 @@
 						We can clearly see the linkage between exported entries.
 					</p>
 					<h3>
-						Acknowledgements
+						acknowledgements
 					</h3>
 					<p>
 						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests

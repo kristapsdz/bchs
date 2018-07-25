@@ -33,36 +33,39 @@ body > section > header nav a + a		{ border-left: thin solid #888;
 						  margin-left: 4pt; }
 body > section > header img			{ height: 22pt; 
 						  margin-bottom: 1pt; }
-article a					{ border-bottom: thin solid #0575BD; }
-article > header				{ width: 50%;
-						  margin: 0 auto; }
-article > header .intro				{ font-size: larger; }
-article > section				{ padding: 0 25%; }
-h1 a						{ color: inherit; 
+body > section > header h1 a			{ color: inherit; 
 						  text-shadow: 1px 1px 1px transparent; }
-h1 a:hover					{ text-shadow: 0px 1px 1px #aaa; }
-h1						{ font-size: 24pt;
+body > section > header h1 a:hover		{ text-shadow: 0px 1px 1px #aaa; }
+body > section > header h1			{ font-size: 24pt;
 						  font-weight: 500;
-						  line-height: 22pt;
 						  flex: 1;
+						  line-height: 22pt;
 						  margin: 0;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
-h2						{ font-weight: 500;
-						  text-align: left;
-						  width: auto;
-						  text-shadow: 0px 0px 1px #000; 
-						  font-size: 64pt; }
 h3						{ font-weight: 500; 
-						  font-size: 16pt; }
-a						{ text-decoration: none; }
+						  font-variant: small-caps;
+						  margin: 2em auto;
+						  text-align: center;
+						  font-size: 130%; }
 footer						{ text-align: center;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
 						  font-size: smaller;
 						  color: #678; }
-footer a					{ color: #89a; }
-footer a:hover					{ color: #456; }
+
+article a					{ border-bottom: thin solid #0575BD; }
+article > header				{ width: 50%;
+						  margin: 0 auto; }
+article > header .intro				{ font-size: larger; }
+article > section				{ padding: 0 25%; }
+
+h2						{ font-weight: 500;
+						  text-align: center;
+						  width: auto;
+						  text-shadow: 0px 0px 1px #000; 
+						  font-size: 64pt; }
+a						{ text-decoration: none; }
 figure						{ margin: 1em 0;
 						  padding: 0;
 						  text-align: center; }
@@ -82,7 +85,7 @@ article > section				{ padding: 0 5%; }
 figure img					{ width: 100%; }
 h2						{ font-size: 36pt; 
 					  	  text-align: center; }
-h1						{ margin: 0 4pt; }
+body > section > header h1			{ margin: 0 4pt; }
 body > section > nav				{ width: 90%; }
 body > section > nav				{ text-align: center; }
 }
