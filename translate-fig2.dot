@@ -1,0 +1,20 @@
+
+digraph {
+	bgcolor="transparent";
+
+	labelen [label="jslabel.en \"foo\""];
+	labelfr [label="jslabel.fr \"le foo\""];
+
+	labelen -> config;
+	labelfr -> config;
+
+	config [label="kwebapp(5)"];
+	config2 [label="kwebapp-javascript(1)"];
+	js [label="javascript"];
+	htmlen [label="<html lang=\"en\">"]
+	htmlfr [label="<html lang=\"fr\">"]
+
+	config -> config2 -> js;
+	htmlen -> js[dir="both"];
+	htmlfr -> js[dir="both"];
+}

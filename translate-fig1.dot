@@ -1,0 +1,18 @@
+digraph {
+	bgcolor="transparent";
+
+	config [label="kwebapp(5)"];
+	kxliff [label="kwebapp-xliff(1)"];
+	xliff [label="xliff 1.2"];
+	config2 [label="kwebapp-javascript(1)"];
+	js [label="javascript"];
+	translator [label="translator"];
+	htmlen [label="<html lang=\"en\">"]
+	htmlfr [label="<html lang=\"fr\">"]
+
+	config -> kxliff -> xliff -> config2 -> js;
+	config -> config2;
+	xliff -> translator[dir="both"];
+	htmlen -> js[dir="both"];
+	htmlfr -> js[dir="both"];
+}

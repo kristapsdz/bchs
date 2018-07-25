@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>le BCHS: traduisons !</title>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="kwebapp.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="theme-color" content="#ffffff" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav class="subnav">
+				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				<a href="kwebapp.html">introduction</a>, 
+				<a href="rbac.html">RBAC</a>,
+				<a href="auditing.html">role audits</a>
+			</nav>
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<header>
+					<p>
+						How it usually works: build  <a
+							href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> configuration and
+						application logic, test, run, profit.
+						Then, one day, check your server logs and see dropped transactions tied to un-satisfied
+						<code>Accept-Language</code> HTTP headers.
+						Dropped transactions = lost revenue.
+						Time to translate!
+					</p>
+					<p>
+						So what are the tools fitting into our <a href="index.html">BCHS</a> stack?
+					</p>
+				</header>
+				<section>
+					<h3>
+						back-end translation
+					</h3>
+					<p>
+						C source translation has a well-known toolchain, usually based on <a
+							href="https://www.gnu.org/software/gettext/">gettext</a> and one of many translation
+						managers (e.g., <a href="https://www.kde.org/applications/development/lokalize/">lokalize</a>).
+						But what do we do about <code>jslabel</code> strings in our <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a> configuration
+						files?
+					</p>
+					<p>
+						Since version 0.5.1, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> has had support for
+						multi-language representation of exported strings.
+						Exported strings are <code>jslabel</code> declarations for enumeration and bitfield items that the <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+						interface uses to format numerical values as human-readable text.
+						It's handy to manage this in our configuration file because numerical values change and
+						enumerations are augmented over time.
+					</p>
+					<p>
+						For example, we might want to format the enumeration value <var>2</var> of a nationality as
+						<q>Latvia</q> when filling a user entry in the DOM tree.
+						The whole process is documented in <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html#Enumeration_and_Bitfield_Labels">Enumeration
+							and Bitfield Labels</a>.
+					</p>
+					<figure>
+						<img src="translate-fig2.svg" alt="" />
+						<figcaption>
+							Merging in-band XLIFF translations for multi-language front-ends.
+						</figcaption>
+					</figure>
+					<p>
+						As of 0.5.2, a new tool, <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-xliff.1.html">kwebapp-xliff(1)</a>, allows
+						for out-of-band translation, keeping your configuration nice and tidy.
+						XLIFF is an industry-standard tool for maintaining translation dictionaries, and works with most
+						open- and closed-source translation systems.
+					</p>
+					<figure>
+						<img src="translate-fig1.svg" alt="" />
+						<figcaption>
+							Merging out-of-band XLIFF translations for multi-language front-ends.
+						</figcaption>
+					</figure>
+					<p>
+						This workflow allows you to manage your XLIFF files in any way you'd like&#8212;usually as
+						dictated by your translator or translation service.
+					</p>
+					<h3>
+						front-end translation
+					</h3>
+					<p>
+						What about the HTML5 front-end material?
+						Given that they have the most text to translate, it stands to reason that we should spend the
+						most time thinking about them.
+					</p>
+				</section>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+

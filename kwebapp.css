@@ -12,7 +12,7 @@ body > section > nav a:hover			{ color: rgba(5, 117, 189, 0.9); }
 body > section > nav				{ width: 50%;
 						  margin: 0 auto;
 						  padding-top: 1em; 
-						  color: rgba(0, 0, 0, 0.5);
+						  color: rgba(0, 0, 0, 0.7);
 						  padding-bottom: 2em; }
 body > section > header				{ width: 50%;	
 						  padding-top: 1.5em;
@@ -67,11 +67,12 @@ figure						{ margin: 1em 0;
 						  padding: 0;
 						  text-align: center; }
 figure img					{ width: 60%; }
+figure img.narrow				{ max-width: 350px; }
 figcaption					{ font-size: 12pt; 
-						  color: #ccc; }
+						  color: #666; }
 blockquote					{ margin-bottom: 0; }
 code						{ font-family: monospace;
-						  font-size: 12pt; }
+						  font-size: 80%; }
 code, pre					{ overflow: hidden; }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {

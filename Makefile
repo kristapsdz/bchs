@@ -9,7 +9,8 @@ PAGES		 = auditing.html \
 		   kwebapp.html \
 		   pledge.html \
 		   rbac.html \
-		   tools.html
+		   tools.html \
+		   translate.html
 CSSS		 = audit.css \
 		   easy.css \
 		   index.css \
@@ -65,7 +66,9 @@ IMAGES		 = auditing-fig1.svg \
 		   rbac-fig1.svg \
 		   rbac-fig2.svg \
 		   rbac-fig3.svg \
-		   rbac-fig4.svg
+		   rbac-fig4.svg \
+		   translate-fig1.svg \
+		   translate-fig2.svg
 BUILT		 = audit.js \
 		   arrow-left.png \
 		   arrow-right-long.png \
@@ -89,6 +92,8 @@ www: $(PAGES)
 
 .gnuplot.png:
 	gnuplot $<
+
+translate.html: translate-fig1.svg translate-fig2.svg
 
 pledge-fig3.png: pledge-fig3.dat
 
