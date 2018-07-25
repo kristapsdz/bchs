@@ -2,8 +2,8 @@
 digraph {
 	bgcolor="transparent";
 
-	labelen [label="jslabel.en \"foo\""];
-	labelfr [label="jslabel.fr \"le foo\""];
+	labelen [label="jslabel.en \"Latvia\""];
+	labelfr [label="jslabel.lv \"Latvija\""];
 
 	labelen -> config;
 	labelfr -> config;
@@ -12,7 +12,7 @@ digraph {
 	config2 [label="kwebapp-javascript(1)"];
 	js [label="javascript"];
 	htmlen [label="<html lang=\"en\">"]
-	htmlfr [label="<html lang=\"fr\">"]
+	htmlfr [label="<html lang=\"lv\">"]
 
 	config -> config2 -> js;
 	htmlen -> js[dir="both"];

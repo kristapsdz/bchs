@@ -6,10 +6,10 @@ digraph {
 	bin2 [label="sintl -j"];
 
 	xliffen [label="xliff (en)", style="filled", fillcolor="blue", fontcolor="white"];
-	xlifffr [label="xliff (fr)", style="filled", fillcolor="blue", fontcolor="white"];
+	xlifffr [label="xliff (lv)", style="filled", fillcolor="blue", fontcolor="white"];
 
 	htmlen [label="<html lang=\"en\">"]
-	htmlfr [label="<html lang=\"fr\">"]
+	htmlfr [label="<html lang=\"lv\">"]
 
 	config -> bin;
 	bin -> xliffen;

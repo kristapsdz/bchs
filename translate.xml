@@ -88,7 +88,13 @@
 						</figcaption>
 					</figure>
 					<p>
-						As of 0.5.2, a new tool, <a
+						This is all good and well, but it has a big flaw: the translator (or translation utility) must
+						have knowledge of the <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>
+						file format.
+						This is fine for one-off translations that may be merged by a developer, but doesn't scale.
+					</p>
+					<p>
+						So as of 0.5.2, a new tool, <a
 							href="https://kristaps.bsd.lv/kwebapp/kwebapp-xliff.1.html">kwebapp-xliff(1)</a>, allows
 						for <em>out-of-band</em> translation, keeping your configuration nice and tidy.
 						XLIFF is an industry-standard tool for maintaining translation dictionaries, and works with most

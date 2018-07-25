@@ -3,16 +3,23 @@ digraph {
 
 	config [label="kwebapp(5)"];
 	kxliff [label="kwebapp-xliff(1)"];
-	xliff [label="xliff 1.2", style="filled", fillcolor="blue", fontcolor="white"];
+	xliffen [label="xliff (en)", style="filled", fillcolor="blue", fontcolor="white"];
+	xlifflv [label="xliff (lv)", style="filled", fillcolor="blue", fontcolor="white"];
 	config2 [label="kwebapp-javascript(1)"];
 	js [label="javascript"];
-	translator [label="translator"];
 	htmlen [label="<html lang=\"en\">"]
-	htmlfr [label="<html lang=\"fr\">"]
+	htmlfr [label="<html lang=\"lv\">"]
 
-	config -> kxliff -> xliff -> config2 -> js;
+	config -> kxliff;
+	kxliff -> xliffen;
+	kxliff -> xlifflv;
+
+	xliffen -> config2;
+	xlifflv -> config2;
+
+	config2 -> js;
+
 	config -> config2;
-	xliff -> translator[dir="both"];
 	htmlen -> js[dir="both"];
 	htmlfr -> js[dir="both"];
 }
