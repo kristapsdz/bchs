@@ -108,6 +108,35 @@
 						Given that they have the most text to translate, it stands to reason that we should spend the
 						most time thinking about them.
 					</p>
+					<p>
+						There already exist several tools that are purpose-built for XML documents, amont them <a
+							href="https://freedesktop.org/wiki/Software/intltool/">intltool</a>.
+						However, our toolchain is designed to work with XLIFF files.
+						(The  <a href="https://freedesktop.org/wiki/Software/intltool/">intltool</a> suite works with <a
+							href="https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html">PO</a>
+						files.)
+						Enter <a href="https://kristaps.bsd.lv/sintl">sintl</a>, which works specifically with HTML5
+						documents and XLIFF.
+						It completes the tool-chain for the HTML5 aspect.
+					</p>
+					<figure>
+						<img class="narrow" src="translate-fig3.svg" alt="" />
+						<figcaption>
+							Creating and merging out-of-band XLIFF translations.
+						</figcaption>
+					</figure>
+					<p>
+						By pairing these two strategies, your <a href="index.html">BCHS</a> web application can have
+						full out-of-band translation, leaving you to develop your templates and application logic,
+						leaving the translations to the translators.
+					</p>
+					<h3>
+						acknowledgements
+					</h3>
+					<p>
+						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
+						serves the community as open source.
+					</p>
 				</section>
 			</article>
 			<footer>

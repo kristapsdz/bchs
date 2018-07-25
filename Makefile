@@ -68,7 +68,8 @@ IMAGES		 = auditing-fig1.svg \
 		   rbac-fig3.svg \
 		   rbac-fig4.svg \
 		   translate-fig1.svg \
-		   translate-fig2.svg
+		   translate-fig2.svg \
+		   translate-fig3.svg
 BUILT		 = audit.js \
 		   arrow-left.png \
 		   arrow-right-long.png \
@@ -93,7 +94,12 @@ www: $(PAGES)
 .gnuplot.png:
 	gnuplot $<
 
-translate.html: translate-fig1.svg translate-fig2.svg
+TRANSLATE_DEPS = \
+	translate-fig1.svg \
+	translate-fig2.svg \
+	translate-fig3.svg
+
+translate.html: $(TRANSLATE_DEPS)
 
 pledge-fig3.png: pledge-fig3.dat
 

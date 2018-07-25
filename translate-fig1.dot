@@ -3,7 +3,7 @@ digraph {
 
 	config [label="kwebapp(5)"];
 	kxliff [label="kwebapp-xliff(1)"];
-	xliff [label="xliff 1.2"];
+	xliff [label="xliff 1.2", style="filled", fillcolor="blue", fontcolor="white"];
 	config2 [label="kwebapp-javascript(1)"];
 	js [label="javascript"];
 	translator [label="translator"];
