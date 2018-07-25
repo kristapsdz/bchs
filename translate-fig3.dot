@@ -18,6 +18,8 @@ digraph {
 	xliffen -> bin2;
 	xlifffr -> bin2;
 
+	config -> bin2;
+
 	bin2 -> htmlen;
 	bin2 -> htmlfr;
 }

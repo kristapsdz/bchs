@@ -64,7 +64,7 @@
 					</p>
 					<p>
 						Since version 0.5.1, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> has had support for
-						multi-language representation of exported strings.
+						<em>in-band</em> multi-language representation of exported strings.
 						Exported strings are <code>jslabel</code> declarations for enumeration and bitfield items that the <a
 							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
 						interface uses to format numerical values as human-readable text.
@@ -74,6 +74,9 @@
 					<p>
 						For example, we might want to format the enumeration value <var>2</var> of a nationality as
 						<q>Latvia</q> when filling a user entry in the DOM tree.
+						But if the HTML5 page registers itself as <code>&lt;html lang="lv"&gt;</code>, it should instead
+						show <q>Latvija</q>.
+						We then use the <code>jslabel.lv</code> notation for these translations.
 						The whole process is documented in <a
 							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html#Enumeration_and_Bitfield_Labels">Enumeration
 							and Bitfield Labels</a>.
@@ -81,15 +84,17 @@
 					<figure>
 						<img src="translate-fig2.svg" alt="" />
 						<figcaption>
-							Merging in-band XLIFF translations for multi-language front-ends.
+							Merging in-band translations for multi-language front-ends.
 						</figcaption>
 					</figure>
 					<p>
 						As of 0.5.2, a new tool, <a
 							href="https://kristaps.bsd.lv/kwebapp/kwebapp-xliff.1.html">kwebapp-xliff(1)</a>, allows
-						for out-of-band translation, keeping your configuration nice and tidy.
+						for <em>out-of-band</em> translation, keeping your configuration nice and tidy.
 						XLIFF is an industry-standard tool for maintaining translation dictionaries, and works with most
 						open- and closed-source translation systems.
+						It's documented as <a href="http://docs.oasis-open.org/xliff/xliff-core/xliff-core.html">XLIFF
+							Version 1.2</a>.
 					</p>
 					<figure>
 						<img src="translate-fig1.svg" alt="" />
@@ -100,6 +105,12 @@
 					<p>
 						This workflow allows you to manage your XLIFF files in any way you'd like&#8212;usually as
 						dictated by your translator or translation service.
+						The XLIFF files themselves are usually simply part of your sources and work with your BCHS
+						system as directed by <code>make(1)</code>.
+						Usually, the XLIFF files are initially derived from the source configuration, translated, then
+						merged back in.
+						The post-merge configuration is then passed to <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>.
 					</p>
 					<h3>
 						front-end translation
@@ -117,7 +128,10 @@
 							href="https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html">PO</a>
 						files.)
 						Enter <a href="https://kristaps.bsd.lv/sintl">sintl</a>, which works specifically with HTML5
-						documents and XLIFF.
+						documents and XLIFF, specifically deriving from the
+						<a
+							href="http://docs.oasis-open.org/xliff/v1.2/xliff-profile-html/xliff-profile-html-1.2-cd02.html">XLIFF
+							1.2 Representation Guide for HTML</a>.
 						It completes the tool-chain for the HTML5 aspect.
 					</p>
 					<figure>
