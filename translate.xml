@@ -21,7 +21,8 @@
 				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
-				<a href="auditing.html">role audits</a>
+				<a href="auditing.html">role audits</a>,
+				<a href="translate.html">translation</a>
 			</nav>
 			<header>
 				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
