@@ -2,9 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-	<url><loc>https://learnbchs.org/index.html</loc></url>
+	<url><loc>https://learnbchs.org/atom.xml</loc></url>
 	<url><loc>https://learnbchs.org/auditing.html</loc></url>
 	<url><loc>https://learnbchs.org/easy.html</loc></url>
+	<url><loc>https://learnbchs.org/index.html</loc></url>
 	<url><loc>https://learnbchs.org/index.html</loc></url>
 	<url><loc>https://learnbchs.org/json.html</loc></url>
 	<url><loc>https://learnbchs.org/ksql.html</loc></url>
@@ -12,5 +13,5 @@
 	<url><loc>https://learnbchs.org/pledge.html</loc></url>
 	<url><loc>https://learnbchs.org/rbac.html</loc></url>
 	<url><loc>https://learnbchs.org/tools.html</loc></url>
-	<url><loc>https://learnbchs.org/atom.xml</loc></url>
+	<url><loc>https://learnbchs.org/translate.html</loc></url>
 </urlset>
