@@ -144,7 +144,11 @@ Server: <span>OpenBSD httpd</span></pre>
 				</header>
 				<ul>
 					<li>
-						<span><a href="https://marc.info/?t=153019462600004&r=1&w=2">SQLite3 manpages</a> on OpenBSD</span>
+						<span><a href="translate.html">Translation</a> with <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>.</span>
+						<span class="src">2018/07</span>
+					</li>
+					<li>
+						<span><a href="https://marc.info/?t=153019462600004&amp;r=1&amp;w=2">SQLite3 manpages</a> on OpenBSD</span>
 						<span class="src">2018/06</span>
 					</li>
 					<li>
