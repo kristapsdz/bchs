@@ -34,7 +34,7 @@
 						<span>why</span> <span>pledge(2)</span>
 					</h2>
 					<div>
-						&hellip; or, how I learned to love web application sandboxing
+						&#8230; or, how I learned to love web application sandboxing
 					</div>
 				</header>
 				<section>
@@ -50,7 +50,7 @@
 								href="http://man7.org/linux/man-pages/man3/seccomp_init.3.html">libseccomp(3)</a>)
 							on Linux.
 							Then there was <a
-								href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a>
+								href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a>
 							on FreeBSD and <a
 								href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/sandbox_init.3.html">sandbox_init(3)</a>
 							on Mac OS X.
@@ -140,7 +140,7 @@
 						</ol>
 					</div>
 					<p>
-						For <a href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a>, the
+						For <a href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a>, the
 						challenge is no less difficult.
 						To see these in action, navigate no further than <a href="https://www.openssh.com/">OpenSSH</a>,
 						which interfaces with these sandboxes:
@@ -183,7 +183,7 @@
 						<del>The NSA's deliberate work to keep systems insecure.</del>
 						Capabilities systems like <a
 							href="http://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp(2)</a> and <a
-							href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4">capsicum(4)</a> need
+							href="https://www.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a> need
 						to be as flexible as possible to allow your application to sandbox any of the things it might
 						[not] need to do.
 						So every system call needs to be covered, and every argument to those system calls needs to be
