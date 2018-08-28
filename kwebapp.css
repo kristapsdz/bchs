@@ -76,7 +76,9 @@ figcaption					{ font-size: 12pt;
 blockquote					{ margin-bottom: 0; }
 code						{ font-family: monospace;
 						  font-size: 80%; }
-code, pre					{ overflow: hidden; }
+code, pre					{ overflow: hidden; 
+						  font-size: 11pt; }
+pre.prettyprint					{ border: 0; }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
 body > section > header				{ width: 90%; }
