@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS: ecce typescript</title>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="kwebapp.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="theme-color" content="#ffffff" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav class="subnav">
+				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				<a href="kwebapp.html">introduction</a>, 
+				<a href="rbac.html">RBAC</a>,
+				<a href="auditing.html">role audits</a>,
+				<a href="translate.html">translation</a>
+			</nav>
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<section>
+					<p>
+						<a href="https://www.typescriptlang.org/">TypeScript</a>, if you haven't heard of it, is a way
+						of adding <i>types</i> to otherwise dynamically-typed JavaScript objects.
+						This allows developers to statically check for type violations (number vs. string, unknown
+						functions, nonexistence members, etc.) instead of resorting to painstaking run-time tests.
+					</p>
+					<pre class="prettyprint">/* Variables: */
+var foo; 
+/* versus the typed... */
+let foo: string; /* typed variable */
+
+/* And functions: */
+function bar(str, num) { return false; }
+/* versus the typed... */
+function bar(str: string, num: number): boolean { return false; }
+
+/* JavaScript?  Ok.  TypeScript? No. */
+bar(foo, foo);</pre>
+					<p>
+						The <code>tsc</code> <q>transpiler</q> translates the TypeScript to JavaScript, making sure that
+						types are consistent along the way.
+						On OpenBSD, the <code>tsc</code> utility must be indirectly installed from <code>npm</code>,
+						which is available from the <code>node</code> package.
+					</p>
+					<p>
+						Anyway, TypeScript's typing offers more safety than plain JavaScript; and in the desert of
+						front-end development, any water is sacred.
+						Moreover, JavaScript and TypeScript can be mixed&#8212;the latter is just annotations to the
+						former&#8212;so it's easy to edge TypeScript into your application without a re-write.
+						For smaller systems, getting started with TypeScript usually involves more work with your <a
+							href="https://man.openbsd.org/make">Makefile</a> than anything else.
+					</p>
+					<p>
+						In this article, I talk about the role of TypeScript in a <a href="index.html">BCHS</a> ecosystem.
+						Let's sail the full <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> armada to see where it
+						fits in, from configuration to client.
+					</p>
+					<figure>
+						<img class="narrow" src="typescript-fig1.svg" alt="kwebapp" />
+						<figcaption>
+							TypeScript chain from configuration to client.
+						</figcaption>
+					</figure>
+					<p>
+						But wait&#8212;why does <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> deal with
+						JavaScript at all?  
+						Because most modern web applications interact with the server with <a href="json.html">JSON</a>
+						and need to do something with the data.
+						And while your back-end might be beautifully chugging along, sandboxed and privilege separated, your
+						front-end is probably a seething mess of unverified, untyped, unstructured code running on your poor
+						clients' underpaid browsers.
+						Since  <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> knows exactly about the structure
+						of your data, it can create a well-typed, meaningful interface to the data.
+					</p>
+					<h3>
+						getting started
+					</h3>
+					<p>
+						Let's fake up a quick configuration for a <code>client</code> structure consisting of the
+						client's name (<code>name</code>), their date of birth (<code>dob</code>), and the row
+						identifier (<code>id</code>).
+						We'll add an accessor function for fetching these records by unique identifier.
+						All of this is documented in <a href="https://kristaps.bsd.lv/kwebapp.5.html">kwebapp(5)</a>.
+					</p>
+					<pre class="prettyprint">struct client {
+	field name text;
+	field dob epoch;
+	field id int rowid;
+	search id: name id;
+};</pre>
+					<p>
+						I assume that your back-end application, via
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-source.1.html">kwebapp-c-source(1)</a> and
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-header.1.html">kwebapp-c-header(1)</a>, is
+						already configured return JSON documents in response to requests.
+						Let's call the application <code>app</code> and have its default page respond to the
+						<code>client-id</code> variable to return client record.
+					</p>
+					<p>
+						The plain JavaScript code generated by <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+						provides classes and methods for formatting <code>client</code> records returned from your application.
+						How does this JavaScript code work?
+						It takes JSON objects and fills in parts of the DOM tree as labelled by <code>class</code> attributes.
+					</p>
+					<pre class="prettyprint">&lt;div id="client"&gt;
+	&lt;span class="client-name-text"&gt;&lt;/span&gt;:
+	&lt;input type="date" class="client-dob-date-text" /&gt;
+&lt;/div&gt;</pre>
+					<p>
+						This, according to the documentation, will fill the client's name as text under the element with
+						<code>client-name-text</code> and the ISO-8601 date under <code>client-dob-date-text</code>.
+						In our front-end code, we can fetch the client's JSON object with the following simplified code.
+						(If you're using a framework, there probably exist other ways of doing this.)
+						Let's assume your application is in <code>/cgi-bin</code>.
+					</p>
+					<pre class="prettyprint">var xmh = new XMLHttpRequest();
+xmh.onreadystatechange = function(){
+	var v = xmh.responseText;
+	if (xmh.readyState === 4 && xmh.status === 200) {
+		var obj = JSON.parse(v);
+		var e = document.getElementById('client');
+		new kwebapp.client(obj).fill(e);
+	}
+};
+xmh.open('GET', '/cgi-bin/app?client-id=123', true);
+xmh.send();</pre>
+					<p>
+						That's it.
+						The interface exported by  <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+						should give you enough tools to at least get started with your application.
+					</p>
+					<p>
+						In general, I'll bundle each page's JavaScript requirements into one.
+						Why?  Simplicity and safety.
+						No only can keep better track exactly which sources we're using instead of depending upon CDNs,
+						we also won't require the client (or ourselves) to juggle loading.
+						Of course, if you're depending on existing JavaScript frameworks, this won't be possible.
+						I'll often bundle my <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+						output with a set of generic functions (such as the above for making the AJAX request) and
+						per-page logic (invoking the server and <code>fill</code> methods).
+						For the latter two, I'll use <q>module patterns</q> to make sure that all can be combined into a
+						single file without namespace collisions.
+					</p>
+					<pre class="prettyprint">index.min.js: index.js generic.js kwebapp.js
+	cat index.js generic.js kwebapp.js | jsmin >$@</pre>
+					<p>
+						But wait&#8230; while our C code uses the best practises to be correct and guaranteed, how do we
+						know that the generated JavaScript is correct?
+						Or that we're correct in working with it?
+						That's where TypeScript comes in handy.
+					</p>
+					<h3>
+						typescript output
+					</h3>
+					<p>
+						As of the last few versions (since version 0.5.0 or so), <a
+							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+						can also output TypeScript.
+						This TypeScript is functionally equivalent to the JavaScript: when compiled, it produces the
+						same (or functionally similar) code.
+					</p>
+					<p>
+						If you want to use the TypeScript code, simply pass the <b>-t</b> flag and use the
+						<code>tsc</code> utility to <q>transpile</q> your sources into JavaScript.
+						There are many ways of doing this, depending upon how much one wants to use the <a
+							href="https://www.npmjs.com/">npm</a> environment.
+						I personally don't use it at all: for each page, I compile a single JavaScript file from all of
+						its dependencies.
+					</p>
+					<pre class="prettyprint">index.min.js: index.ts generic.ts kwebapp.ts
+	tsc --strict --outFile $@ index.ts generic.ts kwebapp.ts</pre>
+					<p>
+						We should also make our loader aware of its typed payload.
+					</p>
+					<pre class="prettyprint">let xmh: XMLHttpRequest;
+xml = new XMLHttpRequest();
+xmh.onreadystatechange = function(){
+	var v = xmh.responseText;
+	if (xmh.readyState === 4 && xmh.status === 200) {
+		let obj: kwebapp.clientData;
+		let e: HTMLElement|null;
+		obj = &lt;kwebapp.clientData&gt;JSON.parse(v);
+		e = document.getElementById('client');
+		new kwebapp.client(obj).fill(e);
+	}
+};
+xmh.open('GET', '/cgi-bin/app?client-id=123', true);
+xmh.send();</pre>
+					<p>
+						There are some bothersome missing components.
+						Most importantly, we should have a wrapper safely converting from <code>JSON.parse</code> and
+						our interfaces.
+						I'll leave this in the area of future work.
+					</p>
+					<h3>
+						documentation
+					</h3>
+					<p>
+						The outputs of 
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-source.1.html">kwebapp-c-source(1)</a> and
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-header.1.html">kwebapp-c-header(1)</a> are
+						all well-documented.
+						The same goes with the JavaScript or TypeScript output of 
+						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>.
+					</p>
+					<p>
+						For documentation, you'll also need the <code>jsdoc</code> utility available via
+						<code>npm</code>.
+						Assuming that we're built to handle TypeScript (<code>jsdoc</code> doesn't directly handle
+						TypeScript), use the following.
+						Of course, we can always just split the TypeScript to JavaScript generation into its own.
+					</p>
+					<pre class="prettyprint">out: kwebapp.ts
+	tsc --outFile kwebapp.ts.js kwebapp.ts
+	jsdoc -d $@ kwebapp.ts.js
+	rm -f kwebapp.ts.js</pre>
+					<p>
+						Our <code>client</code> JavaScript documentation is available as <a
+							href="typescript-docs/index.html">typescript-docs/index.html</a>.
+					</p>
+				</section>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+

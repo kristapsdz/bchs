@@ -10,7 +10,8 @@ PAGES		 = auditing.html \
 		   pledge.html \
 		   rbac.html \
 		   tools.html \
-		   translate.html
+		   translate.html \
+		   typescript.html
 CSSS		 = audit.css \
 		   easy.css \
 		   index.css \
@@ -52,6 +53,7 @@ GENHTMLS	 = audit-out.js \
 		   rbac-ex1.h.html \
 		   rbac-ex2.c.html \
 		   rbac-ex2.h.html
+GENDIRS		 = typescript-docs
 IMAGES		 = auditing-fig1.svg \
 		   auditing-fig2.svg \
 		   auditing-fig3.svg \
@@ -69,7 +71,8 @@ IMAGES		 = auditing-fig1.svg \
 		   rbac-fig4.svg \
 		   translate-fig1.svg \
 		   translate-fig2.svg \
-		   translate-fig3.svg
+		   translate-fig3.svg \
+		   typescript-fig1.svg
 BUILT		 = audit.js \
 		   arrow-left.png \
 		   arrow-right-long.png \
@@ -83,7 +86,7 @@ BUILT		 = audit.js \
 		   logo-white.png \
 		   sqlite.png
 
-www: $(PAGES) 
+www: $(GENHTMLS) $(IMAGES) $(PAGES) $(GENDIRS)
 
 .xml.html:
 	cp -f $< $@
@@ -93,13 +96,6 @@ www: $(PAGES)
 
 .gnuplot.png:
 	gnuplot $<
-
-TRANSLATE_DEPS = \
-	translate-fig1.svg \
-	translate-fig2.svg \
-	translate-fig3.svg
-
-translate.html: $(TRANSLATE_DEPS)
 
 pledge-fig3.png: pledge-fig3.dat
 
@@ -173,10 +169,6 @@ rbac-ex2.c.html: rbac-ex2.txt
 	kwebapp-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
-pledge.html: pledge-fig1.svg \
-	pledge-fig2.svg \
-	pledge-fig3.png
-
 auditing-fig4.xml auditing-fig5.xml: auditing-fig4.conf
 
 auditing-fig4.xml:
@@ -209,59 +201,34 @@ AUDIT_DEPS  = auditing-fig4.xml \
 	      auditing-fig7.xml \
 	      auditing-fig9.xml
 
-AUDIT_MEDIA = audit-out.js \
-	      auditing-fig1.svg \
-	      auditing-fig2.svg \
-	      auditing-fig3.svg \
-	      auditing-fig8.svg 
-
 audit-out.js: auditing-fig6.conf
 	kwebapp-audit-json user auditing-fig6.conf > $@
 
 auditing-fig8.svg: auditing-fig8.conf
 	kwebapp-audit-gv default auditing-fig8.conf | dot -Tsvg -o$@
 
-auditing.html: auditing.xml $(AUDIT_DEPS) $(AUDIT_MEDIA)
+auditing.html: auditing.xml $(AUDIT_DEPS)
 	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_DEPS)
 
-KWEB_MEDIA = kwebapp-fig1.svg \
-	     kwebapp-fig2.svg \
-	     kwebapp.db.c.html \
-	     kwebapp.db.h.html \
-	     kwebapp.db.sql.html \
-	     kwebapp.db.sqldiff.html \
-	     kwebapp.db.js.html \
-	     kwebapp.main.c.html
 KWEB_DEPS  = kwebapp.txt.xml \
 	     kwebapp.main1.c.xml \
 	     kwebapp.main2.c.xml
-RBAC_MEDIA = rbac-ex1.h.html \
-	     rbac-ex1.c.html \
-	     rbac-ex2.h.html \
-	     rbac-ex2.c.html \
-	     rbac-fig1.svg \
-	     rbac-fig2.svg \
-	     rbac-fig3.svg \
-	     rbac-fig4.svg
-KSQL_MEDIA = ksql-fig3.svg \
-	     ksql-fig6.svg
+
+kwebapp.html: kwebapp.xml $(KWEB_DEPS) 
+	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
+
 KSQL_DEPS  = ksql-fig1.c.xml \
 	     ksql-fig2.c.xml \
 	     ksql-fig4.c.xml \
 	     ksql-fig5.c.xml
 
-kwebapp.html: kwebapp.xml $(KWEB_DEPS) $(KWEB_MEDIA)
-	sblg -s cmdline -t kwebapp.xml -o $@ $(KWEB_DEPS)
-
-rbac.html: $(RBAC_MEDIA)
-
-.c.c.xml:
-	echo '<article data-sblg-article="1">' >$@
-	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
-	echo '</article>' >>$@
-
-ksql.html: ksql.xml $(KSQL_DEPS) $(KSQL_MEDIA)
+ksql.html: ksql.xml $(KSQL_DEPS) 
 	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_DEPS)
+
+typescript-docs: typescript.kwbp
+	kwebapp-javascript typescript.kwbp > typescript.js
+	jsdoc -d $@ typescript.js
+	rm -f typescript.js
 
 installwww: www
 	mkdir -p $(PREFIX)
@@ -271,3 +238,9 @@ installwww: www
 
 clean:
 	rm -f $(PAGES) $(GENS) kwebapp.db.c kwebapp.db.h
+	rm -rf $(GENDIRS)
+
+.c.c.xml:
+	echo '<article data-sblg-article="1">' >$@
+	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
+	echo '</article>' >>$@

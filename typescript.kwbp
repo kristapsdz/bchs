@@ -1,0 +1,6 @@
+struct client {
+	field name text;
+	field dob epoch;
+	field id int rowid;
+	search id: name id;
+};
