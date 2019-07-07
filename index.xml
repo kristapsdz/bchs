@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,12 +13,18 @@
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 		<meta name="theme-color" content="#ffffff" />
+		<meta property="og:title" content="BCHS stack" />
+		<meta property="og:description" content="BSD, C, httpd, SQLite: an open software stack for web applications" />
+		<meta property="og:image" content="logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/index.html" />
+		<meta property="og:type" content="website" />
+		<meta name="description" content="BSD, C, httpd, SQLite: an open software stack for web applications" />
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<header id="tophead">
 				<h1 itemprop="name">bchs stack</h1>
-				<nav itemprop="breadcrumb">
+				<nav>
 					<span><a href="tools.html">tools</a></span>
 					<span><a href="easy.html">example</a></span>
 					<span><a href="https://github.com/kristapsdz/bchs"><i class="fa fa-fw fa-github"></i></a></span>
@@ -63,7 +69,8 @@
 							Resources:
 							<a href="https://man.openbsd.org">man pages</a>,
 							<a href="https://www.openbsd.org/faq/">FAQ</a>,
-							<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition"><i>Absolute OpenBSD</i></a>,
+							<a href="https://www.michaelwlucas.com/nonfiction/absolute-openbsd-2nd-edition">
+								<i>Absolute OpenBSD</i></a>,
 							<a href="https://www.openbsd.org/mail.html">mailing lists</a>.
 						</nav>
 					</div>
@@ -73,11 +80,13 @@
 						<h4>the C Programming Language</h4>
 						<p>
 							C is a straightforward, non-mustachioed language.
-							It has full access to the kernel's system calls and a massive set of development tools and libraries.
+							It has full access to the kernel's system calls and a massive set of development tools
+							and libraries.
 						</p>
 						<nav>
 							Resources:
-							<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628"><i>The C Programming Language</i></a>,
+							<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628">
+								<i>The C Programming Language</i></a>,
 							<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a>,
 							<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>.
 						</nav>
@@ -118,13 +127,15 @@ Server: <span>OpenBSD httpd</span></pre>
 					<div>
 						<h4>SQLite</h4>
 						<p>
-							<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable, zero-configuration</q> database.
+							<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable,
+								zero-configuration</q> database.
 							It's a practical solution for the majority of database needs.
 						</p>
 						<nav>
 							Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>,
 							<a href="https://sqlite.org/lang.html">SQL reference</a>,
-							<a href="http://www.amazon.com/gp/product/1430232250"><i>The Definitive Guide to SQLite</i></a>.
+							<a href="http://www.amazon.com/gp/product/1430232250">
+								<i>The Definitive Guide to SQLite</i></a>.
 						</nav>
 					</div>
 					<figure class="exemplar">
@@ -149,11 +160,17 @@ Server: <span>OpenBSD httpd</span></pre>
 				</header>
 				<ul>
 					<li>
-						<span><a href="translate.html">Translation</a> with <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>.</span>
+						<span>
+							<a href="translate.html">Translation</a> with <a
+								href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+						</span>
 						<span class="src">2018/07</span>
 					</li>
 					<li>
-						<span><a href="https://marc.info/?t=153019462600004&amp;r=1&amp;w=2">SQLite3 manpages</a> on OpenBSD</span>
+						<span>
+							<a href="https://marc.info/?t=153019462600004&amp;r=1&amp;w=2">SQLite3 manpages</a> on
+							OpenBSD
+						</span>
 						<span class="src">2018/06</span>
 					</li>
 					<li>
@@ -238,7 +255,8 @@ Server: <span>OpenBSD httpd</span></pre>
 					SQLite logo released by Dr Richard Hipp into the public domain.
 				</p>
 				<p>
-					Content otherwise <a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
+					Content otherwise 
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
 					<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
 				</p>
 			</footer>
