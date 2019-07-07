@@ -40,10 +40,6 @@
 					How does a BCHS system look?
 					<a href="easy.html">See a trivial example</a>.
 				</p>
-				<p>
-					<strong>New</strong>: looking to hire BCHS developers?
-					Try <a href="https://bsdjobs.com">BSDjobs.com</a>.
-				</p>
 			</article>
 			<article id="start">
 				<header>
@@ -72,18 +68,27 @@
 						</nav>
 					</div>
 				</section>
-				<section>
-					<h4>the C Programming Language</h4>
-					<p>
-						C is a straightforward, non-mustachioed language.
-						It has full access to the kernel's system calls and a massive set of development tools and libraries.
-					</p>
-					<nav>
-						Resources:
-						<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628"><i>The C Programming Language</i></a>,
-						<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a>,
-						<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>.
-					</nav>
+				<section class="paired">
+					<div>
+						<h4>the C Programming Language</h4>
+						<p>
+							C is a straightforward, non-mustachioed language.
+							It has full access to the kernel's system calls and a massive set of development tools and libraries.
+						</p>
+						<nav>
+							Resources:
+							<a href="https://www.amazon.com/The-Programming-Language-Brian-Kernighan/dp/0131103628"><i>The C Programming Language</i></a>,
+							<a href="https://man.openbsd.org/OpenBSD-current/man1/clang.1">clang(1)</a>,
+							<a href="https://man.openbsd.org/OpenBSD-current/man1/clang-local.1">clang-local(1)</a>.
+						</nav>
+					</div>
+					<pre class="exemplar">#include &lt;stdio.h&gt;
+int
+main(int argc, char *argv[])
+{
+	puts("<span>Hello, world!</span>");
+	return 0;
+}</pre>
 				</section>
 				<section class="paired">
 					<pre class="exemplar">% curl -sD- -o/dev/null https://www.openbsd.org
@@ -211,7 +216,7 @@ Server: <span>OpenBSD httpd</span></pre>
 					<dt>How do I pronounce <q>BCHS</q>?</dt>
 					<dd>
 						It's pronounced /biːtʃəz/, <i>beaches</i>.
-						Or just Bee See Aich Ess.
+						Or just Bee See Haich (or <q>Aich</q>) Ess.
 					</dd>
 					<dt>How can I hire BCHS developers?</dt>
 					<dd>

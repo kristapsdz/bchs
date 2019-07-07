@@ -3,9 +3,14 @@ body					{ font-family: "Alegreya Sans", sans-serif;
 					  background-color: #f6f6ff;
 					  font-weight: 400;
 					  color: #334;
-					  font-size: 16pt; }
-
-article					{ padding: 3rem 25%; }
+					  font-size: 14pt; }
+article					{ padding: 3rem 0; }
+footer,
+#tophead,
+article > *				{ width: 66rem;
+					  max-width: 96%;
+					  margin-left: auto;
+					  margin-right: auto; }
 article > header			{ padding: 3rem 0; }
 article > header p			{ font-variant: small-caps; 
 					  margin-top: 0;
@@ -26,16 +31,14 @@ a					{ color: blue;
 					  text-decoration: none; 
 					  border-bottom: thin solid transparent; }
 a:hover					{ border-bottom: thin solid blue; }
-code, pre				{ font-size: 11pt; }
+code, pre				{ font-size: 75%;
+					  font-family: monospace; }
 
 #tophead				{ display: flex;
 					  display: -webkit-flex;
-					  width: 50%;	
 					  padding-top: 4rem;
 					  padding-bottom: 0.2rem;
 					  color: #bbd;
-					  margin-left: auto;
-					  margin-right: auto;
 					  flex-direction: row;
 					  align-items: center;
 					  -webkit-align-items: center;
@@ -66,7 +69,8 @@ code, pre				{ font-size: 11pt; }
 					  text-shadow: 1px 1px 0 #444; }
 #top a:hover				{ border-bottom: thin solid rgba(255, 255, 0, 0.4); }
 #top h2					{ font-size: 175%; 
-					  margin: 0;
+					  margin-top: 0;
+					  margin-bottom: 0;
 					  text-shadow: 1px 1px 0 #000;
 					  font-weight: normal; }
 
@@ -110,11 +114,10 @@ code, pre				{ font-size: 11pt; }
 .interstice2				{ padding-bottom: 0;
 					  border-top: thin solid #ccc;
 					  text-align: left; }
-.interstice2 dl				{ font-size: 14pt; }
 .interstice2 dt,
 .interstice2 dd				{ margin: auto 0; }
 .interstice2 dd				{ margin-bottom: 2rem; }
-.interstice2 dt				{ font-size: larger; }
+.interstice2 dt				{ font-weight: 500; }
 
 
 #news					{ background: linear-gradient(to bottom, rgba(248, 248, 255, 0.92) 0%, rgba(248, 248, 255, 0.92) 100%), 
@@ -128,31 +131,19 @@ code, pre				{ font-size: 11pt; }
 					  display: -webkit-flex; }
 #news ul li > :first-child		{ flex: 1; 
 					  -webkit-flex: 1; }
-#news ul li .src			{ opacity: 0.5; 
-					  font-size: 14pt; }
+#news ul li .src			{ opacity: 0.5; }
 
 footer					{ padding: 8rem 0 2rem 0; 
 					  text-align: center;
-					  font-size: 11pt;
+					  font-size: 80%;
 					  color: #666; }
 footer p				{ margin: 0.1em 0; }
 
-@media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
-  article				{ padding-left: 10%; 
-	  				  padding-right: 10%; }
-  #tophead				{ width: 80%; }
-}
-
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-  body					{ font-size: 13pt; }
-  article				{ padding-left: 2%; 
-	  				  padding-right: 2%; }
-  code, pre				{ font-size: 10pt; }
   pre					{ overflow: hidden; }
   #tophead nav				{ font-size: 100%; }
   #tophead h1				{ font-size: 140%; }
-  #tophead				{ width: 96%; 
-	  				  padding-top: 2rem; }
+  #tophead				{ padding-top: 2rem; }
   #top					{ padding-top: 6rem; }					   
   #top #logo 				{ text-align: center; }
   .paired				{ display: block; }
@@ -166,5 +157,6 @@ footer p				{ margin: 0.1em 0; }
   #news ul li + li			{ margin-top: 0.5em; }
   #news ul li .src			{ line-height: 100%;
   				  	  font-size: smaller; }
+  h2					{ text-align: center; }
 }
 
