@@ -4,32 +4,38 @@ body				{ font-family: "Alegreya Sans", sans-serif;
 				  background-color: #f6f6ff;
 				  color: #334;
 				  font-size: 14pt; }
-
 #logo				{ width: 60px; }
 a				{ text-decoration: none; }
-code, pre			{ font-size: 13pt; }
-
+strong				{ font-weight: 500; }
+code, pre			{ font-size: 80%;
+				  font-family: monospace; }
 header				{ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), 
 					      url(background.jpg);
 				  background-position: 50% 50%;
 				  background-repeat: no-repeat;
 				  background-color: #000;
-				  padding: 6em 25% 1em 25%; 
+				  padding: 6em 0 1em 0; 
 				  color: #888;
 				  text-shadow: 1px 0 #234; }
-header nav			{ display: flex; }
+article > *,
+header > *			{ width: 66rem;
+				  max-width: 96%;
+				  margin-left: auto;
+				  margin-right: auto; }
+header nav			{ display: flex;
+				  font-size: 80%; }
 header nav > :first-child	{ flex: 1; }
-header nav > :last-child	{ font-size: 120%; }
 header nav span			{ color: #fff; }
 header nav a			{ color: #bb6; }
 header nav a:hover		{ color: yellow; }
 header h1			{ font-size: 200%;
 				  color: #fff;
 				  font-weight: inherit;
-				  margin: 0;  }
+				  margin-top: 0;
+				  margin-bottom: 0; }
 header h1 a			{ color: inherit; }
 
-article				{ padding: 4rem 25%; 
+article				{ padding: 4rem 0; 
 				  color: #445; }
 article p			{ line-height: 130%; }
 article a			{ color: blue; }
@@ -38,7 +44,7 @@ article h2			{ font-weight: inherit;
 				  text-align: center;
 				  font-variant: small-caps;
 				  font-size: 140%; }
-article h3			{ font-weight: bolder; 
+article h3			{ font-weight: 500; 
 				  color: #334;
 				  text-align: center;
 				  font-size: 100%; }
@@ -46,8 +52,7 @@ article h3			{ font-weight: bolder;
 footer				{ text-align: center;
 				  padding-top: 3rem;
 				  padding-bottom: 1rem;
-				  font-size: smaller;
-				  line-height: 130%; }
+				  font-size: 80%; }
 
 section + section		{ margin-top: 8rem; }
 
@@ -63,10 +68,11 @@ section + section		{ margin-top: 8rem; }
 				  padding-bottom: 3rem;
 				  color: #889;
 				  border-bottom: thin solid #eee; }
-#intro .main			{ font-size: 140%; 
-				  margin-top: 0.5rem;
-				  color: #334; }
-#intro pre			{ color: #000; }
+#intro .main			{ color: #334;
+				  font-weight: 500; }
+#intro pre			{ color: #000;
+				  margin: 4rem auto;
+				  font-size: 150%; }
 
 #trailer			{ background-color: #88888f;
 				  text-shadow: 0 0 2px #000;
@@ -79,33 +85,20 @@ section + section		{ margin-top: 8rem; }
 				  padding: 1rem 0;
 				  color: #001; }
 .mobile				{ display: none; }
-.subnav > nav			{ display: flex;
-				  padding-top: 1rem;
-				  margin-bottom: 4rem;
+.subnav > nav			{ padding-top: 0.5rem; 
 				  width: 100%; }
-.subnav > nav > *		{ flex: 1; 
-				  text-align: center; }
-.subnav > nav a			{ border: 2px solid rgba(0, 0, 0, 0.2);
-				  background-color: #fff;
-				  padding: 0.25rem 1rem;
-				  border-radius: 12pt;
-				  color: #666; }
-.subnav > nav a:hover		{ border: 2px solid rgba(0, 0, 0, 0.3); 
-				  color: #000; }
+.subnav > nav a 		{ opacity: 0.8; }
+.subnav > nav a:hover 		{ opacity: 1.0; }
+.subnav > nav span 		{ display: inline-block;
+				  margin-left: 0.5rem; }
+.subnav > nav span + span	{ border-left: thin solid #eee;
+				  padding-left: 0.5rem; }
 .subnav select			{ width: 100%; 
 				  margin-top: 1rem; }
 
-@media only screen and (max-width: 1280px), only screen and (max-device-width: 1280px) {
-  article, header		{ padding-left: 10%;
-	  			  padding-right: 10%; }
-}
-
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-  body				{ font-size: 13pt; }
   header			{ padding-top: 4em; }
   header h1			{ font-size: 180%; }
-  article, header		{ padding-left: 2%;
-	  			  padding-right: 2%; }
   .mobile			{ display: block; }
   .desktop			{ display: none; }
   #last				{ text-align: center; }
