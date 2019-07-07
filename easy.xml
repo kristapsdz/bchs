@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>BCHS: BSD, C, httpd, SQLite</title>
+		<title>BCHS: easy example</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
@@ -39,14 +39,14 @@
 		<nav>
 			<label for="slider1">
 				cgi.c
-				<img src="arrow-left.png" alt="" />
+				<img src="arrow-left.png" alt="left" />
 			</label>
 			<label for="slider2">
-				<img src="arrow-right.png" alt="" />
+				<img src="arrow-right.png" alt="right" />
 				httpd.conf
 			</label>
 			<label for="slider3">
-				<img src="arrow-right-long.png" class="long" alt="" />
+				<img src="arrow-right-long.png" class="long" alt="riiiiight" />
 				setup
 			</label>
 		</nav>
@@ -65,8 +65,8 @@
 							</p>
 							<p>
 								What&#x2019;s going on?
-								<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> makes sure you&#x2019;re only doing
-								what you want to do: work with existing descriptors.
+								<a href="https://man.openbsd.org/pledge.2">pledge(2)</a> makes sure
+								you&#x2019;re only doing what you want to do: work with existing descriptors.
 								The rest is just HTTP.
 								Don&#x2019;t want to work with HTTP?
 								Use <a href="https://kristaps.bsd.lv/kcgi">kcgi(3)</a> or equivalent.
@@ -79,8 +79,12 @@
 							</p>
 							<footer>
 								<div>
-									<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
-									<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
+									<a href="https://creativecommons.org/licenses/by/4.0/">
+										<i class="fa fa-fw fa-creative-commons"></i>
+									</a> 
+									<a rel="author" href="https://github.com/kristapsdz">
+										Kristaps Dzonsons
+									</a>
 								</div>
 							</footer>
 						</div>
@@ -102,9 +106,9 @@
 							<p>
 								Don&#x2019;t like FastCGI?
 								Neither do we.
-								But we&#x2019;re not using it for this example: in the next snippet, we&#x2019;ll use <a
-									href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> to invoke our
-								CGI.
+								But we&#x2019;re not using it for this example: in the next snippet,
+								we&#x2019;ll use <a href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> to
+								invoke our CGI.
 								So relax.
 							</p>
 							<p>
@@ -115,8 +119,12 @@
 							</p>
 							<footer>
 								<div>
-									<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
-									<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
+									<a href="https://creativecommons.org/licenses/by/4.0/">
+										<i class="fa fa-fw fa-creative-commons"></i>
+									</a> 
+									<a rel="author" href="https://github.com/kristapsdz">
+										Kristaps Dzonsons
+									</a>
 								</div>
 							</footer>
 						</div>
@@ -129,8 +137,8 @@
 							<p>
 								Wow.  Very configure.
 								Compiles the script.  Installs it.
-								Makes sure <a href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> and of course <a
-									href="https://man.openbsd.org/httpd.8">httpd(8)</a> are running.
+								Makes sure <a href="https://man.openbsd.org/slowcgi.8">slowcgi(8)</a> and of
+								course <a href="https://man.openbsd.org/httpd.8">httpd(8)</a> are running.
 								Done.
 							</p>
 							<p>
@@ -141,8 +149,12 @@
 							</p>
 							<footer>
 								<div>
-									<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-fw fa-creative-commons"></i></a> 
-									<a rel="author" href="https://github.com/kristapsdz">Kristaps Dzonsons</a>
+									<a href="https://creativecommons.org/licenses/by/4.0/">
+										<i class="fa fa-fw fa-creative-commons"></i>
+									</a> 
+									<a rel="author" href="https://github.com/kristapsdz">
+										Kristaps Dzonsons
+									</a>
 								</div>
 							</footer>
 						</div>
