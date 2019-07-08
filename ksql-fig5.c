@@ -4,18 +4,18 @@ main(void)
 	struct kreq r;
 	const char *pages = "index";
 
-	if (KCGI_OK != khttp_parse(&r, NULL, 0, &pages, 1, 0))
+	if (khttp_parse(&r, NULL, 0, &pages, 1, 0) != KCGI_OK)
 		errx(EXIT_FAILURE, "khttp_parse");
 
-	if (NULL == (r.arg = db_open("/data/foo.db")))
+	if ((r.arg = db_open("/data/foo.db")) == NULL)
 		errx(EXIT_FAILURE, "db_open");
 
-	if (-1 == pledge("stdio", NULL))
+	if (pledge("stdio", NULL) == -1)
 		err(EXIT_FAILURE, "pledge");
 
 	/* Perform actions in a sandbox. */
 
 	db_close(r.arg);
 	khttp_free(&r);
-	return(EXIT_SUCCESS);
+	return EXIT_SUCCESS;
 }
