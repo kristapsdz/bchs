@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,8 @@
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
 				<a href="auditing.html">role audits</a>,
-				<a href="translate.html">translation</a>
+				<a href="translate.html">translation</a>,
+				<a href="typescript.html">TypeScript</a>
 			</nav>
 			<header>
 				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
@@ -255,8 +256,6 @@
 						serves the community as open source.
 						I'd also like to thank <a href="https://asiabsdcon.org">AsiaBSDCon</a> for letting me
 						pontificate on these topics at <a href="https://2018.asiabsdcon.org">AsiaBSDCon 2018</a>.
-						Lastly, I'd like to thank <a href="https://github.com/vulcasian">vulcasian</a> for copy-editing
-						this article.
 					</p>
 				</section>
 			</article>
