@@ -7,18 +7,20 @@ body						{ font-family: 'Alegreya Sans', sans-serif;
 						  font-size: 14pt; }
 a						{ text-decoration: none; }
 input[type=radio]				{ display: none; }
-body > section > header				{ width: 60%;	
-						  min-width: 600px;
-						  padding-top: 1em;
+article > section,
+body > section > header				{ width: 66rem;
+						  max-width: 96%;
+						  margin-left: auto;
+						  margin-right: auto; }
+body > section > header				{ padding-top: 1em;
 						  padding-bottom: 1em;
 						  color: #fff;
 						  text-shadow: 1px 0 #234;
-						  margin-left: auto;
-						  margin-right: auto;
 						  display: flex;
 						  display: -webkit-flex;
-						  align-items: center;
-						  -webkit-align-items: center; }
+						  align-items: flex-end;
+						  -webkit-align-items: flex-end; }
+body > section > header nav 			{ font-size: 80%; }
 body > section > header nav a			{ color: #ddd; }
 body > section > header nav a span		{ border-bottom: thin transparent; }
 body > section > header nav a:hover		{ color: #fff;  }
@@ -26,23 +28,19 @@ body > section > header nav a:hover span	{ border-bottom: thin solid yellow; }
 body > section > header nav a + a		{ border-left: thin solid #888; 
 						  padding-left: 4pt; 
 						  margin-left: 4pt; }
-body > section > header img			{ height: 24pt; }
+img						{ width: 100%;
+						  max-width: 40rem; }
+body > section > header img			{ width: 24pt; }
 article						{ color: #fff; }
 article > header				{ text-align: center; 
 						  margin: 48pt 0; }
 article > header img				{ width: 60px; }
-article > section				{ width: 60%;
-						  min-width: 600px;
-						  margin: 0 auto; }
-article > section .intro			{ font-size: 15pt; 
-						  line-height: 21pt; }
-article > section .emph				{ font-size: 17pt; }
+article > section .emph				{ font-size: 150%; }
 article a					{ color: yellow; }
 h1 a						{ color: inherit; }
-h1 a:hover					{ text-shadow: 1px 1px 1px #15a; }
-h1						{ font-size: 24pt;
-						  text-shadow: 0px 0px 1px #023;
+h1						{ font-size: 200%;
 						  font-weight: 500;
+						  line-height: 70%;
 						  flex: 1;
 						  -webkit-flex: 1;
 						  margin: 0 8pt;  }
@@ -52,19 +50,19 @@ h2						{ margin: 0;
 						  text-align: left;
 						  width: auto;
 						  text-shadow: 1px 1px 1px #000; }
-h2 span:first-child				{ font-size: 32pt; 
-						  margin-bottom: -50pt; }
-h2 span:last-child				{ font-size: 128pt; }
+h2 span:first-child				{ font-size: 250%; 
+						  margin-bottom: -20pt; }
+h2 span:last-child				{ font-size: 500%; }
 h2 span						{ display: block; }
 h3						{ font-weight: 400; 
-						  font-size: 16pt; }
+						  font-size: 125%; }
 a						{ text-decoration: none; }
 nav						{ color: #abc; }
-.disclaimer					{ font-size: 11pt; }
+.disclaimer					{ font-size: 80%; }
 footer						{ text-align: center;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
-						  font-size: 11pt;
+						  font-size: 80%;
 						  line-height: 130%;
 						  color: #678; }
 footer a					{ color: #89a; }
@@ -72,35 +70,18 @@ footer a:hover					{ color: #cdf; }
 figure						{ margin: 1em 0;
 						  padding: 0;
 						  text-align: center; }
-figcaption					{ font-size: 12pt; 
+figcaption					{ font-size: 80%; 
 						  color: #ccc; }
 blockquote					{ margin-bottom: 0; }
 .citation					{ margin-left: 2.2em; 
 						  margin-top: 0.5em;
 						  font-style: italic; }
 code						{ font-family: monospace;
-						  font-size: 11pt; }
+						  font-size: 65%; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-body > section > header				{ width: 95%; 
-						  min-width: auto;
-						  padding-top: 1ex;
-						  padding-bottom: 0em;}
-h1						{ font-size: 14pt; }
-article > header				{ padding: 0 5%; }
-h2 span:first-child				{ font-size: 28pt; 
-						  margin-bottom: -30pt; }
-h2 span:last-child				{ font-size: 90pt; }
-article img					{ width: 100%; }
-article > section				{ width: 95%;
-						  min-width: auto; }
-}
-
-@media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
-h2 span:first-child				{ font-size: 20pt; 
-						  margin-bottom: -10pt; }
-h2 span:last-child				{ font-size: 50pt; }
-article > header				{ padding: 0 2%; }
-article > section .intro			{ line-height: inherit; }
-article > section .emph				{ font-size: 13pt; }
+  h2 span:first-child				{ font-size: 20pt; 
+  						  margin-bottom: -10pt; }
+  h2 span:last-child				{ font-size: 50pt; }
+  article > header				{ padding: 0 2%; }
 }
