@@ -40,8 +40,8 @@ code, pre				{ font-size: 75%;
 					  padding-bottom: 0.2rem;
 					  color: #bbd;
 					  flex-direction: row;
-					  align-items: center;
-					  -webkit-align-items: center;
+					  align-items: flex-end;
+					  -webkit-align-items: flex-end;
 					  -webkit-flex-direction: row; }
 #tophead nav				{ flex: 1; 
 					  -webkit-flex: 1;
@@ -51,7 +51,8 @@ code, pre				{ font-size: 75%;
 					  margin-left: 0.5ex;
 					  padding-left: 1ex; }
 #tophead h1				{ color: #001; 
-					  font-size: 120%;
+					  font-size: 140%;
+					  line-height: 90%;
 					  font-weight: normal;
 					  font-variant: small-caps;
 					  margin: 0;  }
