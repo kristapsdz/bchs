@@ -235,6 +235,7 @@ installwww: www
 	install -m 0444 $(IMAGES) $(GENHTMLS) $(BUILT) $(CSSS) $(PAGES) $(PREFIX)
 	install -m 0444 icons/*.{png,ico,xml,json,svg} $(PREFIX)
 	install -m 0444 robots.txt sitemap.xml $(PREFIX)
+	tar cf - $(GENDIRS) | tar -xf - -C $(PREFIX)
 
 clean:
 	rm -f $(PAGES) $(GENS) kwebapp.db.c kwebapp.db.h

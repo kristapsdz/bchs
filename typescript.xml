@@ -128,7 +128,7 @@ bar(foo, foo);</pre>
 						I assume that your back-end application, via
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-source.1.html">ort-c-source(1)</a> and
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-header.1.html">ort-c-header(1)</a>, is
-						already configured return JSON documents in response to requests.
+						already configured to return JSON documents in response to requests.
 						Let's call the application <code>app</code> and have its default page respond to the
 						<code>client-id</code> variable to return client record.
 					</p>
@@ -155,7 +155,7 @@ bar(foo, foo);</pre>
   &lt;/body&gt;
 &lt;/html&gt;</pre>
 					<p>
-						This, according to the documentation, will fill the client's name as text under the element with
+						This, according to the <a href="typescript-docs/ort.client.html">documentation</a>, will fill the client's name as text under the element with
 						<code>client-name-text</code> and the ISO-8601 date under <code>client-dob-date-text</code>.
 						In our front-end code, we can fetch the client's JSON object with the following simplified code.
 						(If you're using a framework, there probably exist other ways of doing this.)
