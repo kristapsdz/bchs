@@ -3,13 +3,13 @@ digraph {
 	bgcolor="transparent";
 	splines=false;
 
-	{ rank=source; kwebapp[label="your configuration", fontcolor="#aaaaff", color="#aaaaaa"]; }
+	{ rank=source; kwebapp[label="your configuration", fontcolor="red", color="#aaaaaa"]; }
 
 	{ rank=same; kwebapp1[label="kwebapp(1)"]; }
 
 	{ rank=same; 
 	  c[label="C", fontcolor="#888888", color="#aaaaaa"]; 
-	  yourcode[label="your code", fontcolor="#aaaaff" color="#aaaaaa"];
+	  yourcode[label="your code", fontcolor="#ffaaaa" color="#aaaaaa"];
 	  ts[label="TypeScript"];
 	  sql[label="SQL", fontcolor="#888888", color="#aaaaaa"]; }
 	{ rank=same; 
@@ -23,7 +23,7 @@ digraph {
 
 	{ rank=same; 
 	  js[label="JavaScript"];
-	  html5[label="your presentation", fontcolor="blue"]; 
+	  html5[label="your presentation", fontcolor="red"]; 
 	  json[label="JSON", fontcolor="#888888", color="#aaaaaa"]; }
 
 	{ rank=sink; client[label="client browser", fontcolor="#aaaaaa", color="#aaaaaa"]; }
