@@ -87,8 +87,8 @@ sendlogin(struct kreq *r)
   struct user  *pp;
   time_t     t = time(NULL);
 
-  if (NULL == (kpi = r->fieldmap[VALID_USER_EMAIL]) ||
-      NULL == (kpp = r->fieldmap[VALID_USER_HASH])) {
+  if ((kpi = r->fieldmap[VALID_USER_EMAIL]) == NULL ||
+      (kpp = r->fieldmap[VALID_USER_HASH]) == NULL) {
     http_open(r, KHTTP_400);
     json_emptydoc(r);
     return;
@@ -97,7 +97,7 @@ sendlogin(struct kreq *r)
   pp = db_user_get_creds(r->arg, 
     kpi->parsed.s, kpp->parsed.s);
 
-  if (NULL == pp) {
+  if (pp == NULL) {
     http_open(r, KHTTP_400);
     json_emptydoc(r);
     return;
@@ -173,14 +173,14 @@ main(void)
   er = khttp_parse(&r, valid_keys, VALID__MAX, 
     pages, PAGE__MAX, PAGE_HOME);
 
-  if (KCGI_OK != er)
-    return(EXIT_FAILURE);
+  if (er != KCGI_OK)
+    return EXIT_FAILURE;
 
   /* Necessary pledge for SQLite. */
 
-  if (-1 == pledge("stdio rpath cpath wpath flock fattr", NULL)) {
+  if (pledge("stdio rpath cpath wpath flock fattr", NULL) == -1) {
     khttp_free(&r);
-    return(EXIT_FAILURE);
+    return EXIT_FAILURE;
   }
 
   /*
@@ -188,50 +188,50 @@ main(void)
    * sure we're a page, make sure we're a JSON file.
    */
 
-  if (KMETHOD_GET != r.method && 
-      KMETHOD_POST != r.method) {
+  if (r.method != KMETHOD_GET && 
+      r.method != KMETHOD_POST) {
     http_open(&r, KHTTP_405);
     khttp_free(&r);
-    return(EXIT_SUCCESS);
-  } else if (PAGE__MAX == r.page || 
-             KMIME_APP_JSON != r.mime) {
+    return EXIT_SUCCESS;
+  } else if (r.page == PAGE__MAX|| 
+             r.mime != KMIME_APP_JSON) {
     http_open(&r, KHTTP_404);
     khttp_puts(&r, "Page not found.");
     khttp_free(&r);
-    return(EXIT_SUCCESS);
+    return EXIT_SUCCESS;
   }
 
   r.arg = db_open(DATADIR "/" DATABASE);
-  if (NULL == r.arg) {
+  if (r.arg == NULL) {
     http_open(&r, KHTTP_500);
     json_emptydoc(&r);
     khttp_free(&r);
-    return(EXIT_SUCCESS);
+    return EXIT_SUCCESS;
   }
 
-  if (PAGE_HOME == r.page) {
-    if (NULL != r.cookiemap[VALID_SESS_ID] &&
-        NULL != r.cookiemap[VALID_SESS_TOKEN])
+  if (r.page == PAGE_HOME) {
+    if (r.cookiemap[VALID_SESS_ID] != NULL &&
+        r.cookiemap[VALID_SESS_TOKEN] != NULL)
       us = db_sess_get_creds(r.arg, 
         r.cookiemap[VALID_SESS_TOKEN]->parsed.i,
         r.cookiemap[VALID_SESS_ID]->parsed.i);
-    if (NULL == us) {
+    if (us == NULL) {
       http_open(&r, KHTTP_403);
       json_emptydoc(&r);
       db_close(r.arg);
       khttp_free(&r);
-      return(EXIT_SUCCESS);
+      return EXIT_SUCCESS;
     }
   }
 
   switch (r.page) {
-  case (PAGE_HOME):
+  case PAGE_HOME:
     sendhome(&r, us);
     break;
-  case (PAGE_LOGIN):
+  case PAGE_LOGIN:
     sendlogin(&r);
     break;
-  case (PAGE_LOGOUT):
+  case PAGE_LOGOUT:
     sendlogout(&r, us);
     break;
   default:
@@ -241,5 +241,5 @@ main(void)
   db_sess_free(us);
   db_close(r.arg);
   khttp_free(&r);
-  return(EXIT_SUCCESS);
+  return EXIT_SUCCESS;
 }

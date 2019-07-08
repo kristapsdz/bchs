@@ -14,10 +14,10 @@ main(void)
   struct kjsonreq req;
   const char *page = "index";
 
-  if (KCGI_OK != khttp_parse(&r, NULL, 0, &page, 1, 0))
-    return(EXIT_FAILURE);
+  if (khttp_parse(&r, NULL, 0, &page, 1, 0) != KCGI_OK)
+    return EXIT_FAILURE;
 
-  if (-1 == pledge("stdio", NULL)) 
+  if (pledge("stdio", NULL) == -1) 
     err(EXIT_FAILURE, "pledge");
 
   khttp_head(&r, kresps[KRESP_STATUS], 
@@ -31,5 +31,5 @@ main(void)
   kjson_obj_close(&req);
   kjson_close(&req);
   khttp_free(&r);
-  return(EXIT_SUCCESS);
+  return EXIT_SUCCESS;
 }
