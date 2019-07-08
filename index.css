@@ -4,14 +4,14 @@ body					{ font-family: "Alegreya Sans", sans-serif;
 					  font-weight: 400;
 					  color: #334;
 					  font-size: 14pt; }
-article					{ padding: 3rem 0; }
+article					{ padding: 2rem 0; }
 footer,
 #tophead,
 article > *				{ width: 66rem;
 					  max-width: 96%;
 					  margin-left: auto;
 					  margin-right: auto; }
-article > header			{ padding: 3rem 0; }
+article > header			{ padding: 2rem 0; }
 article > header p			{ font-variant: small-caps; 
 					  margin-top: 0;
 					  opacity: 0.7;
@@ -84,9 +84,7 @@ code, pre				{ font-size: 75%;
 #start nav				{ margin: 1.1em 0; 
 					  font-size: 80%;
 					  opacity: 0.8; }
-#start > section			{ padding: 4rem 0; }
-#start > section:first-child		{ padding-top: 6rem; }
-#start > section:last-child		{ padding-bottom: 6rem; }
+#start > section			{ padding: 2rem 0; }
 #start img				{ max-width: 100%; }
 #start p				{ line-height: 140%; }
 #start figure				{ margin: 0;
@@ -98,8 +96,6 @@ code, pre				{ font-size: 75%;
 .interstice				{ background-color: #88888f;
 					  text-shadow: 0 0 2px #000;
 					  font-weight: 500;
-					  padding-top: 3rem;
-					  padding-bottom: 3rem;
 					  color: #fff; }
 .interstice .main			{ font-size: 150%; 
 					  color: #fff;
@@ -112,8 +108,7 @@ code, pre				{ font-size: 75%;
 					  text-shadow: 0 0 1px #000; }
 .interstice pre a:hover			{ border-bottom: thin solid transparent; }
 
-.interstice2				{ padding-bottom: 0;
-					  border-top: thin solid #ccc;
+.interstice2				{ border-top: thin solid #ccc;
 					  text-align: left; }
 .interstice2 dt,
 .interstice2 dd				{ margin: auto 0; }
@@ -134,7 +129,8 @@ code, pre				{ font-size: 75%;
 					  -webkit-flex: 1; }
 #news ul li .src			{ opacity: 0.5; }
 
-footer					{ padding: 8rem 0 2rem 0; 
+footer					{ padding-bottom: 2rem; 
+					  padding-top: 2rem;
 					  text-align: center;
 					  font-size: 80%;
 					  color: #666; }
