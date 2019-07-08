@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>kwebapp//BCHS: rapid web application development</title>
+		<title>openradtool//BCHS: rapid web application development</title>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<nav class="subnav">
-				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				openradtool series:
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
 				<a href="auditing.html">role audits</a>,
@@ -52,12 +52,12 @@
 						this perennial test of our patience?
 					</p>
 					<h2>
-						<span>kwebapp(1)</span>
+						<span>ort(1)</span>
 					</h2>
 				</header>
 				<section>
 					<p>
-						I wrote <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> after the <del>tenth</del>
+						I wrote <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> after the <del>tenth</del>
 						hundredth time I started a new <a href="index.html">BCHS</a> web application roughly as follows:
 					</p>
 					<ol>
@@ -129,7 +129,7 @@
 						suck data out and send it to the client.
 						(I guess.)
 						When I'm writing in C, I don't.
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> was a way to automate a lot of the steps
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a> was a way to automate a lot of the steps
 						above into a single one when using my tools: <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, <a
 							href="https://kristaps.bsd.lv/ksql">ksql</a> (that is, <a
 							href="https://sqlite.org">SQLite</a>), and of course <a
@@ -153,7 +153,7 @@
 						<a href="https://man.openbsd.org/crypt_checkpass">crypt_checkpass(3)</a> family.
 					</p>
 					<p>
-						When run through <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>, it automates the
+						When run through <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>, it automates the
 						production of many of the elements in our above graph:
 					</p>
 					<ul>
@@ -181,7 +181,7 @@
 						</figure>
 					</figure>
 					<p>
-						The SQL is managed by <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>&#8212;not just
+						The SQL is managed by <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>&#8212;not just
 						generatively, but within the update cycle.
 						It's able to generate the <a href="kwebapp.db.sqldiff.html">difference</a> between
 						configurations (in this example, one without the foreign key on the session)&#8212;allowing you
@@ -193,17 +193,17 @@
 						You'll still need to update your front-end logic, of course, to reflect your new data.
 						And your application logic&#8212;obviously.
 						But the rest of the tedious cycle&#8212;C API, validators, JSON exporters, etc.&#8212;are all
-						handled by <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>.
+						handled by <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>.
 					</p>
 					<p>
 						For an example of how a backend might look, consider <a href="kwebapp.main.c.html">main.c</a>.
 						This handles logging in, logging out, and a simple homepage using the given example.
 						Take, for example, the component where it processes a request's cookies using the <span
-							class="nm">kwebapp</span> functions for reading from the database:
+							class="nm">openradtool</span> functions for reading from the database:
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
 					<p>
-						Upon login, it uses the <span class="nm">kwebapp</span>-generated output functions to emit JSON:
+						Upon login, it uses the <span class="nm">openradtool</span>-generated output functions to emit JSON:
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
 					<p>
@@ -212,12 +212,12 @@
 						Much easier!
 					</p>
 					<h3>
-						where is kwebapp going
+						where is openradtool going
 					</h3>
 					<p>
 						Short answer: wherever we want.
 						Longer answer? Most of my immediate intentions are in the <a
-							href="https://github.com/kristapsdz/kwebapp/blob/master/TODO.md">TODO</a>.
+							href="https://github.com/kristapsdz/openradtool/blob/master/TODO.md">TODO</a>.
 					</p>
 					<p>
 						What will I not do myself in the near-term?
@@ -230,7 +230,7 @@
 							href="http://json-schema.org/">JSON Schema</a>.
 					</p>
 					<p>
-						Meanwhile, if you're using <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> for any
+						Meanwhile, if you're using <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> for any
 						projects, keep me in the loop!  
 					</p>
 				</section>

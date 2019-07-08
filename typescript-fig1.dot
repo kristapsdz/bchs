@@ -5,7 +5,7 @@ digraph {
 
 	{ rank=source; kwebapp[label="your configuration", fontcolor="red", color="#aaaaaa"]; }
 
-	{ rank=same; kwebapp1[label="kwebapp(1)"]; }
+	{ rank=same; kwebapp1[label="ort(1)"]; }
 
 	{ rank=same; 
 	  c[label="C", fontcolor="#888888", color="#aaaaaa"]; 

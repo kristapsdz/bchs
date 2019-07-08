@@ -8,8 +8,8 @@ digraph {
 	labelen -> config;
 	labelfr -> config;
 
-	config [label="kwebapp(5)"];
-	config2 [label="kwebapp-javascript(1)"];
+	config [label="ort(5)"];
+	config2 [label="ort-javascript(1)"];
 	js [label="javascript"];
 	htmlen [label="<html lang=\"en\">"]
 	htmlfr [label="<html lang=\"lv\">"]

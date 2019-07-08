@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>BCHS: RBAC in kwebapp</title>
+		<title>BCHS: RBAC in openradtool</title>
 		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=c&amp;lang=sql"></script>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<nav class="subnav">
-				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				openradtool series:
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
 				<a href="auditing.html">role audits</a>,
@@ -41,7 +41,7 @@
 				<header>
 					<p class="tldr">
 						<strong>tl;dr</strong> 
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> (as of version 0.3.0) has gained <a
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a> (as of version 0.3.0) has gained <a
 							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
 							control</a> (RBAC) facilities allowing the generated <q>data layer</q> to be
 						aware of user roles.
@@ -84,13 +84,13 @@
 						that a request servicing a user doesn't try to modify administrative tables?
 					</p>
 					<p>
-						Enter <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>'s new API provisioning facility.
+						Enter <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>'s new API provisioning facility.
 					</p>
 					<h3>
-						what is kwebapp
+						what is openradtool
 					</h3>
 					<p>
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is a system that uses a configuration file
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a> is a system that uses a configuration file
 						to define the data model of your <a
 							href="index.html">BCHS</a> application: the data itself (<a
 							href="https://sqlite.org">sqlite3</a>), insertion routines, deletion, all sorts of
@@ -169,10 +169,6 @@ struct user *db_user_get_creds
 					<p>
 						See the generated C <a href="rbac-ex1.c.html">source</a> and <a
 							href="rbac-ex1.h.html">header</a> file for yourself: it's all there.
-						One pending caveat is that the output of <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp.1.html">kwebapp(1)</a> is still <a
-							href="https://www.openbsd.org">OpenBSD</a>-specific, although this may have changed
-						since version 0.3.0.
 					</p>
 					<h3>
 						what can go wrong
@@ -184,7 +180,7 @@ struct user *db_user_get_creds
 						The <code class="prettyprint">struct ksql</code> returned by the <a
 							href="rbac-ex1.h.html">generated functions</a> allows access to the full database by
 						callers.  
-						This is by design: <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> doesn't directly
+						This is by design: <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> doesn't directly
 						support the full breadth of SQL functions you might want to use.
 						By exporting the database connection itself, callers can provide their own complex SQL operations directly to
 						<a href="https://kristaps.bsd.lv/ksql/ksql_stmt_alloc.3.html">ksql_stmt_alloc(3)</a>.
@@ -218,7 +214,7 @@ struct user *db_user_get_creds
 						Game over.
 					</p>
 					<p>
-						As it was previously in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>, there were no
+						As it was previously in <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>, there were no
 						restrictions on function invocation&#8212;no sandbox.
 						In other words, the landscape was <q>flat</q>.
 						Let's consider an example with a <code class="prettyprint">user</code> and <code
@@ -244,7 +240,7 @@ struct user *db_user_get_creds
 						<img src="rbac-fig2.svg" />
 					</figure>
 					<p>
-						The new <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> RBAC feature accomodates for this by
+						The new <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> RBAC feature accomodates for this by
 						identifying roles; and then for each role, establishing which operations are permitted by that role.
 					</p>
 					<p>
@@ -303,7 +299,7 @@ struct session {
 						user-defined roles, and the third cannot do anything at all.
 					</p>
 					<p>
-						You can read all about the RBAC facilities in <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>.
+						You can read all about the RBAC facilities in <a href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a>.
 					</p>
 					<h3>
 						the api
@@ -342,7 +338,7 @@ struct session {
 						what's next
 					</h3>
 					<p>
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is designed to be a small system, so there
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a> is designed to be a small system, so there
 						isn't much more to add that wouldn't needlessly complicate things.
 						However&#8230;
 					</p>

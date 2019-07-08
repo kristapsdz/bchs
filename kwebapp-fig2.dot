@@ -4,7 +4,7 @@ digraph {
 
 	requirements [label="Specifications"];
 	data [label="Data Layout"];
-	kweb [label="kwebapp(5)"];
+	kweb [label="ort(5)"];
 	logic [label="Application Logic"];
 	flogic [label="Front-end Logic"];
 	review [label="Review"];

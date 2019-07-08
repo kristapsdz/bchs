@@ -2,8 +2,8 @@ digraph {
 	edge [arrowsize="0.5";];
 	bgcolor="transparent";
 
-	cfg[label="kwebapp(5)"];
-	bin[label="kwebapp(1)"];
+	cfg[label="ort(5)"];
+	bin[label="ort-xxxx(1)"];
 
 	{ rank=same; cfg; }
 	{ rank=same; bin; }

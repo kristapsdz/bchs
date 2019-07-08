@@ -18,7 +18,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<nav class="subnav">
-				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				openradtool series:
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
 				<a href="auditing.html">role audits</a>,
@@ -40,7 +40,7 @@
 				<header>
 					<p>
 						How it usually works: build  <a
-							href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> configuration and
+							href="https://kristaps.bsd.lv/openradtool">openradtool</a> configuration and
 						application logic, test, run, profit.
 						Then, one day, check your server logs and see dropped transactions tied to un-satisfied
 						<code>Accept-Language</code> HTTP headers.
@@ -60,14 +60,14 @@
 							href="https://www.gnu.org/software/gettext/">gettext</a> and one of many translation
 						managers (e.g., <a href="https://www.kde.org/applications/development/lokalize/">lokalize</a>).
 						But what do we do about <code>jslabel</code> strings in our <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a> configuration
+							href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a> configuration
 						files?
 					</p>
 					<p>
-						Since version 0.5.1, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> has had support for
+						Since version 0.5.1, <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> has had support for
 						<em>in-band</em> multi-language representation of exported strings.
 						Exported strings are <code>jslabel</code> declarations for enumeration and bitfield items that the <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>
+							href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html">ort-javascript(1)</a>
 						interface uses to format numerical values as human-readable text.
 						It's handy to manage this in our configuration file because numerical values change and
 						enumerations are augmented over time.
@@ -79,7 +79,7 @@
 						show <q>Latvija</q>.
 						We then use the <code>jslabel.lv</code> notation for these translations.
 						The whole process is documented in <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html#Enumeration_and_Bitfield_Labels">Enumeration
+							href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html#Enumeration_and_Bitfield_Labels">Enumeration
 							and Bitfield Labels</a>.
 					</p>
 					<figure>
@@ -90,13 +90,13 @@
 					</figure>
 					<p>
 						This is all good and well, but it has a big flaw: the translator (or translation utility) must
-						have knowledge of the <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>
+						have knowledge of the <a href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a>
 						file format.
 						This is fine for one-off translations that may be merged by a developer, but doesn't scale.
 					</p>
 					<p>
 						So as of 0.5.2, a new tool, <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-xliff.1.html">kwebapp-xliff(1)</a>, allows
+							href="https://kristaps.bsd.lv/openradtool/ort-xliff.1.html">ort-xliff(1)</a>, allows
 						for <em>out-of-band</em> translation, keeping your configuration nice and tidy.
 						XLIFF is an industry-standard tool for maintaining translation dictionaries, and works with most
 						open- and closed-source translation systems.
@@ -117,7 +117,7 @@
 						Usually, the XLIFF files are initially derived from the source configuration, translated, then
 						merged back in.
 						The post-merge configuration is then passed to <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-javascript.1.html">kwebapp-javascript(1)</a>.
+							href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html">ort-javascript(1)</a>.
 					</p>
 					<h3>
 						front-end translation

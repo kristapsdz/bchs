@@ -1,11 +1,11 @@
 digraph {
 	bgcolor="transparent";
 
-	config [label="kwebapp(5)"];
-	kxliff [label="kwebapp-xliff(1)"];
+	config [label="ort(5)"];
+	kxliff [label="ort-xliff(1)"];
 	xliffen [label="xliff (en)", style="filled", fillcolor="blue", fontcolor="white"];
 	xlifflv [label="xliff (lv)", style="filled", fillcolor="blue", fontcolor="white"];
-	config2 [label="kwebapp-javascript(1)"];
+	config2 [label="ort-javascript(1)"];
 	js [label="javascript"];
 	htmlen [label="<html lang=\"en\">"]
 	htmlfr [label="<html lang=\"lv\">"]

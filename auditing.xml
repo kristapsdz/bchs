@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>BCHS: auditing RBAC in kwebapp</title>
+		<title>BCHS: auditing RBAC in openradtool</title>
 		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=c&amp;lang=sql"></script>
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
 			<nav class="subnav">
-				<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> series:
+				openradtool series:
 				<a href="kwebapp.html">introduction</a>, 
 				<a href="rbac.html">RBAC</a>,
 				<a href="auditing.html">role audits</a>,
@@ -42,7 +42,7 @@
 				<header>
 					<p class="tldr">
 						<strong>tl;dr</strong> 
-						<a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> now features a tool for auditing
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a> now features a tool for auditing
 						role-based access control enforced by <a href="https://man.openbsd.org">pledge(2)</a>.
 						This piece is an abridged version of my <a href="https://kristaps.bsd.lv/absdcon2018">AsiaBSDCon
 							2018</a> talk.
@@ -70,7 +70,7 @@
 						Conceptually, none of the tools I mention are limited to these systems, but they're the systems
 						I use.
 						Feel free to submit portability patches&#8212;and I'd love to have <a
-							href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> output into other languages.
+							href="https://kristaps.bsd.lv/openradtool">openradtool</a> output into other languages.
 					</p>
 					<p>
 						To date, I've used <a href="https://kristaps.bsd.lv/ksql">ksql</a>+<a
@@ -117,7 +117,7 @@
 						For this, I need more powerful semantics like those of <a
 							href="https://en.wikipedia.org/wiki/Role-based_access_control">role-based access
 							control</a> (RBAC).
-						I bring in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> for this facility, which,
+						I bring in <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> for this facility, which,
 						beyond hugely simplifying my data layer, features role assignment and provisioning for the data
 						layer of an application.  
 						(I discuss this at length in my <a href="rbac.html">RBAC</a> article.)
@@ -126,11 +126,11 @@
 						<img src="auditing-fig1.svg" />
 					</figure>
 					<p>
-						As of version 0.4.6, <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+						As of version 0.4.6, <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>
 						pushed its RBAC implementation directly into <a href="https://kristaps.bsd.lv/ksql">ksql</a>,
 						taking advantage of the split-process model to ensure that role assignment occured outside the
 						process space of our vulnerable application.
-						<strong>Note: kwebapp uses the most current versions of ksql+kcgi: they are all developed in tandem.</strong>
+						<strong>Note: openradtool uses the most current versions of ksql+kcgi: they are all developed in tandem.</strong>
 						This gives our application a great boon: <strong>guarantees</strong> about roles.
 					</p>
 					<figure>
@@ -144,10 +144,10 @@
 						introducing roles
 					</h3>
 					<p>
-						Enforcing role-based access control in <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a> is
+						Enforcing role-based access control in <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> is
 						easy even for existing applications.
 						Starting with an existing <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a>
+							href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a>
 						configuration.
 						This configuration declares the <code>session</code> and <code>user</code> types: a log-in
 						session and a user entity (<q>principle</q>) who is logged in.
@@ -167,7 +167,7 @@
 						We needn't explore all of the generated API, but it suffices to see that this generates
 						structures for all of the types and functions for all operations.
 						All documentation is preserved.
-						See <a href="https://kristaps.bsd.lv/kwebapp/kwebapp-c-header.1.html">kwebapp-c-header(1)</a>
+						See <a href="https://kristaps.bsd.lv/openradtool/ort-c-header.1.html">ort-c-header(1)</a>
 						for the nitty-gritty details.
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>
@@ -192,7 +192,7 @@
 						included in that object.
 						And thus&#8212;the administrator.
 						But we don't want users to know about administrators!
-						<a href="https://kristaps.bsd.lv/kwebapp/kwebapp.5.html">kwebapp(5)</a> has a
+						<a href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a> has a
 						<code>noexport</code> keyword to prevent certain roles from seeing certain information, but what
 						if we forget?  How will we ever know?
 					</p>
@@ -204,11 +204,11 @@
 					</h3>
 					<p>
 						Audits are a way for developers, managers, and, well, auditors to trace who has access to what.
-						The <a href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit.1.html">kwebapp-audit(1)</a> tool
+						The <a href="https://kristaps.bsd.lv/openradtool/ort-audit.1.html">ort-audit(1)</a> tool
 						creates these audits on the terminal, as JSON output with <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit-json.1.html">kwebapp-audit-json(1)</a>,
+							href="https://kristaps.bsd.lv/openradtool/ort-audit-json.1.html">ort-audit-json(1)</a>,
 						and even GraphViz with <a
-							href="https://kristaps.bsd.lv/kwebapp/kwebapp-audit-gv.1.html">kwebapp-audit-gv(1)</a>.
+							href="https://kristaps.bsd.lv/openradtool/ort-audit-gv.1.html">ort-audit-gv(1)</a>.
 						Let's take a look at our user (and yes, this is from an actual audit run, and real output from
 						the mentioned utilities embedded in this page)&#8230;
 					</p>
