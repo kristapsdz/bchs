@@ -148,10 +148,10 @@ total 604
 					Not only does this protect your application from bad input, it also protects your database from you!
 				</p>
 				<p>
-					I've already added the functionality to <a href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+					I've already added the functionality to <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>
 					(this system was discussed <a href="kwebapp.html">here</a>) as of <b>0.2.8</b> to make this even easier
 					to use.  Assuming we've generated a database API exporting the usual <code>db_open</code>
-					function via <a href="https://kristaps.bsd.lv/kwebapp/kwebapp.1.html">kwebapp(1)</a>&#8230;
+					function&#8230;
 				</p>
 				<article data-sblg-article="1" data-sblg-permlink="0"></article>
 				<p>

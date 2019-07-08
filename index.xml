@@ -130,6 +130,7 @@ Server: <span>OpenBSD httpd</span></pre>
 							<a href="https://www.sqlite.org">SQLite</a> is a <q>self-contained, embeddable,
 								zero-configuration</q> database.
 							It's a practical solution for the majority of database needs.
+							Just <code>pkg_add sqlite3</code> and you're ready.
 						</p>
 						<nav>
 							Resources: <a href="https://www.sqlite.org/c3ref/intro.html">API reference</a>,
@@ -162,7 +163,7 @@ Server: <span>OpenBSD httpd</span></pre>
 					<li>
 						<span>
 							<a href="translate.html">Translation</a> with <a
-								href="https://kristaps.bsd.lv/kwebapp">kwebapp</a>
+								href="https://kristaps.bsd.lv/openradtool">openradtool</a>
 						</span>
 						<span class="src">2018/07</span>
 					</li>
@@ -174,7 +175,7 @@ Server: <span>OpenBSD httpd</span></pre>
 						<span class="src">2018/06</span>
 					</li>
 					<li>
-						<span><a href="auditing.html">Role audits</a> with kwebapp</span>
+						<span><a href="auditing.html">Role audits</a> with openradtool</span>
 						<span class="src">2018/03</span>
 					</li>
 					<li>
@@ -186,7 +187,7 @@ Server: <span>OpenBSD httpd</span></pre>
 						<span class="src">AsiaBSDCon, 2018/03</span>
 					</li>
 					<li>
-						<span><a href="rbac.html">API provisioning</a> with kwebapp</span>
+						<span><a href="rbac.html">API provisioning</a> with openradtool</span>
 						<span class="src">2017/10</span>
 					</li>
 					<li>
@@ -198,7 +199,7 @@ Server: <span>OpenBSD httpd</span></pre>
 						<span class="src">2017/07</span>
 					</li>
 					<li>
-						<span>Rapid web applications with <a href="kwebapp.html">kwebapp</a></span>
+						<span>Rapid web applications with <a href="kwebapp.html">openradtool</a></span>
 						<span class="src">2017/05</span>
 					</li>
 					<li>
