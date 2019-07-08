@@ -261,6 +261,22 @@ window.addEventListener('load', index.init);</pre>
 						Namely, we should have a wrapper safely converting from <code>JSON.parse</code> and
 						our interfaces.
 						I'll leave this in the area of future work.
+						We all agree that type safety is excellent.
+						But now on to the bad news.
+					</p>
+					<pre>% time tsc --strict --outFile index.js index.ts
+    0m02.97s real     0m04.58s user     0m01.13s system</pre>
+					<p>
+						Take a look at that again.
+						Look above at our index function.
+						Look again at that.
+						That's 3 seconds.
+						<i>Seconds</i>.
+						That's a four-core machine with 4 GB RAM.
+						3.  Seconds.
+						I won't say anything more.
+						I want to.
+						But I won't.
 					</p>
 					<h3>
 						documentation
@@ -290,6 +306,10 @@ window.addEventListener('load', index.init);</pre>
 					<p>
 						Our <code>client</code> JavaScript documentation is available as <a
 							href="typescript-docs/index.html">typescript-docs/index.html</a>.
+						I consider the documentation aspect of <a
+							href="https://kristaps.bsd.lv/openradtool">openradtool</a> to be one of its most
+						powerful features.
+						If you can think of any way to improve this&#8212;let me know.
 					</p>
 					<h3>
 						acknowledgements
