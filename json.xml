@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>JSON//BCHS</title>
-		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300italic" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
 		<link href="json.css" rel="stylesheet" />
@@ -51,25 +51,27 @@
 					And there are plenty of tools available to build, document, and deploy your work.
 					Why is this an improvement over simply emitting HTML?
 				</p>
-				<ul>
-					<li>
-						server load: your user's browser is handling one request at a time&#8212;you're handling many,
-						and the extra processing adds up
-					</li>
-					<li>
-						updates to site design don't require redeploying your application
-					</li>
-					<li>
-						reduced code-bloat from hard-coding complicated HTML trees
-					</li>
-					<li>
-						less work-flow dependency between back-end developer and front-end developer/designer
-					</li>
-					<li>
-						JSON is natively understood by JavaScript, which itself is a standard component of the web
-						browser
-					</li>
-				</ul>
+				<div>
+					<ul>
+						<li>
+							server load: your user's browser is handling one request at a time&#8212;you're handling
+							many, and the extra processing adds up
+						</li>
+						<li>
+							updates to site design don't require redeploying your application
+						</li>
+						<li>
+							reduced code-bloat from hard-coding complicated HTML trees
+						</li>
+						<li>
+							less work-flow dependency between back-end developer and front-end developer/designer
+						</li>
+						<li>
+							JSON is natively understood by JavaScript, which itself is a standard component of the
+							web browser
+						</li>
+					</ul>
+				</div>
 				<p>
 					Most (all?) complaints of JSON web applications fall to poor front-end decisions: using enormous
 					<q>frameworks</q>, <a href="https://developer.mozilla.org/en-US/docs/Web/Security/CSP">CSP</a>
@@ -79,13 +81,13 @@
 				</p>
 				<nav>
 					<label for="slider1">
-						puts(<span>C</span>);
+						puts(<span>c</span>);
 					</label>
 					<label for="slider2">
-						{<span>JSON</span>}
+						{<span>json</span>}
 					</label>
 					<label for="slider3">
-						&lt;<span>HTML</span>&gt;
+						&lt;<span>html</span>&gt;
 					</label>
 				</nav>
 				<div class="slides">

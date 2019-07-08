@@ -1,24 +1,29 @@
 html, body					{ margin: 0; 
-						  background-color: #333;
 						  height: 100%; }
 body						{ font-family: "Alegreya Sans", sans-serif;
-						  font-weight: 300;
-						  font-size: 13pt; }
+						  background-color: #333;
+						  font-weight: 400;
+						  font-size: 14pt; }
 a						{ text-decoration: none; }
 input[type=radio]				{ display: none; }
-section > header				{ width: 70%;	
-						  padding-top: 1em;
+article > div,
+article > p,
+.slides,
+article nav,
+section > header				{ width: 66rem;
+						  max-width: 96%;
+						  margin-right: auto;
+						  margin-left: auto; }
+section > header				{ padding-top: 1em;
 						  padding-bottom: 1em;
 						  color: #fff;
 						  text-shadow: 1px 0 #234;
-						  margin-left: auto;
-						  margin-right: auto;
 						  display: flex;
 						  display: -webkit-flex;
-						  align-items: center;
-						  -webkit-align-items: center; }
-section > header nav a				{ color: #ddd; 
-						  font-size: 14pt; }
+						  align-items: flex-end;
+						  -webkit-align-items: flex-end; }
+section > header nav 				{ font-size: 80%; }
+section > header nav a				{ color: #ddd; }
 section > header nav a span			{ border-bottom: thin transparent; }
 section > header nav a:hover			{ color: #fff;  }
 section > header nav a:hover span		{ border-bottom: thin solid yellow; }
@@ -31,31 +36,31 @@ article > header				{ text-align: center;
 						  margin: 48pt 0; }
 article > header img				{ width: 60px; }
 article a					{ color: yellow; }
-h3						{ font-size: 32pt; 
+h3						{ font-size: 200%; 
 						  color: #aaa; 
 						  margin: 0;
 						  font-weight: 300;
 						  text-shadow: 0 0 1px #000; }
 h1 a						{ color: inherit; }
 h1 a:hover					{ text-shadow: 1px 1px 1px #15a; }
-h1						{ font-size: 24pt;
+h1						{ font-size: 200%;
 						  text-shadow: 0px 0px 1px #023;
 						  font-weight: 300;
 						  flex: 1;
 						  -webkit-flex: 1;
+						  line-height: 70%;
 						  margin: 0 8pt;  }
 h2						{ margin: 0;
 						  font-weight: 300;
 						  text-shadow: 1px 1px 1px #000; 
 						  margin-bottom: -30pt;
-						  font-size: 128pt; }
+						  font-size: 800%; }
 a						{ text-decoration: none; }
 nav						{ color: #abc; }
 footer						{ text-align: center;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
-						  font-size: 11pt;
-						  line-height: 130%;
+						  font-size: 80%;
 						  color: #678; }
 footer a					{ color: #89a; }
 footer a:hover					{ color: #cdf; }
@@ -63,10 +68,7 @@ footer a:hover					{ color: #cdf; }
 #slider1:checked ~ .slides .slidesinner		{ margin-left: 0; }
 #slider2:checked ~ .slides .slidesinner		{ margin-left: -100%; }
 #slider3:checked ~ .slides .slidesinner		{ margin-left: -200%; }
-article nav					{ width: 70%; 
-						  margin-left: auto;
-						  margin-right: auto;
-						  margin-top: 36pt;
+article nav					{ margin-top: 36pt;
 						  margin-bottom: 18pt;
 						  font-size: 24pt;
 						  display: flex;
@@ -75,6 +77,7 @@ article nav > *					{ flex: 1;
 						  text-align: center;
 						  -webkit-flex: 1; }
 article nav label				{ opacity: 0.5;
+						  cursor: pointer;
 						  color: #fff; }
 article nav label span				{ color: yellow; 
 						  padding: 0 2pt; }
@@ -86,15 +89,6 @@ article nav label img				{ opacity: 0.0;
 #slider1:checked ~ nav label[for=slider1] img,
 #slider2:checked ~ nav label[for=slider2] img,
 #slider3:checked ~ nav label[for=slider3] img	{ opacity: 1.0; }
-.slides section > p,
-article > ul,
-article > p					{ padding: 0 15%; 
-						  line-height: 18pt; }
-article > ul					{ margin-left: 48pt;
-					 	  margin-right: 48pt; }
-article > ul,
-article > p					{ font-size: 15pt; 
-						  line-height: 20pt; }
 .overflow					{ width: 100%;
 						  box-sizing: border-box;
 						  overflow: hidden; }
@@ -110,26 +104,13 @@ article > p					{ font-size: 15pt;
 						  border-radius: 4px;
 						  box-shadow: 1px 1px 4px #fff;
 						  font-family: monospace; }
-.slides figure					{ margin: 0 auto;
-						  width: 70%; }
+.slides figure					{ margin-left: 0.5rem;
+						  margin-right: 0.5rem; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
-section > header				{ width: 95%; 
-						  padding-top: 1ex;
-						  font-size: 14pt;
-						  padding-bottom: 0em;}
-h1						{ font-size: 14pt; }
-h2						{ font-size: 100pt; }
-h3						{ font-size: 24pt; }
-.slides figure					{ width: 94%; }
-article nav					{ width: 94%; }
-.slides section > p,
-article > ul,
-article > p					{ padding: 0 2%; 
-						  font-size: 12pt; }
-article nav					{ font-size: 18pt; }
-article nav label				{ white-space: nowrap; }
-article > ul					{ margin-left: 12pt;
-					 	  margin-right: 12pt; }
-section > header nav a				{ font-size: 12pt; }
+  article nav label				{ white-space: nowrap; }
+  h2						{ font-size: 400%;
+	  					  margin-bottom: -10pt; }
+  h3						{ font-size: 150%; }
+  article > header				{ margin: 24pt 0; }
 }
