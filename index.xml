@@ -162,6 +162,12 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
+							<a href="typescript.html">TypeScript</a> integration and openradtool
+						</span>
+						<span class="src">2019/07</span>
+					</li>
+					<li>
+						<span>
 							<a href="translate.html">Translation</a> with openradtool
 						</span>
 						<span class="src">2018/07</span>

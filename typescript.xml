@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -285,6 +285,13 @@ window.addEventListener('load', index.init);</pre>
 					<p>
 						Our <code>client</code> JavaScript documentation is available as <a
 							href="typescript-docs/index.html">typescript-docs/index.html</a>.
+					</p>
+					<h3>
+						acknowledgements
+					</h3>
+					<p>
+						I'd like to thank CAPEM Solutions, Inc., for funding this development and agreeing that it bests
+						serves the community as open source.
 					</p>
 				</section>
 			</article>
