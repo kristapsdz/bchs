@@ -25,6 +25,7 @@ body > section > header				{ padding-top: 1.5em;
 						  display: -webkit-flex;
 						  align-items: flex-end;
 						  -webkit-align-items: flex-end; }
+body > section > header nav 			{ font-size: 80%; }
 body > section > header nav a			{ color: #000; }
 body > section > header nav a span		{ border-bottom: thin transparent; }
 body > section > header nav a:hover		{ color: #000;  }
@@ -34,10 +35,9 @@ body > section > header nav a + a		{ border-left: thin solid #888;
 						  margin-left: 4pt; }
 body > section > header img			{ height: 22pt; 
 						  margin-bottom: 1pt; }
-body > section > header h1 a			{ color: inherit; 
-						  text-shadow: 1px 1px 1px transparent; }
-body > section > header h1 a:hover		{ text-shadow: 0px 1px 1px #aaa; }
-body > section > header h1			{ font-size: 24pt;
+body > section > header h1 a			{ color: inherit; }
+body > section > header h1 a:hover		{ color: #000; }
+body > section > header h1			{ font-size: 200%;
 						  font-weight: 500;
 						  flex: 1;
 						  line-height: 22pt;
@@ -52,35 +52,34 @@ h3						{ font-weight: 500;
 footer						{ text-align: center;
 						  padding-top: 1em;
 						  padding-bottom: 1em;
-						  font-size: smaller;
+						  font-size: 80%;
 						  color: #678; }
+footer .fa					{ font-size: 75%; }
 article a					{ border-bottom: thin solid #0575BD; }
-article > header .intro				{ font-size: larger; }
+article > header .intro				{ font-size: 110%; }
 h2						{ font-weight: 500;
 						  text-align: center;
 						  width: auto;
-						  text-shadow: 0px 0px 1px #000; 
-						  font-size: 64pt; }
+						  font-size: 450%; }
 a						{ text-decoration: none; }
 figure						{ margin: 1em 0;
 						  padding: 0;
 						  text-align: center; }
 figure img					{ width: 60%; }
 figure img.narrow				{ max-width: 350px; }
-figcaption					{ font-size: 12pt; 
+figcaption					{ font-size: 90%; 
 						  color: #666; }
 blockquote					{ margin-bottom: 0; }
-code						{ font-family: monospace;
-						  font-size: 80%; }
 code, pre					{ overflow: hidden; 
-						  font-size: 11pt; }
+						  font-family: monospace;
+						  font-size: 75%; }
 pre.prettyprint					{ border: 0; }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
 figure img					{ width: 100%; }
-h2						{ font-size: 36pt; 
+h2						{ font-size: 250%; 
 					  	  text-align: center; }
 body > section > header h1			{ margin: 0 4pt; }
-body > section > nav				{ width: 90%; }
 body > section > nav				{ text-align: center; }
 }
+

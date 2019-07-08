@@ -141,7 +141,6 @@ footer p				{ margin: 0.1em 0; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
   pre					{ overflow: hidden; }
-  #tophead nav				{ font-size: 100%; }
   #tophead h1				{ font-size: 140%; }
   #tophead				{ padding-top: 2rem; }
   #top					{ padding-top: 6rem; }					   
