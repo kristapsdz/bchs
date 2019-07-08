@@ -162,8 +162,7 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
-							<a href="translate.html">Translation</a> with <a
-								href="https://kristaps.bsd.lv/openradtool">openradtool</a>
+							<a href="translate.html">Translation</a> with openradtool
 						</span>
 						<span class="src">2018/07</span>
 					</li>
@@ -199,7 +198,7 @@ Server: <span>OpenBSD httpd</span></pre>
 						<span class="src">2017/07</span>
 					</li>
 					<li>
-						<span>Rapid web applications with <a href="kwebapp.html">openradtool</a></span>
+						<span><a href="kwebapp.html">Introduction</a> to RAD with openradtool</span>
 						<span class="src">2017/05</span>
 					</li>
 					<li>
