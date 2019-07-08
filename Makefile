@@ -123,22 +123,22 @@ kwebapp.db.c.html: kwebapp.db.c
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.db.c > $@
 
 kwebapp.db.c: kwebapp.txt
-	kwebapp-c-source -vj -h kwebapp.db.h kwebapp.txt > $@
+	ort-c-source -vj -h kwebapp.db.h kwebapp.txt > $@
 
 kwebapp.db.h.html: kwebapp.db.h
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.db.h > $@
 
 kwebapp.db.h: kwebapp.txt
-	kwebapp-c-header -vj kwebapp.txt > $@
+	ort-c-header -vj kwebapp.txt > $@
 
 kwebapp.db.sql.html: kwebapp.txt
-	kwebapp-sql kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
+	ort-sql kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
 
 kwebapp.db.sqldiff.html: kwebapp.txt
-	kwebapp-sqldiff kwebapp.old.txt kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
+	ort-sqldiff kwebapp.old.txt kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=sql > $@
 
 kwebapp.db.js.html: kwebapp.txt
-	kwebapp-javascript kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=js > $@
+	ort-javascript kwebapp.txt | highlight --config-file=github.theme -l --css=style.css --src-lang=js > $@
 
 kwebapp.main.c.html: kwebapp.main.c
 	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.main.c > $@
@@ -154,19 +154,19 @@ kwebapp.main2.c.xml: kwebapp.main.c
 	echo '</article>' >>$@
 
 rbac-ex1.h.html: rbac-ex1.txt
-	kwebapp-c-header -vj rbac-ex1.txt | \
+	ort-c-header -vj rbac-ex1.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex1.c.html: rbac-ex1.txt
-	kwebapp-c-source -vj -h rbac-ex1.h rbac-ex1.txt | \
+	ort-c-source -vj -h rbac-ex1.h rbac-ex1.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex2.h.html: rbac-ex2.txt
-	kwebapp-c-header -vj rbac-ex2.txt | \
+	ort-c-header -vj rbac-ex2.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 rbac-ex2.c.html: rbac-ex2.txt
-	kwebapp-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
+	ort-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
 		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
 
 auditing-fig4.xml auditing-fig5.xml: auditing-fig4.conf
@@ -178,7 +178,7 @@ auditing-fig4.xml:
 
 auditing-fig5.xml:
 	echo '<article data-sblg-article="1">' >$@
-	kwebapp-c-header -s auditing-fig4.conf 2>/dev/null | \
+	ort-c-header -s auditing-fig4.conf 2>/dev/null | \
 		sed '1,11d' | head -n30 | \
 		highlight -l -f --out-format=xhtml --enclose-pre -S c >>$@
 	echo '</article>' >>$@
@@ -202,10 +202,10 @@ AUDIT_DEPS  = auditing-fig4.xml \
 	      auditing-fig9.xml
 
 audit-out.js: auditing-fig6.conf
-	kwebapp-audit-json user auditing-fig6.conf > $@
+	ort-audit-json user auditing-fig6.conf > $@
 
 auditing-fig8.svg: auditing-fig8.conf
-	kwebapp-audit-gv default auditing-fig8.conf | dot -Tsvg -o$@
+	ort-audit-gv default auditing-fig8.conf | dot -Tsvg -o$@
 
 auditing.html: auditing.xml $(AUDIT_DEPS)
 	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_DEPS)
@@ -226,7 +226,7 @@ ksql.html: ksql.xml $(KSQL_DEPS)
 	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_DEPS)
 
 typescript-docs: typescript.kwbp
-	kwebapp-javascript typescript.kwbp > typescript.js
+	ort-javascript typescript.kwbp > typescript.js
 	jsdoc -d $@ typescript.js
 	rm -f typescript.js
 
