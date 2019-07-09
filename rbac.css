@@ -71,6 +71,7 @@ strong, b					{ font-weight: 500; }
 pre.prettyprint					{ border: none; 
 						  overflow: hidden; }
 pre, code					{ font-family: monospace;
+						  color: #000;
 						  font-size: 75%; }
 figure 						{ text-align: center; 
 					  	  margin: 0; }

@@ -49,7 +49,6 @@
 						of adding <i>types</i> to otherwise dynamically-typed JavaScript objects.
 						This allows developers to statically check for type violations (number vs. string, unknown
 						functions, nonexistence members, etc.) instead of resorting to painstaking run-time tests.
-						Don't get too excited: there are some&#8230; down-sides.
 					</p>
 					<pre class="prettyprint lang-javascript">/* Variables: */
 var foo; 
@@ -64,14 +63,36 @@ function bar(str: string, num: number): boolean { return false; }
 /* JavaScript?  Ok.  TypeScript? No. */
 bar(foo, foo);</pre>
 					<p>
+						Looks great, no?
+						Well, don't get too excited: there are some&#8230; down-sides.
+					</p>
+					<p>
 						The <code>tsc</code> <q>transpiler</q> translates the TypeScript to JavaScript, making sure that
 						types are consistent along the way.
 						On OpenBSD, the <code>tsc</code> utility must be indirectly installed from <code>npm</code>.
 						Let's grab it and make sure we also have our other tools.
 					</p>
-					<pre># pkg_add openradtool
-# pkg_add node
+					<pre># pkg_add openradtool node
 # npm install typescript -g</pre>
+					<p>
+						I use <strong>-g</strong> as I'm usually building <a
+							href="https://man.openbsd.org/ports.7">ports(7)</a> of my software as a different user
+						that also needs the <code>tsc</code> executable.
+					</p>
+					<p>
+						This brings us to downside #1: the node package manager.
+						The least significant offense is that its installed components are not controlled by <a
+							href="https://man.openbsd.org/pkg_add">pkg_add(1)</a> and it pollutes <span
+							class="file">/usr/local/bin</span> with symbolic links.
+						So when you upgrade OpenBSD, you'll need to manually remove these links and reinstall the latest
+						node packages.
+						Furthermore, it's not clear to me whether <code>npm install</code> uses out-of-band version
+						information, resulting in the same OpenBSD version with different TypeScript installations.
+						Terrifying.
+						A solution is to bring the TypeScript module into <a
+							href="https://man.openbsd.org/ports.7">ports(7)</a> itself, but I'm yet to roll up my
+						sleeves for that one.
+					</p>
 					<p>
 						Anyway, TypeScript's typing offers more safety than plain JavaScript; and in the desert of
 						front-end development, any water is sacred.
@@ -84,8 +105,10 @@ bar(foo, foo);</pre>
 						In this article, I talk about the role of TypeScript in a <a href="index.html">BCHS</a> ecosystem.
 						Let's sail the full <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> armada to see where it
 						fits in, from configuration to client.
-						I will <strong>not</strong> talk about the larger JavaScript/TypeScript ecosystem of node
-						modules, grunting, linting, and all other manner of disturbing verbiage.
+					</p>
+					<p>
+						I will <strong>not</strong> talk about the JavaScript/TypeScript ecosystem of node modules and
+						dependencies, grunting, gulping, and other willy wonka.
 						We're going to keep it simple with some Makefiles.
 					</p>
 					<figure>
@@ -112,11 +135,12 @@ bar(foo, foo);</pre>
 						getting started: javascript
 					</h3>
 					<p>
-						Let's fake up a quick configuration for a <code>client</code> structure consisting of the
-						client's name (<code>name</code>), their date of birth (<code>dob</code>), and the row
-						identifier (<code>id</code>).
+						Let's fake up a quick configuration <span class="file">config.ort</span> for a
+						<code>client</code> structure consisting of the client's name (<code>name</code>), their date of
+						birth (<code>dob</code>), and the row identifier (<code>id</code>).
 						We'll add an accessor function for fetching these records by unique identifier.
-						All of this is documented in <a href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a>.
+						All of this is documented in <a
+							href="https://kristaps.bsd.lv/openradtool/ort.5.html">ort(5)</a>.
 					</p>
 					<pre class="prettyprint">struct client {
   field name text;
@@ -129,6 +153,8 @@ bar(foo, foo);</pre>
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-source.1.html">ort-c-source(1)</a> and
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-header.1.html">ort-c-header(1)</a>, is
 						already configured to return JSON documents in response to requests.
+						There's an example of this in the <a href="kwebapp.html">introduction</a> to the openradtool
+						series.
 						Let's call the application <code>app</code> and have its default page respond to the
 						<code>client-id</code> variable to return client record.
 					</p>
@@ -137,6 +163,9 @@ bar(foo, foo);</pre>
 							href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html">ort-javascript(1)</a>
 						provides classes and methods for formatting <code>client</code> records returned from your application.
 						Let's put this into <span class="file">ort.js</span>.
+					</p>
+					<pre>% ort-javascript config.ort >ort.js</pre>
+					<p>
 						How does this JavaScript code work?
 						It takes JSON objects and fills in parts of the DOM tree as labelled by <code>class</code> attributes.
 					</p>
@@ -184,12 +213,9 @@ bar(foo, foo);</pre>
 					</p>
 					<pre class="prettyprint lang-javascript">window.onload = init;</pre>
 					<p>
-						In general, I'll bundle each page's JavaScript requirements into one.
-						Why?  Simplicity and safety.
-						No only can keep better track exactly which sources we're using instead of depending upon CDNs,
-						we also won't require the client (or ourselves) to juggle loading.
-						Of course, if you're depending on existing JavaScript frameworks, this won't be possible.
-						I'll often bundle my <a
+						In general, I'll bundle each HTML page's JavaScript requirements into one instead of using the
+						magic bundling tools within the JavaScript ecosystem.
+						So I'll concatenate my <a
 							href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html">ort-javascript(1)</a>
 						output with a set of generic functions (such as the above for making the AJAX request) and
 						per-page logic (invoking the server and <code>fill</code> methods).
@@ -199,6 +225,11 @@ bar(foo, foo);</pre>
 					<p>
 						For the per-page logic, I'll use <q>module patterns</q> to make sure that all can be combined
 						into a single file without namespace collisions.
+						(This is also a good place to use <code>jsmin</code>, if it's installed.)
+						This prioritises simplicity (one file per HTML page) over bandwidth considerations, where the
+						client may be able to cache divisible components.
+						Make it a point to use the <q>module pattern</q> to prevent concatenated functions from
+						clobbering each other:
 					</p>
 					<pre class="prettyprint lang-javascript">'use strict';
 var index;
@@ -233,10 +264,14 @@ window.addEventListener('load', index.init);
 						I personally don't use it at all: for each page, I compile a single JavaScript file from all of
 						its dependencies.
 					</p>
-					<pre class="prettyprint lang-make">index.min.js: index.ts ort.ts
+					<pre class="prettyprint lang-make">index.dist.js: index.ts ort.ts
   tsc --strict --outFile $@ index.ts ort.ts</pre>
 					<p>
-						We should also make our loader aware of its typed payload.
+						If I have an external JavaScript component I use (such as <a
+							href="https://momentjs.com/">moment.js</a>), I keep the latest stable code in a
+						subdirectory, install it with my build components, and refer to its TypeScript <q>.d.ts</q>
+						synopsis with the <code>&lt;reference path&gt;</code> construct.
+						Let's return to our <code>init</code> method.
 					</p>
 					<pre class="prettyprint lang-javascript">namespace index {
   export function init(): void {
@@ -257,12 +292,13 @@ window.addEventListener('load', index.init);
 }
 window.addEventListener('load', index.init);</pre>
 					<p>
-						There are some bothersome missing components in this sequence.
-						Namely, we should have a wrapper safely converting from <code>JSON.parse</code> and
-						our interfaces.
+						There is one bothersome missing components in this sequence: we should have a wrapper safely
+						converting from <code>JSON.parse</code> and our interfaces.
 						I'll leave this in the area of future work.
+					</p>
+					<p>
 						We all agree that type safety is excellent.
-						But now on to the bad news.
+						But now on to the bad news&#8212;yes, it's worse than the node package manager.
 					</p>
 					<pre>% time tsc --strict --outFile index.js index.ts
     0m02.97s real     0m04.58s user     0m01.13s system</pre>
@@ -278,6 +314,13 @@ window.addEventListener('load', index.init);</pre>
 						I want to.
 						But I won't.
 					</p>
+					<p>
+						Moral of the story?
+						TypeScript is an excellent way to enforce a type contract between you and your code.
+						And openradtool helps front-end developers by having a type-enforced API to its data kept in
+						tune with the configuration.
+						But using TypeScript instead of JavaScript incurs a steep compile-time performance hit.
+					</p>
 					<h3>
 						documentation
 					</h3>
@@ -285,13 +328,16 @@ window.addEventListener('load', index.init);</pre>
 						The outputs of 
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-source.1.html">ort-c-source(1)</a> and
 						<a href="https://kristaps.bsd.lv/openradtool/ort-c-header.1.html">ort-c-header(1)</a> are
-						all well-documented.
+						all well-documented, of course.
 						The same goes with the JavaScript or TypeScript output of 
 						<a href="https://kristaps.bsd.lv/openradtool/ort-javascript.1.html">ort-javascript(1)</a>.
+						It uses the jsdoc syntax, and strives to document all the tools and members available to
+						front-end developers.
 					</p>
 					<p>
-						For documentation, you'll also need the <code>jsdoc</code> utility available via
+						To generate documentation, you'll also need the <code>jsdoc</code> utility available via
 						<code>npm</code>.
+						See the disclaimer above about the node package manager, of course.
 					</p>
 					<pre># npm install jsdoc -g</pre>
 					<p>
@@ -302,9 +348,10 @@ window.addEventListener('load', index.init);</pre>
 					<pre class="prettyprint lang-make">out: ort.ts
   tsc --outFile ort.ts.js ort.ts
   jsdoc -d $@ ort.ts.js
+  touch $@
   rm -f ort.ts.js</pre>
 					<p>
-						Our <code>client</code> JavaScript documentation is available as <a
+						The <code>client</code> JavaScript documentation for our examples is available as <a
 							href="typescript-docs/index.html">typescript-docs/index.html</a>.
 						I consider the documentation aspect of <a
 							href="https://kristaps.bsd.lv/openradtool">openradtool</a> to be one of its most
