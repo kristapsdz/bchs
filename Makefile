@@ -19,7 +19,6 @@ CSSS		 = audit.css \
 		   ksql.css \
 		   kwebapp.css \
 		   pledge.css \
-		   rbac.css \
 		   style.css \
 		   tools.css
 GENS		 = auditing-fig4.xml \

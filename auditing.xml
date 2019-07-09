@@ -8,7 +8,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" rel="stylesheet" />
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="style.css" rel="stylesheet" />
-		<link href="rbac.css" rel="stylesheet" />
+		<link href="kwebapp.css" rel="stylesheet" />
 		<link href="audit.css" rel="stylesheet" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -52,7 +52,7 @@
 						This piece is an abridged version of my <a href="https://kristaps.bsd.lv/absdcon2018">AsiaBSDCon
 							2018</a> talk.
 					</p>
-					<h2>
+					<h2 class="smaller">
 						<a href="index.html">BCHS</a>: role audits
 					</h2>
 				</header>

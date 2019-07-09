@@ -61,6 +61,8 @@ h2						{ font-weight: 500;
 						  text-align: center;
 						  width: auto;
 						  font-size: 450%; }
+h2.smaller					{ font-size: 250%; }
+h2 a						{ border-bottom: none; }
 a						{ text-decoration: none; }
 figure						{ margin: 1em 0;
 						  padding: 0;
@@ -81,6 +83,7 @@ pre.prettyprint					{ border: 0; }
 figure img					{ width: 100%; }
 h2						{ font-size: 250%; 
 					  	  text-align: center; }
+h2.smaller					{ font-size: 175%; }
 body > section > header h1			{ margin: 0 4pt; }
 body > section > nav				{ text-align: center; }
 }
