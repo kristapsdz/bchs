@@ -14,8 +14,8 @@
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 		<meta property="og:title" content="BCHS//openradtool: translation tools" />
-		<meta property="og:image" content="logo-blue.png" />
-		<meta property="og:url" content="https://kristaps.bsd.lv/translate.html" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/translate.html" />
 		<meta property="og:type" content="website" />
 		<meta property="og:description" content="Manage translations for your openradtool configuration." />
 		<meta name="description" content="Manage translations for your openradtool configuration." />

@@ -15,7 +15,7 @@
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 		<meta property="og:title" content="BCHS and openradtool: introducing RBAC" />
-		<meta property="og:image" content="logo-blue.png" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
 		<meta property="og:url" content="https://learnbchs.org/rbac.html" />
 		<meta property="og:type" content="website" />
 		<meta property="og:description" content="Role-based access control (RBAC) in your openradtool application." />
