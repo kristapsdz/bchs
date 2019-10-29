@@ -9,6 +9,7 @@ PAGES		 = auditing.html \
 		   kwebapp.html \
 		   pledge.html \
 		   rbac.html \
+		   sqlbox.html \
 		   tools.html \
 		   translate.html \
 		   typescript.html
@@ -68,6 +69,14 @@ IMAGES		 = auditing-fig1.svg \
 		   rbac-fig2.svg \
 		   rbac-fig3.svg \
 		   rbac-fig4.svg \
+		   sqlbox-fig1.svg \
+		   sqlbox-fig2.png \
+		   sqlbox-fig3.png \
+		   sqlbox-fig4.png \
+		   sqlbox-fig5.png \
+		   sqlbox-fig6.svg \
+		   sqlbox-fig7.svg \
+		   sqlbox-fig8.svg \
 		   translate-fig1.svg \
 		   translate-fig2.svg \
 		   translate-fig3.svg \
@@ -223,6 +232,14 @@ KSQL_DEPS  = ksql-fig1.c.xml \
 
 ksql.html: ksql.xml $(KSQL_DEPS) 
 	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_DEPS)
+
+sqlbox-fig2.png: sqlbox-fig2.dat
+sqlbox-fig3.png: sqlbox-fig2.dat
+sqlbox-fig4.png: sqlbox-fig4.dat
+sqlbox-fig5.png: sqlbox-fig4.dat
+
+sqlbox.html: sqlbox.xml
+	cp -f sqlbox.xml $@
 
 typescript-docs: typescript.kwbp
 	ort-javascript typescript.kwbp > typescript.js

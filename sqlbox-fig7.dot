@@ -1,0 +1,37 @@
+digraph {
+	bgcolor="transparent";
+	rankdir="LR";
+
+	start[color="green"; fontcolor="green"];
+	end[color="green"; fontcolor="green"];
+
+	start -> x0a;
+	start -> x1a[style=invis];
+
+	subgraph cluster0 { 
+		label="application";
+		x0a[label="step"];
+		x0b[label="receive"];
+		x0c[label="step"];
+		x0d[label="step"];
+		x0a -> x0b[style=dashed; label="wait"; color=gray; fontcolor=gray];
+		x0b -> x0c[label="work"];
+		x0c -> x0d[label="work"];
+	}
+	subgraph cluster1 { 
+		label="database";
+		x1a[label="receive"];
+		x1b[label="respond"];
+		x1c[style=invis];
+		x1d[style=invis];
+		x1a -> x1b[label="step"]; 
+		x1b -> x1c[style=invis];
+		x1c -> x1d[style=invis];
+	}
+
+	x0a -> x1a;
+	x1b -> x0b;
+
+	x1d -> end[style=invis];
+	x0d -> end;
+}

@@ -1,0 +1,40 @@
+digraph {
+	bgcolor="transparent";
+	rankdir="LR";
+
+	start[color="green"; fontcolor="green"];
+	end[color="green"; fontcolor="green"];
+
+	start -> b;
+	start -> c[style=invis];
+
+	subgraph cluster0 { 
+		label="application";
+		b[label="request"];
+		e[label="receive"];
+		b -> e[style=dashed; label="wait", color=gray, fontcolor=gray];
+		f[label="request"];
+		g[label="receive"];
+		e -> f[label="work"];
+		f -> g[style=dashed; label="wait", color=gray, fontcolor=gray];
+	}
+	subgraph cluster1 { 
+		label="database";
+		c[label="receive"];
+		d[label="respond"];
+		c -> d[label="work"]; 
+		h[label="receive"];
+		i[label="respond"];
+		d -> h[style=dashed; label="wait", color=gray, fontcolor=gray]; 
+		h -> i[label="work"]; 
+	}
+
+	b -> c;
+	d -> e;
+
+	f -> h;
+	i -> g;
+
+	i -> end[style=invis];
+	g -> end;
+}

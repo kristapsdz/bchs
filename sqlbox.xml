@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS//sqlbox: database access library</title>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500" rel="stylesheet" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
+		<link href="ksql.css" rel="stylesheet" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta property="og:title" content="BCHS and sqlbox: a secure database access library" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/sqlbox.html" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Secure database access library." />
+		<meta name="description" content="Secure database library.." />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header>
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article>
+				<p id="tldr">
+					While <a href="ksql.html">ksql</a> has been great to work with, it's too slow for my current needs.
+					This article introduces <a href="https://kristaps.bsd.lv/sqlbox">sqlbox</a>, which has a different API
+					geared for much higher performance while offering the same (if not slightly better) security.
+				</p>
+				<h2>
+					background
+				</h2>
+				<p>
+					<a href="ksql.html">ksql</a> was started as a way to allow <a href="https://sqlite.org">sqlite3</a>
+					database access within a file-system constrained application process
+					(typically as enacted with <a href="https://man.openbsd.org/pledge.2">pledge</a>).
+					Since <span class="nm">sqlite3</span> is both in-process and on the file-system, this necessitated a
+					separate process with file-system access.
+					Parent and child would communicate synchronously over sockets.
+				</p>
+				<figure>
+					<img src="sqlbox-fig1.svg" />
+				</figure>
+				<p>
+					The library has served this purpose admirably.
+					But as my application needs grew into performance alongside security, I found it difficult for <span
+						class="nm">ksql</span> to keep up.
+					Several issues arose, which would be difficult to address without drastic API or backend changes:
+				</p>
+				<ul>
+					<li>
+						<strong>Complexity</strong>:
+						has both an in-process and split-process mode, the former being unsafe and adding a layer of
+						complexity to everything.
+						See <a href="https://kristaps.bsd.lv/ksql/ksql_alloc.3.html">ksql_alloc</a>
+						versus <a href="https://kristaps.bsd.lv/ksql/ksql_alloc_child.3.html">ksql_alloc_child</a>.
+					</li>
+					<li>
+						<strong>Complexity</strong>: lets the application optionally handle database failure, which
+						makes audits of database integrity difficult.
+					</li>
+					<li>
+						<strong>Performance</strong>: <span class="nm">sqlite3</span>-modelled API functions are
+						synchronous in that the application requests then receives a response from the database process,
+						so each each operation requires a round-trip.
+					</li>
+				</ul>
+				<p>
+					The performance issues may be visualised by the penalty of creating, opening, operating upon, then
+					closing an in-memory database.
+					These graphs show that the process of allocating the database is quite expensive even within <span
+						class="nm">sqlite3</span>.
+				</p>
+				<figure class="pair">
+					<img src="sqlbox-fig2.png" alt="graph of full database cycle" />
+					<img src="sqlbox-fig3.png" alt="graph of full database cycle" />
+				</figure>
+				<p>
+					The real cost may be seen in preparing and executing statements, with each step (har, har) along the way
+					being communicated synchronously over a socket communication.
+				</p>
+				<figure class="pair">
+					<img src="sqlbox-fig4.png" alt="graph of result gathering" />
+					<img src="sqlbox-fig5.png" alt="graph of result gathering" />
+				</figure>
+				<p>
+					There are similar penalties in acquiring resulting rows, but that I'll discuss later.
+				</p>
+				<p>
+					To fix some of the issues would require completely overhauling the implementation, such as split-process
+					mode.
+					Others, like performance, would require a significant API change.
+					Since <span class="nm">ksql</span> has shown itself to be a very stable piece of software, it makes more
+					sense to simply start again with a new API in a new library, inheriting if not code, then at least
+					backend processes from the origin.
+				</p>
+				<h2>
+					design considerations
+				</h2>
+				<p>
+					In writing <span class="nm">sqlbox</span>, I focussed on several points:
+				</p>
+				<ul>
+					<li>
+						<strong>Wait-free operation</strong>: by combining close-on-fail with implicit addressing
+						(addressing, for example, the last open statement instead of needing to open the statement and
+						wait for a prior identifier), most operations are wait-free.
+					</li>
+					<li>
+						<strong>Caching results</strong>: have the database process optionally transfer a cache of
+						result rows instead of just a single one, filling the cache between requests.  This reduces the
+						number of inter-process communication.
+					</li>
+					<li>
+						<strong>API compacting</strong>: instead of needing to invoke communication for each (for
+						example) bind or resutl operation, reconstitute the API to have these occur all at once.
+						This prevents significant superfluous communication.
+					</li>
+				</ul>
+				<p>
+					Wait-free operation stipulates that the exchange of data between the application and database process,
+					where the former waits for a response from the latter, is limited to only necessary steps.
+					This allows both processes to perform work in between requests, greatly increasing performance.
+				</p>
+				<figure>
+					<img src="sqlbox-fig6.svg" />
+				</figure>
+				<p>
+					Caching responses linearly increases performances by having the database process pre-step as many
+					results as possible while waiting.
+					After returning a cached payload, the application simply steps through result rows in memory and need
+					not contact the database application.
+				</p>
+				<figure>
+					<img src="sqlbox-fig7.svg" />
+				</figure>
+				<p>
+					For optimum performance, the database process collects results <emph>after</emph> responding to a prior
+					step request that returns results.
+					This takes place during the waiting period while the application is operating on existing data.
+				</p>
+				<p>
+					API redesign compresses the binding operation into statement preparation or execution.
+					This means that instead of invoking one round-trip operation per column, there's only one per statement.
+				</p>
+				<figure>
+					<img src="sqlbox-fig8.svg" />
+				</figure>
+				<h2>
+					implementation
+				</h2>
+				<p>
+					Like <span class="nm">ksql</span>, <span class="nm">sqlbox</span> uses native operating system security
+					features to constrain the database process.
+					The application is responsible for doing so itself.
+					On <a href="https://www.openbsd.org">OpenBSD</a>, the platform of choice, this is enacted by
+					<a href="https://man.openbsd.org/pledge.2">pledge</a>.
+					There are options for similar security levels on <a href="https://www.freebsd.org">FreeBSD</a> using
+					Capsicum and overriding how <span class="nm">sqlite3</span> opens files, but this is not currently on
+					the roadmap.
+				</p>
+				<p>
+					Unlike <span class="nm">ksql</span>, <span class="nm">sqlbox</span> has a robust set of regression tests
+					to verify that the behaviour stipulated in its manpages is consistent with the implementation.
+					To date, there are over <var>150</var> tests.
+					This framework ensures that changes to the implementation do not affect expected behaviour.
+					It also ensures that border conditions are properly handled.
+				</p>
+				<pre>% make regress
+test-alloc-bad-defrole... <span style="color: green;">ok</span>
+test-alloc-bad-filt-stmt... <span style="color: green;">ok</span>
+test-alloc-bad-role... <span style="color: green;">ok</span>
+test-alloc-bad-src... <span style="color: green;">ok</span>
+<span style="color: lightgray;">[...]</span>
+% make valgrind # "regress" but under valgrind</pre>
+			</article>
+			<footer>
+				<div>
+					<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+					<a rel="author" href="https://kristaps.bsd.lv">Kristaps Dzonsons</a>
+				</div>
+			</footer>
+		</section>
+	</body>
+</html>
+
