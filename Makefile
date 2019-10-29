@@ -77,6 +77,10 @@ IMAGES		 = auditing-fig1.svg \
 		   sqlbox-fig6.svg \
 		   sqlbox-fig7.svg \
 		   sqlbox-fig8.svg \
+		   sqlbox-fig9.png \
+		   sqlbox-fig10.png \
+		   sqlbox-fig11.png \
+		   sqlbox-fig12.png \
 		   translate-fig1.svg \
 		   translate-fig2.svg \
 		   translate-fig3.svg \
@@ -237,6 +241,10 @@ sqlbox-fig2.png: sqlbox-fig2.dat
 sqlbox-fig3.png: sqlbox-fig2.dat
 sqlbox-fig4.png: sqlbox-fig4.dat
 sqlbox-fig5.png: sqlbox-fig4.dat
+sqlbox-fig9.png: sqlbox-fig2.dat
+sqlbox-fig10.png: sqlbox-fig4.dat
+sqlbox-fig11.png: sqlbox-fig11.dat
+sqlbox-fig12.png: sqlbox-fig12.dat
 
 sqlbox.html: sqlbox.xml
 	cp -f sqlbox.xml $@

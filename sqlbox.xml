@@ -38,6 +38,7 @@
 					While <a href="ksql.html">ksql</a> has been great to work with, it's too slow for my current needs.
 					This article introduces <a href="https://kristaps.bsd.lv/sqlbox">sqlbox</a>, which has a different API
 					geared for much higher performance while offering the same (if not slightly better) security.
+					This document is based on <span class="nm">sqlbox</span> <var>v0.1.5</var>.
 				</p>
 				<h2>
 					background
@@ -68,8 +69,9 @@
 						versus <a href="https://kristaps.bsd.lv/ksql/ksql_alloc_child.3.html">ksql_alloc_child</a>.
 					</li>
 					<li>
-						<strong>Complexity</strong>: lets the application optionally handle database failure, which
-						makes audits of database integrity difficult.
+						<strong>Integrity</strong>: lets the application optionally handle database failure, which makes
+						audits of database integrity (database process should close database in a safe state) difficult.
+						This is compounded in the non-split-process mode.
 					</li>
 					<li>
 						<strong>Performance</strong>: <span class="nm">sqlite3</span>-modelled API functions are
@@ -80,8 +82,7 @@
 				<p>
 					The performance issues may be visualised by the penalty of creating, opening, operating upon, then
 					closing an in-memory database.
-					These graphs show that the process of allocating the database is quite expensive even within <span
-						class="nm">sqlite3</span>.
+					(These graphs also show that the process of allocating the database is quite expensive!)
 				</p>
 				<figure class="pair">
 					<img src="sqlbox-fig2.png" alt="graph of full database cycle" />
@@ -185,6 +186,63 @@ test-alloc-bad-role... <span style="color: green;">ok</span>
 test-alloc-bad-src... <span style="color: green;">ok</span>
 <span style="color: lightgray;">[...]</span>
 % make valgrind # "regress" but under valgrind</pre>
+				<p>
+					In the code itself, another significant difference is that (with very few exceptions) requests and
+					responses use fixed-sized minimum packet sizes for communication.
+					At the moment, this is fixed at <strong>1024 B</strong>.
+					This means that both processes read at least 1K for each communication.
+					Why?
+					It allows up to 1K of request data (parameters, response rows, etc.) to be written into each packet with
+					a single <code>read()</code> instead of requiring one for size, one for data.
+					Transmissions of greater than 1K read only the remainder.
+					The choice of 1K is simply to be less than the default socket buffer size.
+					(It can be tuned at compile time.)
+				</p>
+				<h2>
+					results
+				</h2>
+				<p>
+					Even at this early stage of development, the results are quite impressive.
+					The following chart the overhead of <span class="nm">ksql</span> versus <span class="nm">sqlbox</span>
+					over the native <span class="nm">sqlite3</span>.
+				</p>
+				<figure class="pair">
+					<img src="sqlbox-fig9.png" alt="graph of full database cycle" />
+					<img src="sqlbox-fig10.png" alt="graph of prep-bind-step cycle" />
+				</figure>
+				<p>
+					The benefit of the first graph (<q>full-cycle</q> operation) is not so clear considering that the
+					underlying expense of creating the database outweighs the communication costs.
+					The second graph (<q>prepare-bind-step</q> cycle) is more visible due to the API reflow and wait-free
+					operation.
+				</p>
+				<p>
+					The following shows the benefit of caching step statements.
+					The first graph does not cache; the second does.
+					Both use the same code for generating the <span class="nm">ksql</span> case.
+					We see, in the first, simply the cost of two synchronous operations transferring bytes.
+					<span class="nm">sqlbox</span> is approximately twice as fast because it this in one step.
+				</p>
+				<figure class="pair">
+					<img src="sqlbox-fig11.png" alt="without multi-select" />
+					<img src="sqlbox-fig12.png" alt="with multi-select" />
+				</figure>
+				<p>
+					It's clear that stuffing result rows has a noticable benefit in terms of performance.
+				</p>
+				<h2>
+					future work
+				</h2>
+				<p>
+					With a cleaner API and back-end, it's much easier to add further improvements.
+					First, the implementation should compute and exchange the minimum buffer size at startup.
+					This is also necessary for actual socket communication where the buffer sizes will not be symmetric.
+				</p>
+				<p>
+					Second, the multi-step result caching can be considerably improved.
+					For now it just uses a fixed-sized buffer for gathering results (10K, specifically).
+					This should be determined at run-time.
+				</p>
 			</article>
 			<footer>
 				<div>

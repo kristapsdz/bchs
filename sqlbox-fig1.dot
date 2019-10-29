@@ -29,6 +29,12 @@ digraph {
 		h -> i[label="work"]; 
 	}
 
+	database[style=filled; fillcolor="lightblue"];
+	c -> database;
+	database -> d;
+	h -> database;
+	database -> i;
+
 	b -> c;
 	d -> e;
 
