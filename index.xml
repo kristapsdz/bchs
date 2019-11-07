@@ -161,6 +161,12 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
+							<a href="sqlbox.html">sqlbox</a>: ksql re-imagined
+						</span>
+						<span class="src">2019/11</span>
+					</li>
+					<li>
+						<span>
 							<a href="typescript.html">TypeScript</a> integration and openradtool
 						</span>
 						<span class="src">2019/07</span>
