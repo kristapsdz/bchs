@@ -159,6 +159,13 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
+							<a href="https://kore.io">kore</a>: 
+							<a href="https://blog.kore.io/posts/automagic-x509s-via-acme.html">Automagic x509s via ACME</a>
+						</span>
+						<span class="src">Joris Vink, 2019/11</span>
+					</li>
+					<li>
+						<span>
 							<a href="sqlbox.html">sqlbox</a>: ksql re-imagined
 						</span>
 						<span class="src">2019/11</span>
