@@ -41,6 +41,7 @@ GENS		 = auditing-fig4.xml \
 		   ksql-fig4.c.xml \
 		   ksql-fig5.c.xml \
 		   $(GENHTMLS) \
+		   $(FAVICONS) \
 		   $(IMAGES)
 GENHTMLS	 = audit-out.js \
 		   kwebapp.db.c.html \
@@ -54,6 +55,8 @@ GENHTMLS	 = audit-out.js \
 		   rbac-ex2.c.html \
 		   rbac-ex2.h.html
 GENDIRS		 = typescript-docs
+FAVICONS	 = favicon.ico \
+		   favicon-196x196.png
 IMAGES		 = auditing-fig1.svg \
 		   auditing-fig2.svg \
 		   auditing-fig3.svg \
@@ -98,7 +101,7 @@ BUILT		 = audit.js \
 		   logo-white.png \
 		   sqlite.png
 
-www: $(GENHTMLS) $(IMAGES) $(PAGES) $(GENDIRS)
+www: $(GENHTMLS) $(IMAGES) $(FAVICONS) $(PAGES) $(GENDIRS)
 
 .xml.html:
 	cp -f $< $@
@@ -257,8 +260,7 @@ typescript-docs: typescript.kwbp
 installwww: www
 	mkdir -p $(PREFIX)
 	install -m 0444 $(IMAGES) $(GENHTMLS) $(BUILT) $(CSSS) $(PAGES) $(PREFIX)
-	install -m 0444 icons/*.{png,ico,xml,json,svg} $(PREFIX)
-	install -m 0444 robots.txt sitemap.xml $(PREFIX)
+	install -m 0444 $(FAVICONS) robots.txt sitemap.xml $(PREFIX)
 	tar cf - $(GENDIRS) | tar -xf - -C $(PREFIX)
 
 clean:
@@ -269,3 +271,14 @@ clean:
 	echo '<article data-sblg-article="1">' >$@
 	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
 	echo '</article>' >>$@
+
+favicon-196x196.png: favicon.png
+	convert favicon.png -resize 196 $@
+
+favicon.ico: favicon.png
+	convert favicon.png -resize 32 favicon-32x32.png
+	convert favicon.png -resize 48 favicon-48x48.png
+	convert favicon.png -resize 64 favicon-64x64.png
+	convert favicon.png -resize 128 favicon-128x128.png
+	convert favicon-32x32.png favicon-48x48.png favicon-64x64.png favicon-128x128.png $@
+	rm -f favicon-32x32.png favicon-48x48.png favicon-64x64.png favicon-128x128.png
