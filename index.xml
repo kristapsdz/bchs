@@ -253,7 +253,15 @@ Server: <span>OpenBSD httpd</span></pre>
 					</dd>
 					<dt>How can I hire BCHS developers?</dt>
 					<dd>
-						Try <a href="https://bsdjobs.com">BSDjobs.com</a>.
+						OpenBSD developers maintain an extensive list of <a
+							href="https://www.openbsd.org/support.html">support</a> options, but these mostly relate
+						to system administration.
+						A better option is to contact your local <a href="https://www.openbsd.org/groups.html">user
+							group</a>; or if an <a href="https://www.openbsd.org/events.html">event</a> is upcoming,
+						attend and make enquiries in person.
+						Falling through these options, polite enquiry on OpenBSD's <a
+							href="https://www.openbsd.org/mail.html">misc</a> mailing list might get you pushed in
+						the right direction.
 					</dd>
 					<dt>Wasn't this site once funnier?</dt>
 					<dd>
