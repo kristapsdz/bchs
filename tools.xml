@@ -196,7 +196,7 @@
 					<p>
 						If you don't fancy writing raw SQLite, there's always 
 						<a href="https://sqlitebrowser.org/">sqlitebrowser</a> and
-						<a href="http://sqliteman.yarpen.cz/">sqliteman</a>, both available as packages.
+						<a href="https://www.calligra.org/kexi/">kexi</a>, both available as packages.
 					</p>
 				</section>
 				<section id="sec-testing">
