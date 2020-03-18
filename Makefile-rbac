@@ -1,0 +1,29 @@
+RBAC_DEPS = rbac-ex1.c.html \
+	    rbac-ex1.h.html \
+	    rbac-ex2.c.html \
+	    rbac-ex2.h.html \
+	    rbac-fig1.svg \
+	    rbac-fig2.svg \
+	    rbac-fig3.svg \
+	    rbac-fig4.svg
+
+DOCLEAN += $(RBAC_DEPS)
+DOINSTALL += $(RBAC_DEPS) 
+
+rbac-ex1.h.html: rbac-ex1.txt
+	ort-c-header -vj rbac-ex1.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac-ex1.c.html: rbac-ex1.txt
+	ort-c-source -vj -h rbac-ex1.h rbac-ex1.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac-ex2.h.html: rbac-ex2.txt
+	ort-c-header -vj rbac-ex2.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac-ex2.c.html: rbac-ex2.txt
+	ort-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+rbac.html: rbac.xml $(RBAC_DEPS)

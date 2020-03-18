@@ -1,0 +1,13 @@
+KSQL_XMLS	= ksql-fig1.c.xml \
+		  ksql-fig2.c.xml \
+		  ksql-fig4.c.xml \
+		  ksql-fig5.c.xml
+KSQL_DEPS	= ksql-fig3.svg \
+		  ksql-fig6.svg
+
+DOCLEAN += $(KSQL_DEPS) $(KSQL_XMLS)
+DOINSTALL += $(KSQL_DEPS) ksql.css
+
+ksql.html: ksql.xml $(KSQL_DEPS) $(KSQL_XMLS)
+	sblg -s cmdline -t ksql.xml -o $@ $(KSQL_XMLS)
+

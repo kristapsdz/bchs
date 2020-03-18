@@ -1,0 +1,10 @@
+PLEDGE_DEPS	= pledge-fig1.svg \
+		  pledge-fig2.svg \
+		  pledge-fig3.png
+
+DOCLEAN += $(PLEDGE_DEPS)
+DOINSTALL += $(PLEDGE_DEPS) pledge.css
+
+pledge-fig3.png: pledge-fig3.dat
+
+pledge.html: $(PLEDGE_DEPS)

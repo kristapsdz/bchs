@@ -1,0 +1,12 @@
+PORT_DEPS = portability-fig1.xml
+
+DOCLEAN += $(PORT_DEPS)
+
+portability-fig1.xml: portability-fig1.sh
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre portability-fig1.sh ; \
+	  echo '</article>' ; ) >$@
+
+portability.html: portability.xml $(PORT_DEPS) 
+	sblg -s cmdline -t portability.xml -o $@ $(PORT_DEPS)
+

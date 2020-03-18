@@ -1,0 +1,142 @@
+# --- Start with the kwebapp page.
+
+KWBP_XMLS	= kwebapp.txt.xml \
+		  kwebapp.main1.c.xml \
+		  kwebapp.main2.c.xml
+KWBP_DEPS	= kwebapp.db.c.html \
+		  kwebapp.db.h.html \
+		  kwebapp.db.sql.html \
+		  kwebapp.db.sqldiff.html \
+		  kwebapp.db.js.html \
+		  kwebapp.main.c.html \
+		  kwebapp-fig1.svg \
+		  kwebapp-fig2.svg
+
+DOINSTALL += $(KWBP_DEPS) kwebapp.css
+DOCLEAN += $(KWBP_DEPS) $(KWBP_XMLS)
+
+kwebapp.db.c.html: kwebapp.txt
+	ort-c-source -vj -h kwebapp.db.h kwebapp.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+kwebapp.db.h.html: kwebapp.txt
+	ort-c-header -vj kwebapp.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+
+kwebapp.db.sql.html: kwebapp.txt
+	ort-sql kwebapp.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=sql >$@
+
+kwebapp.db.sqldiff.html: kwebapp.txt
+	ort-sqldiff kwebapp.old.txt kwebapp.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=sql >$@
+
+kwebapp.db.js.html: kwebapp.txt
+	ort-javascript kwebapp.txt | \
+		highlight --config-file=github.theme -l --css=style.css --src-lang=js >$@
+
+kwebapp.main.c.html: kwebapp.main.c
+	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.main.c >$@
+
+kwebapp.main1.c.xml: kwebapp.main.c
+	( echo '<article data-sblg-article="1">' ; \
+	  sed -n '212,225p' kwebapp.main.c | \
+	  	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ; \
+	  echo '</article>' ; ) >$@
+
+kwebapp.main2.c.xml: kwebapp.main.c
+	( echo '<article data-sblg-article="1">' ; \
+	  sed -n '124,140p' kwebapp.main.c | \
+	  	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ; \
+	  echo '</article>' ; ) >$@
+
+kwebapp.txt.xml: kwebapp.txt
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -l -f --out-format=xhtml --enclose-pre kwebapp.txt ; \
+	  echo '</article>' ; ) >$@
+
+kwebapp.html: kwebapp.xml $(KWBP_DEPS) $(KWBP_XMLS)
+	sblg -s cmdline -t kwebapp.xml -o $@ $(KWBP_XMLS)
+
+# --- Now the auditing page.
+
+AUDIT_XMLS	= auditing-fig4.xml \
+		  auditing-fig5.xml \
+		  auditing-fig6.xml \
+		  auditing-fig7.xml \
+		  auditing-fig9.xml
+
+# auditing-fig7.xml is a dep but not a built file.
+
+AUDIT_MEDIA	= auditing-fig1.svg \
+		  auditing-fig2.svg \
+		  auditing-fig3.svg \
+		  auditing-fig8.svg  \
+		  audit-out.js
+AUDIT_DEPS	= auditing-fig4.xml \
+		  auditing-fig5.xml \
+		  auditing-fig6.xml \
+		  auditing-fig9.xml
+
+DOCLEAN += $(AUDIT_DEPS) $(AUDIT_MEDIA)
+DOINSTALL += $(AUDIT_MEDIA)
+
+auditing-fig4.xml: auditing-fig4.conf
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -l -f --out-format=xhtml --enclose-pre auditing-fig4.conf ; \
+	  echo '</article>' ; ) >$@
+
+auditing-fig5.xml: auditing-fig4.conf
+	( echo '<article data-sblg-article="1">' ; \
+	  ort-c-header -s auditing-fig4.conf 2>/dev/null | \
+		sed '1,11d' | head -n30 | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S c ; \
+	  echo '</article>' ; ) >$@
+
+auditing-fig6.xml: auditing-fig6.conf
+	( echo '<article data-sblg-article="1">' ; \
+	  diff -u auditing-fig4.conf auditing-fig6.conf | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S diff ; \
+	  echo '</article>' ; ) >$@
+
+auditing-fig9.xml: auditing-fig8.conf
+	( echo '<article data-sblg-article="1">' ; \
+	  diff -u auditing-fig6.conf auditing-fig8.conf | \
+		highlight -l -f --out-format=xhtml --enclose-pre -S diff ; \
+	  echo '</article>' ; ) >$@
+
+audit-out.js: auditing-fig6.conf
+	ort-audit-json user auditing-fig6.conf >$@
+
+auditing-fig8.svg: auditing-fig8.conf
+	ort-audit-gv default auditing-fig8.conf | dot -Tsvg -o $@
+
+auditing.html: auditing.xml $(AUDIT_DEPS) $(AUDIT_MEDIA) $(AUDIT_XMLS) auditing-fig7.xml
+	sblg -s cmdline -t auditing.xml -o $@ $(AUDIT_XMLS)
+
+# --- Now the TypeScript page.
+
+typescript-docs: typescript.kwbp
+	ort-javascript typescript.kwbp > typescript.js
+	jsdoc -d $@ typescript.js
+	rm -f typescript.js
+
+# The javascript clean is just in case it fails.
+
+DOCLEANDIR += typescript-docs
+DOINSTALLDIR += typescript-docs
+DOINSTALL += typescript-fig1.svg
+DOCLEAN += typescript.js typescript-fig1.svg
+
+typescript.html: typescript-fig1.svg typescript-docs
+
+# --- Finally, the translation page.
+
+TRANS_DEPS	= translate-fig1.svg \
+		  translate-fig2.svg \
+		  translate-fig3.svg
+
+DOINSTALL += $(TRANS_DEPS)
+DOCLEAN += $(TRANS_DEPS)
+
+translate.html: $(TRANS_DEPS)

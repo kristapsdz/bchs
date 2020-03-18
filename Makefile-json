@@ -1,0 +1,18 @@
+JSON_DEPS = json.c.xml \
+	    json.json.xml \
+	    json.xhtml.xml
+
+DOCLEAN += $(JSON_DEPS)
+DOINSTALL += json.css
+
+json.xhtml.xml: json.xhtml
+
+json.json.xml: json.json
+
+json.json.xml json.xhtml.xml:
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre `basename $@ .xml` ; \
+	  echo '</article>' ; ) >$@
+
+json.html: json.xml $(JSON_DEPS)
+	sblg -s cmdline -t json.xml -o $@ $(JSON_DEPS)
