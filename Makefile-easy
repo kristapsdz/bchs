@@ -1,0 +1,18 @@
+EASY_DEPS	= easy.c.xml \
+		  easy.conf.xml \
+		  easy.sh.xml
+
+DOCLEAN += $(EASY_DEPS)
+DOINSTALL += easy.css
+
+easy.sh.xml: easy.sh
+easy.conf.xml: easy.conf
+
+easy.sh.xml easy.conf.xml:
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre `basename $@ .xml` ; \
+	  echo '</article>' ; ) >$@
+
+easy.html: $(EASY_DEPS)
+	sblg -s cmdline -t easy.xml -o $@ $(EASY_DEPS)
+

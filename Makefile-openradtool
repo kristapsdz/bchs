@@ -15,44 +15,44 @@ KWBP_DEPS	= kwebapp.db.c.html \
 DOINSTALL += $(KWBP_DEPS) kwebapp.css
 DOCLEAN += $(KWBP_DEPS) $(KWBP_XMLS)
 
-kwebapp.db.c.html: kwebapp.txt
+kwebapp.db.c.html: kwebapp.txt github.theme
 	ort-c-source -vj -h kwebapp.db.h kwebapp.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
-kwebapp.db.h.html: kwebapp.txt
+kwebapp.db.h.html: kwebapp.txt github.theme
 	ort-c-header -vj kwebapp.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
-kwebapp.db.sql.html: kwebapp.txt
+kwebapp.db.sql.html: kwebapp.txt github.theme
 	ort-sql kwebapp.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=sql >$@
+		highlight --config-file=github.theme -lI --src-lang=sql >$@
 
-kwebapp.db.sqldiff.html: kwebapp.txt
+kwebapp.db.sqldiff.html: kwebapp.txt github.theme
 	ort-sqldiff kwebapp.old.txt kwebapp.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=sql >$@
+		highlight --config-file=github.theme -lI --src-lang=sql >$@
 
-kwebapp.db.js.html: kwebapp.txt
+kwebapp.db.js.html: kwebapp.txt github.theme
 	ort-javascript kwebapp.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=js >$@
+		highlight --config-file=github.theme -lI --src-lang=js >$@
 
-kwebapp.main.c.html: kwebapp.main.c
-	highlight --config-file=github.theme -l --css=style.css --src-lang=c kwebapp.main.c >$@
+kwebapp.main.c.html: kwebapp.main.c github.theme
+	highlight --config-file=github.theme -lI --src-lang=c kwebapp.main.c >$@
 
 kwebapp.main1.c.xml: kwebapp.main.c
 	( echo '<article data-sblg-article="1">' ; \
 	  sed -n '212,225p' kwebapp.main.c | \
-	  	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ; \
+	  	highlight -lf --out-format=xhtml --enclose-pre --src-lang=c ; \
 	  echo '</article>' ; ) >$@
 
 kwebapp.main2.c.xml: kwebapp.main.c
 	( echo '<article data-sblg-article="1">' ; \
 	  sed -n '124,140p' kwebapp.main.c | \
-	  	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c ; \
+	  	highlight -lf --out-format=xhtml --enclose-pre --src-lang=c ; \
 	  echo '</article>' ; ) >$@
 
 kwebapp.txt.xml: kwebapp.txt
 	( echo '<article data-sblg-article="1">' ; \
-	  highlight -l -f --out-format=xhtml --enclose-pre kwebapp.txt ; \
+	  highlight -lf --out-format=xhtml --enclose-pre kwebapp.txt ; \
 	  echo '</article>' ; ) >$@
 
 kwebapp.html: kwebapp.xml $(KWBP_DEPS) $(KWBP_XMLS)
@@ -83,26 +83,26 @@ DOINSTALL += $(AUDIT_MEDIA)
 
 auditing-fig4.xml: auditing-fig4.conf
 	( echo '<article data-sblg-article="1">' ; \
-	  highlight -l -f --out-format=xhtml --enclose-pre auditing-fig4.conf ; \
+	  highlight -lf --out-format=xhtml --enclose-pre auditing-fig4.conf ; \
 	  echo '</article>' ; ) >$@
 
 auditing-fig5.xml: auditing-fig4.conf
 	( echo '<article data-sblg-article="1">' ; \
 	  ort-c-header -s auditing-fig4.conf 2>/dev/null | \
 		sed '1,11d' | head -n30 | \
-		highlight -l -f --out-format=xhtml --enclose-pre -S c ; \
+		highlight -lf --out-format=xhtml --enclose-pre -S c ; \
 	  echo '</article>' ; ) >$@
 
 auditing-fig6.xml: auditing-fig6.conf
 	( echo '<article data-sblg-article="1">' ; \
 	  diff -u auditing-fig4.conf auditing-fig6.conf | \
-		highlight -l -f --out-format=xhtml --enclose-pre -S diff ; \
+		highlight -lf --out-format=xhtml --enclose-pre -S diff ; \
 	  echo '</article>' ; ) >$@
 
 auditing-fig9.xml: auditing-fig8.conf
 	( echo '<article data-sblg-article="1">' ; \
 	  diff -u auditing-fig6.conf auditing-fig8.conf | \
-		highlight -l -f --out-format=xhtml --enclose-pre -S diff ; \
+		highlight -lf --out-format=xhtml --enclose-pre -S diff ; \
 	  echo '</article>' ; ) >$@
 
 audit-out.js: auditing-fig6.conf

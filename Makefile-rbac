@@ -10,20 +10,20 @@ RBAC_DEPS = rbac-ex1.c.html \
 DOCLEAN += $(RBAC_DEPS)
 DOINSTALL += $(RBAC_DEPS) 
 
-rbac-ex1.h.html: rbac-ex1.txt
+rbac-ex1.h.html: rbac-ex1.txt github.theme
 	ort-c-header -vj rbac-ex1.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
-rbac-ex1.c.html: rbac-ex1.txt
+rbac-ex1.c.html: rbac-ex1.txt github.theme
 	ort-c-source -vj -h rbac-ex1.h rbac-ex1.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
-rbac-ex2.h.html: rbac-ex2.txt
+rbac-ex2.h.html: rbac-ex2.txt github.theme
 	ort-c-header -vj rbac-ex2.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
-rbac-ex2.c.html: rbac-ex2.txt
+rbac-ex2.c.html: rbac-ex2.txt github.theme
 	ort-c-source -vj -h rbac-ex2.h rbac-ex2.txt | \
-		highlight --config-file=github.theme -l --css=style.css --src-lang=c >$@
+		highlight --config-file=github.theme -lI --src-lang=c >$@
 
 rbac.html: rbac.xml $(RBAC_DEPS)

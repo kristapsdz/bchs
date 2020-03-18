@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>le BCHS//openradtool: traduisons !</title>
+		<title>BCHS//portability: introduction</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="kwebapp.css" />
+		<link rel="stylesheet" href="portability.css" />
 		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
 		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
 		<link rel="apple-touch-icon" href="/favicon-196x196.png" />
@@ -38,17 +38,21 @@
 						<a href="https://ubuntu.com/">Ubuntu</a>), <a href="https://www.netbsd.org">NetBSD</a>, 
 						<a href="https://www.freebsd.org">FreeBSD</a>, <a href="https://omniosce.org/">OmniOS</a>, 
 						and <a href="https://www.oracle.com/solaris/solaris11/">Solaris</a>.
+						The mission? 
+						Port the <a href="https://bsd.lv">BSD.lv</a> family of tools to all of these systems.  This
+						article describes the steps, tools, and methods I used along the way.
 					</p>
 					<p>
-						I took the opportunity to port the <a href="https://bsd.lv">BSD.lv</a> family of tools to all of these
-						systems.  This article describes the steps, tools, and methods I used along the way.
+						This will be a multi-part set of articles.
+						Its mission is not so much the nitty-gritty of portability, though there will be plenty of that,
+						but the infrastructure to help you manage portability efficiently.
 					</p>
 				</header>
 				<section id="content">
 					<p>
 						The tools in question are all in the C programming language, all use Makefiles (specifically,
 						BSD make), and all have similar make rules.
-						At the start of the project, dependency management&#8212;location of libraries and dependint
+						At the start of the project, dependency management&#8212;location of libraries and depending
 						tools&#8212;was the builder's job.
 					</p>
 					<article data-sblg-article="1"></article>

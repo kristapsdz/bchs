@@ -19,14 +19,10 @@ PAGES		 = auditing.html \
 		   translate.html \
 		   typescript.html
 CSSS		 = audit.css \
-		   easy.css \
 		   index.css \
-		   style.css \
+		   highlight.css \
 		   tools.css
-GENS		 = easy.c.xml \
-		   style.css \
-		   easy.conf.xml \
-		   easy.sh.xml \
+GENS		 = highlight.css \
 		   $(FAVICONS)
 FAVICONS	 = favicon.ico \
 		   favicon-196x196.png
@@ -45,17 +41,7 @@ BUILT		 = audit.js \
 
 www: $(FAVICONS) $(PAGES)
 
-easy.html: easy.xml easy.c.xml easy.conf.xml easy.sh.xml
-	sblg -s cmdline -t easy.xml -o $@ easy.c.xml easy.conf.xml easy.sh.xml
-
-easy.sh.xml: easy.sh
-easy.conf.xml: easy.conf
-
-easy.sh.xml easy.conf.xml:
-	( echo '<article data-sblg-article="1">' ; \
-	  highlight -lf --out-format=xhtml --enclose-pre `basename $@ .xml` ; \
-	  echo '</article>' ; ) >$@
-
+include Makefile-easy
 include Makefile-ksql
 include Makefile-json
 include Makefile-openradtool
@@ -63,6 +49,8 @@ include Makefile-pledge
 include Makefile-portability
 include Makefile-rbac
 include Makefile-sqlbox
+
+$(PAGES): highlight.css
 
 installwww: www
 	mkdir -p $(PREFIX)
@@ -79,9 +67,9 @@ clean:
 	rm -f $(DOCLEAN)
 
 .c.c.xml:
-	echo '<article data-sblg-article="1">' >$@
-	highlight -l -f --out-format=xhtml --enclose-pre --src-lang=c $< >>$@
-	echo '</article>' >>$@
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre --src-lang=c $< ; \
+	  echo '</article>' ; ) >$@
 
 .xml.html:
 	cp -f $< $@
@@ -91,6 +79,9 @@ clean:
 
 .gnuplot.png:
 	gnuplot $<
+
+highlight.css: github.theme
+	highlight -O html --print-style --css $@ --config-file=github.theme
 
 favicon-196x196.png: favicon.png
 	convert favicon.png -resize 196 $@

@@ -1,6 +1,7 @@
 PORT_DEPS = portability-fig1.xml
 
 DOCLEAN += $(PORT_DEPS)
+DOINSTALL += portability.css
 
 portability-fig1.xml: portability-fig1.sh
 	( echo '<article data-sblg-article="1">' ; \
