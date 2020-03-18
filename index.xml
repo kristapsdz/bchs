@@ -92,8 +92,8 @@
 int
 main(int argc, char *argv[])
 {
-	puts("<span>Hello, world!</span>");
-	return 0;
+   puts("<span>Hello, world!</span>");
+   return 0;
 }</pre>
 				</section>
 				<section class="paired">

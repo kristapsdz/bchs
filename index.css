@@ -1,8 +1,32 @@
+:root {
+	--a-colour: blue;
+	--bg-colour: rgb(248, 248, 255);
+	--text-colour: #334;
+	--h1-colour: #001;
+	--bg-gradient: rgba(248, 248, 255, 0.92);
+	--pre-colour: #888;
+	--pre-hilite-colour: #000;
+	--footer-colour: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+	--a-colour: rgb(170, 170, 255);
+	--bg-colour: rgb(48, 48, 55);
+	--h1-colour: #eef;
+	--text-colour: #dde;
+	--bg-gradient: rgba(48, 48, 55, 0.92);
+	--pre-colour: #fff;
+	--pre-hilite-colour: #dd0;
+	--footer-colour: #aaa;
+  }
+}
+
 html, body				{ margin: 0; }
 body					{ font-family: "Alegreya Sans", sans-serif; 
-					  background-color: #f6f6ff;
+					  background-color: var(--bg-colour);
 					  font-weight: 400;
-					  color: #334;
+					  color: var(--text-colour);
 					  font-size: 14pt; }
 article					{ padding: 2rem 0; }
 footer,
@@ -27,10 +51,10 @@ article > header h3			{ text-align: center;
 .paired > :first-child			{ padding-right: 1rem; }
 .paired > :last-child			{ padding-left: 1rem; }
 p, li					{ line-height: 140%; }
-a					{ color: blue; 
+a					{ color: var(--a-colour); 
 					  text-decoration: none; 
 					  border-bottom: thin solid transparent; }
-a:hover					{ border-bottom: thin solid blue; }
+a:hover					{ border-bottom: thin solid var(--a-colour); }
 code, pre				{ font-size: 75%;
 					  font-family: monospace; }
 
@@ -50,7 +74,7 @@ code, pre				{ font-size: 75%;
 #tophead nav span + span		{ border-left: thin solid #666; 
 					  margin-left: 0.5ex;
 					  padding-left: 1ex; }
-#tophead h1				{ color: #001; 
+#tophead h1				{ color: var(--h1-colour); 
 					  font-size: 140%;
 					  line-height: 90%;
 					  font-weight: normal;
@@ -75,12 +99,13 @@ code, pre				{ font-size: 75%;
 					  text-shadow: 1px 1px 0 #000;
 					  font-weight: normal; }
 
-#start					{ background: linear-gradient(to bottom, rgba(248, 248, 255, 0.92) 0%, rgba(248, 248, 255, 0.92) 100%), 
+#start					{ background: linear-gradient(to bottom, var(--bg-gradient) 0%, var(--bg-gradient) 100%), 
 						      url(background-white.jpg); 
 					  background-position: 50% 50%;
+					  background-color: #fff;
 					  background-repeat: repeat-y; }
-#start .exemplar 			{ color: #888; }
-#start .exemplar span			{ color: #000; }
+#start .exemplar 			{ color: var(--pre-colour); }
+#start .exemplar span			{ color: var(--pre-hilite-colour); }
 #start nav				{ margin: 1.1em 0; 
 					  font-size: 80%;
 					  opacity: 0.8; }
@@ -93,20 +118,13 @@ code, pre				{ font-size: 75%;
 					  margin: 0;
 					  font-size: 130%; }
 
-.interstice				{ background-color: #88888f;
-					  text-shadow: 0 0 2px #000;
-					  font-weight: 500;
-					  color: #fff; }
+.interstice				{ background-color: #000;
+					  text-shadow: 0 0 0 #444;
+					  color: #aac;
+					  font-weight: 500; }
 .interstice .main			{ font-size: 150%; 
-					  color: #fff;
+					  color: #ddf;
 					  line-height: 150%; }
-.interstice code			{ font-weight: bold; }
-.interstice pre				{ color: black;
-					  text-shadow: none;
-					  margin-top: 2.5em; }
-.interstice pre a			{ color: yellow; 
-					  text-shadow: 0 0 1px #000; }
-.interstice pre a:hover			{ border-bottom: thin solid transparent; }
 
 .interstice2				{ border-top: thin solid #ccc;
 					  text-align: left; }
@@ -114,10 +132,9 @@ code, pre				{ font-size: 75%;
 .interstice2 dd				{ margin: auto 0; }
 .interstice2 dd				{ margin-bottom: 2rem; }
 .interstice2 dt				{ font-weight: 500; }
-
-
-#news					{ background: linear-gradient(to bottom, rgba(248, 248, 255, 0.92) 0%, rgba(248, 248, 255, 0.92) 100%), 
+#news					{ background: linear-gradient(to bottom, var(--bg-gradient) 0%, var(--bg-gradient) 100%), 
 						      url(background-white.jpg); 
+					  background-color: #fff;
 					  background-position: 50% 50%;
 					  padding-bottom: 6rem;
 					  background-repeat: repeat-y; }
@@ -133,7 +150,7 @@ footer					{ padding-bottom: 2rem;
 					  padding-top: 2rem;
 					  text-align: center;
 					  font-size: 80%;
-					  color: #666; }
+					  color: var(--footer-colour); }
 footer p				{ margin: 0.1em 0; }
 
 @media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
