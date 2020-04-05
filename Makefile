@@ -13,6 +13,8 @@ PAGES		 = auditing.html \
 		   kwebapp.html \
 		   pledge.html \
 		   portability.html \
+		   portability-page2.html \
+		   portability-page3.html \
 		   rbac.html \
 		   sqlbox.html \
 		   tools.html \

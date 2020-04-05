@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS//portability: source configuration</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="highlight.css" />
+		<link rel="stylesheet" href="portability.css" />
+		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
+		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
+		<link rel="apple-touch-icon" href="/favicon-196x196.png" />
+		<meta property="og:title" content="BCHS//openradtool: translation tools" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/translate.html" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Manage translations for your openradtool configuration." />
+		<meta name="description" content="Manage translations for your openradtool configuration." />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav id="mainnav">
+				<div>
+					<span>Porting series</span>:
+					<span class="link"><a href="portability.html">intro</a></span>
+					<span class="link"><a href="portability-page2.html">config</a></span>
+					<span class="link"><a href="portability-page3.html">testing</a></span>
+				</div>
+			</nav>
+			<header id="mainhead">
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article id="article">
+				<header>
+					<p class="intro">
+						Your software using the <a href="https://www.openbsd.org">OpenBSD</a> programming environment
+						needs to be ported to other systems.
+						What first step do you take?
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							On second thought, maybe porting isn't a good idea&#8230;
+							Run away!  Run away!
+						</figcaption>
+					</figure>
+					<p>
+						The above toy program accounts for Linux, NetBSD, FreeBSD, OpenBSD, Mac OS X, Solaris, and
+						IllumOS.
+						The macro soup is because <a href="https://man.openbsd.org/memmem.3">memmem(3)</a> is a GNU
+						extension and <a href="https://man.openbsd.org/reallocarray.3">reallocarray(3)</a> (which here
+						is superfluous, but used for exemplar's sake) is an OpenBSD extension.
+						Both of these functions are pretty&#8230; normal, which makes the complexity particularly
+						disenchanting.
+					</p>
+					<p>
+						Obviously adding this for each file, each function, puts an impossible burden on developers.
+						This is when a configuration script comes into play: it can feature-detect on the target system
+						and output the correct macro soup into a shared header file.
+						A compatibility source file, included when linking, can provide missing functions.
+					</p>
+					<p>
+						The <a href="https://www.bsd.lv">BSD.lv</a> tools I wanted to port all used and use 
+						<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> for this purpose.
+						It received the lion's share of attention in this portability work.
+					</p>
+				</header>
+			</article>
+			<article>
+				<section>
+					<h2>history</h2>
+					<p>
+						The <a href="https://www.bsd.lv">BSD.lv</a> tools I wanted to port all usd
+						<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> as a simple portability
+						shim.
+						This script was originally forked from <a href="https://mandoc.bsd.lv">mandoc</a> in 2014 for
+						use in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>.
+						Originally, it feature-tested for <a href="https://man.openbsd.org/memmem.3">memmem(3)</a> and
+						<a href="https://man.openbsd.org/strtonum.3">strtonum(3)</a>, which weren't (aren't) available
+						on Mac OS X, and provided compatible functions if these weren't detected.
+						You can see its original import in commit
+						<a href="https://github.com/kristapsdz/kcgi/commit/a5ff55cc8ea196619fbb364503906b0e6a6ec3e4#diff-e2d5a00791bce9a01f99bc6fd613a39d">a5ff55c</a>,
+						with the original file called
+						<a href="https://github.com/kristapsdz/kcgi/blob/a5ff55cc8ea196619fbb364503906b0e6a6ec3e4/configure">configure</a>.
+					</p>
+					<p>
+						The script simply declared whether these functions existed or not as defined from a shell script
+						compiled and run during configuration.
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							Original test for <a href="https://man.openbsd.org/strtonum.3">strtonum(3)</a>.
+							On OpenBSD, this would compile and run fine.
+							On Mac OS X, the function would not be located.
+						</figcaption>
+					</figure>
+					<p>
+						The results were output into a header file <span class="file">config.h</span>, which was
+						in turn included by the system sources.
+						Below you can see an example.
+						The <code>HAVE_xxx</code> defines were inserted based if the test passes.
+						Compatibility functions were all in <span class="file">compat.c</span>, which also included 
+						<span class="file">config.h</span>had <code>ifndef</code> guards around compatibility function.
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							A <span class="file">config.h</span> generated by the earliest versions of the
+							<code>configure</code> script in kcgi.
+							In this case, both functions were detected.
+						</figcaption>
+					</figure>
+					<p class="aside">
+						(Can you spot the portability issue in the above?  If a system without 
+						<a href="https://man.openbsd.org/memmem.3">memmem(3)</a> includes this, it's possible that
+						<span class="file">sys/types.h</span> wouldn't be included, which defines
+						<code>size_t</code>, resulting in a compilation error.)
+					</p>
+					<p>
+						Sources would include the configuration header <span class="file">config.h</span> and link to
+						the compatibility sources.  Let <span class="file">main.c</span> below be an example file.
+					</p>
+					<figure class="centre">
+						<ifindingsmg src="portability-fig2.svg" />
+					</figure>
+					<p>
+						By <strong>2016</strong>, there were about a dozen tests in the script (you can see it in
+						<a href="https://github.com/kristapsdz/kcgi/blob/9ef04cbe1d1f62f199db14870dce5fd1071b1da4/configure">configure</a>
+						for this date), with roughly half of them providing a compatibility function if not found.  I
+						started to want this functionality for other systems, so I created a new repository called
+						<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> to abstract the work.
+					</p>
+					<p>
+						First I pulled in <a href="https://mandoc.bsd.lv">mandoc</a>'s new features for a site
+						configuration script, which overrode test results, and to emit Makefile configuration variables
+						as well.
+						To keep things simple, I then had all tests and compatibility functions put into single files.
+						This way, new projects needed only to copy
+						<span class="file">configure</span>,
+						<span class="file">compats.c</span>, and
+						<span class="file">tests.c</span> to use the shim.
+					</p>
+					<figure class="centre">
+						<img src="portability-fig3.svg" />
+					</figure>
+					<p>
+						At the time and for some time after, the extra <span class="file">Makefile.configure</span> file
+						didn't do much, but <span class="file">compats.c</span> and <span class="file">tests.c</span>,
+						and the logic of <code>configure</code>, grew significantly.
+					</p>
+					<p>
+						Prior to the porting effort, <code>configure</code> had a bit under three dozen feature tests,
+						going so far as to provide the <a href="https://man.openbsd.org/queue.3">queue(3)</a> and 
+						<a href="https://man.openbsd.org/tree.3">tree(3)</a> macro sets.
+					</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>progress</h2>
+					<p>
+						One of the biggest problems with portability when I started this adventure was the location of
+						dependencies.
+						Most of the tools used <code>-lexpat</code>, <code>-lz</code>, and <code>-lsqlite3</code>.
+						However, <code>-lsqlite3</code> sometimes needed <code>-lpthread</code>, sometimes not.
+						More importantly, some portable functions existed on target platforms but required special libraries.
+						For example, <a href="https://man.openbsd.org/md5.3">md5(3)</a> exists on FreeBSD, but requires
+						<code>-lmd</code> for linking.
+						Then on IllumOS, all socket functions required <code>-lsocket -lnsl</code>.
+					</p>
+					<p>
+						To date, it was the job of the porter to know which libraries and library paths were required
+						and pass them to the script.
+						On these many new systems, <strong>I was the porter</strong>, so this got old real fast.
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							Porting required knowing the correct paths for all systems.
+							This invocation was required for statically compiling on OpenBSD.
+							Obviously this put a huge burden on the porter!
+						</figcaption>
+					</figure>
+					<p>
+						The first big change was to allow for the portability layer to stand on its own and not require
+						porter intervention.
+						To wit, I taught <code>configure</code> to test and export whether platform-specific libraries
+						were required for functions in the portability shim.
+						For example, FreeBSD configuration set <code>LDADD_MD5</code> in the generated
+						<span class="file">Makefile.configure</span> to the required library.
+						Other systems left this empty.
+						Thus, a <span class="file">Makefile</span> including this would no longer need a porter to pass
+						the library during configuration&#8212;it added <code>$(LDADD_MD5)</code> where required.
+					</p>
+					<p>
+						The second big change was to take advantage of a utility in OpenBSD's base <i>specifically
+							designed</i> for the use case of locating libraries:
+						<a href="https://man.openbsd.org/pkg-config.1">pkg-config(1)</a>.
+						By using this, I no longer needed to supply the include and library paths for target systems: I
+						would use <a href="https://man.openbsd.org/pkg-config.1">pkg-config(1)</a> to do it for me.
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							I no longer needed to anticipate the library locations on all platforms.
+							<a href="https://man.openbsd.org/pkg-config.1">pkg-config(1)</a> is supported on most
+							systems, and on others may be tackled as-needed.
+						</figcaption>
+					</figure>
+					<p>
+						Once these basic steps were accomplished, I no longer needed to pass system-specific flags each
+						time I moved to another system.
+						I was able to focus on the nitty-gritty of providing compatibility functions, macros, and
+						handling diverse header layouts.
+					</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>nitty-gritty</h2>
+					<p>
+						After the <code>configure</code> script was smart enough to plumb its environment, next came
+						handling discrepencies between systems.
+						This section covers some of the major issues encountered, and isn't specific to the <q>new</q>
+						systems involved in this porting effort.
+					</p>
+					<p class="important">
+						<strong>This isn't a name and shame section</strong>.
+						Working in a diverse environment is what it is.
+						(On some systems, however, there can be&#8230; questionable design choices.)
+					</p>
+					<h3>strings</h3>
+					<p>
+						This was one of the first components managed by the script.
+						I've read many arguments of why folks don't like
+						<a href="https://man.openbsd.org/strlcpy.3">strlcpy(3)</a> and friends,
+						but I also <strong>haven't read much code coming from those people</strong>.
+						Anyway, I won't say anything more about this.
+					</p>
+					<p>
+						It's fairly simple to test whether string functions exist: though some systems require macro
+						soup to enable these functions during compilation.
+						On <a href="https://www.gnu.org/software/libc/">glibc</a> systems, for example, it's often
+						necessary to include <code>_GNU_SOURCE</code>.
+					</p>
+					<h3>memory management</h3>
+					<p>
+						OpenBSD's better memory handling functions (e.g.,
+						<a href="https://man.openbsd.org/reallocarray">reallocarray(3)</a>,
+						<a href="https://man.openbsd.org/explicit_bzero">explicit_bzero(3)</a>, etc.)
+						are slowly making their way into other systems.
+						There seems to be less contention over these than the string functions.
+					</p>
+					<p>
+						Unfortunately, including these extensions requires some macro soup.
+						On Linux machines, either <code>_GNU_SOURCE</code> or <code>_DEFAULT_SOURCE</code> must be
+						defined (for older and newer systems, respectively).
+						However, if <code>_XOPEN_SOURCE</code> is also defined, such as for endian functions, then this
+						macro conflicts with <code>_DEFAULT_SOURCE</code>.
+						The solution is for both <code>_GNU_SOURCE</code> and <code>_DEFAULT_SOURCE</code> are required.
+						What a pain&#8230;
+					</p>
+					<h3>randomness</h3>
+					<p>
+						As it currently stands, only OpenBSD supports high-quality non-blocking random numbers with the 
+						<a href="https://man.openbsd.org/arc4random">arc4random(3)</a> family.
+						Users of other systems must either depend on low-quality numbers or system-specific measures.
+					</p>
+					<h3>endianness</h3>
+					<p>
+						This is a real PITA.
+					</p>
+					<p>
+						While the traditional <a href="https://man.openbsd.org/ntohs.3">ntohs(3)</a>
+						are fairly standard, the new <a href="https://man.openbsd.org/le32toh.3">le32toh(3)</a>
+						style is more readable and handles more cases.
+						Unfortunately, this type of interface is <strong>very</strong> diverse and requires both macro
+						soup and compatibility.
+					</p>
+					<p>
+						Mac OS X (Darwin) has its set of byte-swapping functions in
+						<span class="file">libkern/OSByteOrder.h</span>.
+						SunOS (Solaris, IllumOS) has its own in <span class="file">sys/byteorder.h</span>.
+						Neither are documented.
+						FreeBSD has the correct functions in the wrong place.
+						All of these need to be detected and the proper macros set up for sane names.
+					</p>
+					<p>
+						What's more is that, while the byte-swapping functions themselves exist, actually testing for
+						endianness is an entirely different problem.
+						While OpenBSD provides <code>BYTE_ORDER</code> and a simple test for little or big endian, other
+						systems have their own versions of <code>_BYTE_ORDER</code> and so on.
+						Fortunately, most modern compilers emit a <code>__BYTE_ORDER__</code> macro that can be used as
+						a relatively-safe fall-back without relying on obscure system headers.
+					</p>
+					<h3>devices</h3>
+					<p>
+						The familiar
+						<a href="https://man.openbsd.org/minor.3">minor(3)</a> and related functions are all over the
+						place on different systems.
+						Fortunately, the functions themselves are named in the same way, so it's simply a matter of
+						finding the correct header file.
+					</p>
+					<h3>file system</h3>
+					<p>
+						The POSIX *at functions (e.g.,
+						<a href="https://man.openbsd.org/mknodat.2">mknodat(2)</a>) are still not broadly supported.
+						I anticipate this will get better, though.
+						(Only recently did OpenBSD gain most of these!)
+						Though these functions are standardised, or becoming standardised, they do require some macro
+						soup for systems (such as SunOS) that require specific features be defined for usage.
+					</p>
+					<p>
+						Unfortunately, these functions can't be portably emulated since pairing 
+						<a href="https://man.openbsd.org/fchdir">fchdir(2)</a> and the target function, e.g.
+						<a href="https://man.openbsd.org/mknod">mknod(2)</a>, has a race between the two.
+					</p>
+					<h3>restricted operation</h3>
+					<p>
+						To any actual programmer, OpenBSD's restricted operation functions
+						<a href="https://man.openbsd.org/pledge">pledge(2)</a> and
+						<a href="https://man.openbsd.org/unveil">unveil(2)</a> are gifts from heaven.
+						No other system's facilities even come close in terms of practical security.
+					</p>
+					<p>
+						The user-level restriction features, such as
+						<a href="https://man.openbsd.org/setresgid">setresgid(2)</a>, seem to be slowly migrating.
+						On earlier Mac OS X machines, these were entirely broken, which required additional plumbing to
+						detect since the functions were there.
+						Recent versions do not have this issue, so it remains simply a matter of portability.
+					</p>
+					<h3>hashes</h3>
+					<p>
+						This is another PITA.
+					</p>
+					<p>
+						OpenBSD has the simple
+						<a href="https://man.openbsd.org/md5.3">md5(3)</a> and
+						<a href="https://man.openbsd.org/sha2.3">sha2(3)</a> header files for MD5 and SHA2 (e.g.,
+						SHA256) hashing.
+						This is incredibly useful because one can use these powerful functions without needing to pull
+						in external libraries such as <a href="https://www.openssl.org">OpenSSL</a> or
+						<a href="https://www.libress.org">LibreSSL</a>.
+					</p>
+					<p>
+						FreeBSD has the MD5 header but splits the SHA2 header into SHA256, etc.
+						NetBSD has a single header for both but different variable types and slightly different function
+						naming.
+						(FreeBSD also requires linking to another library for its hash functions.)
+						SunOS, which also needs the hash function library, almost has everything, but is missing several
+						key functions (e.g., SHA256File).
+					</p>
+					<p>
+						There's no <q>right way</q> to do this&#8212;all using the same type, or different types, or
+						different header files&#8212;but the disparity causes big headaches  for programmers.
+						In the end, it became easier to simply test for all functions and provide compatibility
+						straight-up instead of testing for each variant and providing macro-soup to work between them.
+					</p>
+					<h3>passwords</h3>
+					<p>
+						Another boondoggle.
+					</p>
+					<p>
+						OpenBSD has <a href="https://man.openbsd.org/crypt_checkpass">crypt_checkpass(3)</a>, which
+						makes password hash generation and checking super easy.
+						The fallback is the traditional <a href="https://man.openbsd.org/crypt.3">crypt(3)</a>
+						interface, which is a nightmare.
+						Unfortunately, this function requires a tremendous amount of macro goop to properly use.
+						Linux requires <code>_DEFAULT_SOURCE</code> (actually <code>_XOPEN_SOURCE</code> but defining
+						both <code>_GNU_SOURCE</code> and <code>_XOPEN_SOURCE</code> pull this in, while defining both
+						<code>_XOPEN_SOURCE</code> and <code>_GNU_SOURCE</code> on newer glibcs will cause warnings).
+						Many systems require a further <code>-lcrypt</code>, which is easy to test for.
+					</p>
+					<p>
+						Linux (glibc) further notes that this function may be deprecated and hand-waves a replacement.
+						It does not have a manpage on some systems, but the function still exists.
+					</p>
+					<p>
+						The supported hashes is where it gets interesting.
+						OpenBSD, FreeBSD, and newer Linux support Blowfish.
+						NetBSD and Solaris do not.  IllumOS does (undocumented).
+						If this weren't confusing enough, NetBSD's function behaves differently than the others: if it
+						does not find the requested hash algorithm, it returns a <q>magic string</q> instead of
+						<code>NULL</code>.
+						It's a mess.
+						The most portable is simply to use DES encryption.
+					</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>keeing it together&#8230;</h2>
+					<p>
+						Finding the necessary macro incantations proved immediately problematic.
+						Especially on Linux: adding a feature test on an older glibc would break on newer ones.
+						This seemed to go on forever and required each change to be tested manually on many systems.
+					</p>
+					<p>
+						In the <a href="portability-page3.html">next section</a>, I introduce BSD.lv's continuous
+						integration that helped with this.
+					</p>
+				</section>
+			</article>
+		</section>
+		<footer>
+			<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+			<a rel="author" href="https://github.com/kristapsdz">kristapsdz</a>
+		</footer>
+	</body>
+</html>

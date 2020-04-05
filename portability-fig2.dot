@@ -1,0 +1,19 @@
+digraph {
+	bgcolor="transparent";
+
+	{ rank=source;
+	  testsc [label="test-xxx.c"];
+	  conf [label="configure"]; }
+
+	{ rank=same;
+	  configh [label="config.h"]; }
+
+	{ rank=sink;
+	  mainc [label="main.c"];
+	  compatsc [label="compat.c"];  }
+
+	testsc -> conf;
+	conf -> configh;
+	compatsc -> configh;
+	mainc -> configh;
+}

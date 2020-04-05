@@ -1,0 +1,26 @@
+digraph {
+	bgcolor="transparent";
+
+	{ rank=source;
+	  testsc [label="tests.c"];
+	  conf [label="configure"];
+	  conflocal [label="configure.local"]; }
+
+	{ rank=same;
+	  makeconf [label="Makefile.configure"];
+	  configh [label="config.h"]; }
+
+	{ rank=sink;
+	  make [label="Makefile"];
+	  mainc [label="main.c"];
+	  compatsc [label="compats.c"];  }
+
+	testsc -> conf;
+	conflocal -> conf;
+	conf -> makeconf;
+	conf -> configh;
+	make -> makeconf;
+	compatsc -> configh;
+	mainc -> configh;
+
+}

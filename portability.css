@@ -1,0 +1,134 @@
+:root {
+	--main-bg-colour: #fff;
+	--aside-bg-colour: #f3f3f3;
+	--main-text-colour: #444;
+	--main-link-colour: #0575bd;
+	--figcaption-colour: #000;
+}
+
+html, body					{ margin: 0; 
+						  height: 100%; }
+body						{ font-family: 'Alegreya Sans', sans-serif;
+						  color: var(--main-text-colour); 
+						  background-color: var(--main-bg-colour);
+						  line-height: 1.3em;
+						  font-weight: 400;
+						  font-size: 14pt; }
+a						{ text-decoration: none; 
+						  color: var(--main-link-colour); }
+#mainnav					{ font-size: smaller;
+						  text-align: center; }
+#mainnav > div					{ background-color: #668;
+						  border-bottom-left-radius: 0.5rem;
+						  border-bottom-right-radius: 0.5rem;
+						  box-shadow: 0 0 1px #aaa;
+						  color: #ddd;
+						  padding: 0.5rem 3rem;
+						  display: inline-block; }
+#mainnav a					{ color: #eef;
+						  font-weight: 500; }
+#mainnav .link 					{ display: inline-block;
+						  margin-left: 0.5rem; }
+#mainnav .link + .link				{ border-left: thin solid #aaa;
+						  padding-left: 0.5rem; }
+article, #mainhead				{ width: 66rem;
+					 	  max-width: calc(100% - 1rem);
+						  margin: 0 auto; }
+#mainhead					{ padding-top: 1.5em;
+						  padding-bottom: 1.5em;
+						  color: #222;
+						  display: flex;
+						  display: -webkit-flex;
+						  align-items: flex-end;
+						  -webkit-align-items: flex-end; }
+#mainhead nav					{ font-size: 80%; }
+#mainhead nav a					{ color: #000; }
+#mainhead nav a span				{ border-bottom: thin transparent; }
+#mainhead nav a:hover				{ color: #000;  }
+#mainhead nav a:hover span			{ border-bottom: thin solid #0575BD; }
+#mainhead nav a + a				{ border-left: thin solid #888; 
+						  padding-left: 4pt; 
+						  margin-left: 4pt; }
+#mainhead img					{ height: 22pt; 
+						  margin-bottom: 1pt; }
+#mainhead h1 a					{ color: inherit; }
+#mainhead h1 a:hover				{ color: #000; }
+#mainhead h1					{ font-size: 200%;
+						  font-weight: 500;
+						  flex: 1;
+						  line-height: 22pt;
+						  margin: 0;
+						  -webkit-flex: 1;
+						  margin: 0 8pt;  }
+h3						{ font-weight: 500; 
+						  font-variant: small-caps;
+						  margin: 2em auto;
+						  text-align: center;
+						  font-size: 130%; }
+footer						{ text-align: center;
+						  padding-top: 1em;
+						  padding-bottom: 1em;
+						  font-size: 80%;
+						  color: #678; }
+footer .fa					{ font-size: 75%; }
+figcaption::before				{ color: var(--figcaption-colour);
+						  content: 'Figure: ';
+						  font-weight: 500;
+					 	  display: inline-block; }
+figcaption					{ font-size: 90%;
+						  line-height: 1.2em;
+						  opacity: 0.8; }
+article						{ padding: 2rem 0; }
+article[data-sblg-article]			{ padding: 0;
+						  width: auto;
+						  max-width: auto;
+						  margin: auto; }
+article .intro					{ font-size: 110%;
+						  line-height: 1.3em; }
+pre						{ overflow: hidden; 
+						  line-height: 1.25em; }
+code, pre					{ font-family: monospace;
+						  color: #000;
+						  font-size: 75%; }
+#postheader					{ line-height: 0; }
+#postheader > div				{ display: flex;
+						  align-items: center; }
+#postheader > div > div				{ flex: 1;
+						  padding: 0 1rem; }
+figure img,
+#postheader img					{ width: 100%; }
+#portability-fig9 				{ text-align: center; }
+#portability-fig9 img				{ max-width: 400px; }
+h2, h3						{ font-size: 110%;
+						  font-variant: small-caps;
+						  font-weight: 500;
+						  color: #000;
+						  text-align: center; }
+h3						{ font-weight: inherit;
+						  margin: 0;
+						  font-size: inherit; }
+dl 						{ margin: 0; }
+dl dd						{ margin: 0; }
+dl dt						{ font-variant: small-caps;
+						  font-size: 95%;
+						  color: #000; }
+dl dd + dt					{ margin-top: 0.5rem; }
+footer						{ text-align: center;
+						  margin-top: 3rem;
+						  opacity: 0.8;
+						  margin-bottom: 1rem; }
+figure						{ margin: 1rem; }
+figure.centre					{ text-align: center; }
+aside						{ background-color: var(--aside-bg-colour); }
+.file						{ font-style: italic;
+						  color: #000; }
+.aside						{ opacity: 0.8; }
+.important					{ border-left: 3px solid red;
+						  padding-left: 1rem; }
+strong						{ color: #000;
+						  font-weight: 500; }
+
+@media only screen and (min-width: 66rem) {
+  figure					{ margin: 1rem 4rem; }
+  #postheader					{ margin: 2rem 10rem; }
+}

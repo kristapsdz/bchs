@@ -6,6 +6,7 @@
 		<title>BCHS//portability: introduction</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="highlight.css" />
 		<link rel="stylesheet" href="portability.css" />
 		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
 		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
@@ -19,7 +20,15 @@
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
-			<header>
+			<nav id="mainnav">
+				<div>
+					<span>Porting series</span>:
+					<span class="link"><a href="portability.html">intro</a></span>
+					<span class="link"><a href="portability-page2.html">config</a></span>
+					<span class="link"><a href="portability-page3.html">testing</a></span>
+				</div>
+			</nav>
+			<header id="mainhead">
 				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
 				<h1>
 					<a href="index.html" itemprop="name">BCHS</a>
@@ -30,42 +39,123 @@
 					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
 				</nav>
 			</header>
-			<article>
+			<article id="article">
 				<header>
 					<p class="intro">
 						I recently gained access to a number of diverse systems: <a href="https://www.openbsd.org">OpenBSD</a>
-						on sparc64, a variety of Linux machines (<a href="https://www.debian.org/">Debian</a>, 
+						on sparc64, some Linux machines (<a href="https://www.debian.org/">Debian</a>, 
 						<a href="https://ubuntu.com/">Ubuntu</a>), <a href="https://www.netbsd.org">NetBSD</a>, 
 						<a href="https://www.freebsd.org">FreeBSD</a>, <a href="https://omniosce.org/">OmniOS</a>, 
+						<a href="https://www.apple.com/macos">Mac OS X</a>,
 						and <a href="https://www.oracle.com/solaris/solaris11/">Solaris</a>.
 						The mission? 
-						Port the <a href="https://bsd.lv">BSD.lv</a> family of tools to all of these systems.  This
-						article describes the steps, tools, and methods I used along the way.
+						Port the <a href="https://bsd.lv">BSD.lv</a> tools to all of these systems.  These articles
+						describe the steps, tools, and methods I used along the way.
 					</p>
 					<p>
-						This will be a multi-part set of articles.
-						Its mission is not so much the nitty-gritty of portability, though there will be plenty of that,
-						but the infrastructure to help you manage portability efficiently.
+						The mission of these articles isn't so much to explain the nitty-gritty of header file and
+						function portability&#8212;though there'll be plenty of that&#8212;but to explore the process
+						required if you plan on doing the same.
 					</p>
 				</header>
+				<section id="postheader">
+					<div>
+						<div><img src="portability-logo-freebsd.png" alt="freebsd" /></div>
+						<div><img src="portability-logo-netbsd.png" alt="netbsd" /></div>
+						<div><img src="portability-logo-omnios.svg" alt="omnios" /></div>
+						<div><img src="portability-logo-solaris.png" alt="solaris" /></div>
+					</div>
+					<div>
+						<div><img src="portability-logo-openbsd.png" alt="openbsd" /></div>
+						<div><img src="portability-logo-ubuntu.png" alt="ubuntu" /></div>
+						<div><img src="portability-logo-osx.png" alt="darwin" /></div>
+						<div><img src="portability-logo-debian.png" alt="debian linux" /></div>
+					</div>
+				</section>
+			</article>
+			<article>
 				<section id="content">
+					<h2>introduction</h2>
 					<p>
-						The tools in question are all in the C programming language, all use Makefiles (specifically,
-						BSD make), and all have similar make rules.
-						At the start of the project, dependency management&#8212;location of libraries and depending
-						tools&#8212;was the builder's job.
+						The tools (e.g.,
+						<a href="https://kristaps.bsd.lv/lowdown">lowdown</a>, 
+						<a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, 
+						<a href="https://github.com/kristapsdz/openrsync">openrsync</a>, and the others listed
+						<a href="https://www.bsd.lv">here</a>)
+						are all in the C language. 
+						All use Makefiles (<a href="https://man.openbsd.org/make.1">BSD make</a>), and all
+						have similar make rules.  
 					</p>
-					<article data-sblg-article="1"></article>
 					<p>
-						<i>Ex ante</i>, all BSD.lv tools already use
-						<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> for portability between
-						Linux, OpenBSD, and FreeBSD.
-						This system is a fork of <a href="https://mandoc.bsd.lv">mandoc</a>'s configuration script as long-ago
-						adapted to <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>.
-						From kcgi it leapt to other systems, and in doing so has gained a lot of feature testing.
+						The main development environment is <a href="https://www.openbsd.org">OpenBSD</a>.
+						So system features like
+						<a href="https://man.openbsd.org/strlcpy.3">strlcpy(3)</a>,
+						<a href="https://man.openbsd.org/strtonum.3">strtonum(3)</a>,
+						<a href="https://man.openbsd.org/arc4random.3">arc4random(3)</a>, etc. are assumed to exist.
+						See OpenBSD's <a href="https://www.openbsd.org/innovations.html">innovations</a> page for a list
+						of these features.
+					</p>
+					<p class="important">
+						<strong>Instead of writing for a portability library that may have its own dodgy quirks, I write
+							software for OpenBSD first</strong>.
+						So the mission is to make OpenBSD software available on non-OpenBSD systems.
+						In other words, the source code should run <q>natively</q> on OpenBSD, with portability glue
+						added in for other systems.
+					</p>
+					<p>
+						All tools already used <a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> for
+						minimum portability of OpenBSD to Linux and (some) FreeBSD.
+						(The next section, <a href="portability-page2.html">configuration</a>, covers this system in
+						detail.)
+					</p>
+					<figure>
+						<article data-sblg-article="1"></article>
+						<figcaption>
+							Example of using 
+							<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a>
+							prior to this porting effort.
+							The flags are library locations as installed by the ports system.
+							Passing these to the <code>configure</code> script was the porter's job.
+						</figcaption>
+					</figure>
+					<p>
+						Source repositories were all mirrored on <a href="https://github.com">GitHub</a>.
+						(This is significant for testing, which I cover in <a href="portability-page3.html">part 3</a>.)
+						In general, mirroring on GitHub is useful because it's easy for folks to submit pull requests
+						and submit issues.
+						It's also not useful because it's easy for folks to submit pull requests and submit issues.
+						But that's a different story entirely.
+					</p>
+					<p>
+						Prior to all the documented work, portability was on an as-needed basis.
+						Some systems were ported to Linux (<a href="https://www.debian.org/">Debian</a>) and some to
+						<a href="https://www.freebsd.org">FreeBSD</a>.
+						The freshness of this portability was non-uniform across BSD.lv tools.
+					</p>
+					<p>
+						That about describes the lay of the land: C code, a simple configuration script, Makefiles, and
+						heavy OpenBSD dependence.
+						After logging in to the new systems and configuring them, I started by downloading then
+						expanding the configuration tools as-needed.
+						<a href="portability-page2.html">Read on for this work</a>!
+					</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>acknowledgements</h2>
+					<p>
+						Especial thanks to <a href="https://callfortesting.org/">Michael Dexter</a> for making his
+						laboratory available for system portability work.
+						Also thanks to <a href="https://stsp.name/">Stefan Sperling</a> for making space on a SPARC64
+						for alignment portability.
 					</p>
 				</section>
 			</article>
 		</section>
+		<footer>
+			<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+			<a rel="author" href="https://github.com/kristapsdz">kristapsdz</a>
+		</footer>
 	</body>
 </html>

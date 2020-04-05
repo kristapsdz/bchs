@@ -1,13 +1,50 @@
-PORT_DEPS = portability-fig1.xml
+PORT_DEPS 	= portability-fig1.xml
+PORT_LOGOS	= portability-logo-debian.png \
+		  portability-logo-freebsd.png \
+		  portability-logo-netbsd.png \
+		  portability-logo-omnios.svg \
+		  portability-logo-openbsd.png \
+		  portability-logo-osx.png \
+		  portability-logo-solaris.png \
+		  portability-logo-ubuntu.png
+# (Order matters here.)
+PORT2_DEPS	= portability-fig8.xml \
+		  portability-fig5.xml \
+		  portability-fig4.xml \
+		  portability-fig6.xml \
+		  portability-fig7.xml
+PORT2_MEDIA	= portability-fig2.svg \
+		  portability-fig3.svg
 
-DOCLEAN += $(PORT_DEPS)
-DOINSTALL += portability.css
+DOCLEAN += $(PORT_DEPS) $(PORT2_MEDIA) $(PORT2_DEPS)
+DOINSTALL += portability.css $(PORT_LOGOS) $(PORT2_MEDIA)
 
-portability-fig1.xml: portability-fig1.sh
+.for f in portability-fig1 portability-fig6
+${f}.xml: ${f}.sh
 	( echo '<article data-sblg-article="1">' ; \
-	  highlight -lf --out-format=xhtml --enclose-pre portability-fig1.sh ; \
+	  highlight -lf --out-format=xhtml --enclose-pre ${f}.sh ; \
 	  echo '</article>' ; ) >$@
+.endfor
+
+portability-fig7.xml: portability-fig7.mk
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre portability-fig7.mk ; \
+	  echo '</article>' ; ) >$@
+
+portability-fig4.xml: portability-fig4.h
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre portability-fig4.h ; \
+	  echo '</article>' ; ) >$@
+
+.for f in portability-fig5 portability-fig8
+${f}.xml: ${f}.c
+	( echo '<article data-sblg-article="1">' ; \
+	  highlight -lf --out-format=xhtml --enclose-pre ${f}.c ; \
+	  echo '</article>' ; ) >$@
+.endfor
 
 portability.html: portability.xml $(PORT_DEPS) 
 	sblg -s cmdline -t portability.xml -o $@ $(PORT_DEPS)
 
+portability-page2.html: portability-page2.xml $(PORT2_DEPS) $(PORT2_MEDIA)
+	sblg -s cmdline -t portability-page2.xml -o $@ $(PORT2_DEPS)

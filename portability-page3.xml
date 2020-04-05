@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS//portability: source configuration</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="highlight.css" />
+		<link rel="stylesheet" href="portability.css" />
+		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
+		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
+		<link rel="apple-touch-icon" href="/favicon-196x196.png" />
+		<meta property="og:title" content="BCHS//openradtool: translation tools" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/translate.html" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Manage translations for your openradtool configuration." />
+		<meta name="description" content="Manage translations for your openradtool configuration." />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<nav id="mainnav">
+				<div>
+					<span>Porting series</span>:
+					<span class="link"><a href="portability.html">intro</a></span>
+					<span class="link"><a href="portability-page2.html">config</a></span>
+					<span class="link"><a href="portability-page3.html">testing</a></span>
+				</div>
+			</nav>
+			<header id="mainhead">
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article id="article">
+				<header>
+					<p class="intro">
+						You have a dozen systems and aim to port software to all of them.
+						How to you make sure that your porting efforts work on all systems?
+						Let's play portability whack-a-mole!
+					</p>
+					<figure id="portability-fig9">
+						<img src="portability-fig9.jpg" />
+					</figure>
+					<p>
+						This section of the <a href="portability.html">portability</a> series introduces how developing
+						<a href="https://github.com/kristapsdz/minci">minci</a>
+						helped us keep on top of portability across all systems.
+						Using <a href="https://github.com/kristapsdz/minci">minci</a> was a choice based upon the other
+						available tools, but you're going to need some sort of machinery to verify that your continued
+						portability efforts doesn't cause fallout on other systems.
+						This is especially true with same-but-different systems, such as Linux distributions or SunOS
+						derivatives.
+					</p>
+				</header>
+			</article>
+			<article>
+				<section>
+					<h2>state of the state</h2>
+					<p>
+						With the development and integration of
+						<a href="portability-page2.html">configuration</a> underway, I soon ran into problems
+						where one portability measure (e.g., adding <code>_DEFAULT_SOURCE</code> on a glibc Linux for
+						including <a href="https://man.openbsd.org/crypt.3">crypt(3)</a>) would cause fallout on other
+						systems.
+						In this example, because <code>_XOPEN_SOURCE</code> had already been defined, and conflicted
+						with the new define.
+					</p>
+					<p>
+						I needed a tool for making sure commits on the current focus were not causing fallout on other
+						already-ported systems.
+						With only one other system, I could keep both open in terminals.
+						As that number grew, it became impractical.
+						This is where CI (<q>continuous integration</q>) tools are handy for verifying&#8230;
+					</p>
+					<ul>
+						<li>
+							<strong>compilation</strong>: that the source code compiles and links (catches missing
+							functions and required libraries, feature tests, &#8230;);
+						</li>
+						<li>
+							<strong>regressions</strong>: run-time testing of the system in motion (catches
+							alignment issues, different function behaviour, &#8230;); and
+						</li>
+						<li>
+							<strong>distribution</strong>: assets bundled with the distributed system are sufficient
+							for building, regressions, and installation (checks forgotten assets).
+						</li>
+					</ul>
+					<p class="important">
+						<strong>Searching for CI tools produces lots of useless information</strong>.
+						It's a <q>buzzword</q> and simply produces an echo chamber of the same set of heavy-weight
+						tools.
+					</p>
+					<p>
+						In the end, it seemed like a much simpler task to simply write one myself.
+						At heart a CI tool consists of a <i>test runner</i>, which verifies for a single host; and the
+						<i>report server</i>, which manages the reports of test runners.
+						A test runner for BSD.lv tools would need to only:
+					</p>
+					<ol>
+						<li>freshen sources</li>
+						<li>configure sources (run <code>configure</code>)</li>
+						<li>build and test regressions and distribution (run <code>make</code> with various rules)</li>
+						<li>report success or failure to the server</li>
+					</ol>
+					<p>
+						The server would need only:
+					<ol>
+						<li>collect reports</li>
+						<li>display reports</li>
+					</ol>
+					<p>
+						Surely not too much to ask!  <strong>And indeed it was not</strong>.
+					</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>building a continuous integratationator</h2>
+					<p>
+						Building the server components of a continuous integration tool took no time at all thanks to 
+						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a>.
+						The data model is described in
+						<a href="https://github.com/kristapsdz/minci/blob/master/db.ort">db.ort</a>
+						and the back-end driver in
+						<a href="https://github.com/kristapsdz/minci/blob/master/main.c">main.c</a>.
+						The driver both accepts reports and formats them in HTML.
+					</p>
+					<p>
+						The test runner took a bit more work.
+						I opted for a simple POSIX shell script, 
+						<a href="https://github.com/kristapsdz/minci/blob/master/minci.sh">minci.sh</a>,
+						which so far it has worked fine on all target systems.
+						The script is designed to be run from a regular a user's 
+						<a href="https://man.openbsd.org/crontab">crontab</a>.
+					</p>
+					<p>
+						Since the BSD.lv tools have been fitted to use
+						<a href="https://man.openbsd.org/pkg-config.1">pkg-config(1)</a>
+						for detecting libraries, it's easy for the test
+						runner user to override system libraries, which
+						might be out of date, with those installed locally.
+						The user need only set
+						<code>PKG_CONFIG_PATH</code> to where the package specification files are found.
+						This comes particularly in handy for downloading
+						<a href="https://libressl.org">LibreSSL</a>
+						or newer version of
+						<a href="https://openssl.org">OpenSSL</a>.
+					</p>
+				</section>
+			</article>
+		</section>
+		<footer>
+			<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+			<a rel="author" href="https://github.com/kristapsdz">kristapsdz</a>
+		</footer>
+	</body>
+</html>
