@@ -390,7 +390,7 @@
 			</article>
 			<article>
 				<section>
-					<h2>keeing it together&#8230;</h2>
+					<h2>keeping it together&#8230;</h2>
 					<p>
 						Finding the necessary macro incantations proved immediately problematic.
 						Especially on Linux: adding a feature test on an older glibc would break on newer ones.

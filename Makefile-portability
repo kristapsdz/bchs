@@ -16,8 +16,11 @@ PORT2_DEPS	= portability-fig8.xml \
 PORT2_MEDIA	= portability-fig2.svg \
 		  portability-fig3.svg
 
-DOCLEAN += $(PORT_DEPS) $(PORT2_MEDIA) $(PORT2_DEPS)
-DOINSTALL += portability.css $(PORT_LOGOS) $(PORT2_MEDIA)
+PORT3_MEDIA	= portability-fig10.svg
+PORT3_IMGS	= portability-fig9.jpg
+
+DOCLEAN += $(PORT_DEPS) $(PORT2_MEDIA) $(PORT2_DEPS) $(PORT3_MEDIA)
+DOINSTALL += portability.css $(PORT_LOGOS) $(PORT2_MEDIA) $(PORT3_IMGS) $(PORT3_MEDIA)
 
 .for f in portability-fig1 portability-fig6
 ${f}.xml: ${f}.sh
@@ -48,3 +51,5 @@ portability.html: portability.xml $(PORT_DEPS)
 
 portability-page2.html: portability-page2.xml $(PORT2_DEPS) $(PORT2_MEDIA)
 	sblg -s cmdline -t portability-page2.xml -o $@ $(PORT2_DEPS)
+
+portability-page3.html: portability-page3.xml $(PORT3_MEDIA) $(PORT3_IMGS)
