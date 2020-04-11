@@ -278,9 +278,6 @@
 					</p>
 					<h3>endianness</h3>
 					<p>
-						This is a real PITA.
-					</p>
-					<p>
 						While the traditional <a href="https://man.openbsd.org/ntohs.3">ntohs(3)</a>
 						are fairly standard, the new <a href="https://man.openbsd.org/le32toh.3">le32toh(3)</a>
 						style is more readable and handles more cases.
@@ -341,9 +338,6 @@
 					</p>
 					<h3>hashes</h3>
 					<p>
-						This is another PITA.
-					</p>
-					<p>
 						OpenBSD has the simple
 						<a href="https://man.openbsd.org/md5.3">md5(3)</a> and
 						<a href="https://man.openbsd.org/sha2.3">sha2(3)</a> header files for MD5 and SHA2 (e.g.,
@@ -367,9 +361,6 @@
 						straight-up instead of testing for each variant and providing macro-soup to work between them.
 					</p>
 					<h3>passwords</h3>
-					<p>
-						Another boondoggle.
-					</p>
 					<p>
 						OpenBSD has <a href="https://man.openbsd.org/crypt_checkpass">crypt_checkpass(3)</a>, which
 						makes password hash generation and checking super easy.
