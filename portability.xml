@@ -11,12 +11,12 @@
 		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
 		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
 		<link rel="apple-touch-icon" href="/favicon-196x196.png" />
-		<meta property="og:title" content="BCHS//openradtool: translation tools" />
+		<meta property="og:title" content="BCHS//portability: introduction" />
 		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
-		<meta property="og:url" content="https://learnbchs.org/translate.html" />
+		<meta property="og:url" content="https://learnbchs.org/portability.html" />
 		<meta property="og:type" content="website" />
-		<meta property="og:description" content="Manage translations for your openradtool configuration." />
-		<meta name="description" content="Manage translations for your openradtool configuration." />
+		<meta property="og:description" content="Portability and continuous integration for BSD.lv" />
+		<meta name="description" content="Portability and continuous integration for BSD.lv" />
 	</head>
 	<body>
 		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
