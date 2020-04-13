@@ -159,6 +159,12 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
+							a series on <a href="portability.html">portability and continuous integration</a>
+						</span>
+						<span class="src">2020/04</span>
+					</li>
+					<li>
+						<span>
 							<a href="https://kore.io">kore</a>: 
 							<a href="https://blog.kore.io/posts/automagic-x509s-via-acme.html">Automagic x509s via ACME</a>
 						</span>
