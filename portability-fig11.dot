@@ -1,0 +1,26 @@
+digraph {
+	bgcolor="transparent";
+	rankdir="LR";
+	splines=false;
+
+	freshen;
+	configure;
+	build;
+	regress;
+	distcheck;
+	report;
+
+	freshen -> report[label="fail"; fontcolor="red"];
+	freshen -> configure[label="pass"];
+
+	configure -> report[label="fail"; fontcolor="red"];
+	configure -> build[label="pass"]
+
+	build -> report[label="fail"; fontcolor="red"];
+	build -> regress[label="pass"];
+
+	regress -> report[label="fail"; fontcolor="red"];
+	regress -> distcheck[label="pass"];
+
+	distcheck -> report[label="pass/fail"];
+}

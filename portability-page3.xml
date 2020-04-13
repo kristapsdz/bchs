@@ -57,8 +57,10 @@
 						based upon our needs and the complexity of other available tools, but either way you're going to
 						need some sort of machinery to verify that your continued portability efforts doesn't cause
 						fallout on other systems.
-						This is especially true with same-but-different systems, such as Linux distributions or SunOS
-						derivatives.
+					</p>
+					<p>
+						This is especially true with umbrella systems, such as Linux distributions or SunOS derivatives,
+						where portability measures for a target umbrella cause fallout for specific systems in that umbrella.
 					</p>
 				</header>
 			</article>
@@ -66,13 +68,12 @@
 				<section>
 					<h2>why continuous integration</h2>
 					<p>
-						With the development and integration of
-						<a href="portability-page2.html">configuration</a> underway, I soon ran into problems
-						where one portability measure (e.g., adding <code>_DEFAULT_SOURCE</code> on a glibc Linux for
-						including <a href="https://man.openbsd.org/crypt.3">crypt(3)</a>) would cause fallout on other
-						systems.
-						In this example, because <code>_XOPEN_SOURCE</code> had already been defined, and conflicted
-						with the new define.
+						With the continued development and integration of
+						<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a> underway, I soon ran into
+						problems where one portability measure (e.g., adding <code>_DEFAULT_SOURCE</code> on a glibc
+						Linux for including <a href="https://man.openbsd.org/crypt.3">crypt(3)</a>) would cause fallout
+						on other systems.  In this example, because <code>_XOPEN_SOURCE</code> had already been defined,
+						and conflicted with the new define.
 					</p>
 					<p>
 						I needed a tool for making sure commits on the current focus were not causing fallout on other
@@ -98,13 +99,14 @@
 					<p class="important">
 						<strong>Searching for CI tools produced lots of useless information</strong>.
 						It's a <q>buzzword</q> and results were heavily skewed toward heavy-weight vendors.
-						I'm sure there are many high-quality, light-weight systems hidden in the mud.
+						I'm sure there are many high-quality, light-weight systems hidden in the results, but I couldn't
+						find any.
 					</p>
 					<p>
 						In the end, it seemed like a much simpler task to simply write one myself.
 						At heart a CI tool consists of a <i>test runner</i>, which verifies for a single host; and the
 						<i>report server</i>, which manages the reports of test runners.
-						A test runner for BSD.lv tools would need to only:
+						A test runner for BSD.lv tools would need only:
 					</p>
 					<ol>
 						<li>freshen sources</li>
@@ -129,48 +131,73 @@
 				<section>
 					<h2>building a continuous integratationator</h2>
 					<p>
-						Building the server components of a continuous integration tool took no time at all thanks to 
+						I ended (but am starting here) with the report server.  The report server handles the set of
+						test reports, which it must accept and produce.  Each report consists of:
+					</p>
+					<ul>
+						<li>what software was tested</li>
+						<li>what system it was run on</li>
+						<li>when stages of freshing, configuring, and building finished (or not)</li>
+						<li>identify of the tester</li>
+					</ul>
+					<p>
+						For simplicity, I combined the accept and produce functionality into one tool backed by
 						<a href="https://kristaps.bsd.lv/openradtool">openradtool</a>.
-						The data model is described in
-						<a href="https://github.com/kristapsdz/minci/blob/master/db.ort">db.ort</a>
-						and the back-end driver in
-						<a href="https://github.com/kristapsdz/minci/blob/master/main.c">main.c</a>.
-						The driver both accepts reports and formats them in HTML.
-					</p>
-					<p>
-						(A more advanced system would probably format reports in JSON, leaving actual front-end
-						formatting to a JavaScript web application, but I struck for simplicity.)
-					</p>
-					<p>
-						I opted for a simple POSIX shell script test runner, 
-						<a href="https://github.com/kristapsdz/minci/blob/master/minci.sh">minci.sh</a>,
-						which so far it has worked fine on all target systems.
-						The benefit of a POSIX shell script is that it fits naturally on all target systems, is
-						incredibly flexible with regard to changing needs, and is trivial to update.
+						Reports are accepted over a simple HTTP <strong>POST</strong> and produced in HTML5 from an HTTP
+						<strong>GET</strong> from the same CGI resource.
 					</p>
 					<figure>
 						<img src="portability-fig10.svg" />
 						<figcaption>Interaction of runners, sources, and the report server.</figcaption>
 					</figure>
 					<p>
-						What remains is accessing sources.
+						The data model is described in
+						<a href="https://github.com/kristapsdz/minci/blob/master/db.ort">db.ort</a>
+						and the back-end driver in
+						<a href="https://github.com/kristapsdz/minci/blob/master/main.c">main.c</a>.
+						The driver both accepts reports and formats them in HTML.
+						The rest is just CSS.
+					</p>
+					<p>
+						For the test runner, I opted for a simple POSIX shell script,
+						<a href="https://github.com/kristapsdz/minci/blob/master/minci.sh">minci.sh</a>.
+						So far this has worked fine on all target systems, with some snags along the way in portable
+						idioms for UNIX tools, e.g., <code>head -n1</code> vs. <code>head -1</code> or 
+						<code>echo -n</code> vs. <code>printf</code>.
+						I have the HTTP <strong>POST</strong> component be handled by
+						<a href="https://curl.haxx.se">curl</a>, which is available on all systems I use&#8212;often as
+						part of the base system.
+					</p>
+					<figure>
+						<img src="portability-fig11.svg" />
+						<figcaption>Test runner sequence.</figcaption>
+					</figure>
+					<p>
 						The BSD.lv tools are all mirrored from a local CVS repository to 
 						<a href="https://github.com/kristapsdz">GitHub</a>, making it easy to fetch sources from one
 						location.
-						The reason for using <code>git</code> instead of mirroring the CVS repositories over
-						<code>anoncvs</code> is that <code>git</code> has the concept of a source tree identified by the
-						last commit.
+						The reason for using <a href="https://git-scm.com">git(1)</a> instead of 
+						<a href="https://man.openbsd.org/cvs.1">cvs(1)</a> via <code>anoncvs</code> is the concept of a
+						source tree identified by the last commit.
 						This way, if any two source trees have the same last-commit identifier, they're identical.
 						CVS doesn't have this concept, so tracking the same source trees is more difficult.
 						The <a href="https://github.com/kristapsdz/minci/blob/master/minci.sh">minci.sh</a> test runner
 						uses this identifier to check whether sources need to be updated and re-checked.
 					</p>
 					<p>
-						The test runner is instead run over
+						The test runner runs periodically via 
 						<a href="https://man.openbsd.org/crontab.1">crontab(1)</a>.
 						This introduces a delay in testing sources, but this is at best a minor inconvenience.
 						Most heavy-weight continuous integration tools are triggered on each commit, but I considered
 						this unnecessary complexity.
+					</p>
+					<p>
+						Instead of relying on complicated usernames and passwords, the test runner identifies itself
+						with an email address and shared secret token (hashed in the <strong>POST</strong> submission)
+						in its configuration file.
+						Very straightforward and very effective.
+						Adding a new tester to the database is as simple as generating a token and assigning that to an
+						e-mail address.
 					</p>
 					<h3>local test-runner configuration</h3>
 					<p>
@@ -211,14 +238,14 @@
 					platforms.
 				</p>
 				<p>
-					One thing that <a href="https://github.com/kristapsdz/minci">minci</a> has done is put more pressure on
-					me to provide regression tests.
-					A compile test simply doesn't cut it, especially on non-standard hardware like SPARC64.
+					One unexpected (but excellent) result of <a href="https://github.com/kristapsdz/minci">minci</a> is that
+					it puts more pressure on me to provide regression tests.
+					This is specific to the SPARC64 hardware: it demonstrates that standard operation of my tools don't have
+					hidden alignment issues.
 					Since starting this continuous integration, I've added dozens of regression tests to
 					<a href="https://github.com/kristapsdz/oconfigure">oconfigure</a>,
 					<a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, and even
 					<a href="https://kristaps.bsd.lv/kcaldav">kcaldav</a>.
-					The more, the better!
 				</p>
 				<p>
 					For future work, I'll add a notification tool for the report server.

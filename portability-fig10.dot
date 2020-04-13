@@ -11,10 +11,14 @@ digraph {
 	  testrunner3 [label="OpenBSD (amd64)"];
 	  testrunner4 [label="OpenBSD (sparc64)"]; }
 
-	{ rank=sink;
+	{ rank=same;
 	  reports [label="report server"]; }
+
+	{ rank=sink;
+	  reviewer [label="review reports"]; }
 
 	repo1 -> { testrunner1, testrunner2, testrunner3, testrunner4 [dir="both"] };
 	repo2 -> { testrunner1, testrunner2, testrunner3, testrunner4 [dir="both"] };
 	{ testrunner1, testrunner2, testrunner3, testrunner4 } -> reports;
+	reviewer -> reports;
 }

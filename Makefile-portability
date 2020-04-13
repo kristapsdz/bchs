@@ -16,7 +16,8 @@ PORT2_DEPS	= portability-fig8.xml \
 PORT2_MEDIA	= portability-fig2.svg \
 		  portability-fig3.svg
 
-PORT3_MEDIA	= portability-fig10.svg
+PORT3_MEDIA	= portability-fig10.svg \
+		  portability-fig11.svg
 PORT3_IMGS	= portability-fig9.jpg
 
 DOCLEAN += $(PORT_DEPS) $(PORT2_MEDIA) $(PORT2_DEPS) $(PORT3_MEDIA)
