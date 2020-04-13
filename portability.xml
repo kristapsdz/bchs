@@ -150,6 +150,16 @@
 						Also thanks to <a href="https://stsp.name/">Stefan Sperling</a> for making space on a SPARC64
 						for alignment portability.
 					</p>
+					<p>
+						For the system itself, I used the
+						<a href="https://www.openssh.com/portable.html">portable OpenSSH</a> software as both a
+						reference and in some cases for the compatibility functions themselves.
+						This tool is the gold standard for clean, readable portability!
+					</p>
+					<p>
+						I also used <a href="https://mandoc.bsd.lv">mandoc</a> as a basis for a lot of this work, as
+						Ingo's approach to the portability worked well for my needs.
+					</p>
 				</section>
 			</article>
 		</section>

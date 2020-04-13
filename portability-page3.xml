@@ -238,6 +238,10 @@
 					platforms.
 				</p>
 				<p>
+					You can see the results for the BSD.lv tools in action at
+					<a rel="nofollow" href="https://kristaps.bsd.lv/cgi-bin/minci.cgi">kristaps.bsd.lv/cgi-bin/minci.cgi</a>.
+				</p>
+				<p>
 					One unexpected (but excellent) result of <a href="https://github.com/kristapsdz/minci">minci</a> is that
 					it puts more pressure on me to provide regression tests.
 					This is specific to the SPARC64 hardware: it demonstrates that standard operation of my tools don't have
