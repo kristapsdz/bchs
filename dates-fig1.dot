@@ -1,0 +1,20 @@
+digraph {
+	bgcolor="transparent";
+	compound=true;
+	nodesep=2;
+
+	subgraph cluster0 { 
+		rank=source;
+		rfc [label="Mon, 11 May 2020 09:36:45 GMT"];
+		iso [label="2020-05-11T09:36:45Z"];
+		iso -> rfc [dir="both"];
+	};
+
+	subgraph cluster1 { rank=sink;
+		broke [label="int64_t[] (broken-down)"];
+		epoch [label="int64_t (epoch)"];
+		broke -> epoch [dir="both"];
+	};
+
+	broke -> rfc [lhead=cluster0, ltail=cluster1, dir="both"];
+}

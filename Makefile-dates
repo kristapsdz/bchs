@@ -1,0 +1,6 @@
+DATES_DEP	= dates-fig1.svg
+
+DOCLEAN += $(DATES_DEP)
+DOINSTALL += $(DATES_DEP)
+
+dates.html: $(DATES_DEP)

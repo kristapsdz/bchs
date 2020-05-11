@@ -6,6 +6,7 @@ DOCLEANDIR	 =
 DOINSTALL	 =
 DOINSTALLDIR	 =
 PAGES		 = auditing.html \
+		   dates.html \
 		   easy.html \
 		   index.html \
 		   json.html \
@@ -43,6 +44,7 @@ BUILT		 = audit.js \
 
 www: $(FAVICONS) $(PAGES)
 
+include Makefile-dates
 include Makefile-easy
 include Makefile-ksql
 include Makefile-json

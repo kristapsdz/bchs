@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>BCHS//kcgi: dates</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,700" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="highlight.css" />
+		<link rel="stylesheet" href="portability.css" />
+		<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />
+		<link rel="shortcut icon" sizes="196x196" href="/favicon-196x196.png" />
+		<link rel="apple-touch-icon" href="/favicon-196x196.png" />
+		<meta property="og:title" content="BCHS//kcgi: portably handling dates" />
+		<meta property="og:image" content="https://learnbchs.org/logo-blue.png" />
+		<meta property="og:url" content="https://learnbchs.org/dates.html" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Portably handling dates in kcgi" />
+		<meta name="description" content="Portably handling dates in kcgi" />
+	</head>
+	<body>
+		<section itemscope="itemscope" itemtype="http://schema.org/WebPage">
+			<header id="mainhead">
+				<img itemprop="image" src="logo-blue.png" alt="BCHS Logo" />
+				<h1>
+					<a href="index.html" itemprop="name">BCHS</a>
+				</h1>
+				<nav>
+					<a href="tools.html"><span>tools</span></a>
+					<a href="easy.html"><span>example</span></a>
+					<a href="https://github.com/kristapsdz/bchs"><i class="fa fa-github"></i></a>
+				</nav>
+			</header>
+			<article id="article">
+				<header>
+					<p class="intro">
+						Dates!
+						No, not like <i>going on a date</i>.
+						Dates: the fifteenth of March; November 22, 1963; etc.
+						In an effort to reduce hand-rolled but otherwise-generic code in
+						<a href="https://kristaps.bsd.lv/kcgi">kcgi</a>, I recently set out to convert date handling to
+						use the system functions <a href="https://man.openbsd.org/strftime">strftime(3)</a>,
+						<a href="https://man.openbsd.org/mktime">mktime(3)</a>, etc.
+						Unfortunately, I quickly realised that the supported systems handle dates quite differently, and
+						ended up doing the opposite.
+					</p>
+				</header>
+			</article>
+			<article>
+				<section>
+					<h2>introduction</h2>
+					<p>
+						As it stood up to version 0.12.0,
+						<a href="https://kristaps.bsd.lv/kcgi">kcgi</a>'s handling of dates mixed hand-rolled functions
+						for converting between epoch values and broken-down time, and system functions for formatting.
+						These are laid out in 
+						<a href="https://github.com/kristapsdz/kcgi/blob/VERSION_0_12_0/datetime.c">datetime.c</a>
+						for that version.
+						The regression tests that already existed were spotty and failed to cover any corner cases in
+						date handling.
+					</p>
+					<p>
+						I didn't choose to examine the date functions randomly: it was part of an ongoing process to
+						convert all <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> <code>kutil</code> utility functions
+						to having a <code>khttp</code> prefix; and in doing so, to review the implementation and
+						correctness of said functions.
+						BSD.lv's new <a href="portability.html">portability</a> infrastructure has played no small part
+						in casting light in the areas where the code can use more clarity and consistency.
+					</p>
+					<p>
+						At heart, date handling needs to convert freely between two string representations and two
+						binary representations.
+					</p>
+					<figure class="centre">
+						<img src="dates-fig1.svg" alt="relationship between date representations" />
+					</figure>
+					<p>
+						It's critically important that each transition is fully defined and correct, so I started by
+						replacing hand-rolled binary conversions with system functions.
+					</p>
+					<h2>removing hand-rolled conversions</h2>
+					<p>
+						The system functions to convert between binary representations are
+						<a href="https://man.openbsd.org/timegm">timegm(3)</a> and
+						<a href="https://man.openbsd.org/gmtime">gmtime(3)</a>.
+						These convert between UNIX epoch time (an integer of seconds before or after the start of 1970,
+						UTC) and broken-down time values, which separately represent day, month, year, hour, etc. as
+						integers.
+						Switching to these functions significantly reduced code size&#8212; or rather, off-loaded the
+						complexity to the C library.
+					</p>
+					<p>
+						My development platform for this was <a href="https://www.openbsd.org">OpenBSD</a>, which has
+						used clean 64-bit <code>time_t</code> values since a monumental effort in 2013.
+						The <code>time_t</code> type is used by systems to represent UNIX epoch.
+						Broken-down time is represented by a standard <code>int</code>.
+						<strong>These are not fixed-width types</strong>.
+					</p>
+					<p>
+						I started with
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_epoch2tms.3.html">khttp_epoch2tms(3)</a> and
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_datetime2epoch.3.html">khttp_datetime2epoch(3)</a>, 
+						which convert between these two forms.
+						While doing so, I also added regression tests for all of the converted functions.
+						These regression tests probed the full range of possible input values.
+						I committed the results and waited for our CI systems to test it on all other operating systems.
+					</p>
+					<p>
+						Result: <strong>immediate breakage</strong>.
+					</p>
+					<p>
+						The biggest breakage came from 32-bit <code>time_t</code> types on some systems, which I frankly
+						didn't expect to be a problem any more.
+						But it is.
+						The problem arises because
+						<a href="https://kristaps.bsd.lv/kcgi">kcgi</a> passes around explicitly-sized integers for the
+						UNIX epoch, specifically <code>int64_t</code>, which allows for more values than a 32-bit
+						<code>time_t</code> can handle.
+						When passing these values into the 32-bit systems' 
+						<a href="https://man.openbsd.org/gmtime">gmtime(3)</a>, they suffered conversion.
+					</p>
+					<p>
+						Then there were also some surprising results, such as converting from broken-down time with a
+						year before 1900 to an epoch value.
+						On <a href="https://www.freebsd.org">FreeBSD</a>, this inexplicably failed.
+					</p>
+					<p>
+						The API itself presented problems that simply slipped my mind: a 64-bit <code>time_t</code>
+						can represent more than a 32-bit <code>int</code> year can encode, so converting large times to
+						broken-down time failed.
+						These are documentation problems, as the broken-down time representation cannot change.
+					</p>
+					<p>
+						I also needed to worry about representing <code>(time_t)-1</code>, which is both a legitimate
+						representation of one second before the UNIX epoch <em>and</em> the error return value for 
+						<a href="https://man.openbsd.org/timegm">timegm(3)</a>.
+						Confusing!
+					</p>
+					<p>
+						In light of these issues, I quickly decided to change my approach and instead return to using
+						private copies of the conversion functions.
+					</p>
+					<h2>re-rolling conversions</h2>
+					<p>
+						I started by merging an appropriately-licensed implementations of
+						<a href="https://man.openbsd.org/timegm">timegm(3)</a> 
+						and
+						<a href="https://man.openbsd.org/gmtime">gmtime(3)</a> 
+						from
+						<a href="https://sourceware.org/newlib/">newlib</a> that were small, easy to read, well-tested,
+						and complete&#8212;and more importantly, 64-bit safe.
+						Upon doing so, I was able to verify that all sane 64-bit input values were properly converting 
+						to and from the given time values.
+					</p>
+					<p>
+						Using these imports also relieved the burden of pre-checking for <code>(time_t)-1</code>, since
+						they never returned an error.
+					</p>
+					<p>
+						For symmetry, I also added
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_datetime2epoch.3.html">khttp_datetime2epoch(3)</a>, 
+						which mirrors
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_epoch2datetime.3.html">khttp_epoch2datetime(3)</a>
+						in that it converts between <code>int64_t</code> broken-down time instead of <code>int</code>.
+						I then moved on to formatting functions.
+					</p>
+					<h2>re-rolling formatting</h2>
+					<p>
+						There are two formatted outputs handled by <a href="https://kristaps.bsd.lv/kcgi">kcgi</a>:
+						<a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>
+						and <a href="https://tools.ietf.org/html/rfc822">RFC 822</a> (modernised as 
+						<a href="https://tools.ietf.org/html/rfc5322">5322</a>).
+						Prior to this effort, kcgi used the
+						<a href="https://man.openbsd.org/strftime">strftime(3)</a> function for the latter and
+						normal string handling for the latter.
+					</p>
+					<p>
+						While the ISO 8601 date processing handled equally well on all systems, there were some corner
+						cases for RFC 5322 formatting.
+						First, negative years; the second, years with more than four digits.
+						The RFC is mostly silent on how these are handled, but it's safe to assume that we should handle
+						arbitrary dates in the sane way: negative years and as many year digits as required.
+					</p>
+					<p>
+						I was then surprised that the
+						<a href="https://man.openbsd.org/strftime">strftime(3)</a> truncated year values on some SunOS
+						systems, specifically Oracle Solaris.
+						Moreover, by accepting a
+						<code>struct tm</code>, I knew that formatting was impossible for year values beyond the 32-bit
+						barrier.
+					</p>
+					<p>
+						Fortunately, fixing this is easy: since
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_epoch2datetime.3.html">khttp_epoch2datetime(3)</a>
+						is able to convert into all the necessary date components, it only took two string table lookups
+						for week names and months, then using regular string handling.
+						Solved with
+						<a href="https://kristaps.bsd.lv/kcgi/khttp_epoch2str.3.html">khttp_epoch2str(3)</a>.
+					</p>
+					<h2>performance problems</h2>
+					<p>
+						When testing for corner-case dates, such as those with years needing more than 32 bits,
+						unexpected difficulties came from the conversion utility.
+						Specifically, when computing the seconds from the year, the code stepped through each year from
+						1970 or so, accumulating seconds.
+						For the valid year of 1 152 921 504 606 846 976, or 2<sup>60</sup>, this computation would take
+						quite some time.
+					</p>
+					<p>
+						Fortunately, this code is easily optimised since the number of days in 400-year blocks, with
+						1900 as a baseline, is fixed.
+						It was trivial to change the code to step only to 400-year multiples, eat the remaining 400
+						years with a single division, then compute the remainder.
+					</p>
+					<h2>conclusion and future steps</h2>
+					<p>
+						<a href="https://kristaps.bsd.lv/kcgi">kcgi</a> is now able to handle all representable 64-bit
+						dates.  A representable date is one that can convert between broken-down and epoch time without
+						integer truncation, such as converting from a 64-bit epoch to a 32-bit year (the year might roll
+						over) or a 64-bit year to a 64-bit epoch (the epoch might roll over).
+					</p>
+					<p>
+						The result of this work was produced in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> version
+						0.12.1.
+					</p>
+					<p>
+						An important function that still needs adding is converting <i>from</i> formatted dates into
+						epoch values.
+						This is to prevent callers from using their system conversion functions, which may be limited in
+						the ways described above.
+						This won't be a difficult piece of code to write, and can wait for a future version.
+					</p>
+					<p>
+						Last but not least, it's important to remember that converting between UNIX epoch time and
+						broken-down time will <strong>always</strong> be a source of error.
+						Either the broken-down year will allow for more years than may be encoded in the epoch or vice
+						versa.
+						It's important that these functions specifically document the range of acceptable inputs!
+					</p>
+				</section>
+			</article>
+		</section>
+		<footer>
+			<a href="https://creativecommons.org/licenses/by/4.0/"><i class="fa fa-creative-commons"></i></a> 
+			<a rel="author" href="https://github.com/kristapsdz">kristapsdz</a>
+		</footer>
+	</body>
+</html>
