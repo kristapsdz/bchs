@@ -159,7 +159,13 @@ Server: <span>OpenBSD httpd</span></pre>
 				<ul>
 					<li>
 						<span>
-							a series on <a href="portability.html">portability and continuous integration</a>
+							<a href="dates.html">Dates</a> in kcgi
+						</span>
+						<span class="src">2020/05</span>
+					</li>
+					<li>
+						<span>
+							<a href="portability.html">Portability and continuous integration</a>
 						</span>
 						<span class="src">2020/04</span>
 					</li>
