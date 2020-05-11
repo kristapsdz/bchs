@@ -220,8 +220,10 @@
 						over) or a 64-bit year to a 64-bit epoch (the epoch might roll over).
 					</p>
 					<p>
-						The result of this work was produced in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> version
+						The result of this work were produced in <a href="https://kristaps.bsd.lv/kcgi">kcgi</a> version
 						0.12.1.
+						Most of this work was in
+						<a href="https://github.com/kristapsdz/kcgi/blob/VERSION_0_12_1/datetime.c">datetime.c</a>.
 					</p>
 					<p>
 						An important function that still needs adding is converting <i>from</i> formatted dates into
