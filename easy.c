@@ -9,7 +9,7 @@ main(void)
     if (pledge("stdio", NULL) == -1) 
         err(EXIT_FAILURE, "pledge");
     puts("Status: 200 OK\r");
-    puts("Content-Type: text/html\r");
+    puts("Content-Type: text/plain\r");
     puts("\r");
     puts("Hello, world!\n");
     return EXIT_SUCCESS;
