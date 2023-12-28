@@ -230,7 +230,7 @@
 					<h2>nitty-gritty</h2>
 					<p>
 						After the <code>configure</code> script was smart enough to plumb its environment, next came
-						handling discrepencies between systems.
+						handling discrepancies between systems.
 						This section covers some of the major issues encountered, and isn't specific to the <q>new</q>
 						systems involved in this porting effort.
 					</p>

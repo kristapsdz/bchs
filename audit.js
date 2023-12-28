@@ -432,7 +432,7 @@
 			}
 
 			/*
-			 * List all of the fields we have accessable
+			 * List all of the fields we have accessible
 			 * and/or exportable.
 			 * Allow our structure's exportability to
 			 * influence how we document the field.
