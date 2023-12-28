@@ -226,7 +226,7 @@ test-alloc-bad-src... <span style="color: green;">ok</span>
 					<img src="sqlbox-fig12.png" alt="with multi-select" />
 				</figure>
 				<p>
-					It's clear that stuffing result rows has a noticable benefit in terms of performance.
+					It's clear that stuffing result rows has a noticeable benefit in terms of performance.
 				</p>
 				<h2>
 					future work

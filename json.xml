@@ -110,7 +110,7 @@
 							</section>
 							<section>
 								<p>
-									In most large systems, seperate people work the front-end (HTML5, CSS,
+									In most large systems, separate people work the front-end (HTML5, CSS,
 									JS, etc.) and the back-end (BCHS).
 									We can document the interface between this by using <a
 										href="http://swagger.io/">Swagger</a>, which hooks into <a
