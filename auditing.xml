@@ -131,7 +131,7 @@
 					<p>
 						As of version 0.4.6, <a href="https://kristaps.bsd.lv/openradtool">openradtool</a>
 						pushed its RBAC implementation directly into <a href="https://kristaps.bsd.lv/ksql">ksql</a>,
-						taking advantage of the split-process model to ensure that role assignment occured outside the
+						taking advantage of the split-process model to ensure that role assignment occurred outside the
 						process space of our vulnerable application.
 						<strong>Note: openradtool uses the most current versions of ksql+kcgi: they are all developed in tandem.</strong>
 						This gives our application a great boon: <strong>guarantees</strong> about roles.
@@ -233,7 +233,7 @@
 					</p>
 					<p>
 						We can get a quick sense by using the <a href="https://graphviz.org">GraphViz</a> output mode,
-						which simply shows all accessable and exportable fields per role.
+						which simply shows all accessible and exportable fields per role.
 						For this, I've slightly expanded the above example by adding another table.
 					</p>
 					<article data-sblg-article="1" data-sblg-permlink="0"></article>

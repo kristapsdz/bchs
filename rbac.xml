@@ -232,7 +232,7 @@ struct user *db_user_get_creds
 						However, since the web application would be invoked by an operator in a given role (e.g., a user from
 						his or her web browser, an administrator from a local application or also via the web), I can
 						in theory identify the source and provision accordingly.
-						This way, I can identify which operations were permissable from which user roles.
+						This way, I can identify which operations were permissible from which user roles.
 					</p>
 					<p>
 						In the above example, let's say that an administrator should be able to list and add new
@@ -243,13 +243,13 @@ struct user *db_user_get_creds
 						<img src="rbac-fig2.svg" />
 					</figure>
 					<p>
-						The new <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> RBAC feature accomodates for this by
+						The new <a href="https://kristaps.bsd.lv/openradtool">openradtool</a> RBAC feature accommodates for this by
 						identifying roles; and then for each role, establishing which operations are permitted by that role.
 					</p>
 					<p>
 						If a user role tries to perform a disallowed task&#8212;bam.
 						Application calls <a href="https://man.openbsd.org/abort.3">abort(3)</a>.
-						The syntax to accomodate for this is super easy.
+						The syntax to accommodate for this is super easy.
 						Using our above example (abridged for brevity)&#8230;
 					</p>
 					<pre class="prettyprint">roles {
